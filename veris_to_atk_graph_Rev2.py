@@ -264,8 +264,8 @@ def get_or_create_nodes_and_edge(g, src, dst, edge_count=1):
             'Label': dst
         }
         g.add_node(dst, attr_dict=properties)
-    else:
-        g.node[dst]['count'] += 1
+ #   else:
+ #       g.node[dst]['count'] += 1
     # If the edge doesn't exist, create it.  Otherwise, incriment it's counter.
     if not g.has_edge(src, dst):
         # calculate the direction. forward unless from attribute to action
@@ -366,29 +366,58 @@ def main():
             for a, b in combinations(act_att_pairs, 2):
                 get_or_create_nodes_and_edge(g, a[1], b[0])  # 1 = attribute, 0 = action
                 get_or_create_nodes_and_edge(g, b[1], a[0])
+            # incriment node counters
+            for enum in actions + attributes:
+                enum_split = enum.split(".", 2)
+                if not g.has_node(enum):
+                    properties = {
+                        'type': enum_split[0],
+                        'sub_type': ".".join(enum_split[0:2]),
+                        'count': 1,
+                        'Label': enum
+                    }
+                    g.add_node(enum, attr_dict=properties)
+                else:
+                    g.node[enum]['count'] += 1
 
     logging.info('Adding normalized weights')
     # normalize the node and edge weights
-    # Normalize g edge weights
+    # Normalize g edge weights to 0<x<=1
+    # First pass sets max weight to 1 and adjusts all weights to maintain their distance from the max weight.
     weights = list()
     for edge in g.edges():
         weights.append(g.edge[edge[0]][edge[1]]['count'])
 #    weights = [edge[2] for edge in g.edges_iter(data='weight', default=0)]
     max_weight = max(weights)
     for edge in g.edges():
-        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['count'] / float(max_weight)
+        g.edge[edge[0]][edge[1]]['weight'] = 1 + (max_weight - g.edge[edge[0]][edge[1]]['count'])
+#        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['count'] / float(max_weight)
+    # we now have the maximum value set to 1 and all other values the same distance from the max weight in the positive direction.  Now to normalize to 0<x<=1
+    weights = list()
+    for edge in g.edges():
+        weights.append(g.edge[edge[0]][edge[1]]['weight'])
+    max_weight = max(weights)
+    for edge in g.edges():
+        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['weight'] / float(max_weight)
 
-    # add node weights
+    # add node weights (follow same procedure used for edge weights)
     weights = list()
     for node in g.nodes():
         weights.append(g.node[node]['count'])
     max_weight = max(weights)
     for node in g.nodes():
         if node in g.nodes():
-            g.node[node]['weight'] = g.node[node]['count'] / float(max_weight)
+            g.node[node]['weight'] = 1 + (max_weight - g.node[node]['count'])
+    weights = list()
+    for node in g.nodes():
+        weights.append(g.node[node]['weight'])
+    max_weight = max(weights)
+    for node in g.nodes():
+        if node in g.nodes():
+            g.node[node]['weight'] = g.node[node]['weight'] / float(max_weight)    
 
     logging.info('Adding start & end nodes')
-    # create mapping from 'start' to actions and attributes to 'end'  # TODO: THIS IS NOT OPTIMAL
+    # create mapping from 'start' to actions and attributes to 'end'  # TODO: THIS IS NOT OPTIMAL. would be nice to get 'count' better as well as things we 'know' started a breach
     # create start and end nodes
     properties = {
         'type': 'start',
