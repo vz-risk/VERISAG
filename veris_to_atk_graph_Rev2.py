@@ -46,6 +46,7 @@ import logging
 #VERIS_DIRS = ["/Volumes/verizon/Customer and Partner Data/DBIR/data/1.3","/Users/v685573/Documents/Development/VCDB/data/json"]
 #VERIS_DIRS = ["/Volumes/verizon/Customer and Partner Data/DBIR/data/1.3"]
 #VERIS_DIRS = ["/Users/v685573/Documents/Development/VCDB/data/json"]
+#VERIS_DIRS = "/Users/v685573/Documents/customer data/DBIR/data/dbir20150224-full.csv"
 VERIS_DIRS = ['/Users/v685573/Documents/customer data/DBIR/data/1.3']
 GENERAL_GRAPH = "/Users/v685573/Documents/Data/veris_attack_graph/dbir_Rev2_v2.graphml"
 CONFIG_FILE = "/Users/v685573/Documents/Development/veris_attack_graph/veris_atk_graph.cfg"
@@ -65,6 +66,7 @@ import os  # used for geting file lists for reading in
 from itertools import combinations, product  # used for combining actions and attributes
 import json  # used for reading VERIS
 import re  # used for filters
+import pandas as pd  # for reading data frames
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -139,7 +141,7 @@ if args.filter is not None:
 
 
 ## GLOBAL EXECUTION
-# TODO: parse the FILTERs file into regexes
+# Parse the FILTERs file into regexes
 filters = list()
 with open(FILTER, 'r') as f:
     for line in f:
@@ -155,7 +157,7 @@ with open(FILTER, 'r') as f:
 
 
 ## FUNCTION DEFINITION
-def parse_record(record):
+def parse_json_record(record):
     actions = []
     attributes = []
     # Parse hacking actions
@@ -284,43 +286,7 @@ def get_or_create_nodes_and_edge(g, src, dst, edge_count=1):
 
 
 
-## MAIN LOOP EXECUTION
-def main():
-    global VERIS_DIRS
-
-    logging.info('Beginning main loop.')
-    logging.info("Initialize the graphs")
-    g = nx.DiGraph()
-
-    logging.info('Read in VERIS data')
-    if type(VERIS_DIRS) == str:
-        VERIS_DIRS = [VERIS_DIRS]
-    # Read in JSON files
-    json_files = []
-    for path in VERIS_DIRS:
-        json_files += [os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(path) for f in files if f.endswith('.json')]
-
-
-    # First pass.  single action-attribute linkage
-    '''
-    In the first pass, we only want records where a single action-attribute mpaping exists.  We will use these as the filter for the next pass
-    '''
-    logging.info('Beginning first pass.')
-    base_mappings = nx.DiGraph()
-    for F in json_files:
-        with open(F, 'r') as f:
-            actions, attributes = parse_record(json.load(f))
-            # filter unwanted stuff
-            actions = filter_record(actions)
-            attributes = filter_record(attributes)
-            if len(actions) == 1:
-                # create  mapping
-                for attribute in attributes:
-                    base_mappings.add_edge(actions[0], attribute)
-
-
-    logging.info('Beginning second pass.')
-    # Second Pass
+def add_record_to_graph(g, actions, attributes, base_mappings):
     '''
     In the second pass:
     1. If collect action-attribute relationships
@@ -337,48 +303,127 @@ def main():
     - Iterate edge count
     - Iterate node count
     '''
-    # BUG: When a node is added with get_or_create_nodes_and_edge, the node can be counted multiple times
-    for F in json_files:
-        with open(F, 'r') as f:
-            actions, attributes = parse_record(json.load(f))
+
+    # filter unwanted stuff
+    actions = filter_record(actions)
+    attributes = filter_record(attributes)
+
+    # create sets
+    paired_actions = set()  # for step 4
+    act_att_pairs = set()  # for step 5
+    # 1
+    for action, attribute in product(actions, attributes):
+        # 2
+        if base_mappings.has_edge(action, attribute):
+            get_or_create_nodes_and_edge(g, action, attribute)
+            act_att_pairs.add((action, attribute))
+            paired_actions.add(action)
+        # 3
+        elif action.split(".", 1)[0] == "action" and attribute.split(".", 1)[0] == "attribute":
+            pass  # Ignore it
+    # 4
+    unpaired_actions = set(actions).difference(paired_actions)
+    for src, dst in product(unpaired_actions, paired_actions):
+        get_or_create_nodes_and_edge(g, src, dst)
+    # 5
+    for a, b in combinations(act_att_pairs, 2):
+        get_or_create_nodes_and_edge(g, a[1], b[0])  # 1 = attribute, 0 = action
+        get_or_create_nodes_and_edge(g, b[1], a[0])
+    # incriment node counters
+    for enum in actions + attributes:
+        enum_split = enum.split(".", 2)
+        if not g.has_node(enum):
+            properties = {
+                'type': enum_split[0],
+                'sub_type': ".".join(enum_split[0:2]),
+                'count': 1,
+                'Label': enum
+            }
+            g.add_node(enum, attr_dict=properties)
+        else:
+            g.node[enum]['count'] += 1
+
+
+
+## MAIN LOOP EXECUTION
+def main():
+    global VERIS_DIRS
+
+    logging.info('Beginning main loop.')
+    logging.info("Initialize the graphs")
+    g = nx.DiGraph()
+
+    logging.info('Read in VERIS data')
+    # assume this is a CSV file and parse it in as a dataframe
+    if type(VERIS_DIRS) == str and VERIS_DIRS.split(".")[-1] == "csv":
+        data = pd.read_csv(VERIS_DIRS)
+        data_type = "dataframe"
+    # if it's not a CSV, assume it's supposed to be a directory or list of directories full of JSON
+    else:
+        if type(VERIS_DIRS) == str:
+            VERIS_DIRS = [VERIS_DIRS]
+        # Read in JSON files
+        json_files = []
+        for path in VERIS_DIRS:
+            json_files += [os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(path) for f in files if f.endswith('.json')]
+        # set data type so we use the correct parsing engine
+        data_type = "json"
+
+    if data_type == "json":
+        # First pass.  single action-attribute linkage
+        '''
+        In the first pass, we only want records where a single action-attribute mpaping exists.  We will use these as the filter for the next pass
+        '''
+        logging.info('Beginning first pass.')
+        base_mappings = nx.DiGraph()
+        for F in json_files:
+            with open(F, 'r') as f:
+                actions, attributes = parse_json_record(json.load(f))
+                # filter unwanted stuff
+                actions = filter_record(actions)
+                attributes = filter_record(attributes)
+                if len(actions) == 1:
+                    # create  mapping
+                    for attribute in attributes:
+                        base_mappings.add_edge(actions[0], attribute)
+
+
+        logging.info('Beginning second pass.')
+        # Second Pass
+        for F in json_files:
+            with open(F, 'r') as f:
+                actions, attributes = parse_json_record(json.load(f))
+                add_record_to_graph(g, actions, attributes, base_mappings)
+
+    elif data_type == "dataframe":
+        # get rows to filter from records
+        act_regex = re.compile("^action\.(malware\.vector|((hacking|error|environmental|misuse|physical|social|malware)\.variety))")
+        act_cols = [l for l in data.columns for m in [act_regex.search(l)] if m]  # returns action columns
+        att_regex = re.compile("^attribute\.(confidentiality\.data|integrity|availability)\.variety")
+        att_cols = [l for l in data.columns for m in [att_regex.search(l)] if m]  # returns action columns
+        # First pass
+        logging.info('Beginning first pass.')
+        for index, record in data.iterrows():
+            raise ValueError("Dataframe parsing not yet implemented.")
+            actions = list(record.where(record[act_cols] == True).dropna().index)
+            attributes = list(record.where(record[att_cols] == True).dropna().index)
             # filter unwanted stuff
             actions = filter_record(actions)
             attributes = filter_record(attributes)
+            if len(actions) == 1:
+                # create  mapping
+                for attribute in attributes:
+                    base_mappings.add_edge(actions[0], attribute)
 
-            # create sets
-            paired_actions = set()  # for step 4
-            act_att_pairs = set()  # for step 5
-            # 1
-            for action, attribute in product(actions, attributes):
-                # 2
-                if base_mappings.has_edge(action, attribute):
-                    get_or_create_nodes_and_edge(g, action, attribute)
-                    act_att_pairs.add((action, attribute))
-                    paired_actions.add(action)
-                # 3
-                elif action.split(".", 1)[0] == "action" and attribute.split(".", 1)[0] == "attribute":
-                    pass  # Ignore it
-            # 4
-            unpaired_actions = set(actions).difference(paired_actions)
-            for src, dst in product(unpaired_actions, paired_actions):
-                get_or_create_nodes_and_edge(g, src, dst)
-            # 5
-            for a, b in combinations(act_att_pairs, 2):
-                get_or_create_nodes_and_edge(g, a[1], b[0])  # 1 = attribute, 0 = action
-                get_or_create_nodes_and_edge(g, b[1], a[0])
-            # incriment node counters
-            for enum in actions + attributes:
-                enum_split = enum.split(".", 2)
-                if not g.has_node(enum):
-                    properties = {
-                        'type': enum_split[0],
-                        'sub_type': ".".join(enum_split[0:2]),
-                        'count': 1,
-                        'Label': enum
-                    }
-                    g.add_node(enum, attr_dict=properties)
-                else:
-                    g.node[enum]['count'] += 1
+        logging.info('Beginning second pass.')
+        for index, row in data.iterrows():
+            actions = list(record.where(record[act_cols] == True).dropna().index)
+            attributes = list(record.where(record[att_cols] == True).dropna().index)
+            add_record_to_graph(g, actions, attributes, base_mappings)
+
+    else:
+        raise ValueError("Data type not supported.")
+
 
     logging.info('Adding normalized weights')
     # normalize the node and edge weights
