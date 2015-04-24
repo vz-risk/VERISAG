@@ -46,12 +46,12 @@ import logging
 #VERIS_DIRS = ["/Volumes/verizon/Customer and Partner Data/DBIR/data/1.3","/Users/v685573/Documents/Development/VCDB/data/json"]
 #VERIS_DIRS = ["/Volumes/verizon/Customer and Partner Data/DBIR/data/1.3"]
 #VERIS_DIRS = ["/Users/v685573/Documents/Development/VCDB/data/json"]
-#VERIS_DIRS = "/Users/v685573/Documents/customer data/DBIR/data/dbir20150224-full.csv"
-VERIS_DIRS = ['/Users/v685573/Documents/customer data/DBIR/data/1.3']
-GENERAL_GRAPH = "/Users/v685573/Documents/Data/veris_attack_graph/dbir_Rev2_v2.graphml"
+VERIS_DIRS = "/Users/v685573/Documents/customer data/DBIR/data/dbir20150224-full.csv"
+#VERIS_DIRS = ['/Users/v685573/Documents/customer data/DBIR/data/1.3']
+GENERAL_GRAPH = "/Users/v685573/Documents/Data/veris_attack_graph/dbir_Rev2_v4.graphml"
 CONFIG_FILE = "/Users/v685573/Documents/Development/veris_attack_graph/veris_atk_graph.cfg"
 #FILTER_WEIGHT = 0.2
-LOGLEVEL = logging.DEBUG
+LOGLEVEL = logging.INFO
 LOG = None
 FILTER = "/Users/v685573/Documents/Development/veris_attack_graph/filter.txt"
 
@@ -254,8 +254,6 @@ def get_or_create_nodes_and_edge(g, src, dst, edge_count=1):
             'Label': src
         }
         g.add_node(src, attr_dict=properties)
-    else:
-        g.node[src]['count'] += 1
     # if the destination node doesn't exist, create it.  Otherwise, incriment it's counter.
     dst_split = dst.split(".", 2)
     if not g.has_node(dst):
@@ -308,40 +306,41 @@ def add_record_to_graph(g, actions, attributes, base_mappings):
     actions = filter_record(actions)
     attributes = filter_record(attributes)
 
-    # create sets
-    paired_actions = set()  # for step 4
-    act_att_pairs = set()  # for step 5
-    # 1
-    for action, attribute in product(actions, attributes):
-        # 2
-        if base_mappings.has_edge(action, attribute):
-            get_or_create_nodes_and_edge(g, action, attribute)
-            act_att_pairs.add((action, attribute))
-            paired_actions.add(action)
-        # 3
-        elif action.split(".", 1)[0] == "action" and attribute.split(".", 1)[0] == "attribute":
-            pass  # Ignore it
-    # 4
-    unpaired_actions = set(actions).difference(paired_actions)
-    for src, dst in product(unpaired_actions, paired_actions):
-        get_or_create_nodes_and_edge(g, src, dst)
-    # 5
-    for a, b in combinations(act_att_pairs, 2):
-        get_or_create_nodes_and_edge(g, a[1], b[0])  # 1 = attribute, 0 = action
-        get_or_create_nodes_and_edge(g, b[1], a[0])
-    # incriment node counters
-    for enum in actions + attributes:
-        enum_split = enum.split(".", 2)
-        if not g.has_node(enum):
-            properties = {
-                'type': enum_split[0],
-                'sub_type': ".".join(enum_split[0:2]),
-                'count': 1,
-                'Label': enum
-            }
-            g.add_node(enum, attr_dict=properties)
-        else:
-            g.node[enum]['count'] += 1
+    if len(actions) > 0 and len(attributes) > 0:
+        # create sets
+        paired_actions = set()  # for step 4
+        act_att_pairs = set()  # for step 5
+        # 1
+        for action, attribute in product(actions, attributes):
+            # 2
+            if base_mappings.has_edge(action, attribute):
+                get_or_create_nodes_and_edge(g, action, attribute)
+                act_att_pairs.add((action, attribute))
+                paired_actions.add(action)
+            # 3
+            elif action.split(".", 1)[0] == "action" and attribute.split(".", 1)[0] == "attribute":
+                pass  # Ignore it
+        # 4
+        unpaired_actions = set(actions).difference(paired_actions)
+        for src, dst in product(unpaired_actions, paired_actions):
+            get_or_create_nodes_and_edge(g, src, dst)
+        # 5
+        for a, b in combinations(act_att_pairs, 2):
+            get_or_create_nodes_and_edge(g, a[1], b[0])  # 1 = attribute, 0 = action
+            get_or_create_nodes_and_edge(g, b[1], a[0])
+        # incriment node counters
+        for enum in set(actions).union(set(attributes)):
+            enum_split = enum.split(".", 2)
+            if not g.has_node(enum):
+                properties = {
+                    'type': enum_split[0],
+                    'sub_type': ".".join(enum_split[0:2]),
+                    'count': 1,
+                    'Label': enum
+                }
+                g.add_node(enum, attr_dict=properties)
+            else:
+                g.node[enum]['count'] += 1
 
 
 
@@ -403,8 +402,8 @@ def main():
         att_cols = [l for l in data.columns for m in [att_regex.search(l)] if m]  # returns action columns
         # First pass
         logging.info('Beginning first pass.')
+        base_mappings = nx.DiGraph()
         for index, record in data.iterrows():
-            raise ValueError("Dataframe parsing not yet implemented.")
             actions = list(record.where(record[act_cols] == True).dropna().index)
             attributes = list(record.where(record[att_cols] == True).dropna().index)
             # filter unwanted stuff
@@ -416,10 +415,11 @@ def main():
                     base_mappings.add_edge(actions[0], attribute)
 
         logging.info('Beginning second pass.')
-        for index, row in data.iterrows():
+        for index, record in data.iterrows():
             actions = list(record.where(record[act_cols] == True).dropna().index)
             attributes = list(record.where(record[att_cols] == True).dropna().index)
             add_record_to_graph(g, actions, attributes, base_mappings)
+        logging.info(nx.info(g))
 
     else:
         raise ValueError("Data type not supported.")
