@@ -53,10 +53,13 @@ LOG = None
 
 
 ## IMPORTS
-from py2neo import neo4j, cypher  # CHANGEME
 import networkx as nx  # CHANGEME
 import argparse
 import ConfigParser
+import imp
+import os
+from itertools import product  # used for combining actions and attributes
+from operator import itemgetter
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -107,31 +110,164 @@ if config_exists:
             NEODB = config.get('NEO4J', 'db')  # CHANGEME
 # <add additional config options here>
 
-## Set up Logging
+# Set up Logging
 if args.log is not None:
     logging.basicConfig(filename=args.log, level=args.loglevel)
 else:
     logging.basicConfig(level=args.loglevel)
 # <add other setup here>
 
+# Set up External Modules
+fp, pathname, description = imp.find_module("veris_to_atk_graph_Rev2", [os.getcwd()])
+attack_graph = imp.load_module("veris_to_atk_graph_Rev2", fp, pathname, description)
 
 ## GLOBAL EXECUTION
-# Connect to database
-G = neo4j.GraphDatabaseService(NEODB)
-g = nx.DiGraph()
-NEODB = args.db
+pass
 
 
 
 ## FUNCTION DEFINITION
-pass
+class analyze_attack_graphs:
 
+    def __init__(self):
+        pass  # TODO
+
+
+    def path_length(self, g, path, weight='weight'):
+        length = float(0)
+        for i in range(len(path)-1):
+            length += g.edge[path[i]][path[i+1]][weight]
+        return (path, length)
+
+
+    def all_shortest_attack_paths(self, g):
+        # get the actions/attributes set
+        actions = set()
+        attributes = set()
+        for node in g.nodes():
+            if g.node[node]['type'] == 'action':
+                actions.add(node)
+            elif g.node[node]['type'] == 'attribute':
+                attributes.add(node)
+        # get the paths
+        paths = dict()
+        for action, attribute in product(actions, attributes):
+            try:
+                paths[(action, attribute)] = nx.dijkstra_path(g,action,attribute,'weight')
+            except nx.NetworkXNoPath:
+                paths[(action, attribute)] = list()
+        return paths
+
+
+    def all_simple_paths(self, g, src, dst, cutoff=7):
+        paths = []
+        for path in nx.all_simple_paths(g, src, dst, cutoff):
+            paths.append(path)
+        return paths
+
+
+    def compare_graphs(g1, g2):
+        pass  # TODO
+
+
+    def compare_graph_paths(g1, g2):
+        pass  # TODO
 
 
 ## MAIN LOOP EXECUTION
 def main():
     logging.info('Beginning main loop.')
+    """
+    # Find the distribution of paths in the attack graph
+    lengths = list()
+    paths = analyze_attack_graphs.all_simple_paths(g, src, dst)
+    for path in paths:
+        lengths.append(analyze_attack_graphs.path_length(g, path, 'weight'))
+    lengths.sort(key=itemgetter(1))
+    hist([x[1] for x in lengths])
+    """
 
+    """
+    # What percentage of paths was 'attribute.integrity.variety.Software installation' in?
+    cnt = 0
+    for v in all_paths.values():
+        if 'attribute.integrity.variety.Software installation' in v:
+            cnt += 1
+    print cnt/float(len(all_paths))
+    """
+
+    """
+    # find the most common node in the shortest paths
+    # calculate the % change in paths length if removed
+    occurence = defaultdict(int)
+    before_aggr_length = 0
+    after_aggr_length = 0
+    for path in all_shortest_attack_paths(g):
+        for node in path:
+            occurence[node] += 1
+            before_aggr_length += path_length(g, path)
+    max_val = max(occurence.values())
+    for k, v in occurence.iteritems():
+        if v == max_val:
+            break
+    g_after = nx.copy(g)
+    g_after.remove_node(k)
+    for path in all_shortest_attack_paths(g):
+        for node in path:
+            after_aggr_length += path_length(g, path)
+    print "Improvement: {0}%".format((after_aggr_length/float(before_aggr_length) - 1) * 100)  # since paths are based on commonality, incorporates commonality
+    """
+
+    """
+    # find the most common node in a single pairs paths (in shortest 5% of paths)
+    # calculate the improvement by removing it
+    lengths = list()
+    paths = analyze_attack_graphs.all_simple_paths(g, src, dst)
+
+    for path in paths:
+        lengths.append(analyze_attack_graphs.path_length(g, path, 'weight'))
+    lengths.sort(key=itemgetter(1))
+    before_shortest_length = lengths[0][1]
+    5pct = len(lengths) * 0.05
+    shortest_5pct = [x[0] for x in lengths[:5pct]]
+    # find the most common node that is also in the shortest path
+    afer_path = nx.dijkstra_path(g,sr,dst,'weight')
+    after_shortest_length = analyze_attack_graphs.path_length(g, after_path, 'weight')
+    print "Improvement: {0}%".format((after_shortest_length/float(before_shortest_length) - 1) * 100)
+    """
+
+    """
+    # USE THIS ONE --- USE THIS ONE
+    # Find greatest improvement in single pairing by removing single node
+    # TODO: May want to only check for removal of "action" nodes since removing attribute nodes may not be practical
+    lengths = list()
+    paths = analyze_attack_graphs.all_simple_paths(g, src, dst)
+
+    for path in paths:
+        lengths.append(analyze_attack_graphs.path_length(g, path, 'weight'))
+    lengths.sort(key=itemgetter(1))
+    nodes = set(lengths[0][0])
+    i = 1
+    while 1:
+        nodes2 = nodes.intersection(set(lengths[i][0]))
+        if nodes2 > 1:
+            nodes = nodes2
+            i += 1
+        elif:
+            nodes2 <= 0:
+            break
+        else:
+            nodes = nodes2
+            break
+    print "Remove {0} for a {1}% improvement.".format(nodes, (length[i][1]/float(length[0][1]) - 1)* 100 )
+    """
+
+    """
+    # TODO, find what node is most common to shortest paths for a specific attribute and what the relative increase in path costs would be.  Similar to all action-attribute, but w/ just 1 attribute
+    # this is not the same as finding the greatest increase in potential paths.  That would take getting the entire set of nodes involved, removing them 1 at a time, recalculating shortest paths, and finding the one that, when removed, caused the greatest increase.
+    """
+
+    
     logging.info('Ending main loop.')
 
 if __name__ == "__main__":
