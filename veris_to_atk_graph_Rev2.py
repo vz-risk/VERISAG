@@ -161,6 +161,10 @@ class attack_graph():
         self.filter_file = filter_file
         self.filters = self.create_filters()
         # Store the data source reference
+        if data_source is None:
+            build = False
+            self.data_source = data_source
+            self.data_type = 'none'
         if type(data_source) == str and data_source.split(".")[-1] == "csv":
             self.data_type = 'dataframe'
             self.data_source = data_source
