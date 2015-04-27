@@ -60,6 +60,7 @@ import imp
 import os
 from itertools import product  # used for combining actions and attributes
 from operator import itemgetter
+from collections import defaultdict
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -140,7 +141,7 @@ class analyze_attack_graphs:
         return (path, length)
 
 
-    def all_shortest_attack_paths(self, g):
+    def shortest_attack_paths(self, g, src=None, dst=None):
         # get the actions/attributes set
         actions = set()
         attributes = set()
@@ -149,6 +150,16 @@ class analyze_attack_graphs:
                 actions.add(node)
             elif g.node[node]['type'] == 'attribute':
                 attributes.add(node)
+
+        # Allow subsetting actions or attributes to use
+        if src is not None:
+            actions = actions.intersect(set(src))
+        if dst is not None:
+            attributes = attributes.intersect(set(src))
+
+        if len(actions) == 0 or len(attributes) == 0:
+            raise ValueError("The source must contain at least one valid action and the destination must contain at least one valid attribute.")
+
         # get the paths
         paths = dict()
         for action, attribute in product(actions, attributes):
@@ -166,12 +177,128 @@ class analyze_attack_graphs:
         return paths
 
 
-    def compare_graphs(g1, g2):
+    def compare_graphs(self, g1, g2):
         pass  # TODO
 
 
-    def compare_graph_paths(g1, g2):
+    def compare_graph_paths(self, g1, g2):
         pass  # TODO
+
+
+    ### SCORING ALGORITHMS ####
+    def shortest_path_centrality(self, g):
+        pass  # TODO
+
+    def shortest_path_occurence(self, g, paths, mid=False):
+        """ scores nodes based on their occurence in shortest paths
+
+        :param g: a networkx attack digraph
+        :param paths: a dictionary of the shortest paths to be scored.  Key is a tuple of (src, dst).  Value is the a tuple of the path.
+        :param mid: If true, only nodes in the middle of a path will be used (i)
+        """
+        scores = defaultdict(int)
+        for path in paths.values():
+            if not mid:
+                for node in path:
+                    scores[node] += 1
+            else:
+                for node in path[1:-1]:
+                    scores[node] += 1
+        scores = [(k, v) for k, v in scores.iteritems()]  # convert from dictionary so it can be sorted
+        scores.sort(key=itemgetter(1), reverse=True)  # Sort the scores
+        return scores
+
+    def initialized_pagerank(self, g):
+        # Get actions
+        actions = set()
+        for node in g.nodes():
+            if g.node[node]['type'] == 'action':
+                actions.add(node)
+        # create actions as 'jump points' with even probability
+        #actions = {a: 1/float(len(actions)) for a in actions}  
+        dangling = dict()
+        for node in g.nodes():
+            dangling[node] = 0
+        for action in actions:
+            dangling[action] = 1/float(len(actions))
+        # do the actual scoring 
+        scores = nx.pagerank_numpy(g, dangling = dangling)
+        scores = [(k, v) for k, v in scores.iteritems()]  # convert from dictionary so it can be sorted
+        scores.sort(key=itemgetter(1), reverse=True)  # Sort the scores
+        return scores
+
+
+
+    def analyze(self, g, mitigate="any", node_to_mitigate=None):
+        """ Takes a networkx attack graph, analyzes it, and prints a recommendation for a mitigation with associated expected value
+
+            :param g: networkx digraph attack graph to analyze
+            :param mitigate: String of either 'any', action', or 'attribute' used to limit what type of enumerations may be recommended for mitigation
+            :return: None.  Recommendation is printed
+        """
+
+
+        # Graph is already built
+
+        # calculate base score
+        paths = self.shortest_attack_paths(g)
+        paths = {k: v for k, v in paths.iteritems() if v}
+
+        if not node_to_mitigate:
+            # Score the graph
+            node_scores = self.shortest_path_occurence(g, paths)  # score based on occurence in shortest paths
+            node_scores = self.shortest_path_occurence(g, paths, mid=True)  # score based on occurence in shortest paths, but only ends
+            node_scores = self.initialized_pagerank(g)  # score based on pagerank initialized to start at actions
+
+            # Pick a node to mitigate
+            if mitigate is "any":
+                node_to_mitigate = node_scores[0][0]
+            elif mitigate is "actions":
+                for k,v in node_scores:
+                    if k.split(".", 1)[0] == "action":
+                        node_to_mitigate = k
+                        break
+
+        # Pick a node to mitigate
+        after_g = g.copy()
+        after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
+
+        # Recreate paths (using only the key pairs that still exist in after_g)
+        after_paths = self.shortest_attack_paths(after_g)
+        after_paths = {k: v for k, v in after_paths.iteritems() if v}  # This is necessary to remove empty paths
+        before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
+
+        # Calculate the graph's initial score
+        before_score = 0
+        for path in before_paths.values():
+            _, length = self.path_length(g, path)
+            before_score += length
+
+        # Rescore
+        after_score = 0
+        for path in after_paths.values():
+            _, length = self.path_length(after_g, path)
+            if length == 0:
+                logging.warning("Path length was 0 implying an empty path.  This will cause improvement to be understimated.")
+            after_score += length
+
+        # find paths removed
+        removed_paths = set(paths.keys()).difference(set(after_paths.keys()))
+
+        # find attributes removed
+        before_attributes = set()
+        after_attributes = set()
+        for src, dst in paths.keys():
+            if dst.split(".", 1)[0] == 'attribute':
+                before_attributes.add(dst)
+        for src, dst in after_paths.keys():
+            if dst.split(".", 1)[0] == 'attribute':
+                after_attributes.add(dst)
+        removed_attributes = before_attributes.difference(after_attributes)
+
+        print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
+        print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
+        print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
 
 
 ## MAIN LOOP EXECUTION
