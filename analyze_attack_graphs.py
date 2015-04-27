@@ -130,6 +130,7 @@ pass
 ## FUNCTION DEFINITION
 class analyze_attack_graphs:
 
+
     def __init__(self):
         pass  # TODO
 
@@ -189,6 +190,7 @@ class analyze_attack_graphs:
     def shortest_path_centrality(self, g):
         pass  # TODO
 
+
     def shortest_path_occurence(self, g, paths, mid=False):
         """ scores nodes based on their occurence in shortest paths
 
@@ -207,6 +209,7 @@ class analyze_attack_graphs:
         scores = [(k, v) for k, v in scores.iteritems()]  # convert from dictionary so it can be sorted
         scores.sort(key=itemgetter(1), reverse=True)  # Sort the scores
         return scores
+
 
     def initialized_pagerank(self, g):
         # Get actions
@@ -229,19 +232,25 @@ class analyze_attack_graphs:
 
 
 
-    def analyze(self, g, mitigate="any", node_to_mitigate=None):
+    ######  ANALYSIS ALGORITHMS ########
+
+
+
+    def analyze(self, g, mitigate="any", node_to_mitigate=None, src=None, dst=None):
         """ Takes a networkx attack graph, analyzes it, and prints a recommendation for a mitigation with associated expected value
 
             :param g: networkx digraph attack graph to analyze
             :param mitigate: String of either 'any', action', or 'attribute' used to limit what type of enumerations may be recommended for mitigation
+            :param node_to_mitigate: If included, it will be used as the mitigated node.  Otherwise, the script will pick one.
+            :param src: a list subset of actions to use as sources for paths.  If not included, all actions are used.
+            :param dst: a list subset of attributes to use as distinations for paths.  If not included, all attributes are used.
             :return: None.  Recommendation is printed
         """
-
 
         # Graph is already built
 
         # calculate base score
-        paths = self.shortest_attack_paths(g)
+        paths = self.shortest_attack_paths(g, src=None, dst=None)
         paths = {k: v for k, v in paths.iteritems() if v}
 
         if not node_to_mitigate:
@@ -264,7 +273,7 @@ class analyze_attack_graphs:
         after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
 
         # Recreate paths (using only the key pairs that still exist in after_g)
-        after_paths = self.shortest_attack_paths(after_g)
+        after_paths = self.shortest_attack_paths(after_g, src=None, dst=None)
         after_paths = {k: v for k, v in after_paths.iteritems() if v}  # This is necessary to remove empty paths
         before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
 
@@ -299,6 +308,53 @@ class analyze_attack_graphs:
         print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
         print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
         print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+
+
+    def mitigate_single_pair(self, g, src, dst):
+        lengths = list()
+        paths = self.all_simple_paths(g, src, dst)
+
+        for path in paths:
+            lengths.append(self.path_length(g, path, 'weight'))
+        lengths.sort(key=itemgetter(1))
+        nodes = set(lengths[0][0][1:-1])
+        i = 1
+        if len(nodes) <= 2:
+            nodes = set(lengths[1][0][1:-1])
+            i = 2
+            direct = True
+        while 1:
+            if len(lengths[i][0]) <= 2:  # If the path is only 2, it is the direct path.
+                nodes2 = nodes
+            else:
+                nodes2 = nodes.intersection(set(lengths[i][0][1:-1]))
+            if len(nodes2) > 1:
+                nodes = nodes2
+                i += 1
+                if i == len(lengths):
+                    break
+            elif len(nodes2) <= 0:
+                break
+            else:
+                nodes = nodes2
+                break
+
+        if direct:
+            print ("The most likely path is directly from {0} to {1}.  Mitigating that first will provide an improvement of {2}%.  "
+                   "Once that has been dealt with, you can gain a {3}% improvement by mitigating {4}.").format(
+                       src,
+                       dst,
+                       round((lengths[1][1]/float(lengths[0][1]) - 1) * 100, 2),
+                       round((lengths[i][1]/float(lengths[1][1]) - 1) * 100, 2),
+                       list(nodes)
+                       )
+        else:
+            print "Remove {0} for a {1}% improvement. This ignores the toy solution of mitigating {2} or {3}.".format(
+                nodes,
+                round((lengths[i][1]/float(lengths[0][1]) - 1) * 100, 2),
+                src,
+                dst
+                )
 
 
 ## MAIN LOOP EXECUTION
