@@ -163,8 +163,8 @@ class attack_graph():
         # Store the data source reference
         if data_source is None:
             build = False
-            self.data_source = data_source
-            self.data_type = 'none'
+            self.data_source = None
+            self.data_type = None
         if type(data_source) == str and data_source.split(".")[-1] == "csv":
             self.data_type = 'dataframe'
             self.data_source = data_source
@@ -285,13 +285,21 @@ class attack_graph():
         }
         self.g.add_node('end', attr_dict=properties)
         # Connect start and end to attribute and action nodes
+        properties = { 'direction': "forward",
+                       'count': 0,
+                       'Label': ""
+                     }
         for node in self.g.nodes():
             if self.g.node[node]['type'] == 'action':
-                self.get_or_create_nodes_and_edge('start', node)
+                properties['Label'] = "{0}->{1}".format('start', node)
+                self.get_or_create_nodes_and_edge('start', node, attr_dict=properties)
             elif self.g.node[node]['type'] == 'attribute':
-                self.get_or_create_nodes_and_edge(node, 'end')
+                properties['Label'] = "{0}->{1}".format(node, 'end')
+                self.get_or_create_nodes_and_edge(node, 'end', attr_dict=properties)
 
         logging.info('Adding normalized weights')
+        self.g = self.normalize_weights(self.g)
+        """
         # normalize the node and edge weights
         # Normalize g edge weights to 0<x<=1
         # First pass sets max weight to 1 and adjusts all weights to maintain their distance from the max weight.
@@ -326,6 +334,7 @@ class attack_graph():
         for node in self.g.nodes():
             if node in self.g.nodes():
                 self.g.node[node]['weight'] = self.g.node[node]['weight'] / float(max_weight)
+        """
 
 
 
@@ -433,6 +442,51 @@ class attack_graph():
         else:
             self.g.edge[src][dst]['count'] += edge_count
 
+
+    def normalize_weights(self, g, prop='count'):
+        """ Takes a graph and uses the count attribute to add a 'weight' attribute that is the inverse of count normalized to 1.
+
+            The reason for this appoach is that the new weight may be used in shortest path calculations.  Also, it should never be '0'.
+
+        :param g: a networkx graph to reweight.  A 'weight' attribute is not necessary
+        :param prop: the property to use to generate weights.  default is 'count'
+        :return: a networkx graph with the weights added
+        """
+        # normalize the node and edge weights
+        # Normalize g edge weights to 0<x<=1
+        # First pass sets max weight to 1 and adjusts all weights to maintain their distance from the max weight.
+        weights = list()
+        for edge in g.edges():
+            weights.append(g.edge[edge[0]][edge[1]][prop])
+        #    weights = [edge[2] for edge in g.edges_iter(data='weight', default=0)]
+        max_weight = max(weights)
+        for edge in g.edges():
+            g.edge[edge[0]][edge[1]]['weight'] = float(1 + (max_weight - g.edge[edge[0]][edge[1]][prop]))
+        #        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['count'] / float(max_weight)
+        # we now have the maximum value set to 1 and all other values the same distance from the max weight in the positive direction.  Now to normalize to 0<x<=1
+        weights = list()
+        for edge in g.edges():
+            weights.append(g.edge[edge[0]][edge[1]]['weight'])
+        max_weight = max(weights)
+        for edge in g.edges():
+            g.edge[edge[0]][edge[1]]['weight'] = float(g.edge[edge[0]][edge[1]]['weight'] / float(max_weight))
+
+        # add node weights (follow same procedure used for edge weights)
+        weights = list()
+        for node in g.nodes():
+            weights.append(g.node[node][prop])
+        max_weight = max(weights)
+        for node in g.nodes():
+            if node in g.nodes():
+                g.node[node]['weight'] = float(1 + (max_weight - g.node[node][prop]))
+        weights = list()
+        for node in g.nodes():
+            weights.append(g.node[node]['weight'])
+        max_weight = max(weights)
+        for node in g.nodes():
+            if node in g.nodes():
+                g.node[node]['weight'] = float(g.node[node]['weight'] / float(max_weight))
+        return g
 
     def parse_json_record(self, record):
         actions = []

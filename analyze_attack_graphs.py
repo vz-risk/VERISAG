@@ -61,6 +61,7 @@ import os
 from itertools import product  # used for combining actions and attributes
 from operator import itemgetter
 from collections import defaultdict
+import copy
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -122,6 +123,7 @@ else:
 fp, pathname, description = imp.find_module("veris_to_atk_graph_Rev2", [os.getcwd()])
 attack_graph = imp.load_module("veris_to_atk_graph_Rev2", fp, pathname, description)
 
+
 ## GLOBAL EXECUTION
 pass
 
@@ -179,7 +181,86 @@ class analyze_attack_graphs:
 
 
     def compare_graphs(self, g1, g2):
-        pass  # TODO
+        """ compare two graphs returning a graph with the count of the 1st graph as a percentage of the second and the count as the inverste of the weight (for shortest path calculation)
+
+        :param g1: a networkx directed attack graph. the graph to assess.
+        :param g2: a networkx directed attack graph. the baseline graph to assess against.
+        :returns: a networkx graph of the comparison
+        """
+        g_out = nx.DiGraph()
+        # copy nodes, updating their weight
+        for node, d1 in g1.nodes(data=True):
+            data1 = copy.deepcopy(d1)  # added because the script was somehow updating the originating graph
+            unpaired_nodes = list()
+            if g2.has_node(node):
+                try:
+                    data1['count'] = float(data1['weight'] / g2.node[node]['weight'])
+                    data1['paired'] = True
+                    _ = data1.pop('weight')
+                    g_out.add_node(node, attr_dict=data1)
+                except KeyError:  # Start and End nodes /may/ not have weights.
+                    if data1['type'] in ['start', 'end']:
+                        data1['count'] = float(1)
+                        data1['paired'] = True
+                        g_out.add_node(node, attr_dict=data1)
+                    else:
+                        print data1
+                        print g2.node[node]
+                        raise
+            else:
+                unpaired_nodes.append((node, data1))
+        # get max weight
+        max_weight = 0
+        for node, data in g_out.nodes(data=True):
+            if data['count'] > max_weight:
+                max_weight = data['count']
+        # add unpaired nodes with the max weight
+        for node, d in unpaired_nodes:
+            data = copy.deepcopy(d)  # added because the script was somehow updating the originating graph
+            data['count'] = max_weight
+            _ = data.pop('weight')
+            data['paired'] = False
+            g_out.add_node(node, attr_dict=data)
+        # copy edges, upadting their weight
+        for src, dst, d1 in g1.edges(data=True):
+            data1 = copy.deepcopy(d1)  # added because the script was somehow updating the originating graph
+            unpaired_edges = list()
+            if g2.has_edge(src, dst):
+                try:
+                    data1['count'] = float(data1['weight'] / g2.edge[src][dst]['weight'])
+                    data1['paired'] = True
+                    _ = data1.pop('weight')
+                    g_out.add_edge(src, dst, data1)
+                except KeyError:
+                    if src == 'start' or dst == 'end':
+                        data1['count'] = float(1)
+                        data1['paired'] = True
+                        g_out.add_edge(src, dst, attr_dict=data1)
+                    else:
+                        print src, dst
+                        print data1
+                        print g2.edge[src][dst]
+                        raise
+            else:
+                unpaired_edges.append((src, dst, data1))
+        # get max weight
+        max_weight = 0
+        for src, dst, data in g_out.edges(data=True):
+            if data['count'] > max_weight:
+                max_weight = data['count']
+        # add unpaired edges with the max weight
+        for src, dst, d in unpaired_edges:
+            data = copy.deepcopy(d)  # added because the script was somehow updating the originating graph
+            data['count'] = max_weight
+            _ = data.pop('weight')
+            data['paired'] = False
+            g_out.add_edge(src, dst, attr_dict=data)
+
+
+        # Percentage is now stored as a count.  Now we must re-add the weights to be most common shortest to allow path calculation
+        g_out = attack_graph.attack_graph(None).normalize_weights(g_out)
+
+        return g_out
 
 
     def compare_graph_paths(self, g1, g2):
@@ -187,6 +268,8 @@ class analyze_attack_graphs:
 
 
     ### SCORING ALGORITHMS ####
+
+
     def shortest_path_centrality(self, g):
         pass  # TODO
 
