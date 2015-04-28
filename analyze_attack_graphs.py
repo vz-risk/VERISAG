@@ -440,6 +440,16 @@ class analyze_attack_graphs:
                 )
 
 
+    def compare_and_analyze(self, g1, g2):
+        g_diff = self.compare_graphs(g1, g2)
+
+        # Find major differences
+        
+
+        # Find missing nodes
+
+
+
 ## MAIN LOOP EXECUTION
 def main():
     logging.info('Beginning main loop.')
