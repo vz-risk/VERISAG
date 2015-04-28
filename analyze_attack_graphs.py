@@ -62,6 +62,7 @@ from itertools import product  # used for combining actions and attributes
 from operator import itemgetter
 from collections import defaultdict
 import copy
+from tabulate import tabulate
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -441,13 +442,41 @@ class analyze_attack_graphs:
 
 
     def compare_and_analyze(self, g1, g2):
+        """ Compare two graphs and print the major differences
+
+        :param g1: networkx graph to analyze
+        :param g2: baseline networkx graph to compare the g1 graph to
+        """
+        n = 10  # a variable for the number of results to print
+
+        # get the differential graph
         g_diff = self.compare_graphs(g1, g2)
 
         # Find major differences
-        
+        scores = list()
+        for src, dst, data in g_diff.edges(data=True):
+            scores.append(['edge', data['Label'], round(data['count'] * 100], 2))
+        for node, data in g_diff.nodes(data=True):
+            scores.append(['node', data['Label'], round(data['count'] * 100], 2))
+        scores.sort(key=itemgetter(1), reverse=True)  # sort the scores
 
         # Find missing nodes
+        missing = list()
+        for node, data in g_diff.nodes(data=True):
+            if not data['paired']:
+                missing.append(['node', data['Label']])
+        for src, dst, data in g_diff.edges(data=True):
+            if not data['paired']:
+                missing.append(['edge', data['Label']])
 
+        # Display (could just as easily dump out as json or something)
+        print "Top {0} nodes and edges by relative strength vs the reference graph.".format(n)
+        print tabulate(scores[:n], headers=["Type", "Name", "Score"])
+        print "Top {0} nodes and edges by relative weakness vs the reference graph.".format(n)
+        print tabulate(scores[-(n):], headers=["Type", "Name", "Score"])
+
+        print "All nodes and edges missing from the baseline graph."
+        print tabulate(missing, headers=['Type', 'Name'])
 
 
 ## MAIN LOOP EXECUTION
