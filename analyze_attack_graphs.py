@@ -264,10 +264,6 @@ class analyze_attack_graphs:
         return g_out
 
 
-    def compare_graph_paths(self, g1, g2):
-        pass  # TODO
-
-
     ### SCORING ALGORITHMS ####
 
 
@@ -455,10 +451,10 @@ class analyze_attack_graphs:
         # Find major differences
         scores = list()
         for src, dst, data in g_diff.edges(data=True):
-            scores.append(['edge', data['Label'], round(data['count'] * 100], 2))
+            scores.append(['edge', data['Label'], round(data['count'] * 100, 2)])
         for node, data in g_diff.nodes(data=True):
-            scores.append(['node', data['Label'], round(data['count'] * 100], 2))
-        scores.sort(key=itemgetter(1), reverse=True)  # sort the scores
+            scores.append(['node', data['Label'], round(data['count'] * 100, 2)])
+        scores.sort(key=itemgetter(2), reverse=True)  # sort the scores
 
         # Find missing nodes
         missing = list()
@@ -471,12 +467,55 @@ class analyze_attack_graphs:
 
         # Display (could just as easily dump out as json or something)
         print "Top {0} nodes and edges by relative strength vs the reference graph.".format(n)
-        print tabulate(scores[:n], headers=["Type", "Name", "Score"])
+        print tabulate(scores[:n], headers=["Type", "Name", "Score (%)"])
+        print ""
         print "Top {0} nodes and edges by relative weakness vs the reference graph.".format(n)
-        print tabulate(scores[-(n):], headers=["Type", "Name", "Score"])
+        print tabulate(scores[-(n):], headers=["Type", "Name", "Score (%)"])
+        print ""
+        if len(missing) > 0:
+            print "All nodes and edges missing from the baseline graph."
+            print tabulate(missing, headers=['Type', 'Name'])
+        else:
+            print "No nodes or edges are missing from the baseline graph."
 
-        print "All nodes and edges missing from the baseline graph."
-        print tabulate(missing, headers=['Type', 'Name'])
+
+    def compare_graph_paths(self, g1, g2):
+
+        n = 10  # variable used for number of output to display
+
+        # get the baseline paths
+        baseline_paths = self.shortest_attack_paths(g2, src=None, dst=None)
+        baseline_paths = {k: v for k, v in baseline_paths.iteritems() if v}  # Remove empty paths
+        analyze_paths = self.shortest_attack_paths(g1, src=None, dst=None)
+        analyze_paths = {k: v for k, v in analyze_paths.iteritems() if v}
+        # get the pairs in both path sets
+        mutual_pairs = set(analyze_paths.keys()).intersection(set(baseline_paths.keys()))
+
+        analyzed_paths = []
+        for pair in mutual_pairs:
+            base_length = self.path_length(g2, baseline_paths[pair])
+            analyze_length = self.path_length(g1, analyze_paths[pair])
+            analyzed_paths.append([pair[0], pair[1], float(analyze_length[1]/float(base_length[1]))])
+        analyzed_paths.sort(key=itemgetter(2), reverse=True)
+
+        # Display (could just as easily dump out as json or something)
+        print "Top {0} paths by relative strength vs the reference graph.".format(n)
+        print tabulate(analyzed_paths[:n], headers=["Source", "Destination", "Score (%)"])
+        print ""
+        print "Top {0} paths by relative weakness vs the reference graph.".format(n)
+        print tabulate(analyzed_paths[-(n):], headers=["Source", "Destination", "Score (%)"])
+        print ""
+        if len(mutual_pairs) == len(set(analyze_paths.keys())):
+            print "All paths in the analyzed graph are in the reference graph."
+        else:
+            print "The following paths are in the analyzed graph but not the reference graph."
+            tabulate(set(analyze_paths.keys()).difference(mutual_pairs), headers=["Source", "Destination"])
+        print ""
+        if len(mutual_pairs) == len(set(baseline_paths.keys())):
+            print "All paths in the reference graph are in the analyzed graph."
+        else:
+            print "The following paths are in the reference graph but not the analyzed graph."
+            tabulate(set(baseline_paths.keys()).difference(mutual_pairs), headers=["Source", "Destination"])
 
 
 ## MAIN LOOP EXECUTION
@@ -501,76 +540,8 @@ def main():
     print cnt/float(len(all_paths))
     """
 
-    """
-    # find the most common node in the shortest paths
-    # calculate the % change in paths length if removed
-    occurence = defaultdict(int)
-    before_aggr_length = 0
-    after_aggr_length = 0
-    for path in all_shortest_attack_paths(g):
-        for node in path:
-            occurence[node] += 1
-            before_aggr_length += path_length(g, path)
-    max_val = max(occurence.values())
-    for k, v in occurence.iteritems():
-        if v == max_val:
-            break
-    g_after = nx.copy(g)
-    g_after.remove_node(k)
-    for path in all_shortest_attack_paths(g):
-        for node in path:
-            after_aggr_length += path_length(g, path)
-    print "Improvement: {0}%".format((after_aggr_length/float(before_aggr_length) - 1) * 100)  # since paths are based on commonality, incorporates commonality
-    """
 
-    """
-    # find the most common node in a single pairs paths (in shortest 5% of paths)
-    # calculate the improvement by removing it
-    lengths = list()
-    paths = analyze_attack_graphs.all_simple_paths(g, src, dst)
 
-    for path in paths:
-        lengths.append(analyze_attack_graphs.path_length(g, path, 'weight'))
-    lengths.sort(key=itemgetter(1))
-    before_shortest_length = lengths[0][1]
-    5pct = len(lengths) * 0.05
-    shortest_5pct = [x[0] for x in lengths[:5pct]]
-    # find the most common node that is also in the shortest path
-    afer_path = nx.dijkstra_path(g,sr,dst,'weight')
-    after_shortest_length = analyze_attack_graphs.path_length(g, after_path, 'weight')
-    print "Improvement: {0}%".format((after_shortest_length/float(before_shortest_length) - 1) * 100)
-    """
-
-    """
-    # USE THIS ONE --- USE THIS ONE
-    # Find greatest improvement in single pairing by removing single node
-    # TODO: May want to only check for removal of "action" nodes since removing attribute nodes may not be practical
-    lengths = list()
-    paths = analyze_attack_graphs.all_simple_paths(g, src, dst)
-
-    for path in paths:
-        lengths.append(analyze_attack_graphs.path_length(g, path, 'weight'))
-    lengths.sort(key=itemgetter(1))
-    nodes = set(lengths[0][0])
-    i = 1
-    while 1:
-        nodes2 = nodes.intersection(set(lengths[i][0]))
-        if nodes2 > 1:
-            nodes = nodes2
-            i += 1
-        elif:
-            nodes2 <= 0:
-            break
-        else:
-            nodes = nodes2
-            break
-    print "Remove {0} for a {1}% improvement.".format(nodes, (length[i][1]/float(length[0][1]) - 1)* 100 )
-    """
-
-    """
-    # TODO, find what node is most common to shortest paths for a specific attribute and what the relative increase in path costs would be.  Similar to all action-attribute, but w/ just 1 attribute
-    # this is not the same as finding the greatest increase in potential paths.  That would take getting the entire set of nodes involved, removing them 1 at a time, recalculating shortest paths, and finding the one that, when removed, caused the greatest increase.
-    """
 
     
     logging.info('Ending main loop.')
