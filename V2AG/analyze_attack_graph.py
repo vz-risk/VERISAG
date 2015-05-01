@@ -43,9 +43,6 @@ import logging
 
 
 # USER VARIABLES
-VERIS_1 = "/Users/v685573/Documents/customer data/DBIR/data/dbir20150224-full.csv"
-VERIS_2 = "/Users/v685573/Documents/customer data/DBIR/data/subset.csv"
-CONFIG_FILE = "/Users/v685573/Documents/Development/veris_attack_graph/veris_atk_graph.cfg"
 LOGLEVEL = logging.DEBUG
 LOG = None
 
@@ -56,8 +53,6 @@ LOG = None
 import networkx as nx  # CHANGEME
 import argparse
 import ConfigParser
-import imp
-import os
 from itertools import product  # used for combining actions and attributes
 from operator import itemgetter
 from collections import defaultdict
@@ -66,63 +61,6 @@ from tabulate import tabulate
 
 ## SETUP
 __author__ = "Gabriel Bassett"
-
-# Parse Arguments (should correspond to user variables)
-parser = argparse.ArgumentParser(description='This script processes a graph.')
-parser.add_argument('-d', '--debug',
-                    help='Print lots of debugging statements',
-                    action="store_const", dest="loglevel", const=logging.DEBUG,
-                    default=LOGLEVEL
-                   )
-parser.add_argument('-v', '--verbose',
-                    help='Be verbose',
-                    action="store_const", dest="loglevel", const=logging.INFO
-                   )
-parser.add_argument('--log', help='Location of log file', default=LOG)
-parser.add_argument('--config', help='The location of the config file', default=CONFIG_FILE)
-# <add arguments here>
-parser.add_argument('--db', help='URL of the neo4j graph database', default=NEODB)  # CHANGEME
-args = parser.parse_args()
-
-# add config arguments
-CONFIG_FILE = args.config
-try:
-  config = ConfigParser.SafeConfigParser()
-  config.readfp(open(CONFIG_FILE))
-  config_exists = True
-except:
-  config_exists = False
-if config_exists:
-    if config.has_section('LOGGING'):
-        if 'level' in config.options('LOGGING'):
-            level = config.get('LOGGING', 'level')
-            if level == 'debug':
-                loglevel = logging.DEBUG
-            elif level == 'verbose':
-                loglevel = logging.INFO
-            else:
-                loglevel = logging.WARNING
-        else:
-            loglevel = logging.WARNING
-        if 'log' in config.options('LOGGING'):
-            log = config.get('LOGGING', 'log')
-        else:
-            log = None
-    if config.has_section('NEO4J'):  # CHANGEME
-        if 'db' in config.options('NEO4J'):  # CHANGEME
-            NEODB = config.get('NEO4J', 'db')  # CHANGEME
-# <add additional config options here>
-
-# Set up Logging
-if args.log is not None:
-    logging.basicConfig(filename=args.log, level=args.loglevel)
-else:
-    logging.basicConfig(level=args.loglevel)
-# <add other setup here>
-
-# Set up External Modules
-fp, pathname, description = imp.find_module("veris_to_atk_graph_Rev2", [os.getcwd()])
-attack_graph = imp.load_module("veris_to_atk_graph_Rev2", fp, pathname, description)
 
 
 ## GLOBAL EXECUTION
@@ -133,6 +71,7 @@ pass
 ## FUNCTION DEFINITION
 class helper():
     def __init__(self):
+        pass  #  TODO
 
     def path_length(self, g, path, weight='weight'):
         """ A function to calculate the length of a path
@@ -562,15 +501,3 @@ class analyze():
         else:
             print "The following paths are in the reference graph but not the analyzed graph."
             tabulate(set(baseline_paths.keys()).difference(mutual_pairs), headers=["Source", "Destination"])
-
-
-## MAIN LOOP EXECUTION
-def main():
-    logging.info('Beginning main loop.')
-
-    print "Please import the analysis class from this module to use."
-    
-    logging.info('Ending main loop.')
-
-if __name__ == "__main__":
-    main()
