@@ -462,7 +462,7 @@ class analyze():
         for pair in mutual_pairs:
             base_length = self.helper.path_length(g2, baseline_paths[pair])
             analyze_length = self.helper.path_length(g1, analyze_paths[pair])
-            analyzed_paths.append([pair[0], pair[1], float(float(base_length[1] / analyze_length[1]))])  # because smaller is better, we put the graph to analyze on the bottom.
+            analyzed_paths.append([pair[0], pair[1], round(float(base_length[1] / float(analyze_length[1]) * 100), 2)])  # because smaller is better, we put the graph to analyze on the bottom.
         analyzed_paths.sort(key=itemgetter(2), reverse=True)
 
         # Display (could just as easily dump out as json or something)
