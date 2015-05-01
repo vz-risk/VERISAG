@@ -36,39 +36,15 @@ under the License.
  <No TODO>
 
 """
-# PRE-USER SETUP
-import logging
 
-########### NOT USER EDITABLE ABOVE THIS POINT #################
-
-
-# USER VARIABLES
-LOGLEVEL = logging.DEBUG
-LOG = None
-
-########### NOT USER EDITABLE BELOW THIS POINT #################
-
-
-## IMPORTS
-import networkx as nx  # CHANGEME
-import argparse
-import ConfigParser
+from tabulate import tabulate
+import copy
 from itertools import product  # used for combining actions and attributes
 from operator import itemgetter
 from collections import defaultdict
-import copy
-from tabulate import tabulate
+import networkx as nx 
+import logging
 
-## SETUP
-__author__ = "Gabriel Bassett"
-
-
-## GLOBAL EXECUTION
-pass
-
-
-
-## FUNCTION DEFINITION
 class helper():
     def __init__(self):
         pass  #  TODO
