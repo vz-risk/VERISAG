@@ -285,17 +285,11 @@ class attack_graph():
         }
         self.g.add_node('end', attr_dict=properties)
         # Connect start and end to attribute and action nodes
-        properties = { 'direction': "forward",
-                       'count': 0,
-                       'Label': ""
-                     }
         for node in self.g.nodes():
             if self.g.node[node]['type'] == 'action':
-                properties['Label'] = "{0}->{1}".format('start', node)
-                self.get_or_create_nodes_and_edge('start', node, attr_dict=properties)
+                self.get_or_create_nodes_and_edge('start', node)
             elif self.g.node[node]['type'] == 'attribute':
-                properties['Label'] = "{0}->{1}".format(node, 'end')
-                self.get_or_create_nodes_and_edge(node, 'end', attr_dict=properties)
+                self.get_or_create_nodes_and_edge(node, 'end')
 
         logging.info('Adding normalized weights')
         self.g = self.normalize_weights(self.g)
@@ -336,6 +330,11 @@ class attack_graph():
                 self.g.node[node]['weight'] = self.g.node[node]['weight'] / float(max_weight)
         """
 
+        # correct start and end edges to 0 to prevent effects on path distances
+        for node in self.g.successors('start'):
+            self.g.edge['start'][node]
+        for node in self.g.predecessors('end'):
+            self.g.edge[node]['end']
 
 
     def create_filters(self):
@@ -403,7 +402,7 @@ class attack_graph():
         return base_mappings
 
 
-    def get_or_create_nodes_and_edge(self, src, dst, edge_count=1):
+    def get_or_create_nodes_and_edge(self, src, dst, edge_count=1, attr_dict={}):
         # if the source node doesn't exist, create it.  Otherwise, incriment it's counter.
         src_split = src.split(".", 2)
         if not self.g.has_node(src):
@@ -438,6 +437,9 @@ class attack_graph():
                 'count': edge_count,
                 'Label': "{0}->{1}".format(src, dst)
             }
+            # import properties manually
+            for k, v in attr_dict.iteritems():
+                properties[k] = v
             self.g.add_edge(src, dst, attr_dict=properties)
         else:
             self.g.edge[src][dst]['count'] += edge_count
