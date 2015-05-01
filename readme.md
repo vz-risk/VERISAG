@@ -14,18 +14,20 @@ git clone  https://github.com/gdbassett/veris_attack_graph.git
 Run the following within your python code or at a python console.  Ensure to set the Initialization Variables
 ```
 # Begin Initialization Variables
-LOCATION = "~/Documents/Development/veris_attack_graph/"
-FILTERS = "~/Documents/Development/veris_attack_graph/filter.txt"
-VCDB_LOCATION = "~/Documents/Development/VCDB/data/json"
+LOCATION = "~/Documents/Development/VERISAG/"
+FILTERS = "~/Documents/Development/VERISAG/filter.txt"
+VCDB_LOCATION = "~/Documents/Data/VCDB/data/json"
 # End Initialization Variables
 # Import the library
 import imp
-fp, pathname, description = imp.find_module("veris_to_atk_graph_Rev2", [LOCATION])
-V2AG = imp.load_module("veris_to_atk_graph_Rev2", fp, pathname, description)
+fp, pathname, description = imp.find_module("V2AG", [LOCATION])
+V2AG = imp.load_module("V2AG", fp, pathname, description)
 # Load the attack graph
-DBIR = V2AG.attack_graph(VCDB_LOCATION, FILTERS)
-DBIR.build()
-# TODO: add some example analysis code
+VCDB = V2AG.attack_graph(VCDB_LOCATION, FILTERS)
+VCDB.build()
+# Conduct some analysis, Find a good node to mitigate in the VCDB
+analysis = V2AG.attack_graph_analysis.analyze()
+analysis.one_graph_multiple_paths(VCDB.g)
 ```
 
 ## Contributing

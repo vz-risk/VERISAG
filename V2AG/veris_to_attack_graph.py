@@ -161,10 +161,6 @@ class attack_graph():
         self.filter_file = filter_file
         self.filters = self.create_filters()
         # Store the data source reference
-        if data_source is None:
-            build = False
-            self.data_source = None
-            self.data_type = None
         if type(data_source) == str and data_source.split(".")[-1] == "csv":
             self.data_type = 'dataframe'
             self.data_source = data_source
@@ -175,12 +171,16 @@ class attack_graph():
             for path in self.data_source:
                 self.data += [os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(path) for f in files if f.endswith('.json')]
             self.data_type = 'json'
-        else:
+        elif type(data_source) == list:
             self.data_source = data_source
             self.data = []
             for path in self.data_source:
                 self.data += [os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(path) for f in files if f.endswith('.json')]
             self.data_type = 'json'
+        else:
+            build = False
+            self.data_source = None
+            self.data_type = None
         # build the graph if expected
         if build == True:
             self.build()

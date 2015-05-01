@@ -42,8 +42,14 @@ import copy
 from itertools import product  # used for combining actions and attributes
 from operator import itemgetter
 from collections import defaultdict
-import networkx as nx 
+import networkx as nx
 import logging
+import os
+import imp
+
+fp, pathname, description = imp.find_module("V2AG", [os.getcwd()])
+V2AG = imp.load_module("V2AG", fp, pathname, description)
+attack_graph = V2AG.attack_graph(None)
 
 class helper():
     def __init__(self):
@@ -126,7 +132,7 @@ class helper():
             unpaired_nodes = list()
             if g2.has_node(node):
                 try:
-                    data1['count'] = float(data1['weight'] / g2.node[node]['weight'])
+                    data1['count'] = float(g2.node[node]['weight'] / data1['weight'])  # because smaller is better, we put the graph to analyze on the bottom.
                     data1['paired'] = True
                     _ = data1.pop('weight')
                     g_out.add_node(node, attr_dict=data1)
@@ -153,13 +159,13 @@ class helper():
             _ = data.pop('weight')
             data['paired'] = False
             g_out.add_node(node, attr_dict=data)
-        # copy edges, upadting their weight
+        # copy edges, updating their weight
         for src, dst, d1 in g1.edges(data=True):
             data1 = copy.deepcopy(d1)  # added because the script was somehow updating the originating graph
             unpaired_edges = list()
             if g2.has_edge(src, dst):
                 try:
-                    data1['count'] = float(data1['weight'] / g2.edge[src][dst]['weight'])
+                    data1['count'] = float(g2.edge[src][dst]['weight'] / data1['weight'])  # because smaller is better, we put the graph to analyze on the bottom.
                     data1['paired'] = True
                     _ = data1.pop('weight')
                     g_out.add_edge(src, dst, data1)
@@ -189,7 +195,7 @@ class helper():
             g_out.add_edge(src, dst, attr_dict=data)
 
         # Percentage is now stored as a count.  Now we must re-add the weights to be most common shortest to allow path calculation
-        g_out = attack_graph.attack_graph(None).normalize_weights(g_out)
+        g_out = attack_graph.normalize_weights(g_out)
 
         return g_out
 
@@ -456,7 +462,7 @@ class analyze():
         for pair in mutual_pairs:
             base_length = self.helper.path_length(g2, baseline_paths[pair])
             analyze_length = self.helper.path_length(g1, analyze_paths[pair])
-            analyzed_paths.append([pair[0], pair[1], float(analyze_length[1]/float(base_length[1]))])
+            analyzed_paths.append([pair[0], pair[1], float(float(base_length[1] / analyze_length[1]))])  # because smaller is better, we put the graph to analyze on the bottom.
         analyzed_paths.sort(key=itemgetter(2), reverse=True)
 
         # Display (could just as easily dump out as json or something)
