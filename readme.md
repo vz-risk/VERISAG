@@ -38,13 +38,6 @@ analysis.one_graph_multiple_paths(VCDB.g)
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
 
-## History
-
-TODO: Write history
-
-## Credits
-
-TODO: Write credits
 
 ## License
 
