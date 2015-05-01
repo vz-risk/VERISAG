@@ -293,42 +293,7 @@ class attack_graph():
 
         logging.info('Adding normalized weights')
         self.g = self.normalize_weights(self.g)
-        """
-        # normalize the node and edge weights
-        # Normalize g edge weights to 0<x<=1
-        # First pass sets max weight to 1 and adjusts all weights to maintain their distance from the max weight.
-        weights = list()
-        for edge in self.g.edges():
-            weights.append(self.g.edge[edge[0]][edge[1]]['count'])
-        #    weights = [edge[2] for edge in g.edges_iter(data='weight', default=0)]
-        max_weight = max(weights)
-        for edge in self.g.edges():
-            self.g.edge[edge[0]][edge[1]]['weight'] = 1 + (max_weight - self.g.edge[edge[0]][edge[1]]['count'])
-        #        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['count'] / float(max_weight)
-        # we now have the maximum value set to 1 and all other values the same distance from the max weight in the positive direction.  Now to normalize to 0<x<=1
-        weights = list()
-        for edge in self.g.edges():
-            weights.append(self.g.edge[edge[0]][edge[1]]['weight'])
-        max_weight = max(weights)
-        for edge in self.g.edges():
-            self.g.edge[edge[0]][edge[1]]['weight'] = self.g.edge[edge[0]][edge[1]]['weight'] / float(max_weight)
 
-        # add node weights (follow same procedure used for edge weights)
-        weights = list()
-        for node in self.g.nodes():
-            weights.append(self.g.node[node]['count'])
-        max_weight = max(weights)
-        for node in self.g.nodes():
-            if node in self.g.nodes():
-                self.g.node[node]['weight'] = 1 + (max_weight - self.g.node[node]['count'])
-        weights = list()
-        for node in self.g.nodes():
-            weights.append(self.g.node[node]['weight'])
-        max_weight = max(weights)
-        for node in self.g.nodes():
-            if node in self.g.nodes():
-                self.g.node[node]['weight'] = self.g.node[node]['weight'] / float(max_weight)
-        """
 
         # correct start and end edges to 0 to prevent effects on path distances
         for node in self.g.successors('start'):

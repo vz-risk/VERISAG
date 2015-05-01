@@ -131,21 +131,31 @@ pass
 
 
 ## FUNCTION DEFINITION
-class analyze_attack_graphs:
-
-
+class helper():
     def __init__(self):
-        pass  # TODO
-
 
     def path_length(self, g, path, weight='weight'):
+        """ A function to calculate the length of a path
+
+        :param g: the graph to find the length through
+        :param path: a list of nodes representing the path
+        :param weight: the edge parameter to use for the edge length
+        :return tuple of (path, length)
+        """
         length = float(0)
         for i in range(len(path)-1):
             length += g.edge[path[i]][path[i+1]][weight]
         return (path, length)
 
-
     def shortest_attack_paths(self, g, src=None, dst=None):
+        """ helper function to find all shortest paths between any combination of action->attribute.
+
+        :param g: the attack graph to analyze
+        :param src: optional list of source nodes (for subsetting down to specific actions)
+        :param dst: optional list of destination nodes (for subsetting down to specific attributes)
+        :param weight: the parameter on edges representing their length.
+        :return: a dictionary of paths, keyed by (src, dst) tuple and value of a list representing the shortest path from src to dst
+        """
         # get the actions/attributes set
         actions = set()
         attributes = set()
@@ -173,13 +183,19 @@ class analyze_attack_graphs:
                 paths[(action, attribute)] = list()
         return paths
 
-
     def all_simple_paths(self, g, src, dst, cutoff=7):
+        """ returns a list of all simple paths up to a given cutoff in no order
+
+        :param g: graph to calculate paths for
+        :param src: node to start paths at
+        :param dst: node to end paths at
+        :param cutoff: integer representing the maximum length of paths.  STRONGLY recommended to be 7 or less
+        :return: a list of paths (which are themselves lists of nodes from src to dst) in no specific order
+        """
         paths = []
         for path in nx.all_simple_paths(g, src, dst, cutoff):
             paths.append(path)
         return paths
-
 
     def compare_graphs(self, g1, g2):
         """ compare two graphs returning a graph with the count of the 1st graph as a percentage of the second and the count as the inverste of the weight (for shortest path calculation)
@@ -257,19 +273,20 @@ class analyze_attack_graphs:
             data['paired'] = False
             g_out.add_edge(src, dst, attr_dict=data)
 
-
         # Percentage is now stored as a count.  Now we must re-add the weights to be most common shortest to allow path calculation
         g_out = attack_graph.attack_graph(None).normalize_weights(g_out)
 
         return g_out
 
 
-    ### SCORING ALGORITHMS ####
+class score():
+    def __init__(self):
+        """ Provides functions for picking attack graph nodes or edges to mitigate
 
-
-    def shortest_path_centrality(self, g):
+        * shortest_path_occurence: A modified form of shortest-path centrality which only considers action-attribute pairs
+        * initialized_pagerank: Pagerank (eigenvector) centrality initialized to jump to action nodes only.
+        """
         pass  # TODO
-
 
     def shortest_path_occurence(self, g, paths, mid=False):
         """ scores nodes based on their occurence in shortest paths
@@ -290,8 +307,13 @@ class analyze_attack_graphs:
         scores.sort(key=itemgetter(1), reverse=True)  # Sort the scores
         return scores
 
-
     def initialized_pagerank(self, g):
+        """ Returns nodes scored by pagerank.
+
+        :param g: a directed networkx graph
+        :returns list of tuples of (node, score)
+        Note: Pagerank is modified to always jump to an action node.  All action nodes are jumped to equally.
+        """
         # Get actions
         actions = set()
         for node in g.nodes():
@@ -305,18 +327,30 @@ class analyze_attack_graphs:
         for action in actions:
             dangling[action] = 1/float(len(actions))
         # do the actual scoring 
-        scores = nx.pagerank_numpy(g, dangling = dangling)
+        scores = nx.pagerank_numpy(g, weight='weight', dangling = dangling)
         scores = [(k, v) for k, v in scores.iteritems()]  # convert from dictionary so it can be sorted
         scores.sort(key=itemgetter(1), reverse=True)  # Sort the scores
-        return scores
+        return scores    
 
 
+class analyze():
+    helper = None
+    score = None
 
-    ######  ANALYSIS ALGORITHMS ########
+    def __init__(self):
+        """ Analyze provides functions which analyze VERIS attack graphs in various ways, printing the output
 
 
+        * one_graph_multiple_paths: analyze the effect of mitigating a single node in the attack graph on all shortest paths
+        * one_graph_one_path: analyze the mitigation of a single node to all potential paths between two nodes
+        * two_graphs: analyze the relative differences between node and edge weights in two attack graphs
+        * two_graphs_multiple_paths: analyze the difference in all shortest paths in two graphs
+        """
+        self.helper = helper()
+        self.score = score()
 
-    def analyze(self, g, mitigate="any", node_to_mitigate=None, src=None, dst=None):
+
+    def one_graph_multiple_paths(self, g, mitigate="any", node_to_mitigate=None, src=None, dst=None):
         """ Takes a networkx attack graph, analyzes it, and prints a recommendation for a mitigation with associated expected value
 
             :param g: networkx digraph attack graph to analyze
@@ -330,14 +364,14 @@ class analyze_attack_graphs:
         # Graph is already built
 
         # calculate base score
-        paths = self.shortest_attack_paths(g, src=None, dst=None)
+        paths = self.helper.shortest_attack_paths(g, src=None, dst=None)
         paths = {k: v for k, v in paths.iteritems() if v}
 
         if not node_to_mitigate:
             # Score the graph
-            node_scores = self.shortest_path_occurence(g, paths)  # score based on occurence in shortest paths
-            node_scores = self.shortest_path_occurence(g, paths, mid=True)  # score based on occurence in shortest paths, but only ends
-            node_scores = self.initialized_pagerank(g)  # score based on pagerank initialized to start at actions
+            node_scores = self.score.shortest_path_occurence(g, paths)  # score based on occurence in shortest paths
+        #     node_scores = self.score.shortest_path_occurence(g, paths, mid=True)  # score based on occurence in shortest paths, but only ends
+        #    node_scores = self.score.initialized_pagerank(g)  # score based on pagerank initialized to start at actions
 
             # Pick a node to mitigate
             if mitigate is "any":
@@ -353,20 +387,20 @@ class analyze_attack_graphs:
         after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
 
         # Recreate paths (using only the key pairs that still exist in after_g)
-        after_paths = self.shortest_attack_paths(after_g, src=None, dst=None)
+        after_paths = self.helper.shortest_attack_paths(after_g, src=None, dst=None)
         after_paths = {k: v for k, v in after_paths.iteritems() if v}  # This is necessary to remove empty paths
         before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
 
         # Calculate the graph's initial score
         before_score = 0
         for path in before_paths.values():
-            _, length = self.path_length(g, path)
+            _, length = self.helper.path_length(g, path)
             before_score += length
 
         # Rescore
         after_score = 0
         for path in after_paths.values():
-            _, length = self.path_length(after_g, path)
+            _, length = self.helper.path_length(after_g, path)
             if length == 0:
                 logging.warning("Path length was 0 implying an empty path.  This will cause improvement to be understimated.")
             after_score += length
@@ -390,12 +424,19 @@ class analyze_attack_graphs:
         print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
 
 
-    def mitigate_single_pair(self, g, src, dst):
+    def one_graph_one_path(self, g, src, dst, cutoff=7):
+        """ Analyze the top N potential paths between the source and destination in the graph
+
+        :param g: a networkx directed graph
+        :param src: the source node within the graph
+        :param dst: the destionation node within the graph
+        :param n: the maximum length of path to consider.  It is STRONGLY recommended to use 7 or less.
+        """
         lengths = list()
-        paths = self.all_simple_paths(g, src, dst)
+        paths = self.helper.all_simple_paths(g, src, dst, cutoff)
 
         for path in paths:
-            lengths.append(self.path_length(g, path, 'weight'))
+            lengths.append(self.helper.path_length(g, path, 'weight'))
         lengths.sort(key=itemgetter(1))
         nodes = set(lengths[0][0][1:-1])
         i = 1
@@ -437,7 +478,7 @@ class analyze_attack_graphs:
                 )
 
 
-    def compare_and_analyze(self, g1, g2):
+    def two_graphs(self, g1, g2):
         """ Compare two graphs and print the major differences
 
         :param g1: networkx graph to analyze
@@ -446,7 +487,7 @@ class analyze_attack_graphs:
         n = 10  # a variable for the number of results to print
 
         # get the differential graph
-        g_diff = self.compare_graphs(g1, g2)
+        g_diff = self.helper.compare_graphs(g1, g2)
 
         # Find major differences
         scores = list()
@@ -479,22 +520,27 @@ class analyze_attack_graphs:
             print "No nodes or edges are missing from the baseline graph."
 
 
-    def compare_graph_paths(self, g1, g2):
+    def two_graphs_multiple_paths(self, g1, g2):
+        """ take two graphs and compare the shortest paths between them
+
+        :param g1: networkx graph to analyze
+        :param g2: baseline networkx graph to compare the g1 graph to
+        """
 
         n = 10  # variable used for number of output to display
 
         # get the baseline paths
-        baseline_paths = self.shortest_attack_paths(g2, src=None, dst=None)
+        baseline_paths = self.helper.shortest_attack_paths(g2, src=None, dst=None)
         baseline_paths = {k: v for k, v in baseline_paths.iteritems() if v}  # Remove empty paths
-        analyze_paths = self.shortest_attack_paths(g1, src=None, dst=None)
+        analyze_paths = self.helper.shortest_attack_paths(g1, src=None, dst=None)
         analyze_paths = {k: v for k, v in analyze_paths.iteritems() if v}
         # get the pairs in both path sets
         mutual_pairs = set(analyze_paths.keys()).intersection(set(baseline_paths.keys()))
 
         analyzed_paths = []
         for pair in mutual_pairs:
-            base_length = self.path_length(g2, baseline_paths[pair])
-            analyze_length = self.path_length(g1, analyze_paths[pair])
+            base_length = self.helper.path_length(g2, baseline_paths[pair])
+            analyze_length = self.helper.path_length(g1, analyze_paths[pair])
             analyzed_paths.append([pair[0], pair[1], float(analyze_length[1]/float(base_length[1]))])
         analyzed_paths.sort(key=itemgetter(2), reverse=True)
 
@@ -521,28 +567,8 @@ class analyze_attack_graphs:
 ## MAIN LOOP EXECUTION
 def main():
     logging.info('Beginning main loop.')
-    """
-    # Find the distribution of paths in the attack graph
-    lengths = list()
-    paths = analyze_attack_graphs.all_simple_paths(g, src, dst)
-    for path in paths:
-        lengths.append(analyze_attack_graphs.path_length(g, path, 'weight'))
-    lengths.sort(key=itemgetter(1))
-    hist([x[1] for x in lengths])
-    """
 
-    """
-    # What percentage of paths was 'attribute.integrity.variety.Software installation' in?
-    cnt = 0
-    for v in all_paths.values():
-        if 'attribute.integrity.variety.Software installation' in v:
-            cnt += 1
-    print cnt/float(len(all_paths))
-    """
-
-
-
-
+    print "Please import the analysis class from this module to use."
     
     logging.info('Ending main loop.')
 
