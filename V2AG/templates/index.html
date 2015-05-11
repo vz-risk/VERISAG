@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+<body>
+    <div class="head"><h1 class='title'>DBIR Attack Graph Analysis</h1></div>
+    <div class="input">
+        Either input your own data or leave blank to use ours.  <input type="file" name="data">
+        What Worries you?
+        <select name="worries">
+            <option value="all">Everything</option>
+            <option value="pattern">Patterns:</option>
+            <option value="-">---------</option>
+            <option value="crimeware">Crimeware</option>
+            <option value="espionage">Cyber-Espionage</option>
+            <option value="dos">Denial of Service</option>
+            <option value="lost_stolen">Lost and Stolen Assets</option>
+            <option value="errors">Miscellaneous Errors</option>
+            <option value="skimmers">Payment Card Skimmers</option>
+            <option value="pos">Points of Sale</option>
+            <option value="misuse">Privilege Misuse</option>
+            <option value="webapp">Web Applications</option>
+            <option value="industries">Industries:</option>
+            <option value="-">-----------</option>
+            <option value="11">Sector 11: Agriculture, Forestry, Fishing and Hunting</option>
+            <option value="21">Sector 21: Mining, Quarrying, and Oil and Gas Extraction</option>
+            <option value="22">Sector 22: Utilities</option>
+            <option value="23">Sector 23: Construction</option>
+            <option value="31-33">Sectors 31-33: Manufacturing</option>
+            <option value="42">Sector 42: Wholesale Trade</option>
+            <option value="44-45">Sectors 44-45: Retail Trade</option>
+            <option value="48-49">Sectors 48-49: Transportation and Warehousing</option>
+            <option value="51">Sector 51: Information</option>
+            <option value="52">Sector 52: Finance and Insurance</option>
+            <option value="53">Sector 53: Real Estate and Rental and Leasing</option>
+            <option value="54">Sector 54: Professional, Scientific, and Technical Services</option>
+            <option value="55">Sector 55: Management of Companies and Enterprises</option>
+            <option value="56">Sector 56: Administrative and Support and Waste Management and Remediation Services</option>
+            <option value="61">Sector 61: Educational Services</option>
+            <option value="62">Sector 62: Health Care and Social Assistance</option>
+            <option value="71">Sector 71: Arts, Entertainment, and Recreation</option>
+            <option value="72">Sector 72: Accommodation and Food Services</option>
+            <option value="81">Sector 81: Other Services (except Public Administration)</option>
+            <option value="92">Sector 92: Public Administration</option>
+        For more information on the correct NAICS code for your organization, visit <a "href=http://www.farsmarterbids.com/reference/naics-list.php">http://www.farsmarterbids.com/reference/naics-list.php</a>
+        What are you trying to protect?
+        <select name="attributes" multiple="multiple">
+            <option value="Everything">Everything</option>
+            <option value="Availability">Availability:</option>
+            <option value="-">-------------</option>
+            <option value="Destruction">destruction</option>
+            <option value="Loss">Loss</option>
+            <option value="Interruption">Interruption</option>
+            <option value="Degradation">Degradation</option>
+            <option value="Acceleration">Acceleration</option>
+            <option value="Obscuration">obscuration</option>
+            <option value="Other">other</option>
+            <option value="Confidentiality">Confidentiality:</option>
+            <option value="-">----------------</option>
+            <option value="Credentials">Credentials</option>
+            <option value="Bank">Bank</option>
+            <option value="Classified">Classified</option>
+            <option value="Copyrighted">Copyrighted</option>
+            <option value="Digital certificate">Digital certificate</option>
+            <option value="Medical">Medical</option>
+            <option value="Payment">Payment</option>
+            <option value="Personal">Personal</option>
+            <option value="Internal">Internal</option>
+            <option value="Source code">Source code</option>
+            <option value="System">System</option>
+            <option value="Secrets">Secrets</option>
+            <option value="Virtual currency">Virtual currency</option>
+            <option value="Other">Other</option>
+            <option value="Integrity">Integrity:</option>
+            <option value="-">----------</option>
+            <option value="Created account">Created account</option>
+            <option value="Defacement">Defacement</option>
+            <option value="Hardware tampering">Hardware tampering</option>
+            <option value="Alter behavior">Alter behavior</option>
+            <option value="Fraudulent transaction">Fraudulent transaction</option>
+            <option value="Log tampering">Log tampering</option>
+            <option value="Repurpose">Repurpose</option>
+            <option value="Misrepresentation">Misrepresentation</option>
+            <option value="Modify configuration">Modify configuration</option>
+            <option value="Modify privileges">Modify privileges</option>
+            <option value="Modify data">Modify data</option>
+            <option value="Software installation">Software installation</option>
+            <option value="Other">Other</option>
+        </select>
+        <input type="button" value="Analyze" id="analyze_button">
+        </select>
+    </div>
+    <div class="output">
+        <p id="output">Apply ___ control(s) to eliminiate ___ % of attack paths and improve defenses on remaining paths by ___%.</p>
+    </div>
+</body>
+{% endblock %}
+
