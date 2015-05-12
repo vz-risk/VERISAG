@@ -271,7 +271,7 @@ class analyze():
         self.score = score()
 
 
-    def one_graph_multiple_paths(self, g, mitigate="any", node_to_mitigate=None, src=None, dst=None):
+    def one_graph_multiple_paths(self, g, mitigate="any", node_to_mitigate=None, src=None, dst=None, output="print"):
         """ Takes a networkx attack graph, analyzes it, and prints a recommendation for a mitigation with associated expected value
 
             :param g: networkx digraph attack graph to analyze
@@ -340,9 +340,13 @@ class analyze():
                 after_attributes.add(dst)
         removed_attributes = before_attributes.difference(after_attributes)
 
-        print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
-        print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
-        print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+        if output is "print":
+            print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
+            print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
+            print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+        else:
+            return node_to_mitigate, removed_paths, paths, before_score, after_score
+
 
 
     def one_graph_one_path(self, g, src, dst, cutoff=7):

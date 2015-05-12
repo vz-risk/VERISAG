@@ -43,26 +43,35 @@ import logging
 
 
 # USER VARIABLES
-CONFIG_FILE = "./v2ag.cfg"
+LOCATION = "./"
+CONFIG_FILE = "./verisag.cfg"
 LOGLEVEL = logging.DEBUG
 LOG = None
 FLASK_DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
+VERISR = "~/dbir20150226.csv"
+FILTERS = "./filter.txt"
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################
 
 
 ## IMPORTS
-from py2neo import neo4j, cypher  # CHANGEME
 import networkx as nx  # CHANGEME
 import argparse
 import ConfigParser
 from flask import Flask, jsonify, render_template, request
 from flask.ext.restful import reqparse, Resource, Api, abort
+import pandas as pd
+import imp
 
 ## SETUP
 __author__ = "Gabriel Bassett"
+
+# Load VERISAG module
+fp, pathname, description = imp.find_module("V2AG", [LOCATION])
+V2AG = imp.load_module("V2AG", fp, pathname, description)
+analysis = V2AG.attack_graph_analysis.analyze()
 
 # Parse Arguments (should correspond to user variables)
 parser = argparse.ArgumentParser(description='This script processes a graph.')
@@ -79,6 +88,8 @@ parser.add_argument('--log', help='Location of log file', default=LOG)
 parser.add_argument('--config', help='The location of the config file', default=CONFIG_FILE)
 parser.add_argument('--host', help='ip address to use for hosting', default=None)
 parser.add_argument('--port', help='port to host the app on', default=None)
+parser.add_argument('--data_file', help='CSV file containing the verisr data.', default=None)
+parser.add_argument('--filters', help='File containing one regex per line to filter. Ex. Environmental, Unknown, and Notes.', default=None)
 args = parser.parse_args()
 
 # add config arguments
@@ -112,6 +123,11 @@ if config_exists:
             HOST = config.get('SERVER', 'host')
         if 'port' in config.options('SERVER'):
             PORT = int(config.get('SERVER', 'port'))
+    if config.has_section('APPLICATION'):
+        if 'data_file' in config.options('APPLICATION'):
+            DATA = config.et('APPLICATION', 'data_file')
+        if 'filter' in config.options('APPLICATION'):
+            DATA = config.et('APPLICATION', 'filters')
 
 ## Set up Logging
 if args.log is not None:
@@ -124,11 +140,17 @@ if args.host is not None:
     HOST = args.host
 if args.port is not None:
     PORT = int(args.port)
+if args.data_file is not None:
+    DATA = args.data_file
+if args.filter is not None:
+    FILTERS = args.filters
 
 
 ## GLOBAL EXECUTION
-pass
+# TODO: Import the data
+data = pd.read_csv(DATA)
 
+cache = dict()
 
 ## FUNCTION DEFINITION
 # Set up the app
@@ -143,19 +165,56 @@ api_parser.add_argument('attributes', type=str, help="Filter paths to a subset o
 # Initialize the API class
 class analyze(Resource):
     api_parser = None
+    data = None
+
+    def __init__(self):
+    global data
+    self.data = data
 
     def get(self):
         self.api_parser = api_parser
         api_args = self.api_parser.parse_args(strict=False)
-        # TODO: Subset the data based on 'worries'
+        # Subset the data based on 'worries'
+        # check cache
+        if api_args['worry'] in cache:
+            atk_graph = cache[api_args['worry']]
+        #cache miss
+        else:     
+            # if we're not using the entire data set, subset it.
+            if api_args['worry'] is 'all':
+                query_data = data
+            else:
+                # handle patterns
+                if api_args['worry'][:7] is "pattern":
+                    query_data = data[data[api_args['worry']] == True]
+                # handle naics codes
+                else:
+                    naics_codes = api_args['worry'].split(",")
+                    query_data = data[(int(naics_codes[0] <= data["victim.industry2"]) & (data["victim.industry2"] <= int(naics_code[1]))]
+
+
+        # Create the attack graph
+        ATK = V2AG.attack_graph(None, FILTERS)
+        ATK.build(data=query_data)
+
+        # Do the analysis
+        if api_args['attributes'] is None:
+            attributes = None
+        else:
+            attributes = api_args['attributes'].split(",")
+        node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes)
+
+        # Format the data for output
+        analysis = dict()
+        analysis['controls'] = node_to_mitigate
+        analysis['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
+        analysis['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
+
+        # TODO: Remove below line
         analysis = {"controls": "Nuke it from orbit.",
                     "removed_paths": 50,
                     "dist_increase ": 50
                    }  # TODO: Replace this default data
-
-        # TODO: Pick a node to mitigate
-        # TODO: calculate the impact
-        # TODO: format the data for output
 
         return analysis
 

@@ -245,13 +245,13 @@ class attack_graph():
                     self.g.node[enum]['count'] += 1
 
 
-    def build(self):
+    def build(self, data=None):
         # Get the data
         if self.data_type == "json":
             logging.info('Creating list of JSON records.')
         elif self.data_type == "dataframe":
             logging.info('Reading in record data frame from csv.')
-        self.read_data()
+        self.read_data(data=data)
 
         # First pass.  single action-attribute linkage
         '''
@@ -549,15 +549,18 @@ class attack_graph():
             raise ValueError("Data type not supported.") 
 
 
-    def read_data(self):
-        if self.data_type == 'dataframe':
-            self.data = pd.read_csv(self.data_source)
-        elif self.data_type == 'json':
-            self.data = []
-            for path in self.data_source:
-                self.data += [os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(path) for f in files if f.endswith('.json')]
+    def read_data(self, data=None):
+        if data is None:
+            if self.data_type == 'dataframe':
+                self.data = pd.read_csv(self.data_source)
+            elif self.data_type == 'json':
+                self.data = []
+                for path in self.data_source:
+                    self.data += [os.path.join(dirpath, f) for dirpath, dirnames, files in os.walk(path) for f in files if f.endswith('.json')]
+            else:
+                raise ValueError("Data type not supported.")
         else:
-            raise ValueError("Data type not supported.")
+            self.data = data
 
 
     def save(self, filename):
