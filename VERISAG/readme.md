@@ -6,7 +6,7 @@ VERIS Attack Graph (or VERISAG for short) is a module for parsing a directory of
 
 Clone the Repository
 ```
-git clone  https://github.com/gdbassett/veris_attack_graph.git
+git clone  https://github.com/gdbassett/VERISAG.git
 ```
 
 ## Usage
@@ -29,6 +29,10 @@ VCDB.build()
 analysis = V2AG.attack_graph_analysis.analyze()
 analysis.one_graph_multiple_paths(VCDB.g)
 ```
+
+You may also run the GUI with limited analysis:
+`python gui.py --data_file="~/vcdb.csv`
+Assuming it was started with the defaults, you can then access it at `http://localhost:8080`
 
 ## Contributing
 
