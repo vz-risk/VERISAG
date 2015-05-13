@@ -252,6 +252,7 @@ class attack_graph():
         elif self.data_type == "dataframe":
             logging.info('Reading in record data frame from csv.')
         self.read_data(data=data)
+        logging.debug("data dimensions: {0}".format(data.shape))
 
         # First pass.  single action-attribute linkage
         '''
@@ -260,12 +261,16 @@ class attack_graph():
         logging.info('Beginning first pass.')
         if self.base_mappings is None:
             self.base_mappings = self.get_mappings()
+        logging.debug("Mapping graph info:")
+        logging.debug(nx.info(self.base_mappings))
 
         logging.info('Beginning second pass.')
         '''
         See the add_record_to_graph() function for the logic used in the second pass to build the attack graph.
         '''
         self.populate_graph()
+        logging.debug("Attack Graph info:")
+        logging.debug(nx.info(self.g))
 
         logging.info('Adding start & end nodes')
         # create mapping from 'start' to actions and attributes to 'end'  # TODO: THIS IS NOT OPTIMAL. would be nice to get 'count' better as well as things we 'know' started a breach
@@ -305,7 +310,7 @@ class attack_graph():
     def create_filters(self):
         filters = list()
         if self.filter_file is not None:
-            with open(FILTER, 'r') as f:
+            with open(self.filter_file, 'r') as f:
                 for line in f:
                     if line[0] is "#":
                         continue
@@ -328,7 +333,8 @@ class attack_graph():
             if include:
                 list_out.append(item)
             else:
-                logging.debug("Filtered out {0}.".format(item))
+                #logging.debug("Filtered out {0}.".format(item))
+                pass
         return list_out
 
 
@@ -561,6 +567,11 @@ class attack_graph():
                 raise ValueError("Data type not supported.")
         else:
             self.data = data
+            if type(data) is pd.core.frame.DataFrame:
+                self.data_type = 'dataframe'
+            elif type(data) is list:
+                self.data_type = 'json'
+
 
 
     def save(self, filename):

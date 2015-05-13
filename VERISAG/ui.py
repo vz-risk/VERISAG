@@ -50,20 +50,21 @@ LOG = None
 FLASK_DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
-VERISR = "~/dbir20150226.csv"
+VERISR = "~/Documents/customer data/DBIR/data/dbir20150226.csv"
 FILTERS = "./filter.txt"
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################
 
 
 ## IMPORTS
-import networkx as nx  # CHANGEME
 import argparse
 import ConfigParser
 from flask import Flask, jsonify, render_template, request
 from flask.ext.restful import reqparse, Resource, Api, abort
 import pandas as pd
 import imp
+import pprint
+from inspect import getmembers
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -125,9 +126,9 @@ if config_exists:
             PORT = int(config.get('SERVER', 'port'))
     if config.has_section('APPLICATION'):
         if 'data_file' in config.options('APPLICATION'):
-            DATA = config.et('APPLICATION', 'data_file')
-        if 'filter' in config.options('APPLICATION'):
-            DATA = config.et('APPLICATION', 'filters')
+            DATA = config.get('APPLICATION', 'data_file')
+        if 'filters' in config.options('APPLICATION'):
+            DATA = config.get('APPLICATION', 'filters')
 
 ## Set up Logging
 if args.log is not None:
@@ -142,13 +143,15 @@ if args.port is not None:
     PORT = int(args.port)
 if args.data_file is not None:
     DATA = args.data_file
-if args.filter is not None:
+if args.filters is not None:
     FILTERS = args.filters
 
 
 ## GLOBAL EXECUTION
-# TODO: Import the data
+# Import the data
+logging.info("Importing data.")
 data = pd.read_csv(DATA)
+logging.info("Data import complete.")
 
 cache = dict()
 
@@ -159,63 +162,129 @@ app = Flask(__name__)
 # define the API
 # Initialize the arguements
 api_parser = reqparse.RequestParser()
-api_parser.add_argument('worries', type=int, help="Pattern or Industry used to subset the data.", default=None)
-api_parser.add_argument('attributes', type=str, help="Filter paths to a subset of attributes.", default=None)
+api_parser.add_argument('worry', type=str, help="Pattern or Industry used to subset the data.", default='all', location='args')
+api_parser.add_argument('attributes', type=str, action='append', help="Filter paths to a subset of attributes.", default='Everything', location='args')
 
 # Initialize the API class
 class analyze(Resource):
     api_parser = None
     data = None
+    cache = None
 
     def __init__(self):
-    global data
-    self.data = data
+        global data, cache, analysis
+        self.data = data
+        self.cache = cache
+
 
     def get(self):
+        logging.info("Request Received")
+        logging.debug("Request argument string: {0}".format(request.args))
+        api_args = dict()
+        api_args['worry'] = request.args['worry']
+        api_args['attributes'] = request.args.getlist('attributes')
+        """
         self.api_parser = api_parser
-        api_args = self.api_parser.parse_args(strict=False)
+        api_args = self.api_parser.parse_args()
+        """  # F the parser.  didn't work at all
+        logging.info("Parsed arguments: {0}".format(api_args))
+
+        analysis = V2AG.attack_graph_analysis.analyze()
         # Subset the data based on 'worries'
         # check cache
         if api_args['worry'] in cache:
-            atk_graph = cache[api_args['worry']]
+            logging.info("Cache hit. Retrieving attack graph.")
+            ATK = cache[api_args['worry']]
         #cache miss
-        else:     
+        else:
+            logging.info("Cache miss.  Building attack graph.")
             # if we're not using the entire data set, subset it.
-            if api_args['worry'] is 'all':
+            if api_args['worry'] == 'all':
                 query_data = data
             else:
                 # handle patterns
-                if api_args['worry'][:7] is "pattern":
+                if api_args['worry'][:7] == "pattern":
                     query_data = data[data[api_args['worry']] == True]
                 # handle naics codes
                 else:
                     naics_codes = api_args['worry'].split(",")
-                    query_data = data[(int(naics_codes[0] <= data["victim.industry2"]) & (data["victim.industry2"] <= int(naics_code[1]))]
+                    query_data = data[(int(naics_codes[0]) <= data["victim.industry2"]) & (data["victim.industry2"] <= int(naics_codes[1]))]
 
-
-        # Create the attack graph
-        ATK = V2AG.attack_graph(None, FILTERS)
-        ATK.build(data=query_data)
+            # Create the attack graph
+            ATK = V2AG.attack_graph(None, FILTERS)
+            ATK.build(data=query_data)
+            cache[api_args['worry']] = ATK
 
         # Do the analysis
-        if api_args['attributes'] is None:
+        logging.info("Doing the analysis.")
+        if api_args['attributes'] is "Everything":
             attributes = None
         else:
-            attributes = api_args['attributes'].split(",")
-        node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes)
+            attributes = api_args['attributes']
+            # add in the aggregate groups
+            if "Availability" in attributes:
+                attributes = list(set(attributes).union(set([
+                    "attribute.availability.variety.Destruction",
+                    "attribute.availability.variety.Loss",
+                    "attribute.availability.variety.Interruption",
+                    "attribute.availability.variety.Degradation",
+                    "attribute.availability.variety.Acceleration",
+                    "attribute.availability.variety.Obscuration",
+                    "attribute.availability.variety.Other"
+                ])))
+            if "Confidentiality" in attributes:
+                attributes = list(set(attributes).union(set([
+                    "attribute.confidentiality.data.variety.Credentials",
+                    "attribute.confidentiality.data.variety.Bank",
+                    "attribute.confidentiality.data.variety.Classified",
+                    "attribute.confidentiality.data.variety.Copyrighted",
+                    "attribute.confidentiality.data.variety.Digital certificate",
+                    "attribute.confidentiality.data.variety.Medical",
+                    "attribute.confidentiality.data.variety.Payment",
+                    "attribute.confidentiality.data.variety.Personal",
+                    "attribute.confidentiality.data.variety.Internal",
+                    "attribute.confidentiality.data.variety.Source code",
+                    "attribute.confidentiality.data.variety.System",
+                    "attribute.confidentiality.data.variety.Secrets",
+                    "attribute.confidentiality.data.variety.Virtual currency",
+                    "attribute.confidentiality.data.variety.Other"
+                ])))
+            if "Integrity" in attributes:
+                attributes = list(set(attributes).union(set([
+                    "attribute.integrity.variety.Created account",
+                    "attribute.integrity.variety.Defacement",
+                    "attribute.integrity.variety.Hardware tampering",
+                    "attribute.integrity.variety.Alter behavior",
+                    "attribute.integrity.variety.Fraudulent transaction",
+                    "attribute.integrity.variety.Log tampering",
+                    "attribute.integrity.variety.Repurpose",
+                    "attribute.integrity.variety.Misrepresentation",
+                    "attribute.integrity.variety.Modify configuration",
+                    "attribute.integrity.variety.Modify privileges",
+                    "attribute.integrity.variety.Modify data",
+                    "attribute.integrity.variety.Software installation",
+                    "attribute.integrity.variety.Other"
+                ])))
+            # Remove the dash
+            attributes = list(set(attributes).difference(set(["-"])))
+
+        node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
 
         # Format the data for output
+        logging.info("Formatting the output.")
         analysis = dict()
         analysis['controls'] = node_to_mitigate
         analysis['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
         analysis['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
-
+        
+        '''
         # TODO: Remove below line
         analysis = {"controls": "Nuke it from orbit.",
                     "removed_paths": 50,
-                    "dist_increase ": 50
+                    "dist_increase": 50
                    }  # TODO: Replace this default data
-
+        '''
+        logging.info("Returning results.")
         return analysis
 
 # Set up the API
