@@ -151,7 +151,7 @@ if args.filters is not None:
     FILTERS = args.filters
 
 # Set up Heroku port
-PORT = os.environ.get("PORT", PORT)
+PORT = int(os.environ.get("PORT", PORT))
 
 
 ## GLOBAL EXECUTION
