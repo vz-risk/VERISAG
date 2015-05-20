@@ -68,6 +68,7 @@ import pprint
 from inspect import getmembers
 import glob
 import networkx as nx
+import os
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -150,7 +151,7 @@ if args.filters is not None:
     FILTERS = args.filters
 
 # Set up Heroku port
-PORT = os.environ.get("PORT", PORT))
+PORT = os.environ.get("PORT", PORT)
 
 
 ## GLOBAL EXECUTION
