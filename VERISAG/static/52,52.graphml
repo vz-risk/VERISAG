@@ -1,0 +1,1999 @@
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="Label" attr.type="string" for="edge" id="d8" />
+  <key attr.name="weight" attr.type="double" for="edge" id="d7" />
+  <key attr.name="direction" attr.type="string" for="edge" id="d6" />
+  <key attr.name="count" attr.type="int" for="edge" id="d5" />
+  <key attr.name="Label" attr.type="string" for="node" id="d4" />
+  <key attr.name="weight" attr.type="double" for="node" id="d3" />
+  <key attr.name="sub_type" attr.type="string" for="node" id="d2" />
+  <key attr.name="type" attr.type="string" for="node" id="d1" />
+  <key attr.name="count" attr.type="int" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="action.malware.variety.Capture app data">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.variety.Capture app data</data>
+    </node>
+    <node id="action.social.variety.Bribery">
+      <data key="d0">5</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.97311827957</data>
+      <data key="d4">action.social.variety.Bribery</data>
+    </node>
+    <node id="action.malware.vector.Email link">
+      <data key="d0">64</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.655913978495</data>
+      <data key="d4">action.malware.vector.Email link</data>
+    </node>
+    <node id="action.malware.variety.Worm">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.malware.variety.Worm</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Payment">
+      <data key="d0">63</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.661290322581</data>
+      <data key="d4">attribute.confidentiality.data.variety.Payment</data>
+    </node>
+    <node id="attribute.integrity.variety.Modify data">
+      <data key="d0">23</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.876344086022</data>
+      <data key="d4">attribute.integrity.variety.Modify data</data>
+    </node>
+    <node id="action.physical.variety.Theft">
+      <data key="d0">12</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.935483870968</data>
+      <data key="d4">action.physical.variety.Theft</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Bank">
+      <data key="d0">92</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.505376344086</data>
+      <data key="d4">attribute.confidentiality.data.variety.Bank</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Personal">
+      <data key="d0">29</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.844086021505</data>
+      <data key="d4">attribute.confidentiality.data.variety.Personal</data>
+    </node>
+    <node id="action.malware.variety.Capture stored data">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.variety.Capture stored data</data>
+    </node>
+    <node id="action.misuse.variety.Data mishandling">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.misuse.variety.Data mishandling</data>
+    </node>
+    <node id="action.malware.variety.Downloader">
+      <data key="d0">10</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.94623655914</data>
+      <data key="d4">action.malware.variety.Downloader</data>
+    </node>
+    <node id="action.malware.variety.Scan network">
+      <data key="d0">16</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.913978494624</data>
+      <data key="d4">action.malware.variety.Scan network</data>
+    </node>
+    <node id="action.malware.variety.Ransomware">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.variety.Ransomware</data>
+    </node>
+    <node id="action.malware.variety.Spyware/Keylogger">
+      <data key="d0">70</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.623655913978</data>
+      <data key="d4">action.malware.variety.Spyware/Keylogger</data>
+    </node>
+    <node id="attribute.integrity.variety.Repurpose">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">attribute.integrity.variety.Repurpose</data>
+    </node>
+    <node id="attribute.availability.variety.Obscuration">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">attribute.availability.variety.Obscuration</data>
+    </node>
+    <node id="attribute.integrity.variety.Log tampering">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">attribute.integrity.variety.Log tampering</data>
+    </node>
+    <node id="action.malware.variety.Adware">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.malware.variety.Adware</data>
+    </node>
+    <node id="action.social.variety.Influence">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.social.variety.Influence</data>
+    </node>
+    <node id="action.hacking.variety.Cryptanalysis">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.hacking.variety.Cryptanalysis</data>
+    </node>
+    <node id="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d0">74</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.602150537634</data>
+      <data key="d4">attribute.integrity.variety.Fraudulent transaction</data>
+    </node>
+    <node id="attribute.availability.variety.Destruction">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">attribute.availability.variety.Destruction</data>
+    </node>
+    <node id="attribute.availability.variety.Interruption">
+      <data key="d0">17</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.908602150538</data>
+      <data key="d4">attribute.availability.variety.Interruption</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Classified">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">attribute.confidentiality.data.variety.Classified</data>
+    </node>
+    <node id="action.malware.variety.Password dumper">
+      <data key="d0">17</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.908602150538</data>
+      <data key="d4">action.malware.variety.Password dumper</data>
+    </node>
+    <node id="action.physical.variety.Disabled controls">
+      <data key="d0">9</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.951612903226</data>
+      <data key="d4">action.physical.variety.Disabled controls</data>
+    </node>
+    <node id="action.physical.variety.Surveillance">
+      <data key="d0">25</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.865591397849</data>
+      <data key="d4">action.physical.variety.Surveillance</data>
+    </node>
+    <node id="action.social.variety.Phishing">
+      <data key="d0">139</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.252688172043</data>
+      <data key="d4">action.social.variety.Phishing</data>
+    </node>
+    <node id="action.social.variety.Other">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.social.variety.Other</data>
+    </node>
+    <node id="action.hacking.variety.Buffer overflow">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.hacking.variety.Buffer overflow</data>
+    </node>
+    <node id="attribute.integrity.variety.Software installation">
+      <data key="d0">180</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.0322580645161</data>
+      <data key="d4">attribute.integrity.variety.Software installation</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Virtual currency">
+      <data key="d0">3</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">attribute.confidentiality.data.variety.Virtual currency</data>
+    </node>
+    <node id="action.social.variety.Spam">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.social.variety.Spam</data>
+    </node>
+    <node id="attribute.integrity.variety.Hardware tampering">
+      <data key="d0">40</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.784946236559</data>
+      <data key="d4">attribute.integrity.variety.Hardware tampering</data>
+    </node>
+    <node id="action.hacking.variety.Brute force">
+      <data key="d0">5</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.97311827957</data>
+      <data key="d4">action.hacking.variety.Brute force</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Secrets">
+      <data key="d0">9</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.951612903226</data>
+      <data key="d4">attribute.confidentiality.data.variety.Secrets</data>
+    </node>
+    <node id="attribute.availability.variety.Degradation">
+      <data key="d0">172</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.0752688172043</data>
+      <data key="d4">attribute.availability.variety.Degradation</data>
+    </node>
+    <node id="action.malware.vector.Download by malware">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.malware.vector.Download by malware</data>
+    </node>
+    <node id="action.social.variety.Baiting">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.social.variety.Baiting</data>
+    </node>
+    <node id="attribute.integrity.variety.Defacement">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">attribute.integrity.variety.Defacement</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Internal">
+      <data key="d0">14</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.924731182796</data>
+      <data key="d4">attribute.confidentiality.data.variety.Internal</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.System">
+      <data key="d0">8</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.956989247312</data>
+      <data key="d4">attribute.confidentiality.data.variety.System</data>
+    </node>
+    <node id="action.hacking.variety.Use of stolen creds">
+      <data key="d0">92</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.505376344086</data>
+      <data key="d4">action.hacking.variety.Use of stolen creds</data>
+    </node>
+    <node id="action.malware.vector.Remote injection">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.vector.Remote injection</data>
+    </node>
+    <node id="attribute.availability.variety.Loss">
+      <data key="d0">14</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.924731182796</data>
+      <data key="d4">attribute.availability.variety.Loss</data>
+    </node>
+    <node id="action.misuse.variety.Email misuse">
+      <data key="d0">7</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.962365591398</data>
+      <data key="d4">action.misuse.variety.Email misuse</data>
+    </node>
+    <node id="action.malware.variety.Backdoor">
+      <data key="d0">68</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.634408602151</data>
+      <data key="d4">action.malware.variety.Backdoor</data>
+    </node>
+    <node id="action.malware.variety.Client-side attack">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.variety.Client-side attack</data>
+    </node>
+    <node id="action.malware.variety.Click fraud">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.malware.variety.Click fraud</data>
+    </node>
+    <node id="start">
+      <data key="d0">0</data>
+      <data key="d1">start</data>
+      <data key="d2">start</data>
+      <data key="d3">1.0</data>
+      <data key="d4">start</data>
+    </node>
+    <node id="action.malware.vector.Web download">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.vector.Web download</data>
+    </node>
+    <node id="action.malware.variety.C2">
+      <data key="d0">77</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.586021505376</data>
+      <data key="d4">action.malware.variety.C2</data>
+    </node>
+    <node id="action.malware.variety.Adminware">
+      <data key="d0">15</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.91935483871</data>
+      <data key="d4">action.malware.variety.Adminware</data>
+    </node>
+    <node id="action.social.variety.Pretexting">
+      <data key="d0">8</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.956989247312</data>
+      <data key="d4">action.social.variety.Pretexting</data>
+    </node>
+    <node id="action.malware.vector.Web drive-by">
+      <data key="d0">64</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.655913978495</data>
+      <data key="d4">action.malware.vector.Web drive-by</data>
+    </node>
+    <node id="action.hacking.variety.DoS">
+      <data key="d0">185</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.00537634408602</data>
+      <data key="d4">action.hacking.variety.DoS</data>
+    </node>
+    <node id="action.malware.vector.Direct install">
+      <data key="d0">18</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.903225806452</data>
+      <data key="d4">action.malware.vector.Direct install</data>
+    </node>
+    <node id="attribute.integrity.variety.Alter behavior">
+      <data key="d0">159</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.145161290323</data>
+      <data key="d4">attribute.integrity.variety.Alter behavior</data>
+    </node>
+    <node id="action.malware.vector.Removable media">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.malware.vector.Removable media</data>
+    </node>
+    <node id="action.malware.vector.Email autoexecute">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.vector.Email autoexecute</data>
+    </node>
+    <node id="attribute.integrity.variety.Modify privileges">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">attribute.integrity.variety.Modify privileges</data>
+    </node>
+    <node id="action.malware.vector.Email attachment">
+      <data key="d0">5</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.97311827957</data>
+      <data key="d4">action.malware.vector.Email attachment</data>
+    </node>
+    <node id="action.hacking.variety.Forced browsing">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.hacking.variety.Forced browsing</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Source code">
+      <data key="d0">6</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.967741935484</data>
+      <data key="d4">attribute.confidentiality.data.variety.Source code</data>
+    </node>
+    <node id="action.malware.variety.Destroy data">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.malware.variety.Destroy data</data>
+    </node>
+    <node id="action.misuse.variety.Unapproved hardware">
+      <data key="d0">7</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.962365591398</data>
+      <data key="d4">action.misuse.variety.Unapproved hardware</data>
+    </node>
+    <node id="action.misuse.variety.Privilege abuse">
+      <data key="d0">25</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.865591397849</data>
+      <data key="d4">action.misuse.variety.Privilege abuse</data>
+    </node>
+    <node id="action.social.variety.Extortion">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.social.variety.Extortion</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Medical">
+      <data key="d0">4</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.978494623656</data>
+      <data key="d4">attribute.confidentiality.data.variety.Medical</data>
+    </node>
+    <node id="action.malware.variety.Export data">
+      <data key="d0">74</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.602150537634</data>
+      <data key="d4">action.malware.variety.Export data</data>
+    </node>
+    <node id="action.hacking.variety.RFI">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.hacking.variety.RFI</data>
+    </node>
+    <node id="action.social.variety.Elicitation">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.social.variety.Elicitation</data>
+    </node>
+    <node id="action.physical.variety.Tampering">
+      <data key="d0">9</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.951612903226</data>
+      <data key="d4">action.physical.variety.Tampering</data>
+    </node>
+    <node id="end">
+      <data key="d0">0</data>
+      <data key="d1">end</data>
+      <data key="d2">end</data>
+      <data key="d3">1.0</data>
+      <data key="d4">end</data>
+    </node>
+    <node id="action.hacking.variety.Abuse of functionality">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.hacking.variety.Abuse of functionality</data>
+    </node>
+    <node id="action.malware.variety.Disable controls">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.variety.Disable controls</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Copyrighted">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">attribute.confidentiality.data.variety.Copyrighted</data>
+    </node>
+    <node id="action.hacking.variety.Footprinting">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.hacking.variety.Footprinting</data>
+    </node>
+    <node id="action.misuse.variety.Unapproved workaround">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.misuse.variety.Unapproved workaround</data>
+    </node>
+    <node id="action.hacking.variety.SQLi">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">action.hacking.variety.SQLi</data>
+    </node>
+    <node id="action.misuse.variety.Unapproved software">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.misuse.variety.Unapproved software</data>
+    </node>
+    <node id="action.misuse.variety.Possession abuse">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.983870967742</data>
+      <data key="d4">action.misuse.variety.Possession abuse</data>
+    </node>
+    <node id="action.malware.variety.Ram scraper">
+      <data key="d0">16</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.913978494624</data>
+      <data key="d4">action.malware.variety.Ram scraper</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Credentials">
+      <data key="d0">111</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.403225806452</data>
+      <data key="d4">attribute.confidentiality.data.variety.Credentials</data>
+    </node>
+    <node id="attribute.integrity.variety.Misrepresentation">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.994623655914</data>
+      <data key="d4">attribute.integrity.variety.Misrepresentation</data>
+    </node>
+    <node id="action.hacking.variety.Use of backdoor or C2">
+      <data key="d0">136</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.268817204301</data>
+      <data key="d4">action.hacking.variety.Use of backdoor or C2</data>
+    </node>
+    <node id="action.malware.vector.Other">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.malware</data>
+      <data key="d3">0.989247311828</data>
+      <data key="d4">action.malware.vector.Other</data>
+    </node>
+    <node id="action.physical.variety.Skimmer">
+      <data key="d0">31</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.833333333333</data>
+      <data key="d4">action.physical.variety.Skimmer</data>
+    </node>
+    <node id="attribute.integrity.variety.Modify configuration">
+      <data key="d0">7</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.962365591398</data>
+      <data key="d4">attribute.integrity.variety.Modify configuration</data>
+    </node>
+    <edge source="action.social.variety.Bribery" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.social.variety.Bribery-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.social.variety.Bribery" target="action.social.variety.Elicitation">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.social.variety.Bribery-&gt;action.social.variety.Elicitation</data>
+    </edge>
+    <edge source="action.social.variety.Bribery" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.social.variety.Bribery-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="action.social.variety.Bribery" target="action.social.variety.Pretexting">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.social.variety.Bribery-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="action.malware.vector.Email link" target="action.social.variety.Phishing">
+      <data key="d5">63</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.637426900585</data>
+      <data key="d8">action.malware.vector.Email link-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">4</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.982456140351</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="action.physical.variety.Skimmer">
+      <data key="d5">31</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.824561403509</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify data" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Modify data-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify data" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Modify data-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify data" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">6</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.970760233918</data>
+      <data key="d8">attribute.integrity.variety.Modify data-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify data" target="action.hacking.variety.Brute force">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.integrity.variety.Modify data-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Medical">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Medical</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Internal">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Internal</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Bank">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Bank</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">4</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.982456140351</data>
+      <data key="d8">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Credentials">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Credentials</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="attribute.availability.variety.Loss">
+      <data key="d5">11</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.941520467836</data>
+      <data key="d8">action.physical.variety.Theft-&gt;attribute.availability.variety.Loss</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.social.variety.Pretexting">
+      <data key="d5">11</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.941520467836</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">10</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.947368421053</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.physical.variety.Theft">
+      <data key="d5">3</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.social.variety.Phishing">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">6</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.970760233918</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.hacking.variety.Brute force">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.social.variety.Elicitation">
+      <data key="d5">7</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.964912280702</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.social.variety.Elicitation</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="action.physical.variety.Skimmer">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.social.variety.Pretexting">
+      <data key="d5">9</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.953216374269</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">8</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.959064327485</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.physical.variety.Theft">
+      <data key="d5">7</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.964912280702</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.social.variety.Phishing">
+      <data key="d5">11</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.941520467836</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.malware.variety.Capture stored data">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.malware.variety.Capture stored data</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.hacking.variety.Brute force">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.social.variety.Elicitation">
+      <data key="d5">7</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.964912280702</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.social.variety.Elicitation</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;end</data>
+    </edge>
+    <edge source="action.malware.variety.Capture stored data" target="attribute.integrity.variety.Software installation">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Capture stored data-&gt;attribute.integrity.variety.Software installation</data>
+    </edge>
+    <edge source="action.malware.variety.Capture stored data" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Capture stored data-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="action.misuse.variety.Data mishandling" target="attribute.confidentiality.data.variety.Medical">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Data mishandling-&gt;attribute.confidentiality.data.variety.Medical</data>
+    </edge>
+    <edge source="action.malware.variety.Downloader" target="action.social.variety.Phishing">
+      <data key="d5">6</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.970760233918</data>
+      <data key="d8">action.malware.variety.Downloader-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.malware.variety.Spyware/Keylogger" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">58</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.666666666667</data>
+      <data key="d8">action.malware.variety.Spyware/Keylogger-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.malware.variety.Spyware/Keylogger" target="action.social.variety.Phishing">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.malware.variety.Spyware/Keylogger-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Repurpose" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Repurpose-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Obscuration" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Obscuration-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Log tampering" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Log tampering-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Log tampering" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">3</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">attribute.integrity.variety.Log tampering-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="action.malware.variety.Adware" target="action.malware.variety.Click fraud">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Adware-&gt;action.malware.variety.Click fraud</data>
+    </edge>
+    <edge source="action.hacking.variety.Cryptanalysis" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Cryptanalysis-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.hacking.variety.Cryptanalysis" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Cryptanalysis-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="action.social.variety.Pretexting">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="action.hacking.variety.Abuse of functionality">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;action.hacking.variety.Abuse of functionality</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="action.social.variety.Phishing">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">7</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.964912280702</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">18</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.900584795322</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.availability.variety.Destruction" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Destruction-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Destruction" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">3</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">attribute.availability.variety.Destruction-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.availability.variety.Interruption" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Interruption-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Interruption" target="action.hacking.variety.Buffer overflow">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Interruption-&gt;action.hacking.variety.Buffer overflow</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Classified" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Classified-&gt;end</data>
+    </edge>
+    <edge source="action.malware.variety.Password dumper" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Password dumper-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.physical.variety.Surveillance" target="action.physical.variety.Skimmer">
+      <data key="d5">23</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.87134502924</data>
+      <data key="d8">action.physical.variety.Surveillance-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="action.social.variety.Phishing" target="attribute.confidentiality.data.variety.Credentials">
+      <data key="d5">24</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.865497076023</data>
+      <data key="d8">action.social.variety.Phishing-&gt;attribute.confidentiality.data.variety.Credentials</data>
+    </edge>
+    <edge source="action.social.variety.Phishing" target="attribute.integrity.variety.Software installation">
+      <data key="d5">72</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.584795321637</data>
+      <data key="d8">action.social.variety.Phishing-&gt;attribute.integrity.variety.Software installation</data>
+    </edge>
+    <edge source="action.social.variety.Phishing" target="attribute.integrity.variety.Alter behavior">
+      <data key="d5">138</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.198830409357</data>
+      <data key="d8">action.social.variety.Phishing-&gt;attribute.integrity.variety.Alter behavior</data>
+    </edge>
+    <edge source="action.social.variety.Phishing" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">6</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.970760233918</data>
+      <data key="d8">action.social.variety.Phishing-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="action.hacking.variety.Buffer overflow" target="attribute.availability.variety.Loss">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Buffer overflow-&gt;attribute.availability.variety.Loss</data>
+    </edge>
+    <edge source="action.hacking.variety.Buffer overflow" target="attribute.availability.variety.Interruption">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Buffer overflow-&gt;attribute.availability.variety.Interruption</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Software installation" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Software installation-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Software installation" target="action.social.variety.Phishing">
+      <data key="d5">100</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.421052631579</data>
+      <data key="d8">attribute.integrity.variety.Software installation-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Software installation" target="action.malware.variety.Capture stored data">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Software installation-&gt;action.malware.variety.Capture stored data</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Virtual currency" target="action.hacking.variety.Abuse of functionality">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Virtual currency-&gt;action.hacking.variety.Abuse of functionality</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Virtual currency" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Virtual currency-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Hardware tampering" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Hardware tampering-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Hardware tampering" target="action.physical.variety.Skimmer">
+      <data key="d5">31</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.824561403509</data>
+      <data key="d8">attribute.integrity.variety.Hardware tampering-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="action.hacking.variety.Brute force" target="attribute.confidentiality.data.variety.System">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Brute force-&gt;attribute.confidentiality.data.variety.System</data>
+    </edge>
+    <edge source="action.hacking.variety.Brute force" target="attribute.integrity.variety.Modify configuration">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Brute force-&gt;attribute.integrity.variety.Modify configuration</data>
+    </edge>
+    <edge source="action.hacking.variety.Brute force" target="attribute.confidentiality.data.variety.Credentials">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.hacking.variety.Brute force-&gt;attribute.confidentiality.data.variety.Credentials</data>
+    </edge>
+    <edge source="action.hacking.variety.Brute force" target="attribute.integrity.variety.Modify data">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Brute force-&gt;attribute.integrity.variety.Modify data</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Secrets" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Secrets-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Degradation" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Degradation-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Defacement" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Defacement-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Internal" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Internal-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Internal" target="action.physical.variety.Theft">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.Internal-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Internal" target="action.hacking.variety.Footprinting">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Internal-&gt;action.hacking.variety.Footprinting</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Internal" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">3</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">attribute.confidentiality.data.variety.Internal-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.System" target="action.hacking.variety.Footprinting">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.System-&gt;action.hacking.variety.Footprinting</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.System" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.System-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.System" target="action.hacking.variety.Brute force">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.System-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="action.hacking.variety.Use of stolen creds" target="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d5">63</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.637426900585</data>
+      <data key="d8">action.hacking.variety.Use of stolen creds-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+    </edge>
+    <edge source="action.hacking.variety.Use of stolen creds" target="attribute.confidentiality.data.variety.Bank">
+      <data key="d5">4</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.982456140351</data>
+      <data key="d8">action.hacking.variety.Use of stolen creds-&gt;attribute.confidentiality.data.variety.Bank</data>
+    </edge>
+    <edge source="action.hacking.variety.Use of stolen creds" target="action.social.variety.Phishing">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.hacking.variety.Use of stolen creds-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.malware.vector.Remote injection" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.vector.Remote injection-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="action.physical.variety.Theft">
+      <data key="d5">10</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.947368421053</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="action.hacking.variety.Buffer overflow">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;action.hacking.variety.Buffer overflow</data>
+    </edge>
+    <edge source="action.misuse.variety.Email misuse" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.misuse.variety.Email misuse-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="action.malware.variety.Backdoor" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Backdoor-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.malware.variety.Backdoor" target="action.social.variety.Phishing">
+      <data key="d5">58</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.666666666667</data>
+      <data key="d8">action.malware.variety.Backdoor-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.malware.variety.Client-side attack" target="action.malware.variety.Click fraud">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Client-side attack-&gt;action.malware.variety.Click fraud</data>
+    </edge>
+    <edge source="action.malware.variety.Click fraud" target="attribute.integrity.variety.Software installation">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.malware.variety.Click fraud-&gt;attribute.integrity.variety.Software installation</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Baiting">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Baiting</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Destroy data">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Destroy data</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Unapproved hardware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Unapproved hardware</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Capture app data">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Capture app data</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Pretexting">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Disabled controls">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Disabled controls</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Bribery">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Bribery</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Surveillance">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Surveillance</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Elicitation">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Elicitation</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Phishing">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.RFI">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.RFI</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Email link">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Email link</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Other">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Other</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Export data">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Export data</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Extortion">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Extortion</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Buffer overflow">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Buffer overflow</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Worm">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Worm</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Tampering">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Tampering</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Email misuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Email misuse</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Web drive-by">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Web drive-by</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Theft">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Abuse of functionality">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Abuse of functionality</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Client-side attack">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Client-side attack</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Click fraud">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Click fraud</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Capture stored data">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Capture stored data</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Disable controls">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Disable controls</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Data mishandling">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Data mishandling</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Web download">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Web download</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Downloader">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Downloader</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Remote injection">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Remote injection</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Scan network">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Scan network</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Adminware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Adminware</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Password dumper">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Password dumper</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Ransomware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Ransomware</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Spyware/Keylogger">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Spyware/Keylogger</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Unapproved software">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Unapproved software</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Spam">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Spam</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Possession abuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Possession abuse</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Ram scraper">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Ram scraper</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Adware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Adware</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Influence">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Influence</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.DoS">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Cryptanalysis">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Cryptanalysis</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Direct install">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Direct install</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Brute force">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Other">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Other</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Skimmer">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Email autoexecute">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Email autoexecute</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Use of backdoor or C2">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Use of backdoor or C2</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Email attachment">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Email attachment</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Footprinting">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Footprinting</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Removable media">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Removable media</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Forced browsing">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Forced browsing</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.SQLi">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.SQLi</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Unapproved workaround">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Unapproved workaround</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.C2">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.C2</data>
+    </edge>
+    <edge source="start" target="action.malware.vector.Download by malware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.vector.Download by malware</data>
+    </edge>
+    <edge source="start" target="action.malware.variety.Backdoor">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.malware.variety.Backdoor</data>
+    </edge>
+    <edge source="action.malware.variety.C2" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">58</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.666666666667</data>
+      <data key="d8">action.malware.variety.C2-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.malware.variety.C2" target="action.social.variety.Phishing">
+      <data key="d5">5</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.976608187135</data>
+      <data key="d8">action.malware.variety.C2-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.social.variety.Pretexting" target="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.social.variety.Pretexting-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+    </edge>
+    <edge source="action.social.variety.Pretexting" target="attribute.confidentiality.data.variety.Bank">
+      <data key="d5">5</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.976608187135</data>
+      <data key="d8">action.social.variety.Pretexting-&gt;attribute.confidentiality.data.variety.Bank</data>
+    </edge>
+    <edge source="action.social.variety.Pretexting" target="attribute.integrity.variety.Alter behavior">
+      <data key="d5">7</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.964912280702</data>
+      <data key="d8">action.social.variety.Pretexting-&gt;attribute.integrity.variety.Alter behavior</data>
+    </edge>
+    <edge source="action.social.variety.Pretexting" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.social.variety.Pretexting-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="action.malware.vector.Web drive-by" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">58</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.666666666667</data>
+      <data key="d8">action.malware.vector.Web drive-by-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.malware.vector.Web drive-by" target="action.social.variety.Phishing">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.malware.vector.Web drive-by-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation">
+      <data key="d5">171</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.00584795321637</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption">
+      <data key="d5">13</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.929824561404</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.availability.variety.Interruption</data>
+    </edge>
+    <edge source="action.malware.vector.Direct install" target="action.social.variety.Phishing">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.vector.Direct install-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Pretexting">
+      <data key="d5">13</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.929824561404</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Phishing">
+      <data key="d5">102</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.409356725146</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="action.hacking.variety.Brute force">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Elicitation">
+      <data key="d5">7</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.964912280702</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;action.social.variety.Elicitation</data>
+    </edge>
+    <edge source="action.malware.vector.Email autoexecute" target="action.social.variety.Phishing">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.vector.Email autoexecute-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify privileges" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Modify privileges-&gt;end</data>
+    </edge>
+    <edge source="action.malware.vector.Email attachment" target="action.social.variety.Phishing">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.malware.vector.Email attachment-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Source code" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Source code-&gt;end</data>
+    </edge>
+    <edge source="action.misuse.variety.Unapproved hardware" target="action.physical.variety.Theft">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Unapproved hardware-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="action.misuse.variety.Unapproved hardware" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.misuse.variety.Unapproved hardware-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Payment">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Payment</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d5">8</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.959064327485</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.availability.variety.Destruction">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.availability.variety.Destruction</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Internal">
+      <data key="d5">3</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Internal</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Modify data">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Modify data</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="action.physical.variety.Theft">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Bank">
+      <data key="d5">10</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.947368421053</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Bank</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Log tampering">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Log tampering</data>
+    </edge>
+    <edge source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">6</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.970760233918</data>
+      <data key="d8">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Medical" target="action.physical.variety.Theft">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.Medical-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Medical" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Medical-&gt;end</data>
+    </edge>
+    <edge source="action.malware.variety.Export data" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">58</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.666666666667</data>
+      <data key="d8">action.malware.variety.Export data-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.malware.variety.Export data" target="action.social.variety.Phishing">
+      <data key="d5">4</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.982456140351</data>
+      <data key="d8">action.malware.variety.Export data-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.social.variety.Elicitation" target="attribute.confidentiality.data.variety.Bank">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.social.variety.Elicitation-&gt;attribute.confidentiality.data.variety.Bank</data>
+    </edge>
+    <edge source="action.social.variety.Elicitation" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.social.variety.Elicitation-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="action.social.variety.Elicitation" target="attribute.integrity.variety.Alter behavior">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.social.variety.Elicitation-&gt;attribute.integrity.variety.Alter behavior</data>
+    </edge>
+    <edge source="action.hacking.variety.Abuse of functionality" target="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Abuse of functionality-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+    </edge>
+    <edge source="action.hacking.variety.Abuse of functionality" target="attribute.confidentiality.data.variety.Virtual currency">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.hacking.variety.Abuse of functionality-&gt;attribute.confidentiality.data.variety.Virtual currency</data>
+    </edge>
+    <edge source="action.malware.variety.Disable controls" target="action.social.variety.Phishing">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.variety.Disable controls-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Copyrighted" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Copyrighted-&gt;end</data>
+    </edge>
+    <edge source="action.hacking.variety.Footprinting" target="attribute.confidentiality.data.variety.System">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Footprinting-&gt;attribute.confidentiality.data.variety.System</data>
+    </edge>
+    <edge source="action.hacking.variety.Footprinting" target="attribute.confidentiality.data.variety.Internal">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Footprinting-&gt;attribute.confidentiality.data.variety.Internal</data>
+    </edge>
+    <edge source="action.misuse.variety.Unapproved workaround" target="attribute.integrity.variety.Repurpose">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Unapproved workaround-&gt;attribute.integrity.variety.Repurpose</data>
+    </edge>
+    <edge source="action.misuse.variety.Unapproved software" target="attribute.confidentiality.data.variety.Source code">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Unapproved software-&gt;attribute.confidentiality.data.variety.Source code</data>
+    </edge>
+    <edge source="action.misuse.variety.Possession abuse" target="action.physical.variety.Theft">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">action.misuse.variety.Possession abuse-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="action.misuse.variety.Possession abuse" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Possession abuse-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="action.social.variety.Pretexting">
+      <data key="d5">3</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.988304093567</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="action.social.variety.Phishing">
+      <data key="d5">47</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.730994152047</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="action.physical.variety.Theft">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Misrepresentation" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Misrepresentation-&gt;end</data>
+    </edge>
+    <edge source="action.hacking.variety.Use of backdoor or C2" target="action.hacking.variety.Use of stolen creds">
+      <data key="d5">59</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.66081871345</data>
+      <data key="d8">action.hacking.variety.Use of backdoor or C2-&gt;action.hacking.variety.Use of stolen creds</data>
+    </edge>
+    <edge source="action.hacking.variety.Use of backdoor or C2" target="action.social.variety.Phishing">
+      <data key="d5">61</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.649122807018</data>
+      <data key="d8">action.hacking.variety.Use of backdoor or C2-&gt;action.social.variety.Phishing</data>
+    </edge>
+    <edge source="action.malware.vector.Other" target="attribute.integrity.variety.Software installation">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.malware.vector.Other-&gt;attribute.integrity.variety.Software installation</data>
+    </edge>
+    <edge source="action.physical.variety.Skimmer" target="attribute.confidentiality.data.variety.Payment">
+      <data key="d5">30</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.830409356725</data>
+      <data key="d8">action.physical.variety.Skimmer-&gt;attribute.confidentiality.data.variety.Payment</data>
+    </edge>
+    <edge source="action.physical.variety.Skimmer" target="attribute.confidentiality.data.variety.Bank">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.physical.variety.Skimmer-&gt;attribute.confidentiality.data.variety.Bank</data>
+    </edge>
+    <edge source="action.physical.variety.Skimmer" target="attribute.integrity.variety.Hardware tampering">
+      <data key="d5">30</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.830409356725</data>
+      <data key="d8">action.physical.variety.Skimmer-&gt;attribute.integrity.variety.Hardware tampering</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify configuration" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Modify configuration-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Modify configuration" target="action.hacking.variety.Brute force">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.994152046784</data>
+      <data key="d8">attribute.integrity.variety.Modify configuration-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+  </graph>
+</graphml>

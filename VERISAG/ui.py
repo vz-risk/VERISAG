@@ -50,8 +50,9 @@ LOG = None
 FLASK_DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
-VERISR = "~/Documents/customer data/DBIR/data/dbir20150226.csv"
 FILTERS = "./filter.txt"
+CACHE = "./static"
+DATA = None
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################
 
@@ -65,6 +66,8 @@ import pandas as pd
 import imp
 import pprint
 from inspect import getmembers
+import glob
+import networkx as nx
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -149,11 +152,19 @@ if args.filters is not None:
 
 ## GLOBAL EXECUTION
 # Import the data
-logging.info("Importing data.")
-data = pd.read_csv(DATA)
-logging.info("Data import complete.")
+if DATA is not None:
+    logging.info("Importing data.")
+    data = pd.read_csv(DATA)
+    logging.info("Data import complete.")
 
+# build cache
+logging.info("Populating Cache.")
 cache = dict()
+for filename in glob.glob(CACHE.rstrip("/") + "/*.graphml"):
+    ATK = V2AG.attack_graph(None, FILTERS)
+    ATK.g = nx.read_graphml(filename)
+    cache[filename.rstrip(".graphml").split("/")[-1]] = ATK
+logging.info("Cache population complete.")
 
 ## FUNCTION DEFINITION
 # Set up the app
@@ -196,7 +207,7 @@ class analyze(Resource):
             logging.info("Cache hit. Retrieving attack graph.")
             ATK = cache[api_args['worry']]
         #cache miss
-        else:
+        elif data is not None:
             logging.info("Cache miss.  Building attack graph.")
             # if we're not using the entire data set, subset it.
             if api_args['worry'] == 'all':
@@ -214,6 +225,9 @@ class analyze(Resource):
             ATK = V2AG.attack_graph(None, FILTERS)
             ATK.build(data=query_data)
             cache[api_args['worry']] = ATK
+
+        else:
+            raise LookupError("Graph not cached and no data exists to build graph from.")
 
         # Do the analysis
         logging.info("Doing the analysis.")
