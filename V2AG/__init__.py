@@ -1,0 +1,3 @@
+from veris_to_attack_graph import attack_graph
+#from attack_graph_analysis import analyze
+import attack_graph_analysis
