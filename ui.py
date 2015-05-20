@@ -149,6 +149,9 @@ if args.data_file is not None:
 if args.filters is not None:
     FILTERS = args.filters
 
+# Set up Heroku port
+PORT = os.environ.get("PORT", PORT))
+
 
 ## GLOBAL EXECUTION
 # Import the data
