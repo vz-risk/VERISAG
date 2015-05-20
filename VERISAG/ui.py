@@ -161,9 +161,11 @@ if DATA is not None:
 logging.info("Populating Cache.")
 cache = dict()
 for filename in glob.glob(CACHE.rstrip("/") + "/*.graphml"):
+    #logging.debug("Filename: {0}".format(filename))
     ATK = V2AG.attack_graph(None, FILTERS)
     ATK.g = nx.read_graphml(filename)
-    cache[filename.rstrip(".graphml").split("/")[-1]] = ATK
+    cache[filename.rstrip("graphml").rstrip(".").split("/")[-1]] = ATK
+logging.debug("Cached graphs are {0}".format(cache.keys()))
 logging.info("Cache population complete.")
 
 ## FUNCTION DEFINITION

@@ -15,7 +15,7 @@ $(document).ready(function() {
             // TODO: Need to parse through $('#attributes').val() to get a string of comma-separated attributes 
 
             $('#output').empty();
-            $('#output').append("Analysis beginning.  This may up to 15 minutes unless the requested attack graph is cached.");
+            $('#output').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.");
 
             $.ajax({
                 type: "GET",

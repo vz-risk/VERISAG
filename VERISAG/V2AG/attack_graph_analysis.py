@@ -47,7 +47,8 @@ import logging
 import os
 import imp
 
-fp, pathname, description = imp.find_module("V2AG", [os.getcwd()])
+#fp, pathname, description = imp.find_module("V2AG", [os.getcwd()])
+fp, pathname, description = imp.find_module("V2AG", ["./"])
 V2AG = imp.load_module("V2AG", fp, pathname, description)
 attack_graph = V2AG.attack_graph(None)
 
