@@ -217,6 +217,10 @@ class analyze(Resource):
             ATK = cache[api_args['worry']]
         #cache miss
         elif data is not None:
+            # the '-' causes problems in file names so '_' used instead.  Change it back here to query valid VERIS data.
+            if api_args['worry'] == "pattern.Cyber_Espionage":
+                api_args['worry'] = "pattern.Cyber-Espionage"
+
             logging.info("Cache miss.  Building attack graph.")
             # if we're not using the entire data set, subset it.
             if api_args['worry'] == 'all':
@@ -240,7 +244,7 @@ class analyze(Resource):
 
         # Do the analysis
         logging.info("Doing the analysis.")
-        if "Everything" in api_args['attributes']:
+        if "Everything" in api_args['attributes'] or "" in api_args['attributes']:
             attributes = None
         else:
             attributes = api_args['attributes']
@@ -293,9 +297,10 @@ class analyze(Resource):
 
             # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
             # Handle if the none of the requested actions or attributes aren't even in the graph
-            attributes = set(attributes).intersection(set(ATK.g.nodes()))
-            if not len(attributes) > 0:
-                error = "The attribute to protect was not in the graph to be analyzed."
+            if attributes is not None:
+                attributes = set(attributes).intersection(set(ATK.g.nodes()))
+                if not len(attributes) > 0:
+                    error = "The attribute to protect was not in the graph to be analyzed."
 
         if not error:
             node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")

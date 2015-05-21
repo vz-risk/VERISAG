@@ -15,6 +15,7 @@ $(document).ready(function() {
     $("#worries").change(function () {
         $('#sigmajs_container').empty();
         var end = this.value;
+        console.log('./static/' + end + '.gexf');
         sigma.parsers.gexf(
             './static/' + end + '.gexf',
             {   // Here is the ID of the DOM element that
