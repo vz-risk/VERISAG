@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2015-05-21">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="node" mode="static">
+      <attribute id="0" title="count" type="integer"></attribute>
+      <attribute id="1" title="type" type="string"></attribute>
+      <attribute id="2" title="sub_type" type="string"></attribute>
+      <attribute id="3" title="weight" type="double"></attribute>
+    </attributes>
+    <attributes class="edge" mode="static">
+      <attribute id="5" title="count" type="integer"></attribute>
+      <attribute id="6" title="direction" type="string"></attribute>
+    </attributes>
+    <nodes>
+      <node id="action.misuse.variety.Unapproved hardware" label="action.misuse.variety.Unapproved hardware">
+        <attvalues>
+          <attvalue for="0" value="1"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.misuse"></attvalue>
+          <attvalue for="3" value="0.875"></attvalue>
+        </attvalues>
+        <viz:size value="7.1428576"></viz:size>
+        <viz:position x="1.7142076" y="-104.209656" z="0.0"></viz:position>
+        <viz:color r="208" g="14" b="143"></viz:color>
+      </node>
+      <node id="action.misuse.variety.Privilege abuse" label="action.misuse.variety.Privilege abuse">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.misuse"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="21.27792" y="-102.02863" z="0.0"></viz:position>
+        <viz:color r="208" g="14" b="143"></viz:color>
+      </node>
+      <node id="action.social.variety.Phishing" label="action.social.variety.Phishing">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.social"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-39.290028" y="-96.53437" z="0.0"></viz:position>
+        <viz:color r="14" g="143" b="208"></viz:color>
+      </node>
+      <node id="action.hacking.variety.Use of stolen creds" label="action.hacking.variety.Use of stolen creds">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.hacking"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="69.654335" y="77.52977" z="0.0"></viz:position>
+        <viz:color r="14" g="208" b="143"></viz:color>
+      </node>
+      <node id="action.malware.variety.Export data" label="action.malware.variety.Export data">
+        <attvalues>
+          <attvalue for="0" value="1"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.875"></attvalue>
+        </attvalues>
+        <viz:size value="7.1428576"></viz:size>
+        <viz:position x="103.62867" y="11.121644" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="attribute.integrity.variety.Software installation" label="attribute.integrity.variety.Software installation">
+        <attvalues>
+          <attvalue for="0" value="4"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.integrity"></attvalue>
+          <attvalue for="3" value="0.5"></attvalue>
+        </attvalues>
+        <viz:size value="13.571429"></viz:size>
+        <viz:position x="-39.290028" y="96.53438" z="0.0"></viz:position>
+        <viz:color r="208" g="143" b="14"></viz:color>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Payment" label="attribute.confidentiality.data.variety.Payment">
+        <attvalues>
+          <attvalue for="0" value="4"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.confidentiality"></attvalue>
+          <attvalue for="3" value="0.5"></attvalue>
+        </attvalues>
+        <viz:size value="13.571429"></viz:size>
+        <viz:position x="-104.167366" y="-3.4279525" z="0.0"></viz:position>
+        <viz:color r="143" g="208" b="14"></viz:color>
+      </node>
+      <node id="end" label="end">
+        <attvalues>
+          <attvalue for="0" value="0"></attvalue>
+          <attvalue for="1" value="end"></attvalue>
+          <attvalue for="2" value="end"></attvalue>
+          <attvalue for="3" value="1.0"></attvalue>
+        </attvalues>
+        <viz:size value="5.0"></viz:size>
+        <viz:position x="-120.31062" y="113.504036" z="0.0"></viz:position>
+        <viz:color r="143" g="14" b="208"></viz:color>
+      </node>
+      <node id="attribute.integrity.variety.Modify data" label="attribute.integrity.variety.Modify data">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.integrity"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-63.049995" y="82.98969" z="0.0"></viz:position>
+        <viz:color r="208" g="143" b="14"></viz:color>
+      </node>
+      <node id="action.malware.variety.Backdoor" label="action.malware.variety.Backdoor">
+        <attvalues>
+          <attvalue for="0" value="1"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.875"></attvalue>
+        </attvalues>
+        <viz:size value="7.1428576"></viz:size>
+        <viz:position x="94.47892" y="44.003704" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="action.malware.variety.Capture stored data" label="action.malware.variety.Capture stored data">
+        <attvalues>
+          <attvalue for="0" value="1"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.875"></attvalue>
+        </attvalues>
+        <viz:size value="7.1428576"></viz:size>
+        <viz:position x="100.408966" y="27.939764" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="start" label="start">
+        <attvalues>
+          <attvalue for="0" value="0"></attvalue>
+          <attvalue for="1" value="start"></attvalue>
+          <attvalue for="2" value="start"></attvalue>
+          <attvalue for="3" value="1.0"></attvalue>
+        </attvalues>
+        <viz:size value="5.0"></viz:size>
+        <viz:position x="118.06482" y="-99.27191" z="0.0"></viz:position>
+        <viz:color r="208" g="14" b="14"></viz:color>
+      </node>
+      <node id="action.malware.variety.Scan network" label="action.malware.variety.Scan network">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="78.09998" y="-69.01437" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="action.malware.variety.Adminware" label="action.malware.variety.Adminware">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="84.51986" y="60.983482" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="action.malware.variety.Password dumper" label="action.malware.variety.Password dumper">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="103.8715" y="-8.5617695" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="action.malware.variety.Ransomware" label="action.malware.variety.Ransomware">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="90.96621" y="-50.869843" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="attribute.availability.variety.Obscuration" label="attribute.availability.variety.Obscuration">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.availability"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-90.96621" y="-50.869843" z="0.0"></viz:position>
+        <viz:color r="14" g="208" b="14"></viz:color>
+      </node>
+      <node id="action.misuse.variety.Possession abuse" label="action.misuse.variety.Possession abuse">
+        <attvalues>
+          <attvalue for="0" value="1"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.misuse"></attvalue>
+          <attvalue for="3" value="0.875"></attvalue>
+        </attvalues>
+        <viz:size value="7.1428576"></viz:size>
+        <viz:position x="40.082596" y="-96.20799" z="0.0"></viz:position>
+        <viz:color r="208" g="14" b="143"></viz:color>
+      </node>
+      <node id="action.malware.variety.Ram scraper" label="action.malware.variety.Ram scraper">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="99.68915" y="-30.408318" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="action.social.variety.Influence" label="action.social.variety.Influence">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.social"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-17.910654" y="-102.67327" z="0.0"></viz:position>
+        <viz:color r="14" g="143" b="208"></viz:color>
+      </node>
+      <node id="action.hacking.variety.DoS" label="action.hacking.variety.DoS">
+        <attvalues>
+          <attvalue for="0" value="7"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.hacking"></attvalue>
+          <attvalue for="3" value="0.125"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="23.788458" y="101.472664" z="0.0"></viz:position>
+        <viz:color r="14" g="208" b="143"></viz:color>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Credentials" label="attribute.confidentiality.data.variety.Credentials">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.confidentiality"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-99.68915" y="-30.408318" z="0.0"></viz:position>
+        <viz:color r="143" g="208" b="14"></viz:color>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Secrets" label="attribute.confidentiality.data.variety.Secrets">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.confidentiality"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-101.472664" y="23.78846" z="0.0"></viz:position>
+        <viz:color r="143" g="208" b="14"></viz:color>
+      </node>
+      <node id="action.malware.vector.Direct install" label="action.malware.vector.Direct install">
+        <attvalues>
+          <attvalue for="0" value="3"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.malware"></attvalue>
+          <attvalue for="3" value="0.625"></attvalue>
+        </attvalues>
+        <viz:size value="11.428572"></viz:size>
+        <viz:position x="59.5851" y="-85.511444" z="0.0"></viz:position>
+        <viz:color r="14" g="14" b="208"></viz:color>
+      </node>
+      <node id="attribute.integrity.variety.Alter behavior" label="attribute.integrity.variety.Alter behavior">
+        <attvalues>
+          <attvalue for="0" value="3"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.integrity"></attvalue>
+          <attvalue for="3" value="0.625"></attvalue>
+        </attvalues>
+        <viz:size value="11.428572"></viz:size>
+        <viz:position x="-92.98051" y="47.087337" z="0.0"></viz:position>
+        <viz:color r="208" g="143" b="14"></viz:color>
+      </node>
+      <node id="action.hacking.variety.Use of backdoor or C2" label="action.hacking.variety.Use of backdoor or C2">
+        <attvalues>
+          <attvalue for="0" value="1"></attvalue>
+          <attvalue for="1" value="action"></attvalue>
+          <attvalue for="2" value="action.hacking"></attvalue>
+          <attvalue for="3" value="0.875"></attvalue>
+        </attvalues>
+        <viz:size value="7.1428576"></viz:size>
+        <viz:position x="53.834225" y="89.243866" z="0.0"></viz:position>
+        <viz:color r="14" g="208" b="143"></viz:color>
+      </node>
+      <node id="attribute.integrity.variety.Fraudulent transaction" label="attribute.integrity.variety.Fraudulent transaction">
+        <attvalues>
+          <attvalue for="0" value="2"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.integrity"></attvalue>
+          <attvalue for="3" value="0.75"></attvalue>
+        </attvalues>
+        <viz:size value="9.285715"></viz:size>
+        <viz:position x="-79.224525" y="67.7205" z="0.0"></viz:position>
+        <viz:color r="208" g="143" b="14"></viz:color>
+      </node>
+      <node id="attribute.availability.variety.Interruption" label="attribute.availability.variety.Interruption">
+        <attvalues>
+          <attvalue for="0" value="7"></attvalue>
+          <attvalue for="1" value="attribute"></attvalue>
+          <attvalue for="2" value="attribute.availability"></attvalue>
+          <attvalue for="3" value="0.125"></attvalue>
+        </attvalues>
+        <viz:size value="20.0"></viz:size>
+        <viz:position x="-69.01437" y="-78.09998" z="0.0"></viz:position>
+        <viz:color r="14" g="208" b="14"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Secrets">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="1" source="action.social.variety.Phishing" target="attribute.integrity.variety.Alter behavior">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="3" source="attribute.integrity.variety.Software installation" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="2" source="attribute.integrity.variety.Software installation" target="action.malware.variety.Ransomware">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="backward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="4" source="attribute.confidentiality.data.variety.Payment" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="5" source="attribute.integrity.variety.Modify data" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="7" source="start" target="action.misuse.variety.Unapproved hardware">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="8" source="start" target="action.misuse.variety.Privilege abuse">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="12" source="start" target="action.social.variety.Phishing">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="15" source="start" target="action.hacking.variety.Use of stolen creds">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="18" source="start" target="action.malware.variety.Export data">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="10" source="start" target="action.malware.variety.Backdoor">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="13" source="start" target="action.malware.variety.Capture stored data">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="20" source="start" target="action.malware.variety.Scan network">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="22" source="start" target="action.malware.variety.Adminware">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="6" source="start" target="action.malware.variety.Password dumper">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="16" source="start" target="action.malware.variety.Ransomware">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="11" source="start" target="action.misuse.variety.Possession abuse">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="14" source="start" target="action.malware.variety.Ram scraper">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="19" source="start" target="action.social.variety.Influence">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="9" source="start" target="action.hacking.variety.DoS">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="17" source="start" target="action.malware.vector.Direct install">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="21" source="start" target="action.hacking.variety.Use of backdoor or C2">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="24" source="action.malware.variety.Ransomware" target="attribute.integrity.variety.Software installation">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="23" source="action.malware.variety.Ransomware" target="attribute.availability.variety.Obscuration">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="26" source="attribute.availability.variety.Obscuration" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="25" source="attribute.availability.variety.Obscuration" target="action.malware.variety.Ransomware">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="backward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="28" source="action.social.variety.Influence" target="attribute.integrity.variety.Alter behavior">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="27" source="action.social.variety.Influence" target="attribute.integrity.variety.Fraudulent transaction">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="29" source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption" weight="0.16666667">
+        <attvalues>
+          <attvalue for="5" value="6"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="30" source="attribute.confidentiality.data.variety.Credentials" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="31" source="attribute.confidentiality.data.variety.Secrets" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="32" source="attribute.integrity.variety.Alter behavior" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="33" source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Influence">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="backward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="34" source="attribute.integrity.variety.Fraudulent transaction" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="35" source="attribute.integrity.variety.Fraudulent transaction" target="action.social.variety.Influence">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="backward"></attvalue>
+        </attvalues>
+      </edge>
+      <edge id="36" source="attribute.availability.variety.Interruption" target="end">
+        <attvalues>
+          <attvalue for="5" value="1"></attvalue>
+          <attvalue for="6" value="forward"></attvalue>
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

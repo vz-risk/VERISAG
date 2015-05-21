@@ -1,4 +1,34 @@
 $(document).ready(function() {
+    sigma.parsers.gexf(
+        './static/all.gexf',
+        {   // Here is the ID of the DOM element that
+            // will contain the graph:
+            container: 'sigmajs_container'
+        },
+        function(s) {
+            // This function will be executed when the
+            // graph is displayed, with "s" the related
+            // sigma instance.
+        }
+    );
+
+    $("#worries").change(function () {
+        $('#sigmajs_container').empty();
+        var end = this.value;
+        sigma.parsers.gexf(
+            './static/' + end + '.gexf',
+            {   // Here is the ID of the DOM element that
+                // will contain the graph:
+                container: 'sigmajs_container'
+            },
+            function(s) {
+                // This function will be executed when the
+                // graph is displayed, with "s" the related
+                // sigma instance.
+            }
+        );
+    });
+
 
     $("#analyze_button").click(function() {
         // DBUG
