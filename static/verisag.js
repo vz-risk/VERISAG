@@ -59,10 +59,14 @@ $(document).ready(function() {
                     // TODO: create a string out of the controls?
                     var controls = "";
                     $('#output').empty();
-                    $('#output').append("Mitigate " + data.controls +
-                     " to eliminiate " + data.removed_paths +
-                     "% of attack paths and improve defenses on remaining paths by " + data.dist_increase + "%."
-                    );
+                    if (data.error != "") {
+                        $('#output').append("Error: " + data.error)
+                    } else {
+                        $('#output').append("Mitigate " + data.controls +
+                         " to eliminiate " + data.removed_paths +
+                         "% of attack paths and improve defenses on remaining paths by " + data.dist_increase + "%."
+                        );
+                    };
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     //alert(jqXHR.responseText);

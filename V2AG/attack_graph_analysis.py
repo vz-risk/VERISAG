@@ -47,14 +47,55 @@ import logging
 import os
 import imp
 
-#fp, pathname, description = imp.find_module("V2AG", [os.getcwd()])
-fp, pathname, description = imp.find_module("V2AG", ["./"])
-V2AG = imp.load_module("V2AG", fp, pathname, description)
-attack_graph = V2AG.attack_graph(None)
 
 class helper():
     def __init__(self):
         pass  #  TODO
+
+    def normalize_weights(self, g, prop='count'):
+        """ Takes a graph and uses the count attribute to add a 'weight' attribute that is the inverse of count normalized to 1.
+
+            The reason for this appoach is that the new weight may be used in shortest path calculations.  Also, it should never be '0'.
+
+        :param g: a networkx graph to reweight.  A 'weight' attribute is not necessary
+        :param prop: the property to use to generate weights.  default is 'count'
+        :return: a networkx graph with the weights added
+        """
+        # normalize the node and edge weights
+        # Normalize g edge weights to 0<x<=1
+        # First pass sets max weight to 1 and adjusts all weights to maintain their distance from the max weight.
+        weights = list()
+        for edge in g.edges():
+            weights.append(g.edge[edge[0]][edge[1]][prop])
+        #    weights = [edge[2] for edge in g.edges_iter(data='weight', default=0)]
+        max_weight = max(weights)
+        for edge in g.edges():
+            g.edge[edge[0]][edge[1]]['weight'] = float(1 + (max_weight - g.edge[edge[0]][edge[1]][prop]))
+        #        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['count'] / float(max_weight)
+        # we now have the maximum value set to 1 and all other values the same distance from the max weight in the positive direction.  Now to normalize to 0<x<=1
+        weights = list()
+        for edge in g.edges():
+            weights.append(g.edge[edge[0]][edge[1]]['weight'])
+        max_weight = max(weights)
+        for edge in g.edges():
+            g.edge[edge[0]][edge[1]]['weight'] = float(g.edge[edge[0]][edge[1]]['weight'] / float(max_weight))
+
+        # add node weights (follow same procedure used for edge weights)
+        weights = list()
+        for node in g.nodes():
+            weights.append(g.node[node][prop])
+        max_weight = max(weights)
+        for node in g.nodes():
+            if node in g.nodes():
+                g.node[node]['weight'] = float(1 + (max_weight - g.node[node][prop]))
+        weights = list()
+        for node in g.nodes():
+            weights.append(g.node[node]['weight'])
+        max_weight = max(weights)
+        for node in g.nodes():
+            if node in g.nodes():
+                g.node[node]['weight'] = float(g.node[node]['weight'] / float(max_weight))
+        return g
 
     def path_length(self, g, path, weight='weight'):
         """ A function to calculate the length of a path
@@ -87,11 +128,16 @@ class helper():
             elif g.node[node]['type'] == 'attribute':
                 attributes.add(node)
 
+#        logging.debug("Actions: {0}".format(actions))
+#        logging.debug("Attributes: {0}".format(attributes))
+#        logging.debug("Sources: {0}".format(src))
+#        logging.debug("Destinations: {0}".format(dst))
+
         # Allow subsetting actions or attributes to use
         if src is not None:
-            actions = actions.intersect(set(src))
+            actions = actions.intersection(set(src))
         if dst is not None:
-            attributes = attributes.intersect(set(src))
+            attributes = attributes.intersection(set(dst))
 
         if len(actions) == 0 or len(attributes) == 0:
             raise ValueError("The source must contain at least one valid action and the destination must contain at least one valid attribute.")
@@ -196,7 +242,7 @@ class helper():
             g_out.add_edge(src, dst, attr_dict=data)
 
         # Percentage is now stored as a count.  Now we must re-add the weights to be most common shortest to allow path calculation
-        g_out = attack_graph.normalize_weights(g_out)
+        g_out = self.normalize_weights(g_out)
 
         return g_out
 
@@ -216,6 +262,7 @@ class score():
         :param g: a networkx attack digraph
         :param paths: a dictionary of the shortest paths to be scored.  Key is a tuple of (src, dst).  Value is the a tuple of the path.
         :param mid: If true, only nodes in the middle of a path will be used (i)
+        :return: a sorted list of (node, score) tuples with highest-scoring node first.
         """
         scores = defaultdict(int)
         for path in paths.values():
@@ -233,7 +280,7 @@ class score():
         """ Returns nodes scored by pagerank.
 
         :param g: a directed networkx graph
-        :returns list of tuples of (node, score)
+        :return: a sorted list of tuples of (node, score)
         Note: Pagerank is modified to always jump to an action node.  All action nodes are jumped to equally.
         """
         # Get actions
@@ -279,14 +326,14 @@ class analyze():
             :param mitigate: String of either 'any', action', or 'attribute' used to limit what type of enumerations may be recommended for mitigation
             :param node_to_mitigate: If included, it will be used as the mitigated node.  Otherwise, the script will pick one.
             :param src: a list subset of actions to use as sources for paths.  If not included, all actions are used.
-            :param dst: a list subset of attributes to use as distinations for paths.  If not included, all attributes are used.
+            :param dst: a list subset of attributes to use as destinations for paths.  If not included, all attributes are used.
             :return: None.  Recommendation is printed
         """
 
         # Graph is already built
 
         # calculate base score
-        paths = self.helper.shortest_attack_paths(g, src=None, dst=None)
+        paths = self.helper.shortest_attack_paths(g, src=src, dst=dst)
         paths = {k: v for k, v in paths.iteritems() if v}
 
         if not node_to_mitigate:
@@ -304,14 +351,26 @@ class analyze():
                         node_to_mitigate = k
                         break
 
+        # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
+        # Handle if only one node was requested to protect in which case we can't choose it as the node to mitigate.
+        if src is not None and len(src) == 1 and node_scores[0][0] in src:
+            node_to_mitigate = node_scores[1][0]
+        if dst is not None and len(dst) == 1 and  node_scores[0][0] in dst:
+            node_to_mitigate = node_scores[1][0]
+
         # Pick a node to mitigate
         after_g = g.copy()
         after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
 
         # Recreate paths (using only the key pairs that still exist in after_g)
-        after_paths = self.helper.shortest_attack_paths(after_g, src=None, dst=None)
+        after_paths = self.helper.shortest_attack_paths(after_g, src=src, dst=dst)
         after_paths = {k: v for k, v in after_paths.iteritems() if v}  # This is necessary to remove empty paths
         before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
+
+        #logging.debug("Paths src/dst: {0}".format(paths.keys()))
+        #logging.debug("Mitigated node: {0}".format(node_to_mitigate))
+        #logging.debug("After paths src/dst: {0}".format(after_paths.keys()))
+        #logging.debug("Before paths src/dst: {0}".format(before_paths.keys()))
 
         # Calculate the graph's initial score
         before_score = 0
@@ -342,9 +401,12 @@ class analyze():
         removed_attributes = before_attributes.difference(after_attributes)
 
         if output is "print":
-            print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
-            print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
-            print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+            if len(after_paths) > 0:
+                print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
+                print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
+                print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+            else:
+                print "Removing {0} removed all attack paths.  In this scenario, all attributes are protected.".format(node_to_mitigate)
         else:
             return node_to_mitigate, removed_paths, paths, before_score, after_score
 

@@ -197,6 +197,9 @@ class analyze(Resource):
     def get(self):
         logging.info("Request Received")
         logging.debug("Request argument string: {0}".format(request.args))
+
+        error = ""  # if anything put in this string, it will be printed instead of the output.
+
         api_args = dict()
         api_args['worry'] = request.args['worry']
         api_args['attributes'] = request.args.getlist('attributes')
@@ -237,7 +240,7 @@ class analyze(Resource):
 
         # Do the analysis
         logging.info("Doing the analysis.")
-        if api_args['attributes'] is "Everything":
+        if "Everything" in api_args['attributes']:
             attributes = None
         else:
             attributes = api_args['attributes']
@@ -288,15 +291,35 @@ class analyze(Resource):
             # Remove the dash
             attributes = list(set(attributes).difference(set(["-"])))
 
-        node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
+            # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
+            # Handle if the none of the requested actions or attributes aren't even in the graph
+            attributes = set(attributes).intersection(set(ATK.g.nodes()))
+            if not len(attributes) > 0:
+                error = "The attribute to protect was not in the graph to be analyzed."
 
-        # Format the data for output
-        logging.info("Formatting the output.")
-        analysis = dict()
-        analysis['controls'] = node_to_mitigate
-        analysis['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
-        analysis['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
-        
+        if not error:
+            node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
+
+            logging.debug("Removed paths: {0}".format(len(removed_paths)))
+            logging.debug("Paths: {0}".format(len(paths)))
+            logging.debug("Difference: {0}".format(len(set(removed_paths).difference(set(paths.keys())))))
+
+            # Format the data for output
+            logging.info("Formatting the output.")
+            analysis = dict()
+            analysis['error'] = list(error)
+            analysis['controls'] = node_to_mitigate
+            # below if/then handles if all paths were removed by mitigating node_to_mitigate
+            if len(removed_paths) - len(paths.keys()) != 0:
+                analysis['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
+                analysis['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
+            else:
+                analysis['removed_paths'] = 100
+                analysis['dist_increase'] = 0
+        else:
+            logging.error("Error detected: {0}".format(error))
+            analysis = {'error': error}
+
         '''
         # TODO: Remove below line
         analysis = {"controls": "Nuke it from orbit.",
