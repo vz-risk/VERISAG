@@ -13,46 +13,53 @@
             Either input your own data or leave blank to use ours:  <input type="file" name="data">
         </div>
 //-->
-        <div>
-            <p>What Worries you?</p>
-            <select name="worries" id="worries">
-                <option value="all">Everything</option>
-                <option value="-">Patterns:</option>
-                <option value="-">---------</option>
-                <option value="pattern.Crimeware">Crimeware</option>
-                <option value="pattern.Cyber-Espionage">Cyber-Espionage</option>
-                <option value="pattern.Denial of Service">Denial of Service</option>
-                <option value="pattern.Lost and Stolen Assets">Lost and Stolen Assets</option>
-                <option value="pattern.Miscellaneous Errors">Miscellaneous Errors</option>
-                <option value="pattern.Payment Card Skimmers">Payment Card Skimmers</option>
-                <option value="pattern.Point of Sale">Points of Sale</option>
-                <option value="pattern.Privilege Misuse">Privilege Misuse</option>
-                <option value="pattern.Web Applications">Web Applications</option>
-                <option value="-">Industries:</option>
-                <option value="-">-----------</option>
-                <!-- <option value="11,11">Sector 11: Agriculture, Forestry, Fishing and Hunting</option> //-->
-                <option value="21,21">Sector 21: Mining, Quarrying, and Oil and Gas Extraction</option>
-                <option value="22,22">Sector 22: Utilities</option>
-                <option value="23,23">Sector 23: Construction</option>
-                <option value="31,33">Sectors 31-33: Manufacturing</option>
-                <option value="42,42">Sector 42: Wholesale Trade</option>
-                <option value="44,45">Sectors 44-45: Retail Trade</option>
-                <option value="48,49">Sectors 48-49: Transportation and Warehousing</option>
-                <option value="51,51">Sector 51: Information</option>
-                <option value="52,52">Sector 52: Finance and Insurance</option>
-                <option value="53,53">Sector 53: Real Estate and Rental and Leasing</option>
-                <option value="54,54">Sector 54: Professional, Scientific, and Technical Services</option>
-                <option value="55,55">Sector 55: Management of Companies and Enterprises</option>
-                <option value="56,56">Sector 56: Administrative and Support and Waste Management and Remediation Services</option>
-                <option value="61,61">Sector 61: Educational Services</option>
-                <option value="62,62">Sector 62: Health Care and Social Assistance</option>
-                <option value="71,71">Sector 71: Arts, Entertainment, and Recreation</option>
-                <option value="72,72">Sector 72: Accommodation and Food Services</option>
-                <option value="81,81">Sector 81: Other Services (except Public Administration)</option>
-                <option value="92,92">Sector 92: Public Administration</option>
-            </select>
-            <p>For more information on the correct NAICS code for your organization, visit <a href="http://www.farsmarterbids.com/reference/naics-list.php">http://www.farsmarterbids.com/reference/naics-list.php</a><p>
-        </div>
+        <table><tr>
+            <td>
+                <div id='worries_div'>
+                    <p>What Worries you?</p>
+                    <select name="worries" id="worries">
+                        <option value="all">Everything</option>
+                        <option value="-">Patterns:</option>
+                        <option value="-">---------</option>
+                        <option value="pattern.Crimeware">Crimeware</option>
+                        <option value="pattern.Cyber-Espionage">Cyber-Espionage</option>
+                        <option value="pattern.Denial of Service">Denial of Service</option>
+                        <option value="pattern.Lost and Stolen Assets">Lost and Stolen Assets</option>
+                        <!--<option value="pattern.Miscellaneous Errors">Miscellaneous Errors</option>//-->
+                        <option value="pattern.Payment Card Skimmers">Payment Card Skimmers</option>
+                        <option value="pattern.Point of Sale">Points of Sale</option>
+                        <option value="pattern.Privilege Misuse">Privilege Misuse</option>
+                        <option value="pattern.Web Applications">Web Applications</option>
+                        <option value="-">Industries:</option>
+                        <option value="-">-----------</option>
+                        <!-- <option value="11,11">Sector 11: Agriculture, Forestry, Fishing and Hunting</option> //-->
+                        <option value="21,21">Sector 21: Mining, Quarrying, and Oil and Gas Extraction</option>
+                        <option value="22,22">Sector 22: Utilities</option>
+                        <option value="23,23">Sector 23: Construction</option>
+                        <option value="31,33">Sectors 31-33: Manufacturing</option>
+                        <option value="42,42">Sector 42: Wholesale Trade</option>
+                        <option value="44,45">Sectors 44-45: Retail Trade</option>
+                        <option value="48,49">Sectors 48-49: Transportation and Warehousing</option>
+                        <option value="51,51">Sector 51: Information</option>
+                        <option value="52,52">Sector 52: Finance and Insurance</option>
+                        <option value="53,53">Sector 53: Real Estate and Rental and Leasing</option>
+                        <option value="54,54">Sector 54: Professional, Scientific, and Technical Services</option>
+                        <option value="55,55">Sector 55: Management of Companies and Enterprises</option>
+                        <option value="56,56">Sector 56: Administrative and Support and Waste Management and Remediation Services</option>
+                        <option value="61,61">Sector 61: Educational Services</option>
+                        <option value="62,62">Sector 62: Health Care and Social Assistance</option>
+                        <option value="71,71">Sector 71: Arts, Entertainment, and Recreation</option>
+                        <option value="72,72">Sector 72: Accommodation and Food Services</option>
+                        <option value="81,81">Sector 81: Other Services (except Public Administration)</option>
+                        <option value="92,92">Sector 92: Public Administration</option>
+                    </select>
+                    <p>The <u>Error</u> pattern is explicitly not included as it inherently is not based on puposeful action.  NAICS Sector 11 is not included for lack of data.  For more information on the correct NAICS code for your organization, visit <a href="http://www.farsmarterbids.com/reference/naics-list.php">http://www.farsmarterbids.com/reference/naics-list.php</a><p>
+                </div>
+            </td>
+            <td>
+                <div id="sigmajs_container"></div>
+            </td>
+        </tr></table>
         <div>
             What are you trying to protect?
             <select name="attributes" id="attributes" multiple="multiple">
