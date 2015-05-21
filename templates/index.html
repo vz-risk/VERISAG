@@ -16,7 +16,7 @@
         <table><tr>
             <td>
                 <div id='worries_div'>
-                    <p>What Worries you?</p>
+                    <p><u>What Worries you?</u></p>
                     <select name="worries" id="worries">
                         <option value="all" selected="selected">Everything</option>
                         <option value="-">Patterns:</option>
@@ -55,6 +55,51 @@
                     </select>
                     <p>The <u>Error</u> pattern is explicitly not included as it inherently is not based on puposeful action.  NAICS Sector 11 is not included for lack of data.  For more information on the correct NAICS code for your organization, visit <a href="http://www.farsmarterbids.com/reference/naics-list.php">http://www.farsmarterbids.com/reference/naics-list.php</a></p>
 
+                    <p><u>What are you trying to protect?</u></p>
+                    <select name="attributes" id="attributes" multiple="multiple">
+                        <option value="Everything"selected="selected">Everything</option>
+                        <option value="Availability">Availability:</option>
+                        <option value="-">-------------</option>
+                        <option value="attribute.availability.variety.Destruction">destruction</option>
+                        <option value="attribute.availability.variety.Loss">Loss</option>
+                        <option value="attribute.availability.variety.Interruption">Interruption</option>
+                        <option value="attribute.availability.variety.Degradation">Degradation</option>
+                        <option value="attribute.availability.variety.Acceleration">Acceleration</option>
+                        <option value="attribute.availability.variety.Obscuration">obscuration</option>
+                        <option value="attribute.availability.variety.Other">other</option>
+                        <option value="Confidentiality">Confidentiality:</option>
+                        <option value="-">----------------</option>
+                        <option value="attribute.confidentiality.data.variety.Credentials">Credentials</option>
+                        <option value="attribute.confidentiality.data.variety.Bank">Bank</option>
+                        <option value="attribute.confidentiality.data.variety.Classified">Classified</option>
+                        <option value="attribute.confidentiality.data.variety.Copyrighted">Copyrighted</option>
+                        <option value="attribute.confidentiality.data.variety.Digital certificate">Digital certificate</option>
+                        <option value="attribute.confidentiality.data.variety.Medical">Medical</option>
+                        <option value="attribute.confidentiality.data.variety.Payment">Payment</option>
+                        <option value="attribute.confidentiality.data.variety.Personal">Personal</option>
+                        <option value="attribute.confidentiality.data.variety.Internal">Internal</option>
+                        <option value="attribute.confidentiality.data.variety.Source code">Source code</option>
+                        <option value="attribute.confidentiality.data.variety.System">System</option>
+                        <option value="attribute.confidentiality.data.variety.Secrets">Secrets</option>
+                        <option value="attribute.confidentiality.data.variety.Virtual currency">Virtual currency</option>
+                        <option value="attribute.confidentiality.data.variety.Other">Other</option>
+                        <option value="Integrity">Integrity:</option>
+                        <option value="-">----------</option>
+                        <option value="attribute.integrity.variety.Created account">Created account</option>
+                        <option value="attribute.integrity.variety.Defacement">Defacement</option>
+                        <option value="attribute.integrity.variety.Hardware tampering">Hardware tampering</option>
+                        <option value="attribute.integrity.variety.Alter behavior">Alter behavior</option>
+                        <option value="attribute.integrity.variety.Fraudulent transaction">Fraudulent transaction</option>
+                        <option value="attribute.integrity.variety.Log tampering">Log tampering</option>
+                        <option value="attribute.integrity.variety.Repurpose">Repurpose</option>
+                        <option value="attribute.integrity.variety.Misrepresentation">Misrepresentation</option>
+                        <option value="attribute.integrity.variety.Modify configuration">Modify configuration</option>
+                        <option value="attribute.integrity.variety.Modify privileges">Modify privileges</option>
+                        <option value="attribute.integrity.variety.Modify data">Modify data</option>
+                        <option value="attribute.integrity.variety.Software installation">Software installation</option>
+                        <option value="attribute.integrity.variety.Other">Other</option>
+                    </select>
+
                     <p>In the graph to the right, attacks start at the lower right at the "Start" node.  They move through actions and attributes until they finally conclude at the "End" node in the upper left.  Depending on what worry you select, the graph will change to represent that subset of the data.</p>
                 </div>
             </td>
@@ -62,57 +107,12 @@
                 <div id="sigmajs_container"></div>
             </td>
         </tr></table>
-        <div>
-            What are you trying to protect?
-            <select name="attributes" id="attributes" multiple="multiple">
-                <option value="Everything"selected="selected">Everything</option>
-                <option value="Availability">Availability:</option>
-                <option value="-">-------------</option>
-                <option value="attribute.availability.variety.Destruction">destruction</option>
-                <option value="attribute.availability.variety.Loss">Loss</option>
-                <option value="attribute.availability.variety.Interruption">Interruption</option>
-                <option value="attribute.availability.variety.Degradation">Degradation</option>
-                <option value="attribute.availability.variety.Acceleration">Acceleration</option>
-                <option value="attribute.availability.variety.Obscuration">obscuration</option>
-                <option value="attribute.availability.variety.Other">other</option>
-                <option value="Confidentiality">Confidentiality:</option>
-                <option value="-">----------------</option>
-                <option value="attribute.confidentiality.data.variety.Credentials">Credentials</option>
-                <option value="attribute.confidentiality.data.variety.Bank">Bank</option>
-                <option value="attribute.confidentiality.data.variety.Classified">Classified</option>
-                <option value="attribute.confidentiality.data.variety.Copyrighted">Copyrighted</option>
-                <option value="attribute.confidentiality.data.variety.Digital certificate">Digital certificate</option>
-                <option value="attribute.confidentiality.data.variety.Medical">Medical</option>
-                <option value="attribute.confidentiality.data.variety.Payment">Payment</option>
-                <option value="attribute.confidentiality.data.variety.Personal">Personal</option>
-                <option value="attribute.confidentiality.data.variety.Internal">Internal</option>
-                <option value="attribute.confidentiality.data.variety.Source code">Source code</option>
-                <option value="attribute.confidentiality.data.variety.System">System</option>
-                <option value="attribute.confidentiality.data.variety.Secrets">Secrets</option>
-                <option value="attribute.confidentiality.data.variety.Virtual currency">Virtual currency</option>
-                <option value="attribute.confidentiality.data.variety.Other">Other</option>
-                <option value="Integrity">Integrity:</option>
-                <option value="-">----------</option>
-                <option value="attribute.integrity.variety.Created account">Created account</option>
-                <option value="attribute.integrity.variety.Defacement">Defacement</option>
-                <option value="attribute.integrity.variety.Hardware tampering">Hardware tampering</option>
-                <option value="attribute.integrity.variety.Alter behavior">Alter behavior</option>
-                <option value="attribute.integrity.variety.Fraudulent transaction">Fraudulent transaction</option>
-                <option value="attribute.integrity.variety.Log tampering">Log tampering</option>
-                <option value="attribute.integrity.variety.Repurpose">Repurpose</option>
-                <option value="attribute.integrity.variety.Misrepresentation">Misrepresentation</option>
-                <option value="attribute.integrity.variety.Modify configuration">Modify configuration</option>
-                <option value="attribute.integrity.variety.Modify privileges">Modify privileges</option>
-                <option value="attribute.integrity.variety.Modify data">Modify data</option>
-                <option value="attribute.integrity.variety.Software installation">Software installation</option>
-                <option value="attribute.integrity.variety.Other">Other</option>
-            </select>
-        </div>
         <center><input type="button" value="Analyze" id="analyze_button"></center>
     </div>
     <center><hr></center>
     <div id="output_div" class="outer_div">
-        <p id="output"></p>
+        <h3>Analysis:</h3>
+        <p id="output">Please click the 'analyze' button to analyze the graph</p>
     </div>
 </body>
 {% endblock %}
