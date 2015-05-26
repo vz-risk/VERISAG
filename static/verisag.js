@@ -15,6 +15,15 @@ $(document).ready(function() {
             // This function will be executed when the
             // graph is displayed, with "s" the related
             // sigma instance.
+            // Store the original colors for use later
+            s.graph.nodes().forEach(function(n) {
+            n.originalColor = n.color;
+            });
+            s.graph.edges().forEach(function(e) {
+            e.originalColor = e.color;
+            });
+
+            // Store the graph to a global variable
             graphInstance = s;
         }
     );
@@ -38,7 +47,7 @@ $(document).ready(function() {
         traditional:true,
         success: function(data) {
             // Debug
-            console.log(data)
+//            console.log(data)
 
             // format chart data
             wo_mitigation["values"] = format_chart_data(data);
@@ -52,8 +61,8 @@ $(document).ready(function() {
                     .margin({top: 30, right: 20, bottom: 50, left: 175})
                     .showValues(true)           //Show bar value next to each bar.
                     .tooltips(true)             //Show tooltips on hover.
-        //            .duration(350)
-                    .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+//                    .duration(350)
+                    .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
                 chart.yAxis
                     .tickFormat(d3.format(',.2f'));
@@ -94,6 +103,15 @@ $(document).ready(function() {
                 // This function will be executed when the
                 // graph is displayed, with "s" the related
                 // sigma instance.
+                // Store the original colors for use later
+                s.graph.nodes().forEach(function(n) {
+                n.originalColor = n.color;
+                });
+                s.graph.edges().forEach(function(e) {
+                e.originalColor = e.color;
+                });
+
+                // Store the graph to a global variable
                 graphInstance = s;
             }
         );
@@ -112,7 +130,7 @@ $(document).ready(function() {
             traditional:true,
             success: function(data) {
                 // Debug
-                console.log(data);
+//                console.log(data);
 
                 // format chart data
                 wo_mitigation["values"] = format_chart_data(data);
@@ -127,8 +145,8 @@ $(document).ready(function() {
                         .margin({top: 30, right: 20, bottom: 50, left: 175})
                         .showValues(true)           //Show bar value next to each bar.
                         .tooltips(true)             //Show tooltips on hover.
-            //            .duration(350)
-                        .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+//                        .duration(350)
+                        .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
                     chart.yAxis
                         .tickFormat(d3.format(',.2f'));
@@ -156,8 +174,87 @@ $(document).ready(function() {
         $('#output').empty();
         $('#output').append("Please click the 'analyze' button to analyze the graph.");
 
-        // grey out all non-selected attributes and associated edges
-        // TODO
+        // Get the attributes
+        var selected_attributes = [];
+        var attributes = $("#attributes").val();
+        for (var i = 0; i < attributes.length; i++) {
+            if (attributes[i] == "-") {
+                $.noop
+            } else if (attributes[i] == "Availability") {
+                selected_attributes = selected_attributes.concat([
+                    "attribute.availability.variety.Destruction",
+                    "attribute.availability.variety.Loss",
+                    "attribute.availability.variety.Interruption",
+                    "attribute.availability.variety.Degradation",
+                    "attribute.availability.variety.Acceleration",
+                    "attribute.availability.variety.Obscuration",
+                    "attribute.availability.variety.Other"
+                ]);
+            } else if (attributes[i] == "Confidentiality") {
+                selected_attributes = selected_attributes.concat([
+                    "attribute.confidentiality.data.variety.Credentials",
+                    "attribute.confidentiality.data.variety.Bank",
+                    "attribute.confidentiality.data.variety.Classified",
+                    "attribute.confidentiality.data.variety.Copyrighted",
+                    "attribute.confidentiality.data.variety.Digital certificate",
+                    "attribute.confidentiality.data.variety.Medical",
+                    "attribute.confidentiality.data.variety.Payment",
+                    "attribute.confidentiality.data.variety.Personal",
+                    "attribute.confidentiality.data.variety.Internal",
+                    "attribute.confidentiality.data.variety.Source code",
+                    "attribute.confidentiality.data.variety.System",
+                    "attribute.confidentiality.data.variety.Secrets",
+                    "attribute.confidentiality.data.variety.Virtual currency",
+                    "attribute.confidentiality.data.variety.Other"
+                ]);
+            } else if (attributes[i] == "Integrity") {
+                selected_attributes = selected_attributes.concat([
+                    "attribute.integrity.variety.Created account",
+                    "attribute.integrity.variety.Defacement",
+                    "attribute.integrity.variety.Hardware tampering",
+                    "attribute.integrity.variety.Alter behavior",
+                    "attribute.integrity.variety.Fraudulent transaction",
+                    "attribute.integrity.variety.Log tampering",
+                    "attribute.integrity.variety.Repurpose",
+                    "attribute.integrity.variety.Misrepresentation",
+                    "attribute.integrity.variety.Modify configuration",
+                    "attribute.integrity.variety.Modify privileges",
+                    "attribute.integrity.variety.Modify data",
+                    "attribute.integrity.variety.Software installation",
+                    "attribute.integrity.variety.Other"
+                ]);
+            } else {
+                selected_attributes = selected_attributes.concat([attributes[i]]);
+            }
+        };
+
+        //console.log(selected_attributes)
+
+        // Grey out attribute->end edges that aren't selected attributes
+        ////////////////////////
+        var s = graphInstance;
+        var end_node;
+        // Get the end attribute.  (There has to be a better way than this)
+        s.graph.nodes().forEach(function(n) {
+            if (n.label == "end") {
+                end_node = n.id
+            };
+        });
+        // Set all nodes to grey
+        var nodes_to_grey = [];
+        s.graph.nodes().forEach(function(n) {
+          if (/^attribute./.test(n.label) & ($.inArray(n.label, selected_attributes) == -1)) {
+            nodes_to_grey.push(n.id)
+          }
+        });
+        s.graph.edges().forEach(function(e) {
+          if (($.inArray(e.source, nodes_to_grey) != -1) & (e.target == end_node)) {
+            e.color = '#eee';
+          } else {
+            e.color = e.originalColor;
+          }
+        });
+        s.refresh();
 
         // Update bar chart of potential attack paths
         // TODO
@@ -190,7 +287,6 @@ $(document).ready(function() {
                 success: function(data) {
                     // Debug
                     //alert(data.controls + data.removed_paths + data.dist_increase)
-                    // TODO: create a string out of the controls?
                     var controls = "";
                     $('#output').empty();
                     if (data.error != "") {
@@ -202,7 +298,8 @@ $(document).ready(function() {
                         );
                     };
 
-                    console.log(data.path_lengths)
+                    // DEBUG
+//                  console.log(data.path_lengths)
 
                     // Augment the bar chart of paths with the longer paths
                     // get the mitigated path data
@@ -211,7 +308,8 @@ $(document).ready(function() {
                                         "values": []
                     };
                     w_mitigation["values"] = format_chart_data(data.path_lengths);
-                    //
+
+                    // build chart
                     $('#chart1 svg').empty();
                     nv.addGraph(function() {
                         var chart = nv.models.multiBarHorizontalChart()
@@ -220,8 +318,8 @@ $(document).ready(function() {
                             .margin({top: 30, right: 20, bottom: 50, left: 175})
                             .showValues(true)           //Show bar value next to each bar.
                             .tooltips(true)             //Show tooltips on hover.
-                //            .duration(350)
-                            .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+//                            .duration(350)
+                            .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
                         chart.yAxis
                             .tickFormat(d3.format(',.2f'));
