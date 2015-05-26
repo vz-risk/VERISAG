@@ -335,9 +335,82 @@ class analyze(Resource):
         logging.info("Returning results.")
         return analysis
 
+
+class paths(Resource):
+    api_parser = None
+    data = None
+    cache = None
+
+    def __init__(self):
+        global data, cache, analysis
+        self.data = data
+        self.cache = cache
+
+    def get(self):
+        logging.info("Request Received")
+        logging.debug("Request argument string: {0}".format(request.args))
+
+        error = ""  # if anything put in this string, it will be printed instead of the output.
+
+        api_args = dict()
+        api_args['worry'] = request.args['worry']
+        api_args['attributes'] = request.args.getlist('attributes')
+        """
+        self.api_parser = api_parser
+        api_args = self.api_parser.parse_args()
+        """  # F the parser.  didn't work at all
+        logging.info("Parsed arguments: {0}".format(api_args))
+
+        analysis = V2AG.attack_graph_analysis.analyze()
+        # Subset the data based on 'worries'
+        # check cache
+        if api_args['worry'] in cache:
+            logging.info("Cache hit. Retrieving attack graph.")
+            ATK = cache[api_args['worry']]
+        #cache miss
+        elif data is not None:
+            # the '-' causes problems in file names so '_' used instead.  Change it back here to query valid VERIS data.
+            if api_args['worry'] == "pattern.Cyber_Espionage":
+                api_args['worry'] = "pattern.Cyber-Espionage"
+
+            logging.info("Cache miss.  Building attack graph.")
+            # if we're not using the entire data set, subset it.
+            if api_args['worry'] == 'all':
+                query_data = data
+            else:
+                # handle patterns
+                if api_args['worry'][:7] == "pattern":
+                    query_data = data[data[api_args['worry']] == True]
+                # handle naics codes
+                else:
+                    naics_codes = api_args['worry'].split(",")
+                    query_data = data[(int(naics_codes[0]) <= data["victim.industry2"]) & (data["victim.industry2"] <= int(naics_codes[1]))]
+
+            # Create the attack graph
+            ATK = V2AG.attack_graph(None, FILTERS)
+            ATK.build(data=query_data)
+            cache[api_args['worry']] = ATK
+
+        else:
+            raise LookupError("Graph not cached and no data exists to build graph from.")
+
+        logging.info("Beginning path analysis.")
+        paths = analysis.helper.shortest_attack_paths(ATK.g)
+        path_lengths = dict()
+        for key, path in paths.iteritems():
+            logging.debug("src/dst: {0}\npath: {1}".format(key, path))
+            if path:
+                path_lengths["{0}->{1}".format(key[0], key[1])] = analysis.helper.path_length(ATK.g, path)[1]
+            else:
+                path_lengths["{0}->{1}".format(key[0], key[1])] = 0
+
+        return path_lengths
+
+
 # Set up the API
 api = Api(app)
 api.add_resource(analyze, '/analyze/')
+api.add_resource(paths, '/paths/')
 
 # Set up the GUI
 @app.route("/")

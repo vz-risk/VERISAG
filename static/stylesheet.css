@@ -43,20 +43,30 @@ hr { width=50%}
     height:35px;
     width: 40%;
     padding-left:10px;
-  }
+}
 
-  #sigmajs_container {
+#sigmajs_container {
     max-width: 95%;
     height: 600px;
     margin: auto;
     border: 0px;
-  }
+}
 
-  #worries_div {
+#worries_div {
     border: 0px;
-  }
+}
 
- th, td {
+#chart rect {
+  fill: steelblue;
+}
+
+#chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+th, td {
     border: 1px solid black;
     overflow: hidden;
     width: 45%;
