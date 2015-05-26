@@ -408,7 +408,7 @@ class analyze():
             else:
                 print "Removing {0} removed all attack paths.  In this scenario, all attributes are protected.".format(node_to_mitigate)
         else:
-            return node_to_mitigate, removed_paths, paths, before_score, after_score
+            return node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
 
 
 

@@ -303,7 +303,7 @@ class analyze(Resource):
                     error = "The attribute to protect was not in the graph to be analyzed."
 
         if not error:
-            node_to_mitigate, removed_paths, paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
+            node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
 
             logging.debug("Removed paths: {0}".format(len(removed_paths)))
             logging.debug("Paths: {0}".format(len(paths)))
@@ -311,29 +311,39 @@ class analyze(Resource):
 
             # Format the data for output
             logging.info("Formatting the output.")
-            analysis = dict()
-            analysis['error'] = list(error)
-            analysis['controls'] = node_to_mitigate
+            analyzed = dict()
+            analyzed['error'] = list(error)
+            analyzed['controls'] = node_to_mitigate
             # below if/then handles if all paths were removed by mitigating node_to_mitigate
             if len(removed_paths) - len(paths.keys()) != 0:
-                analysis['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
-                analysis['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
+                analyzed['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
+                analyzed['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
             else:
-                analysis['removed_paths'] = 100
-                analysis['dist_increase'] = 0
+                analyzed['removed_paths'] = 100
+                analyzed['dist_increase'] = 0
         else:
             logging.error("Error detected: {0}".format(error))
-            analysis = {'error': error}
+            analyzed = {'error': error}
 
-        '''
-        # TODO: Remove below line
-        analysis = {"controls": "Nuke it from orbit.",
-                    "removed_paths": 50,
-                    "dist_increase": 50
-                   }  # TODO: Replace this default data
-        '''
+        # Mitigated path distances
+        logging.info("Beginning path analysis.")
+        mitigated_paths = after_paths
+
+        path_lengths = dict()
+        for key, path in mitigated_paths.iteritems():
+#            logging.debug("src/dst: {0}\npath: {1}".format(key, path))
+            if path:
+                path_lengths["{0}->{1}".format(key[0], key[1])] = analysis.helper.path_length(ATK.g, path)[1]
+            else:
+                path_lengths["{0}->{1}".format(key[0], key[1])] = 0
+
+        for key in set(analysis.helper.shortest_attack_paths(ATK.g).keys()).difference(set(mitigated_paths.keys())):
+            path_lengths["{0}->{1}".format(key[0], key[1])] = 0
+
+        analyzed['path_lengths'] = path_lengths
+
         logging.info("Returning results.")
-        return analysis
+        return analyzed
 
 
 class paths(Resource):
@@ -398,7 +408,7 @@ class paths(Resource):
         paths = analysis.helper.shortest_attack_paths(ATK.g)
         path_lengths = dict()
         for key, path in paths.iteritems():
-            logging.debug("src/dst: {0}\npath: {1}".format(key, path))
+#            logging.debug("src/dst: {0}\npath: {1}".format(key, path))
             if path:
                 path_lengths["{0}->{1}".format(key[0], key[1])] = analysis.helper.path_length(ATK.g, path)[1]
             else:

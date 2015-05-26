@@ -1,8 +1,6 @@
 // 
 var graphInstance;
 
-var data = {"src1->dst1": .1, "src2->dst2": .2, "src3->dst3": .3};
-
 $(document).ready(function() {
     // instantiate the sigma instance so we can reference it
     //var s = new sigma('sigmajs_container');
@@ -22,58 +20,58 @@ $(document).ready(function() {
     );
 
     // Draw a bar chart of all potential paths
-    // https://www.bignerdranch.com/blog/create-data-driven-documents-with-d3js/
-    // http://bost.ocks.org/mike/bar/2/
-    // http://www.jqplot.com/tests/bar-charts.php
-    // http://canvasjs.com/editor/?id=http://canvasjs.com/example/gallery/bar/mobile_usage/
-    // TODO 
-    var data = [{"key": "Initial State",
-                "color": "#d67777",
-                "values": [
-                    {"label": "src1->dst1", "value": 0.10}, 
-                    {"label": "src2->dst2", "value": 0.20}, 
-                    {"label": "src3->dst3", "value": 0.30}
-                ]
-                }
-                ];  // Test data
-
-//    var options = {
-//            title: {
-//                text: "Attack Paths"
-//            },
-//                    animationEnabled: true,
-//            data: [
-//            {
-//                type: "bar", //change it to line, area, bar, pie, etc
-//                dataPoints: data
-//            }
-//            ]
-//        };
-//
-//        $("#chart").CanvasJSChart(options);
     // http://nvd3.org/examples/multiBarHorizontal.html
-    nv.addGraph(function() {
-        var chart = nv.models.multiBarHorizontalChart()
-            .x(function(d) { return d.label })
-            .y(function(d) { return d.value })
-            .margin({top: 30, right: 20, bottom: 50, left: 175})
-            .showValues(true)           //Show bar value next to each bar.
-            .tooltips(true)             //Show tooltips on hover.
-//            .duration(350)
-            .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+    var wo_mitigation = {"key": "Without Mitigation",
+                        "color": "#d67777",
+                        "values": []
+    }; 
+    // Get the values from the initial graph
+    var o = {
+        "worry": "all"
+    };
+    // request the paths
+    $.ajax({
+        type: "GET",
+        url: "/paths/",
+        contentType: "application/json; charset=utf-8",
+        data: o,
+        traditional:true,
+        success: function(data) {
+            // Debug
+            console.log(data)
 
-        chart.yAxis
-            .tickFormat(d3.format(',.2f'));
+            // format chart data
+            wo_mitigation["values"] = format_chart_data(data);
 
-        d3.select('#chart1 svg')
-            .datum(data)
-            .call(chart);
+            // Build the bar chart of paths with the paths
+            $('#chart1 svg').empty();
+            nv.addGraph(function() {
+                var chart = nv.models.multiBarHorizontalChart()
+                    .x(function(d) { return d.label })
+                    .y(function(d) { return d.value })
+                    .margin({top: 30, right: 20, bottom: 50, left: 175})
+                    .showValues(true)           //Show bar value next to each bar.
+                    .tooltips(true)             //Show tooltips on hover.
+        //            .duration(350)
+                    .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
-        nv.utils.windowResize(chart.update);
+                chart.yAxis
+                    .tickFormat(d3.format(',.2f'));
 
-        return chart;
-      });
+                d3.select('#chart1 svg')
+                    .datum([wo_mitigation])
+                    .call(chart);
 
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            //alert(jqXHR.responseText);
+            alert(errorThrown);
+        }
+    });
 
 
     // When worries is changed
@@ -114,36 +112,11 @@ $(document).ready(function() {
             traditional:true,
             success: function(data) {
                 // Debug
-                console.log(data)
+                console.log(data);
 
-                // format the data
-                var chart_data = [{"key": "Without Mitigation",
-                                    "color": "#d67777",
-                                    "values": []
-                }]; 
-                for (var key in data) {
-                    chart_data[0].values.push({"label": key, "value": data[key]})
-                }
+                // format chart data
+                wo_mitigation["values"] = format_chart_data(data);
 
-                // Sor tthe data
-                chart_data[0].values.sort(function(a, b) {
-                    a = a["value"];
-                    b = b["value"];
-
-                    if ( a == 0 & b != 0) {
-                        return 1;
-                    } else if (b == 0 & a != 0) {
-                        return -1;
-                    } else {
-                        return a < b ? -1 : (a > b ? 1: 0)
-                    }
-                })
-
-//                for (var i = 0; i < chart_data[0].values.length; i++) {
-//                    if (chart_data[0]['values'][i]['value'] == 0) {
-//                        chart_data[0]['values'][i].push(chart_data[0]['values'][i].splice)
-//                    }
-//                }
 
                 // Build the bar chart of paths with the paths
                 $('#chart1 svg').empty();
@@ -161,7 +134,7 @@ $(document).ready(function() {
                         .tickFormat(d3.format(',.2f'));
 
                     d3.select('#chart1 svg')
-                        .datum(chart_data)
+                        .datum([wo_mitigation])
                         .call(chart);
 
                     nv.utils.windowResize(chart.update);
@@ -229,15 +202,73 @@ $(document).ready(function() {
                         );
                     };
 
+                    console.log(data.path_lengths)
+
                     // Augment the bar chart of paths with the longer paths
-                    // TODO
+                    // get the mitigated path data
+                    var w_mitigation = {"key": "With Mitigation",
+                                        "color": "#FF0000",
+                                        "values": []
+                    };
+                    w_mitigation["values"] = format_chart_data(data.path_lengths);
+                    //
+                    $('#chart1 svg').empty();
+                    nv.addGraph(function() {
+                        var chart = nv.models.multiBarHorizontalChart()
+                            .x(function(d) { return d.label })
+                            .y(function(d) { return d.value })
+                            .margin({top: 30, right: 20, bottom: 50, left: 175})
+                            .showValues(true)           //Show bar value next to each bar.
+                            .tooltips(true)             //Show tooltips on hover.
+                //            .duration(350)
+                            .showControls(true);        //Allow user to switch between "Grouped" and "Stacked" mode.
+
+                        chart.yAxis
+                            .tickFormat(d3.format(',.2f'));
+
+                        d3.select('#chart1 svg')
+                            .datum([wo_mitigation, w_mitigation])
+                            .call(chart);
+
+                        nv.utils.windowResize(chart.update);
+
+                        return chart;
+                    });
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     //alert(jqXHR.responseText);
                     alert(errorThrown);
                 }
+
             });
         };
     });
 
+    function format_chart_data(data) {
+        // Takes data from the /paths/ API and formats it for the 'values' section of nld3
+
+        var return_data = [];
+
+        // format API returned data to that needed by the charting function
+        for (var key in data) {
+            return_data.push({"label": key, "value": data[key]})
+        }
+
+        // Sor tthe data
+        return_data.sort(function(a, b) {
+            a = a["value"];
+            b = b["value"];
+
+            if ( a == 0 & b != 0) {
+                return 1;
+            } else if (b == 0 & a != 0) {
+                return -1;
+            } else {
+                return a < b ? -1 : (a > b ? 1: 0)
+            }
+        })
+
+        // Return the data
+        return return_data
+    }
 });
