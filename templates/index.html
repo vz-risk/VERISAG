@@ -8,6 +8,7 @@
 <body>
     <div class="head"><h1 class='title'>DBIR Attack Graph Analysis</h1></div>
     <div id="input_div" class="outer_div">
+        <input type="hidden" id="show_zero_len_paths" value="FALSE" />
 <!--
         <div>
             Either input your own data or leave blank to use ours:  <input type="file" name="data">
@@ -116,7 +117,7 @@
         <center><hr></center>
         <div id="chart1" style="width: 100%; border: 0px">
             <h3>Attack Paths:</h3>
-            <p>The bar chart below represents the length of the path for an attacker to get from a certain action to compromise a certain attribute.  It may take more than 1 step for them do so, however the actual steps aren’t shown.  The scores are relative to each other so don’t provide absolute difficulty for the attacker, but relative difficulty to the other paths in the chart.</p>
+            <p>The bar chart below represents the length of the path for an attacker to get from a certain action to compromise a certain attribute.  It may take more than 1 step for them do so, however the actual steps aren’t shown.  The scores are relative to each other so don’t provide absolute difficulty for the attacker, but relative difficulty to the other paths in the chart.  Mouse over bars to see the starting action and ending attribute.</p>
             <svg></svg>
         </div>
     </div>

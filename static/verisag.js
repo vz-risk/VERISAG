@@ -54,13 +54,17 @@ $(document).ready(function() {
             all_paths = format_chart_data(data);
             wo_mitigation["values"] = all_paths;
 
+            if ($("#show_zero_len_paths").val() != "TRUE") {
+                wo_mitigation["values"] = filter_zero_len_paths(wo_mitigation["values"]);
+            };
+
             // Build the bar chart of paths with the paths
             $('#chart1 svg').empty();
             nv.addGraph(function() {
                 var chart = nv.models.multiBarHorizontalChart()
                     .x(function(d) { return d.label })
                     .y(function(d) { return d.value })
-                    .margin({top: 30, right: 20, bottom: 50, left: 175})
+                    .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
                     .showValues(true)           //Show bar value next to each bar.
                     .tooltips(true)             //Show tooltips on hover.
 //                    .duration(350)
@@ -156,18 +160,24 @@ $(document).ready(function() {
                     wo_mitigation["values"] = wo_values_2;
                 };
 
+                // Filter zero length paths
+                if ($("#show_zero_len_paths").val() != "TRUE") {
+                    wo_mitigation["values"] = filter_zero_len_paths(wo_mitigation["values"]);
+                };
+
                 // Build the bar chart of paths with the paths
                 $('#chart1 svg').empty();
                 nv.addGraph(function() {
                     var chart = nv.models.multiBarHorizontalChart()
                         .x(function(d) { return d.label })
                         .y(function(d) { return d.value })
-                        .margin({top: 30, right: 20, bottom: 50, left: 175})
+                        .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
                         .showValues(true)           //Show bar value next to each bar.
                         .tooltips(true)             //Show tooltips on hover.
 //                        .duration(350)
                         .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
+                    chart.showXAxis(false)
                     chart.yAxis
                         .tickFormat(d3.format(',.2f'));
 
@@ -202,28 +212,35 @@ $(document).ready(function() {
         // Grey out attribute->end edges that aren't selected attributes
         ////////////////////////
         var s = graphInstance;
-        var end_node;
-        // Get the end attribute.  (There has to be a better way than this)
-        s.graph.nodes().forEach(function(n) {
-            if (n.label == "end") {
-                end_node = n.id
-            };
-        });
-        // Set all nodes to grey
-        var nodes_to_grey = [];
-        s.graph.nodes().forEach(function(n) {
-          if (/^attribute./.test(n.label) & ($.inArray(n.label, selected_attributes) == -1)) {
-            nodes_to_grey.push(n.id)
-          }
-        });
-        s.graph.edges().forEach(function(e) {
-          if (($.inArray(e.source, nodes_to_grey) != -1) & (e.target == end_node)) {
-            e.color = '#eee';
-          } else {
-            e.color = e.originalColor;
-          }
-        });
-        s.refresh();
+        if ($.inArray("Everything", selected_attributes) == -1) {
+            var end_node;
+            // Get the end attribute.  (There has to be a better way than this)
+            s.graph.nodes().forEach(function(n) {
+                if (n.label == "end") {
+                    end_node = n.id
+                };
+            });
+            // Set all nodes to grey
+            var nodes_to_grey = [];
+            s.graph.nodes().forEach(function(n) {
+              if (/^attribute./.test(n.label) & ($.inArray(n.label, selected_attributes) == -1)) {
+                nodes_to_grey.push(n.id)
+              }
+            });
+            s.graph.edges().forEach(function(e) {
+              if (($.inArray(e.source, nodes_to_grey) != -1) & (e.target == end_node)) {
+                e.color = '#eee';
+              } else {
+                e.color = e.originalColor;
+              }
+            });
+            s.refresh();
+        } else {
+            s.graph.edges().forEach(function(e) {
+                e.color = e.originalColor;
+            });
+            s.refresh();
+        }
 
         // Update bar chart of potential attack paths
         //////////////////
@@ -243,6 +260,11 @@ $(document).ready(function() {
             wo_mitigation["values"] = all_paths;
         }
 
+        // Filter zero length paths
+        if ($("#show_zero_len_paths").val() != "TRUE") {
+            wo_mitigation["values"] = filter_zero_len_paths(wo_mitigation["values"]);
+        };
+
         //console.log(wo_mitigation)
 
         $('#chart1 svg').empty();
@@ -250,12 +272,13 @@ $(document).ready(function() {
             var chart = nv.models.multiBarHorizontalChart()
                 .x(function(d) { return d.label })
                 .y(function(d) { return d.value })
-                .margin({top: 30, right: 20, bottom: 50, left: 175})
+                .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
                 .showValues(true)           //Show bar value next to each bar.
                 .tooltips(true)             //Show tooltips on hover.
 //                        .duration(350)
                 .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
+            chart.showXAxis(false)
             chart.yAxis
                 .tickFormat(d3.format(',.2f'));
 
@@ -318,14 +341,19 @@ $(document).ready(function() {
                     };
                     w_mitigation["values"] = format_chart_data(data.path_lengths);
 
+                    // Filter zero length paths
+                    if ($("#show_zero_len_paths").val() != "TRUE") {
+                        wo_mitigation["values"] = filter_zero_len_paths(wo_mitigation["values"]);
+                    };
+
                     // Filter by selected attributes
                     var selected_attributes = get_attributes(o["attributes"]);
                     if ($.inArray("Everything", selected_attributes) == -1) {
                         var wo_values_2 = [];
                         var w_values_2 = [];
-                        for (var i = 0; i < all_paths.length; i++) {
+                        for (var i = 0; i < wo_mitigation["values"].length; i++) {
                             // get the destination
-                            var dst = all_paths[i]['label'].split("->",2);
+                            var dst = wo_mitigation["values"][i]['label'].split("->",2);
                             //console.log(dst[1]);
                             // if the destination is in our attribute list, add it to the new values
                             if ($.inArray(dst[1], selected_attributes) != -1) {
@@ -337,18 +365,33 @@ $(document).ready(function() {
                         w_mitigation["values"] = w_values_2;
                     }
 
+                    // Filter values not in without mitigation from with mitigation
+                    wo_mitigation_values = []
+                    for (var i = 0; i < wo_mitigation["values"].length; i++) {
+                        wo_mitigation_values.push(wo_mitigation["values"][i]["value"]);
+                    };
+                    var w_values_2 = []
+                    for (var i = 0; i < w_mitigation["values"].length; i++) {
+                        if ($.inArray(w_mitigation["values"][i]["value"], wo_mitigation_values) != -1) {
+                            w_values_2.push(w_mitigation["values"][i])
+                        }
+                    };
+                    w_mitigation["values"] = w_values_2;
+
+
                     // build chart
                     $('#chart1 svg').empty();
                     nv.addGraph(function() {
                         var chart = nv.models.multiBarHorizontalChart()
                             .x(function(d) { return d.label })
                             .y(function(d) { return d.value })
-                            .margin({top: 30, right: 20, bottom: 50, left: 175})
+                            .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
                             .showValues(true)           //Show bar value next to each bar.
                             .tooltips(true)             //Show tooltips on hover.
 //                            .duration(350)
                             .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
+                        chart.showXAxis(false)
                         chart.yAxis
                             .tickFormat(d3.format(',.2f'));
 
@@ -369,6 +412,17 @@ $(document).ready(function() {
             });
         };
     });
+
+
+    function filter_zero_len_paths(p) {
+        var new_paths = [];
+        for (var i = 0; i < p.length; i++) {
+            if (p[i]['value'] != 0) {
+                new_paths.push(p[i]);
+            };
+        };
+        return new_paths;
+    }
 
 
     function get_attributes(attributes) {
