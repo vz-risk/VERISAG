@@ -318,6 +318,25 @@ $(document).ready(function() {
                     };
                     w_mitigation["values"] = format_chart_data(data.path_lengths);
 
+                    // Filter by selected attributes
+                    var selected_attributes = get_attributes(o["attributes"]);
+                    if ($.inArray("Everything", selected_attributes) == -1) {
+                        var wo_values_2 = [];
+                        var w_values_2 = [];
+                        for (var i = 0; i < all_paths.length; i++) {
+                            // get the destination
+                            var dst = all_paths[i]['label'].split("->",2);
+                            //console.log(dst[1]);
+                            // if the destination is in our attribute list, add it to the new values
+                            if ($.inArray(dst[1], selected_attributes) != -1) {
+                                wo_values_2.push(wo_mitigation["values"][i]);
+                                w_values_2.push(w_mitigation["values"][i]);
+                            }
+                        }
+                        wo_mitigation["values"] = wo_values_2;
+                        w_mitigation["values"] = w_values_2;
+                    }
+
                     // build chart
                     $('#chart1 svg').empty();
                     nv.addGraph(function() {
