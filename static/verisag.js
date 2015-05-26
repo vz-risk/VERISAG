@@ -2,6 +2,7 @@
 var graphInstance;
 
 $(document).ready(function() {
+    var all_paths;
     // instantiate the sigma instance so we can reference it
     //var s = new sigma('sigmajs_container');
 
@@ -50,7 +51,8 @@ $(document).ready(function() {
 //            console.log(data)
 
             // format chart data
-            wo_mitigation["values"] = format_chart_data(data);
+            all_paths = format_chart_data(data);
+            wo_mitigation["values"] = all_paths;
 
             // Build the bar chart of paths with the paths
             $('#chart1 svg').empty();
@@ -133,8 +135,23 @@ $(document).ready(function() {
 //                console.log(data);
 
                 // format chart data
-                wo_mitigation["values"] = format_chart_data(data);
+                all_paths = format_chart_data(data);
+                wo_mitigation["values"] = all_paths;
 
+                // Filter the path by selected attributes
+                var selected_attributes = get_attributes($("#attributes").val());
+                
+                var wo_values_2 = [];
+                for (var i = 0; i < all_paths.length; i++) {
+                    // get the destination
+                    var dst = all_paths[i]['label'].split("->",2);
+                    //console.log(dst[1]);
+                    // if the destination is in our attribute list, add it to the new values
+                    if ($.inArray(dst[1], selected_attributes) != -1) {
+                        wo_values_2.push(all_paths[i]);
+                    }
+                }
+                wo_mitigation["values"] = wo_values_2;
 
                 // Build the bar chart of paths with the paths
                 $('#chart1 svg').empty();
@@ -175,60 +192,9 @@ $(document).ready(function() {
         $('#output').append("Please click the 'analyze' button to analyze the graph.");
 
         // Get the attributes
-        var selected_attributes = [];
-        var attributes = $("#attributes").val();
-        for (var i = 0; i < attributes.length; i++) {
-            if (attributes[i] == "-") {
-                $.noop
-            } else if (attributes[i] == "Availability") {
-                selected_attributes = selected_attributes.concat([
-                    "attribute.availability.variety.Destruction",
-                    "attribute.availability.variety.Loss",
-                    "attribute.availability.variety.Interruption",
-                    "attribute.availability.variety.Degradation",
-                    "attribute.availability.variety.Acceleration",
-                    "attribute.availability.variety.Obscuration",
-                    "attribute.availability.variety.Other"
-                ]);
-            } else if (attributes[i] == "Confidentiality") {
-                selected_attributes = selected_attributes.concat([
-                    "attribute.confidentiality.data.variety.Credentials",
-                    "attribute.confidentiality.data.variety.Bank",
-                    "attribute.confidentiality.data.variety.Classified",
-                    "attribute.confidentiality.data.variety.Copyrighted",
-                    "attribute.confidentiality.data.variety.Digital certificate",
-                    "attribute.confidentiality.data.variety.Medical",
-                    "attribute.confidentiality.data.variety.Payment",
-                    "attribute.confidentiality.data.variety.Personal",
-                    "attribute.confidentiality.data.variety.Internal",
-                    "attribute.confidentiality.data.variety.Source code",
-                    "attribute.confidentiality.data.variety.System",
-                    "attribute.confidentiality.data.variety.Secrets",
-                    "attribute.confidentiality.data.variety.Virtual currency",
-                    "attribute.confidentiality.data.variety.Other"
-                ]);
-            } else if (attributes[i] == "Integrity") {
-                selected_attributes = selected_attributes.concat([
-                    "attribute.integrity.variety.Created account",
-                    "attribute.integrity.variety.Defacement",
-                    "attribute.integrity.variety.Hardware tampering",
-                    "attribute.integrity.variety.Alter behavior",
-                    "attribute.integrity.variety.Fraudulent transaction",
-                    "attribute.integrity.variety.Log tampering",
-                    "attribute.integrity.variety.Repurpose",
-                    "attribute.integrity.variety.Misrepresentation",
-                    "attribute.integrity.variety.Modify configuration",
-                    "attribute.integrity.variety.Modify privileges",
-                    "attribute.integrity.variety.Modify data",
-                    "attribute.integrity.variety.Software installation",
-                    "attribute.integrity.variety.Other"
-                ]);
-            } else {
-                selected_attributes = selected_attributes.concat([attributes[i]]);
-            }
-        };
+        var selected_attributes = get_attributes($("#attributes").val());
 
-        //console.log(selected_attributes)
+        //console.log(selected_attributes);
 
         // Grey out attribute->end edges that aren't selected attributes
         ////////////////////////
@@ -257,7 +223,43 @@ $(document).ready(function() {
         s.refresh();
 
         // Update bar chart of potential attack paths
-        // TODO
+        //////////////////
+       var wo_values_2 = [];
+        for (var i = 0; i < all_paths.length; i++) {
+            // get the destination
+            var dst = all_paths[i]['label'].split("->",2);
+            //console.log(dst[1]);
+            // if the destination is in our attribute list, add it to the new values
+            if ($.inArray(dst[1], selected_attributes) != -1) {
+                wo_values_2.push(all_paths[i]);
+            }
+        }
+        wo_mitigation["values"] = wo_values_2;
+
+        //console.log(wo_mitigation)
+
+        $('#chart1 svg').empty();
+        nv.addGraph(function() {
+            var chart = nv.models.multiBarHorizontalChart()
+                .x(function(d) { return d.label })
+                .y(function(d) { return d.value })
+                .margin({top: 30, right: 20, bottom: 50, left: 175})
+                .showValues(true)           //Show bar value next to each bar.
+                .tooltips(true)             //Show tooltips on hover.
+//                        .duration(350)
+                .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
+
+            chart.yAxis
+                .tickFormat(d3.format(',.2f'));
+
+            d3.select('#chart1 svg')
+                .datum([wo_mitigation])
+                .call(chart);
+
+            nv.utils.windowResize(chart.update);
+
+            return chart;
+                });
     });
 
 
@@ -341,6 +343,64 @@ $(document).ready(function() {
             });
         };
     });
+
+
+    function get_attributes(attributes) {
+        // Take a string from the properties window and return the associated attributes
+        var selected_attributes = [];
+        for (var i = 0; i < attributes.length; i++) {
+            if (attributes[i] == "-") {
+                $.noop
+            } else if (attributes[i] == "Availability") {
+                selected_attributes = selected_attributes.concat([
+                    "attribute.availability.variety.Destruction",
+                    "attribute.availability.variety.Loss",
+                    "attribute.availability.variety.Interruption",
+                    "attribute.availability.variety.Degradation",
+                    "attribute.availability.variety.Acceleration",
+                    "attribute.availability.variety.Obscuration",
+                    "attribute.availability.variety.Other"
+                ]);
+            } else if (attributes[i] == "Confidentiality") {
+                selected_attributes = selected_attributes.concat([
+                    "attribute.confidentiality.data.variety.Credentials",
+                    "attribute.confidentiality.data.variety.Bank",
+                    "attribute.confidentiality.data.variety.Classified",
+                    "attribute.confidentiality.data.variety.Copyrighted",
+                    "attribute.confidentiality.data.variety.Digital certificate",
+                    "attribute.confidentiality.data.variety.Medical",
+                    "attribute.confidentiality.data.variety.Payment",
+                    "attribute.confidentiality.data.variety.Personal",
+                    "attribute.confidentiality.data.variety.Internal",
+                    "attribute.confidentiality.data.variety.Source code",
+                    "attribute.confidentiality.data.variety.System",
+                    "attribute.confidentiality.data.variety.Secrets",
+                    "attribute.confidentiality.data.variety.Virtual currency",
+                    "attribute.confidentiality.data.variety.Other"
+                ]);
+            } else if (attributes[i] == "Integrity") {
+                selected_attributes = selected_attributes.concat([
+                    "attribute.integrity.variety.Created account",
+                    "attribute.integrity.variety.Defacement",
+                    "attribute.integrity.variety.Hardware tampering",
+                    "attribute.integrity.variety.Alter behavior",
+                    "attribute.integrity.variety.Fraudulent transaction",
+                    "attribute.integrity.variety.Log tampering",
+                    "attribute.integrity.variety.Repurpose",
+                    "attribute.integrity.variety.Misrepresentation",
+                    "attribute.integrity.variety.Modify configuration",
+                    "attribute.integrity.variety.Modify privileges",
+                    "attribute.integrity.variety.Modify data",
+                    "attribute.integrity.variety.Software installation",
+                    "attribute.integrity.variety.Other"
+                ]);
+            } else {
+                selected_attributes = selected_attributes.concat([attributes[i]]);
+            }
+        };
+        return selected_attributes;
+    };
+
 
     function format_chart_data(data) {
         // Takes data from the /paths/ API and formats it for the 'values' section of nld3
