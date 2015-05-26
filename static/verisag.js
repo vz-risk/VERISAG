@@ -66,6 +66,7 @@ $(document).ready(function() {
 //                    .duration(350)
                     .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
 
+                chart.showXAxis(false)
                 chart.yAxis
                     .tickFormat(d3.format(',.2f'));
 
@@ -140,18 +141,20 @@ $(document).ready(function() {
 
                 // Filter the path by selected attributes
                 var selected_attributes = get_attributes($("#attributes").val());
-                
-                var wo_values_2 = [];
-                for (var i = 0; i < all_paths.length; i++) {
-                    // get the destination
-                    var dst = all_paths[i]['label'].split("->",2);
-                    //console.log(dst[1]);
-                    // if the destination is in our attribute list, add it to the new values
-                    if ($.inArray(dst[1], selected_attributes) != -1) {
-                        wo_values_2.push(all_paths[i]);
+
+                if ($.inArray("Everything", selected_attributes) == -1) {
+                    var wo_values_2 = [];
+                    for (var i = 0; i < all_paths.length; i++) {
+                        // get the destination
+                        var dst = all_paths[i]['label'].split("->",2);
+                        //console.log(dst[1]);
+                        // if the destination is in our attribute list, add it to the new values
+                        if ($.inArray(dst[1], selected_attributes) != -1) {
+                            wo_values_2.push(all_paths[i]);
+                        }
                     }
-                }
-                wo_mitigation["values"] = wo_values_2;
+                    wo_mitigation["values"] = wo_values_2;
+                };
 
                 // Build the bar chart of paths with the paths
                 $('#chart1 svg').empty();
@@ -224,17 +227,21 @@ $(document).ready(function() {
 
         // Update bar chart of potential attack paths
         //////////////////
-       var wo_values_2 = [];
-        for (var i = 0; i < all_paths.length; i++) {
-            // get the destination
-            var dst = all_paths[i]['label'].split("->",2);
-            //console.log(dst[1]);
-            // if the destination is in our attribute list, add it to the new values
-            if ($.inArray(dst[1], selected_attributes) != -1) {
-                wo_values_2.push(all_paths[i]);
+        if ($.inArray("Everything", selected_attributes) == -1) {
+            var wo_values_2 = [];
+            for (var i = 0; i < all_paths.length; i++) {
+                // get the destination
+                var dst = all_paths[i]['label'].split("->",2);
+                //console.log(dst[1]);
+                // if the destination is in our attribute list, add it to the new values
+                if ($.inArray(dst[1], selected_attributes) != -1) {
+                    wo_values_2.push(all_paths[i]);
+                }
             }
+            wo_mitigation["values"] = wo_values_2;
+        } else {
+            wo_mitigation["values"] = all_paths;
         }
-        wo_mitigation["values"] = wo_values_2;
 
         //console.log(wo_mitigation)
 
