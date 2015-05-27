@@ -32,7 +32,7 @@ $(document).ready(function() {
     // Draw a bar chart of all potential paths
     // http://nvd3.org/examples/multiBarHorizontal.html
     var wo_mitigation = {"key": "Without Mitigation",
-                        "color": "#d67777",
+                        "color": "#3b1f02",
                         "values": []
     }; 
     // Get the values from the initial graph
@@ -336,7 +336,7 @@ $(document).ready(function() {
                     // Augment the bar chart of paths with the longer paths
                     // get the mitigated path data
                     var w_mitigation = {"key": "With Mitigation",
-                                        "color": "#FF0000",
+                                        "color": "#8F1706",
                                         "values": []
                     };
                     w_mitigation["values"] = format_chart_data(data.path_lengths);
