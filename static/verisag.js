@@ -388,6 +388,8 @@ $(document).ready(function() {
                     };
 
                     // Filter by selected attributes
+                    // unnecessary as the analysis algorithms already do this
+                    /*
                     var selected_attributes = get_attributes(o["attributes"]);
                     if ($.inArray("Everything", selected_attributes) == -1) {
                         var wo_values_2 = [];
@@ -405,20 +407,20 @@ $(document).ready(function() {
                         wo_mitigation["values"] = wo_values_2;
                         w_mitigation["values"] = w_values_2;
                     }
+                    */
 
                     // Filter values not in without mitigation from with mitigation
-                    wo_mitigation_values = []
+                    var wo_mitigation_values = [];
                     for (var i = 0; i < wo_mitigation["values"].length; i++) {
-                        wo_mitigation_values.push(wo_mitigation["values"][i]["value"]);
+                        wo_mitigation_values.push(wo_mitigation["values"][i]["label"]);
                     };
-                    var w_values_2 = []
+                    var w_values_2 = [];
                     for (var i = 0; i < w_mitigation["values"].length; i++) {
-                        if ($.inArray(w_mitigation["values"][i]["value"], wo_mitigation_values) != -1) {
-                            w_values_2.push(w_mitigation["values"][i])
+                        if ($.inArray(w_mitigation["values"][i]["label"], wo_mitigation_values) != -1) {
+                            w_values_2.push(w_mitigation["values"][i]);
                         }
                     };
                     w_mitigation["values"] = w_values_2;
-
 
                     // build chart
                     $('#chart1 svg').empty();
