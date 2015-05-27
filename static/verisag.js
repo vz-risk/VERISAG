@@ -366,7 +366,7 @@ $(document).ready(function() {
                         $('#output').append("Error: " + data.error)
                     } else {
                         $('#output').append("Mitigate " + data.controls +
-                         " to eliminiate " + data.removed_paths +
+                         " to eliminate " + data.removed_paths +
                          "% of attack paths and improve defenses on remaining paths by " + data.dist_increase + "%."
                         );
                     };
