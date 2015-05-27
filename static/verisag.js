@@ -301,11 +301,23 @@ $(document).ready(function() {
             "attributes": $('#attributes').val()
         };
 
+        // Test if there is an overlap in the attributes and the graph
+        var nodes = []
+        var s = graphInstance;
+        s.graph.nodes().forEach(function(n) {
+            nodes.push(n.label)
+        });
+        var attributes = get_attributes($("#attributes").val());
+        // http://documentcloud.github.io/underscore/
+        overlap = _.intersection(nodes, attributes);
+
         // if an unacceptable worry is indicated, remove it
         if (o['worry'] ==  "-") {
             alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
+        } else if (overlap.length <= 0) {
+            alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
         } else {
-            // TODO: Need to parse through $('#attributes').val() to get a string of comma-separated attributes 
+
 
             $('#output').empty();
             $('#output').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.");
