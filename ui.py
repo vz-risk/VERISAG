@@ -321,26 +321,27 @@ class analyze(Resource):
             else:
                 analyzed['removed_paths'] = 100
                 analyzed['dist_increase'] = 0
+
+            # Calculate mitigated path distances and add to return dictionary
+            logging.info("Beginning path analysis.")
+            mitigated_paths = after_paths
+
+            path_lengths = dict()
+            for key, path in mitigated_paths.iteritems():
+    #            logging.debug("src/dst: {0}\npath: {1}".format(key, path))
+                if path:
+                    path_lengths["{0}->{1}".format(key[0], key[1])] = analysis.helper.path_length(ATK.g, path)[1]
+                else:
+                    path_lengths["{0}->{1}".format(key[0], key[1])] = 0
+
+            for key in set(analysis.helper.shortest_attack_paths(ATK.g).keys()).difference(set(mitigated_paths.keys())):
+                path_lengths["{0}->{1}".format(key[0], key[1])] = 0
+
+            analyzed['path_lengths'] = path_lengths
+
         else:
             logging.error("Error detected: {0}".format(error))
             analyzed = {'error': error}
-
-        # Mitigated path distances
-        logging.info("Beginning path analysis.")
-        mitigated_paths = after_paths
-
-        path_lengths = dict()
-        for key, path in mitigated_paths.iteritems():
-#            logging.debug("src/dst: {0}\npath: {1}".format(key, path))
-            if path:
-                path_lengths["{0}->{1}".format(key[0], key[1])] = analysis.helper.path_length(ATK.g, path)[1]
-            else:
-                path_lengths["{0}->{1}".format(key[0], key[1])] = 0
-
-        for key in set(analysis.helper.shortest_attack_paths(ATK.g).keys()).difference(set(mitigated_paths.keys())):
-            path_lengths["{0}->{1}".format(key[0], key[1])] = 0
-
-        analyzed['path_lengths'] = path_lengths
 
         logging.info("Returning results.")
         return analyzed
