@@ -322,9 +322,9 @@ $(document).ready(function() {
     });
 
 
-    multibar.dispatch.on('elementMouseover.tooltip') {
-        $.noop();
-    }
+//    multibar.dispatch.on('elementMouseover.tooltip') {
+//        $.noop();
+//    };
 
 
     $("#analyze_button").click(function() {
