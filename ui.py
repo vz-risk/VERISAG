@@ -307,7 +307,7 @@ class analyze(Resource):
 
             logging.debug("Removed paths: {0}".format(len(removed_paths)))
             logging.debug("Paths: {0}".format(len(paths)))
-            logging.debug("Difference: {0}".format(len(set(removed_paths).difference(set(paths.keys())))))
+            logging.debug("Difference: {0}".format(len(set(paths.keys()).difference(set(removed_paths)))))
 
             # Format the data for output
             logging.info("Formatting the output.")
@@ -333,6 +333,7 @@ class analyze(Resource):
                     path_lengths["{0}->{1}".format(key[0], key[1])] = analysis.helper.path_length(ATK.g, path)[1]
                 else:
                     path_lengths["{0}->{1}".format(key[0], key[1])] = 0
+                    logging.info("Attack path {0} with path {1} had a length of 0.  This could be an issue.".format(key, path))
 
             for key in set(analysis.helper.shortest_attack_paths(ATK.g).keys()).difference(set(mitigated_paths.keys())):
                 path_lengths["{0}->{1}".format(key[0], key[1])] = 0

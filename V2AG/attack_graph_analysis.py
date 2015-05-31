@@ -334,7 +334,7 @@ class analyze():
 
         # calculate base score
         paths = self.helper.shortest_attack_paths(g, src=src, dst=dst)
-        paths = {k: v for k, v in paths.iteritems() if v}
+        paths = {k: v for k, v in paths.iteritems() if v}  # This is necessary to remove empty paths
 
         if not node_to_mitigate:
             # Score the graph
@@ -412,13 +412,15 @@ class analyze():
 
 
 
-    def one_graph_one_path(self, g, src, dst, cutoff=7):
+    def one_graph_one_path(self, g, src, dst, cutoff=7, output="print"):
         """ Analyze the top N potential paths between the source and destination in the graph
 
         :param g: a networkx directed graph
         :param src: the source node within the graph
         :param dst: the destionation node within the graph
         :param n: the maximum length of path to consider.  It is STRONGLY recommended to use 7 or less.
+        :param output: default "print".  if print, output is printed, otherwise it is returned.
+        :return: bool of if a direct path exists followed by the set of candidate nodes to remove
         """
         lengths = list()
         paths = self.helper.all_simple_paths(g, src, dst, cutoff)
@@ -428,42 +430,52 @@ class analyze():
         lengths.sort(key=itemgetter(1))
         nodes = set(lengths[0][0][1:-1])
         i = 1
-        if len(nodes) <= 2:
-            nodes = set(lengths[1][0][1:-1])
+        if len(nodes) <= 0:
+            if len(lengths) > 1:
+                nodes = set(lengths[1][0][1:-1])
             i = 2
             direct = True
-        while 1:
-            if len(lengths[i][0]) <= 2:  # If the path is only 2, it is the direct path.
-                nodes2 = nodes
-            else:
-                nodes2 = nodes.intersection(set(lengths[i][0][1:-1]))
-            if len(nodes2) > 1:
-                nodes = nodes2
-                i += 1
-                if i == len(lengths):
-                    break
-            elif len(nodes2) <= 0:
-                break
-            else:
-                nodes = nodes2
-                break
-
-        if direct:
-            print ("The most likely path is directly from {0} to {1}.  Mitigating that first will provide an improvement of {2}%.  "
-                   "Once that has been dealt with, you can gain a {3}% improvement by mitigating {4}.").format(
-                       src,
-                       dst,
-                       round((lengths[1][1]/float(lengths[0][1]) - 1) * 100, 2),
-                       round((lengths[i][1]/float(lengths[1][1]) - 1) * 100, 2),
-                       list(nodes)
-                       )
         else:
-            print "Remove {0} for a {1}% improvement. This ignores the toy solution of mitigating {2} or {3}.".format(
-                nodes,
-                round((lengths[i][1]/float(lengths[0][1]) - 1) * 100, 2),
-                src,
-                dst
-                )
+            direct = False
+        if len(lengths) > 1:
+            while 1:
+                if len(lengths[i][0]) <= 2:  # If the path is only 2, it is the direct path.
+                    nodes2 = nodes
+                else:
+                    nodes2 = nodes.intersection(set(lengths[i][0][1:-1]))
+                if len(nodes2) > 1:
+                    nodes = nodes2
+                    i += 1
+                    if i == len(lengths):
+                        break
+                elif len(nodes2) <= 0:
+                    break
+                else:
+                    nodes = nodes2
+                    break
+
+        if output == "print":
+            if direct:
+                if len(lengths) > 0:
+                    print ("The most likely path is directly from {0} to {1}.  Mitigating that first will provide an improvement of {2}%.  "
+                           "Once that has been dealt with, you can gain a {3}% improvement by mitigating {4}.").format(
+                               src,
+                               dst,
+                               round((lengths[1][1]/float(lengths[0][1]) - 1) * 100, 2),
+                               round((lengths[i][1]/float(lengths[1][1]) - 1) * 100, 2),
+                               list(nodes)
+                               )
+                else:
+                    print("The only path is the direct path from {0} to {1}. Elimitate it to remove all paths.".format(src, dst))
+            else:
+                print "Remove {0} for a {1}% improvement. This ignores the toy solution of mitigating {2} or {3}.".format(
+                    nodes,
+                    round((lengths[i][1]/float(lengths[0][1]) - 1) * 100, 2),
+                    src,
+                    dst
+                    )
+        else:
+            return direct, nodes
 
 
     def two_graphs(self, g1, g2):
