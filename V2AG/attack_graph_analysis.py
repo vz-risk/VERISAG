@@ -327,7 +327,7 @@ class analyze():
             :param node_to_mitigate: If included, it will be used as the mitigated node.  Otherwise, the script will pick one.
             :param src: a list subset of actions to use as sources for paths.  If not included, all actions are used.
             :param dst: a list subset of attributes to use as destinations for paths.  If not included, all attributes are used.
-            :return: None.  Recommendation is printed
+            :return:  Recommendation is printed
         """
 
         # Graph is already built
@@ -342,77 +342,89 @@ class analyze():
         #     node_scores = self.score.shortest_path_occurence(g, paths, mid=True)  # score based on occurence in shortest paths, but only ends
         #    node_scores = self.score.initialized_pagerank(g)  # score based on pagerank initialized to start at actions
 
+            # if no paths, don't bother with analysis
+            if len(paths) > 0:
+                # Pick a node to mitigate
+                if mitigate is "any":
+                    node_to_mitigate = node_scores[0][0]
+                elif mitigate is "actions":
+                    for k,v in node_scores:
+                        if k.split(".", 1)[0] == "action":
+                            node_to_mitigate = k
+                            break
+
+        # if no paths, don't bother with analysis
+        if len(paths) > 0:
+            # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
+            # Handle if only one node was requested to protect in which case we can't choose it as the node to mitigate.
+            if src is not None and len(src) == 1 and node_scores[0][0] in src:
+                node_to_mitigate = node_scores[1][0]
+            if dst is not None and len(dst) == 1 and  node_scores[0][0] in dst:
+                node_to_mitigate = node_scores[1][0]
+
             # Pick a node to mitigate
-            if mitigate is "any":
-                node_to_mitigate = node_scores[0][0]
-            elif mitigate is "actions":
-                for k,v in node_scores:
-                    if k.split(".", 1)[0] == "action":
-                        node_to_mitigate = k
-                        break
+            after_g = g.copy()
+            after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
 
-        # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
-        # Handle if only one node was requested to protect in which case we can't choose it as the node to mitigate.
-        if src is not None and len(src) == 1 and node_scores[0][0] in src:
-            node_to_mitigate = node_scores[1][0]
-        if dst is not None and len(dst) == 1 and  node_scores[0][0] in dst:
-            node_to_mitigate = node_scores[1][0]
+            # Recreate paths (using only the key pairs that still exist in after_g)
+            after_paths = self.helper.shortest_attack_paths(after_g, src=src, dst=dst)
+            after_paths = {k: v for k, v in after_paths.iteritems() if v}  # This is necessary to remove empty paths
+            before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
 
-        # Pick a node to mitigate
-        after_g = g.copy()
-        after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
+            #logging.debug("Paths src/dst: {0}".format(paths.keys()))
+            #logging.debug("Mitigated node: {0}".format(node_to_mitigate))
+            #logging.debug("After paths src/dst: {0}".format(after_paths.keys()))
+            #logging.debug("Before paths src/dst: {0}".format(before_paths.keys()))
 
-        # Recreate paths (using only the key pairs that still exist in after_g)
-        after_paths = self.helper.shortest_attack_paths(after_g, src=src, dst=dst)
-        after_paths = {k: v for k, v in after_paths.iteritems() if v}  # This is necessary to remove empty paths
-        before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
+            # Calculate the graph's initial score
+            before_score = 0
+            for path in before_paths.values():
+                _, length = self.helper.path_length(g, path)
+                before_score += length
 
-        #logging.debug("Paths src/dst: {0}".format(paths.keys()))
-        #logging.debug("Mitigated node: {0}".format(node_to_mitigate))
-        #logging.debug("After paths src/dst: {0}".format(after_paths.keys()))
-        #logging.debug("Before paths src/dst: {0}".format(before_paths.keys()))
+            # Rescore
+            after_score = 0
+            for path in after_paths.values():
+                _, length = self.helper.path_length(after_g, path)
+                if length == 0:
+                    logging.warning("Path length was 0 implying an empty path.  This will cause improvement to be understimated.")
+                after_score += length
 
-        # Calculate the graph's initial score
-        before_score = 0
-        for path in before_paths.values():
-            _, length = self.helper.path_length(g, path)
-            before_score += length
+            # find paths removed
+            removed_paths = set(paths.keys()).difference(set(after_paths.keys()))
 
-        # Rescore
-        after_score = 0
-        for path in after_paths.values():
-            _, length = self.helper.path_length(after_g, path)
-            if length == 0:
-                logging.warning("Path length was 0 implying an empty path.  This will cause improvement to be understimated.")
-            after_score += length
+            # find attributes removed
+            before_attributes = set()
+            after_attributes = set()
+            for src, dst in paths.keys():
+                if dst.split(".", 1)[0] == 'attribute':
+                    before_attributes.add(dst)
+            for src, dst in after_paths.keys():
+                if dst.split(".", 1)[0] == 'attribute':
+                    after_attributes.add(dst)
+            removed_attributes = before_attributes.difference(after_attributes)
 
-        # find paths removed
-        removed_paths = set(paths.keys()).difference(set(after_paths.keys()))
-
-        # find attributes removed
-        before_attributes = set()
-        after_attributes = set()
-        for src, dst in paths.keys():
-            if dst.split(".", 1)[0] == 'attribute':
-                before_attributes.add(dst)
-        for src, dst in after_paths.keys():
-            if dst.split(".", 1)[0] == 'attribute':
-                after_attributes.add(dst)
-        removed_attributes = before_attributes.difference(after_attributes)
-
-        if output is "print":
-            if len(after_paths) > 0:
-                print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
-                print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
-                print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+        # analysis doesn't apply if no paths existed
+        if len(paths) > 0:
+            if output is "print":
+                if len(after_paths) > 0:
+                    print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
+                    print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
+                    print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
+                else:
+                    print "Removing {0} removed all attack paths.  In this scenario, all attributes are protected.".format(node_to_mitigate)
             else:
-                print "Removing {0} removed all attack paths.  In this scenario, all attributes are protected.".format(node_to_mitigate)
+                return node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
         else:
-            return node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
+            if output is "print":
+                print "No paths existed so no mitigations may be applied."
+            else:
+                return None, {}, {}, {}, 0, 0  # node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
 
 
 
-    def one_graph_one_path(self, g, src, dst, cutoff=7, output="print"):
+
+    def one_graph_one_path(self, g, src, dst, cutoff=7, output="print", mitigate="nodes"):
         """ Analyze the top N potential paths between the source and destination in the graph
 
         :param g: a networkx directed graph
@@ -420,62 +432,127 @@ class analyze():
         :param dst: the destionation node within the graph
         :param n: the maximum length of path to consider.  It is STRONGLY recommended to use 7 or less.
         :param output: default "print".  if print, output is printed, otherwise it is returned.
+        :param mitigate: default "nodes".  If 'nodes', nodes will be mitigated, otherwise edges will be mitigated.
         :return: bool of if a direct path exists followed by the set of candidate nodes to remove
         """
         lengths = list()
         paths = self.helper.all_simple_paths(g, src, dst, cutoff)
 
+        # can't analyze paths that don't exist
+        if len(paths) <= 0:
+            raise nx.NetworkXNoPath
+
         for path in paths:
             lengths.append(self.helper.path_length(g, path, 'weight'))
         lengths.sort(key=itemgetter(1))
-        nodes = set(lengths[0][0][1:-1])
-        i = 1
-        if len(nodes) <= 0:
-            if len(lengths) > 1:
-                nodes = set(lengths[1][0][1:-1])
-            i = 2
-            direct = True
-        else:
-            direct = False
-        if len(lengths) > 1:
-            while 1:
-                if len(lengths[i][0]) <= 2:  # If the path is only 2, it is the direct path.
-                    nodes2 = nodes
-                else:
-                    nodes2 = nodes.intersection(set(lengths[i][0][1:-1]))
-                if len(nodes2) > 1:
-                    nodes = nodes2
-                    i += 1
-                    if i == len(lengths):
-                        break
-                elif len(nodes2) <= 0:
-                    break
-                else:
-                    nodes = nodes2
-                    break
-
-        if output == "print":
-            if direct:
-                if len(lengths) > 0:
-                    print ("The most likely path is directly from {0} to {1}.  Mitigating that first will provide an improvement of {2}%.  "
-                           "Once that has been dealt with, you can gain a {3}% improvement by mitigating {4}.").format(
-                               src,
-                               dst,
-                               round((lengths[1][1]/float(lengths[0][1]) - 1) * 100, 2),
-                               round((lengths[i][1]/float(lengths[1][1]) - 1) * 100, 2),
-                               list(nodes)
-                               )
-                else:
-                    print("The only path is the direct path from {0} to {1}. Elimitate it to remove all paths.".format(src, dst))
+        if mitigate == "nodes":
+            nodes = set(lengths[0][0][1:-1])
+            i = 1
+            if len(nodes) <= 0:
+                if len(lengths) > 1:
+                    nodes = set(lengths[1][0][1:-1])
+                i = 2
+                direct = True
             else:
-                print "Remove {0} for a {1}% improvement. This ignores the toy solution of mitigating {2} or {3}.".format(
-                    nodes,
-                    round((lengths[i][1]/float(lengths[0][1]) - 1) * 100, 2),
-                    src,
-                    dst
-                    )
-        else:
-            return direct, nodes
+                direct = False
+            if len(lengths) > 1:
+                while 1:
+                    if len(lengths[i][0]) <= 2:  # If the path is only 2, it is the direct path.
+                        nodes2 = nodes
+                    else:
+                        nodes2 = nodes.intersection(set(lengths[i][0][1:-1]))
+                    if len(nodes2) > 1:
+                        nodes = nodes2
+                        i += 1
+                        if i == len(lengths):
+                            break
+                    elif len(nodes2) <= 0:
+                        break
+                    else:
+                        nodes = nodes2
+                        break
+        else:  # Mitigate Edges
+            if len(lengths[0][0]) <= 2:
+                direct = True
+            else:
+                direct = False
+
+            # create tuples of edges in path
+            i = 0
+            edges = set()
+            for j in range(len(lengths[i][0]) - 1):
+                edges.add((lengths[i][0][j], lengths[i][0][j+1]))
+            i += 1
+            # iterate through paths
+            if len(lengths) > 1:
+                while 1:
+                    # create tuples of edges in paths
+                    edges2 = set()
+                    try:
+                        for j in range(len(lengths[i][0]) - 1):
+                            edges2.add((lengths[i][0][j], lengths[i][0][j+1]))
+                    except:
+                        print lengths, len(lengths), i, j
+                        if i < len(lengths):
+                            print lengths[i][0]
+                        raise 
+                    # intersect previous edges with new edges
+                    edges2 = edges2.intersection(edges)
+# Removed because even if we've found the edge we want to remove, we want to go on to understand how many paths it mitigates
+#                    # if len(1):
+#                    if len(edges2) is 1:
+#                        # return that edge
+#                        edges = edges2
+#                        break
+                    # if we have eliminated all edges, use the last set of edges and stop
+                    if len(edges2) <= 0:
+                        # return the previous set of edges
+                        break
+                    # If we've made it through the entire list, use the last set of edges and stop
+                    if i >= len(lengths) - 1:
+                        break
+                    # If there is more than 0 edges, assign new edges to edges, incriment, and cycle
+                    if len(edges2) >= 1:
+                        # make the new set of nodes the old set of nodes
+                        edges = edges2
+                        # increment i
+                        i += 1
+                        # keep going
+
+        if mitigate == "nodes":
+            if output == "print":
+                if direct:
+                    if len(lengths) > 0:
+                        print ("The most likely path is directly from {0} to {1}.  Mitigating that first will provide an improvement of {2}%.  "
+                               "Once that has been dealt with, you can gain a {3}% improvement by mitigating {4}.").format(
+                                   src,
+                                   dst,
+                                   round((lengths[1][1]/float(lengths[0][1]) - 1) * 100, 2),
+                                   round((lengths[i][1]/float(lengths[1][1]) - 1) * 100, 2),
+                                   list(nodes)
+                                   )
+                    else:
+                        print("The only path is the direct path from {0} to {1}. Elimitate it to remove all paths.".format(src, dst))
+                else:
+                    print "Remove {0} for a {1}% improvement. This ignores the toy solution of mitigating {2} or {3}.".format(
+                        nodes,
+                        round((lengths[i][1]/float(lengths[0][1]) - 1) * 100, 2),
+                        src,
+                        dst
+                        )
+            else:
+                return direct, nodes
+        else: # mitigate is edges
+            if output == "print":
+                if len(lengths) > i:
+                    print("Eliminate one of the following edges for a {0}% improvement in shortest path length:".format(round((lengths[i][1]/float(lengths[0][1]) - 1) * 100, 2)))
+                    for edge in edges:
+                        print("{0}->{1}".format(edge[0], edge[1]))
+                else:
+                    print("Eliminate one of the following edges to eliminate all paths between {0} and {1}: {2}".format(src, dst, edges))
+            else:
+                return direct, edges  # edges to be defined
+
 
 
     def two_graphs(self, g1, g2):

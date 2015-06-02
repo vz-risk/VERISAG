@@ -328,8 +328,8 @@ $(document).ready(function() {
 
 
     $("#analyze_button").click(function() {
-        // DBUG
-        //alert($('#attributes').val())
+        // DEBUG
+        console.log($('#attributes').val())
         var o = {
             "worry": $('#worries').val(),
             "attributes": $('#attributes').val()
@@ -369,6 +369,8 @@ $(document).ready(function() {
                     $('#output').empty();
                     if (data.error != "") {
                         $('#output').append("Error: " + data.error)
+                    } else if (data.controls == null) {
+                        $('#output').append("No path exists from any action to the selected attributes to protect, so no mitigation is necessary.")
                     } else {
                         $('#output').append("Mitigate " + data.controls +
                          " to eliminate " + data.removed_paths +
