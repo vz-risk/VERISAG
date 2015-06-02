@@ -329,7 +329,7 @@ $(document).ready(function() {
 
     $("#analyze_button").click(function() {
         // DEBUG
-        console.log($('#attributes').val())
+//        console.log($('#attributes').val())
         var o = {
             "worry": $('#worries').val(),
             "attributes": $('#attributes').val()
