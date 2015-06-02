@@ -343,12 +343,13 @@ $(document).ready(function() {
         });
         var attributes = get_attributes($("#attributes").val());
         // http://documentcloud.github.io/underscore/
-        overlap = _.intersection(nodes, attributes);
+        var overlap = _.intersection(nodes, attributes);
+        var everything = $.inArray("Everything", attributes);
 
         // if an unacceptable worry is indicated, remove it
         if (o['worry'] ==  "-") {
             alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
-        } else if (overlap.length <= 0) {
+        } else if ((overlap.length) <= 0 & (everything == -1)) {
             alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
         } else {
 
