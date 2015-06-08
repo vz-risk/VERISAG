@@ -424,7 +424,7 @@ class analyze():
 
 
 
-    def one_graph_one_path(self, g, src, dst, cutoff=7, output="print", mitigate="nodes"):
+    def one_graph_one_path(self, g, src, dst, cutoff=7, output="print", mitigate="nodes", paths=None):
         """ Analyze the top N potential paths between the source and destination in the graph
 
         :param g: a networkx directed graph
@@ -433,10 +433,12 @@ class analyze():
         :param n: the maximum length of path to consider.  It is STRONGLY recommended to use 7 or less.
         :param output: default "print".  if print, output is printed, otherwise it is returned.
         :param mitigate: default "nodes".  If 'nodes', nodes will be mitigated, otherwise edges will be mitigated.
+        :param paths: a list of paths.  Default 'None'.  If none, paths will be calculated.
         :return: bool of if a direct path exists followed by the set of candidate nodes to remove
         """
         lengths = list()
-        paths = self.helper.all_simple_paths(g, src, dst, cutoff)
+        if not paths:
+            paths = self.helper.all_simple_paths(g, src, dst, cutoff)
 
         # can't analyze paths that don't exist
         if len(paths) <= 0:
