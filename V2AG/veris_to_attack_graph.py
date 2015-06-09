@@ -252,7 +252,6 @@ class attack_graph():
         elif self.data_type == "dataframe":
             logging.info('Reading in record data frame from csv.')
         self.read_data(data=data)
-        logging.debug("data dimensions: {0}".format(data.shape))
 
         # First pass.  single action-attribute linkage
         '''
