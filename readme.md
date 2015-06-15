@@ -6,7 +6,7 @@ VERIS Attack Graph (or VERISAG for short) is a module for parsing a directory of
 
 Clone the Repository
 ```
-git clone  https://github.com/gdbassett/VERISAG.git
+git clone  https://github.com/vz-risk/VERISAG.git
 ```
 
 ## Usage
