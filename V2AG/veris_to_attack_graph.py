@@ -43,17 +43,17 @@ import logging
 
 
 # USER VARIABLES
-#VERIS_DIRS = ["/Volumes/verizon/Customer and Partner Data/DBIR/data/1.3","/Users/v685573/Documents/Development/VCDB/data/json"]
-#VERIS_DIRS = ["/Volumes/verizon/Customer and Partner Data/DBIR/data/1.3"]
-#VERIS_DIRS = ["/Users/v685573/Documents/Development/VCDB/data/json"]
-VERIS_DIRS = "/Users/v685573/Documents/customer data/DBIR/data/dbir20150224-full.csv"
-#VERIS_DIRS = ['/Users/v685573/Documents/customer data/DBIR/data/1.3']
-GENERAL_GRAPH = "/Users/v685573/Documents/Data/veris_attack_graph/dbir_Rev2_v5.graphml"
-CONFIG_FILE = "/Users/v685573/Documents/Development/veris_attack_graph/veris_atk_graph.cfg"
+#VERIS_DIRS = ["dir/1", "dir/2"]
+#VERIS_DIRS = ["dir/1"]
+#VERIS_DIRS = "CSV/FILE.csv"
+VERIS_DIRS = None
+#GENERAL_GRAPH = "graph.graphml"
+GENERAL_GRAPH = None
+CONFIG_FILE = "~/Documents/Development/VERISAG/veris_atk_graph.cfg"
 #FILTER_WEIGHT = 0.2
 LOGLEVEL = logging.INFO
 LOG = None
-FILTER = "/Users/v685573/Documents/Development/veris_attack_graph/filter.txt"
+FILTER = "~/Documents/Development/VERISAG/filter.txt"
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################
 
@@ -156,7 +156,7 @@ class attack_graph():
     data = None # note, data will be the dataframe if source is Dataframe and will be the list of files if source is JSON
     base_mappings = None
 
-    def __init__(self, data_source, filter_file=None, build=True):
+    def __init__(self, data_source=VERIS_DIRS, filter_file=None, build=True):
         # create the filters
         self.filter_file = filter_file
         self.filters = self.create_filters()
@@ -164,7 +164,7 @@ class attack_graph():
         if type(data_source) == str and data_source.split(".")[-1] == "csv":
             self.data_type = 'dataframe'
             self.data_source = data_source
-            self.data = pd.read_csv(VERIS_DIRS)
+            self.data = pd.read_csv(self.data_source)
         elif type(data_source) == str:
             self.data_source = [data_source]
             self.data = []
