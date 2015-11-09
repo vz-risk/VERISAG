@@ -67,6 +67,8 @@ from itertools import combinations, product  # used for combining actions and at
 import json  # used for reading VERIS
 import re  # used for filters
 import pandas as pd  # for reading data frames
+import rpy2.robjects as robjects  # to handle R data files.  Comes from pandas
+from rpy2.robjects import pandas2ri  # to handle R data files.  Comes from pandas
 
 ## SETUP
 __author__ = "Gabriel Bassett"
@@ -155,8 +157,9 @@ class attack_graph():
     data_type = None
     data = None # note, data will be the dataframe if source is Dataframe and will be the list of files if source is JSON
     base_mappings = None
+    df_name = None
 
-    def __init__(self, data_source=VERIS_DIRS, filter_file=None, build=True):
+    def __init__(self, data_source=VERIS_DIRS, filter_file=None, build=True, df_name="vcdb"):
         # create the filters
         self.filter_file = filter_file
         self.filters = self.create_filters()
@@ -165,6 +168,12 @@ class attack_graph():
             self.data_type = 'dataframe'
             self.data_source = data_source
             self.data = pd.read_csv(self.data_source)
+        if type(data_source) == str and data_source.split(".")[-1] in ["Rda", "Rdata"]:
+            self.data_type = 'Rdata'
+            self.data_source = data_source
+            self.data = None
+            # if the datatype is Rdata, we need to know the name of the verisr object in the Rdata file
+            self.df_name = df_name
         elif type(data_source) == str:
             self.data_source = [data_source]
             self.data = []
@@ -184,7 +193,6 @@ class attack_graph():
         # build the graph if expected
         if build == True:
             self.build()
-
 
     def add_record_to_graph(self, actions, attributes):
         '''
@@ -251,6 +259,8 @@ class attack_graph():
             logging.info('Creating list of JSON records.')
         elif self.data_type == "dataframe":
             logging.info('Reading in record data frame from csv.')
+        elif self.data_type == "Rdata":
+            logging.info("Reading in data frame from Rdata.  I'll be honest, this isn't fast.")
         self.read_data(data=data)
 
         # First pass.  single action-attribute linkage
@@ -554,10 +564,23 @@ class attack_graph():
             raise ValueError("Data type not supported.") 
 
 
-    def read_data(self, data=None):
-        if data is None:
+    def read_data(self, data=None, df_name=None):
+        if df_name is None:
+            df_name = self.df_name
+        if isinstance(data, type(None)):
             if self.data_type == 'dataframe':
                 self.data = pd.read_csv(self.data_source)
+            elif self.data_type == 'Rdata':
+                robjects.r['load'](self.data_source)
+                for df_name in [self.df_name, "vz", "vcdb", "healthcare"]:
+                    try:
+                        self.data = pandas2ri.ri2py(robjects.r[df_name])
+                        self.data_type = "dataframe"
+                        break
+                    except LookupError:
+                        self.data = None
+                if isinstance(self.data, type(None)):
+                    raise LookupError("Could not find dataframe name in Rdata file. please specify with df_name=<name>")
             elif self.data_type == 'json':
                 self.data = []
                 for path in self.data_source:
@@ -570,8 +593,11 @@ class attack_graph():
                 self.data_type = 'dataframe'
             elif type(data) is list:
                 self.data_type = 'json'
-
-
+            elif type(data) is rpy2.robjects.vectors.DataFrame:
+                self.data = pandas2ri.ri2py(self.data)
+                self.data_type = 'dataframe'
+            else:
+                raise ValueError("type of data boject is unrecognized.")
 
     def save(self, filename):
         logging.info('Saving the graph.')
