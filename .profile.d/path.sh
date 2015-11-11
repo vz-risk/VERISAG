@@ -1,2 +1,2 @@
 # add vendor binaries to the path
-PATH=$PATH:$HOME/vendor/R/bin
+export PATH=$PATH:$HOME/vendor/R/bin
