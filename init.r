@@ -7,7 +7,7 @@
 # Update this line with the R packages to install:
 
 my_packages = c("nlme", "devtools", "dplyr", "tidyr", "reshape2")
-git_packages = c("jayjacombs/verisr", "Rdatatable/data.table")
+git_packages = c("jayjacobs/verisr", "Rdatatable/data.table")
 
 ###########################################################
 
