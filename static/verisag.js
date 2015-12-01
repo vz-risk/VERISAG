@@ -321,6 +321,25 @@ $(document).ready(function() {
                 });
     });
 
+    // Allow the tabs to hide and unhide stuff
+    $("#all_actors_tab").click(function() {
+        $("#all_actors_output_div").show();
+        $("#likely_actor_output_div").hide();
+        $("#comparative_output_div").hide();
+    })
+
+    $("#likely_actor_tab").click(function() {
+        $("#all_actors_output_div").hide();
+        $("#likely_actor_output_div").show();
+        $("#comparative_output_div").hide();
+    })
+
+    $("#comparative_tab").click(function() {
+        $("#all_actors_output_div").hide();
+        $("#likely_actor_output_div").hide();
+        $("#comparative_output_div").show();
+    })
+
 
 //    multibar.dispatch.on('elementMouseover.tooltip') {
 //        $.noop();

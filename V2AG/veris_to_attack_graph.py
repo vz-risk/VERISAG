@@ -71,9 +71,10 @@ try:
     import rpy2.robjects as robjects  # to handle R data files.  Comes from pandas
     from rpy2.robjects import pandas2ri  # to handle R data files.  Comes from pandas
     rpy2_imported = True
-except:
-    logging.warning("Module rpy2 not loaded.  You will not be able to load Rdata into an attack graph."
-                    "  Please check to ensure rpy2 is installed, R is installed, and the R executabel is in the path")
+except Exception as e:
+    logging.warning("Module rpy2 not loaded.  You will not be able to load Rdata into an attack graph.")
+    logging.warning(e)
+    logging.warning("Please check to ensure rpy2 is installed, R is installed, and the R executabel is in the path.")
     rpy2_imported = False
 
 ## SETUP
