@@ -112,11 +112,20 @@
                 <div id="sigmajs_container"></div>
             </td>
         </tr></table>
-    </div>
     <div id="analyze_div">
         <center><input type="button" value="Analyze" id="analyze_button"></center>
     </div>
-    <div id="output_div" class="outer_div">
+    </div>
+    <div id="all_actors_tab" class="tab">
+      All Actors Analysis
+    </div>
+    <div id="likely_actor_tab" class="tab">
+      Likely Actor Analysis
+    </div>
+    <div id="comparative_tab" class="tab">
+      Compare Mitigations
+    </div>
+    <div id="all_actors_output_div" class="outer_div">
         <!--<center><hr></center>//-->
         <h3>Analysis:</h3>
         <p id="output">Please click the 'analyze' button to analyze the graph.</p>
@@ -126,6 +135,22 @@
             <p>The bar chart below represents the length of the path for an attacker to get from a certain action to compromise a certain attribute.  It may take more than 1 step for them do so, however the actual steps aren’t shown.  As described above, the values are all relative with '1' representing the highest degree of difficulty for a single step.  Mouse over bars to see the starting action and ending attribute.</p>
             <svg></svg>
         </div>
+    </div>
+    <div id="likely_actor_output_div" class="outer_div">
+        <input type="button" value="Analyze" id="test_likely_actor_analyze_button">
+        <h3>Analysis:</h3>
+        <p id="likely_actor_analysis">Please click the 'analyze' button to analyze the graph.  This is a recursive analysis and may take 30 seconds to complete (in addition to up to 15 minutes to create the attack graph if not cached).</p>
+        <ol id="likely_actor_mitigations"><!--Add text above saying what the list is then populate it with mitigations & score //-->
+        </ol>
+        <div id="chart2" style="width: 100%; border: 0px">
+            <h3>Mitigations:</h3>
+            <p>The chart below shows mitigations and the associated improvement against the most likely threat. The best way to assess the plot is the relative increase in the Y axis from a mitigation.  (i.e. The vertical axis went from .5 to 1 indicating a 100% improvement.)
+            <!-- The below SVG should be populated with the diminishing returns chart //-->
+            <svg></svg>
+        </div>
+    </div>
+    <div id="comparative_output_div" class="outer_div">
+        <h3>Not Yet Implemented</h3>
     </div>
 </body>
 {% endblock %}

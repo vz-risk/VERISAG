@@ -67,6 +67,7 @@ import imp
 import pprint
 from inspect import getmembers
 import glob
+import copy
 import networkx as nx
 import os
 
@@ -182,7 +183,113 @@ api_parser = reqparse.RequestParser()
 api_parser.add_argument('worry', type=str, help="Pattern or Industry used to subset the data.", default='all', location='args')
 api_parser.add_argument('attributes', type=str, action='append', help="Filter paths to a subset of attributes.", default='Everything', location='args')
 
+
+def build_graph(api_args):
+    global data, cache, analysis
+
+    # the '-' causes problems in file names so '_' used instead.  Change it back here to query valid VERIS data.
+    if api_args['worry'] == "pattern.Cyber_Espionage":
+        api_args['worry'] = "pattern.Cyber-Espionage"
+
+    # if we're not using the entire data set, subset it.
+    if api_args['worry'] == 'all':
+        query_data = data
+    else:
+        # handle patterns
+        if api_args['worry'][:7] == "pattern":
+            query_data = data[data[api_args['worry']] == True]
+        # handle naics codes
+        else:
+            naics_codes = api_args['worry'].split(",")
+            query_data = data[(int(naics_codes[0]) <= data["victim.industry2"]) & (data["victim.industry2"] <= int(naics_codes[1]))]
+
+    # Create the attack graph
+    ATK = V2AG.attack_graph(None, FILTERS)
+    ATK.build(data=query_data)
+    cache[api_args['worry']] = ATK
+
+    return ATK
+
+
+def parse_args(args):
+    api_args = dict()
+    api_args['worry'] = args['worry']
+    api_args['attributes'] = args.getlist('attributes')
+    """
+    self.api_parser = api_parser
+    api_args = self.api_parser.parse_args()
+    """  # F the parser.  didn't work at all
+    logging.info("Parsed arguments: {0}".format(api_args))
+
+    return api_args
+
+
+def parse_attributes(api_args):
+    error = ""  # if anything put in this string, it will be printed instead of the output.
+
+    if "Everything" in api_args['attributes'] or "" in api_args['attributes']:
+        attributes = None
+    else:
+        attributes = api_args['attributes']
+        # add in the aggregate groups
+        if "Availability" in attributes:
+            attributes = list(set(attributes).union(set([
+                "attribute.availability.variety.Destruction",
+                "attribute.availability.variety.Loss",
+                "attribute.availability.variety.Interruption",
+                "attribute.availability.variety.Degradation",
+                "attribute.availability.variety.Acceleration",
+                "attribute.availability.variety.Obscuration",
+                "attribute.availability.variety.Other"
+            ])))
+        if "Confidentiality" in attributes:
+            attributes = list(set(attributes).union(set([
+                "attribute.confidentiality.data.variety.Credentials",
+                "attribute.confidentiality.data.variety.Bank",
+                "attribute.confidentiality.data.variety.Classified",
+                "attribute.confidentiality.data.variety.Copyrighted",
+                "attribute.confidentiality.data.variety.Digital certificate",
+                "attribute.confidentiality.data.variety.Medical",
+                "attribute.confidentiality.data.variety.Payment",
+                "attribute.confidentiality.data.variety.Personal",
+                "attribute.confidentiality.data.variety.Internal",
+                "attribute.confidentiality.data.variety.Source code",
+                "attribute.confidentiality.data.variety.System",
+                "attribute.confidentiality.data.variety.Secrets",
+                "attribute.confidentiality.data.variety.Virtual currency",
+                "attribute.confidentiality.data.variety.Other"
+            ])))
+        if "Integrity" in attributes:
+            attributes = list(set(attributes).union(set([
+                "attribute.integrity.variety.Created account",
+                "attribute.integrity.variety.Defacement",
+                "attribute.integrity.variety.Hardware tampering",
+                "attribute.integrity.variety.Alter behavior",
+                "attribute.integrity.variety.Fraudulent transaction",
+                "attribute.integrity.variety.Log tampering",
+                "attribute.integrity.variety.Repurpose",
+                "attribute.integrity.variety.Misrepresentation",
+                "attribute.integrity.variety.Modify configuration",
+                "attribute.integrity.variety.Modify privileges",
+                "attribute.integrity.variety.Modify data",
+                "attribute.integrity.variety.Software installation",
+                "attribute.integrity.variety.Other"
+            ])))
+        # Remove the dash
+        attributes = list(set(attributes).difference(set(["-"])))
+
+        # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
+        # Handle if the none of the requested actions or attributes aren't even in the graph
+        if attributes is not None:
+            attributes = set(attributes).intersection(set(ATK.g.nodes()))
+            if not len(attributes) > 0:
+                error = "The attribute to protect was not in the graph to be analyzed."
+
+    return attributes, error
+
+
 # Initialize the API class
+# Analyze all actors
 class analyze(Resource):
     api_parser = None
     data = None
@@ -198,18 +305,9 @@ class analyze(Resource):
         logging.info("Request Received")
         logging.debug("Request argument string: {0}".format(request.args))
 
-        error = ""  # if anything put in this string, it will be printed instead of the output.
+        api_args = parse_args(request.args)
 
-        api_args = dict()
-        api_args['worry'] = request.args['worry']
-        api_args['attributes'] = request.args.getlist('attributes')
-        """
-        self.api_parser = api_parser
-        api_args = self.api_parser.parse_args()
-        """  # F the parser.  didn't work at all
-        logging.info("Parsed arguments: {0}".format(api_args))
-
-        analysis = V2AG.attack_graph_analysis.analyze()
+        #analysis = V2AG.attack_graph_analysis.analyze()  # should already be assigned
         # Subset the data based on 'worries'
         # check cache
         if api_args['worry'] in cache:
@@ -217,92 +315,19 @@ class analyze(Resource):
             ATK = cache[api_args['worry']]
         #cache miss
         elif data is not None:
-            # the '-' causes problems in file names so '_' used instead.  Change it back here to query valid VERIS data.
-            if api_args['worry'] == "pattern.Cyber_Espionage":
-                api_args['worry'] = "pattern.Cyber-Espionage"
-
             logging.info("Cache miss.  Building attack graph.")
-            # if we're not using the entire data set, subset it.
-            if api_args['worry'] == 'all':
-                query_data = data
-            else:
-                # handle patterns
-                if api_args['worry'][:7] == "pattern":
-                    query_data = data[data[api_args['worry']] == True]
-                # handle naics codes
-                else:
-                    naics_codes = api_args['worry'].split(",")
-                    query_data = data[(int(naics_codes[0]) <= data["victim.industry2"]) & (data["victim.industry2"] <= int(naics_codes[1]))]
-
-            # Create the attack graph
-            ATK = V2AG.attack_graph(None, FILTERS)
-            ATK.build(data=query_data)
-            cache[api_args['worry']] = ATK
+            ATK = build_graph(api_args)
 
         else:
             raise LookupError("Graph not cached and no data exists to build graph from.")
 
+        # correct the attributes list (remove aggregations)
+        attributes, error = parse_attributes(api_args)
+
         # Do the analysis
-        logging.info("Doing the analysis.")
-        if "Everything" in api_args['attributes'] or "" in api_args['attributes']:
-            attributes = None
-        else:
-            attributes = api_args['attributes']
-            # add in the aggregate groups
-            if "Availability" in attributes:
-                attributes = list(set(attributes).union(set([
-                    "attribute.availability.variety.Destruction",
-                    "attribute.availability.variety.Loss",
-                    "attribute.availability.variety.Interruption",
-                    "attribute.availability.variety.Degradation",
-                    "attribute.availability.variety.Acceleration",
-                    "attribute.availability.variety.Obscuration",
-                    "attribute.availability.variety.Other"
-                ])))
-            if "Confidentiality" in attributes:
-                attributes = list(set(attributes).union(set([
-                    "attribute.confidentiality.data.variety.Credentials",
-                    "attribute.confidentiality.data.variety.Bank",
-                    "attribute.confidentiality.data.variety.Classified",
-                    "attribute.confidentiality.data.variety.Copyrighted",
-                    "attribute.confidentiality.data.variety.Digital certificate",
-                    "attribute.confidentiality.data.variety.Medical",
-                    "attribute.confidentiality.data.variety.Payment",
-                    "attribute.confidentiality.data.variety.Personal",
-                    "attribute.confidentiality.data.variety.Internal",
-                    "attribute.confidentiality.data.variety.Source code",
-                    "attribute.confidentiality.data.variety.System",
-                    "attribute.confidentiality.data.variety.Secrets",
-                    "attribute.confidentiality.data.variety.Virtual currency",
-                    "attribute.confidentiality.data.variety.Other"
-                ])))
-            if "Integrity" in attributes:
-                attributes = list(set(attributes).union(set([
-                    "attribute.integrity.variety.Created account",
-                    "attribute.integrity.variety.Defacement",
-                    "attribute.integrity.variety.Hardware tampering",
-                    "attribute.integrity.variety.Alter behavior",
-                    "attribute.integrity.variety.Fraudulent transaction",
-                    "attribute.integrity.variety.Log tampering",
-                    "attribute.integrity.variety.Repurpose",
-                    "attribute.integrity.variety.Misrepresentation",
-                    "attribute.integrity.variety.Modify configuration",
-                    "attribute.integrity.variety.Modify privileges",
-                    "attribute.integrity.variety.Modify data",
-                    "attribute.integrity.variety.Software installation",
-                    "attribute.integrity.variety.Other"
-                ])))
-            # Remove the dash
-            attributes = list(set(attributes).difference(set(["-"])))
-
-            # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
-            # Handle if the none of the requested actions or attributes aren't even in the graph
-            if attributes is not None:
-                attributes = set(attributes).intersection(set(ATK.g.nodes()))
-                if not len(attributes) > 0:
-                    error = "The attribute to protect was not in the graph to be analyzed."
-
         if not error:
+            logging.info("Doing all actors analysis.")
+            
             node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
 
             logging.debug("Removed paths: {0}".format(len(removed_paths)))
@@ -346,6 +371,140 @@ class analyze(Resource):
 
         logging.info("Returning results.")
         return analyzed
+
+
+# Analyze Likely Actor
+class analyze2(Resource):
+    api_parser = None
+    data = None
+    cache = None
+
+    def __init__(self):
+        global data, cache, analysis
+        self.data = data
+        self.cache = cache
+
+
+    def get(self):
+        logging.info("Request Received")
+        logging.debug("Request argument string: {0}".format(request.args))
+
+        api_args = parse_args(request.args)
+
+        #analysis = V2AG.attack_graph_analysis.analyze()  # should already be assigned
+        # Subset the data based on 'worries'
+        # check cache
+        if api_args['worry'] in cache:
+            logging.info("Cache hit. Retrieving attack graph.")
+            DBIRAG = cache[api_args['worry']]
+        #cache miss
+        elif data is not None:
+            logging.info("Cache miss.  Building attack graph.")
+            DBIRAG = build_graph(api_args)
+
+        else:
+            raise LookupError("Graph not cached and no data exists to build graph from.")
+
+        # correct the attributes list (remove aggregations)
+        attributes, error = parse_attributes(api_args)
+
+        if not error:
+            analyzed = {"likely_actor":{"mitigations":list()}}
+
+            # Ensure edge weights are populated
+            DBIRAG.g = DBIRAG.normalize_weights(DBIRAG.g)
+
+            # Best Nodes to Mitigate and Relative Change (from  blog)
+            # Initialize Variables
+            shortest_path_lengths = list()
+            shortest_paths = list()
+            mitigations = ["No Mitigation"]
+            action="start"
+            attribute = "end"
+            cutoff = 6
+            done = False
+            g_copy = copy.deepcopy(DBIRAG.g)
+            l = 1
+
+            logging.info("Starting best mitigations analysis for likely actor analysis.")
+            # Run LookupError
+            try:
+                path = nx.dijkstra_path(g_copy,action,attribute,'weight')
+                p = path[0]
+                for node in path[1:]:
+                    p = p + " -> " + node
+                shortest_paths.append(p)
+            except nx.NetworkXNoPath:
+                done = True
+                shortest_paths.append("No paths left.")
+                shortest_path_lengths.append(0)
+
+            while not done:
+                # since as you remove paths, the paths will get longer, the cutoff needs to be continuously increased
+                if len(path) != l:
+                    l = len(path)
+                    #print(l)
+
+                if len(path) > 4:
+                    cutoff = len(path) + 2
+
+                # get shortest path and add to distrubion
+                _, length = analysis.helper.path_length(g_copy, path)
+                shortest_path_lengths.append(length)
+
+                #Mitigate a node
+                direct, nodes = analysis.one_graph_one_path(g_copy, action, attribute, cutoff=cutoff, output="return")
+                if direct:
+                    g_copy.remove_edge(action, attribute)
+                    mitigations.append("{0}->{1}".format(action, attribute))
+                else:
+                    node_to_mitigate = nodes.pop()
+                    g_copy.remove_node(node_to_mitigate)
+                    mitigations.append(node_to_mitigate)
+
+                # retest
+                try:
+                    path = nx.dijkstra_path(g_copy,action,attribute,'weight')
+
+                    # Add the path to the output list 'shorest_paths' as a string
+                    p = path[0]
+                    for node in path[1:]:
+                        p = p + " -> " + node
+                    shortest_paths.append(p)
+
+                except nx.NetworkXNoPath:
+                    done = True
+                    shortest_paths.append("No paths left.")
+                    shortest_path_lengths.append(0)
+            shortest_path_lengths = [x - 2 for x in shortest_path_lengths]  # subtract off the start and end lengths
+            x = range(len(shortest_path_lengths))
+
+            # Print Best Mitigations
+            #tbl = PrettyTable(["Mitigation", "Attacker Cost"])
+            #tbl.align['Mitigation'] = 'l'
+            #tbl.align['Attacker Cost'] = 'l'
+            #tbl.add_row(["No Mitigation", round(shortest_paths[0], 4)])
+            #for i in range(len(shortest_paths)-1):
+            #    tbl.add_row([mitigations[i], round(shortest_paths[i+1], 4)])
+            #print tbl
+
+            for i in range(len(shortest_path_lengths)):
+                try:
+                    analyzed["likely_actor"]["mitigations"].append((mitigations[i], shortest_paths[i], shortest_path_lengths[i]))
+                except:
+                    logging.error(mitigations)
+                    logging.error(shortest_path_lengths)
+                    logging.error(shortest_paths)
+                    raise
+            logging.info("likely actor analysis complete.")
+
+        else:
+            logging.error("Error detected: {0}".format(error))
+            analyzed = {'error': error}
+
+        logging.info("Returning results.")
+        return analyzed
+
 
 
 class paths(Resource):
@@ -422,6 +581,7 @@ class paths(Resource):
 # Set up the API
 api = Api(app)
 api.add_resource(analyze, '/analyze/')
+api.add_resource(analyze2, '/analyze_likely_actor/')
 api.add_resource(paths, '/paths/')
 
 # Set up the GUI

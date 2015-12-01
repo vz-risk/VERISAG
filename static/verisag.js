@@ -484,6 +484,48 @@ $(document).ready(function() {
     });
 
 
+    $("#test_likely_actor_analyze_button").click(function() {
+        // DEBUG
+//        console.log($('#attributes').val())
+        var o = {
+            "worry": $('#worries').val(),
+            "attributes": $('#attributes').val()
+        };
+
+        // Test if there is an overlap in the attributes and the graph
+        var nodes = []
+        var s = graphInstance;
+        s.graph.nodes().forEach(function(n) {
+            nodes.push(n.label)
+        });
+        var attributes = get_attributes($("#attributes").val());
+        // http://documentcloud.github.io/underscore/
+        var overlap = _.intersection(nodes, attributes);
+        var everything = $.inArray("Everything", attributes);
+
+        // if an unacceptable worry is indicated, remove it
+        if (o['worry'] ==  "-") {
+            alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
+        } else if ((overlap.length) <= 0 & (everything == -1)) {
+            alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
+        } else {
+            $('#likely_actor_analysis').empty();
+            $('#likely_actor_analysis').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.  Even if cached, analysis is recursive and may take 30 seconds.");
+
+            $.ajax({
+                type: "GET",
+                url: "/analyze_likely_actor/",
+                contentType: "application/json; charset=utf-8",
+                data: o,
+                traditional:true,
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        };
+    });
+
+
     function filter_zero_len_paths(p) {
         var new_paths = [];
         for (var i = 0; i < p.length; i++) {
