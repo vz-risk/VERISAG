@@ -139,12 +139,19 @@
     <div id="likely_actor_output_div" class="outer_div">
         <input type="button" value="Analyze" id="test_likely_actor_analyze_button">
         <h3>Analysis:</h3>
-        <p id="likely_actor_analysis">Please click the 'analyze' button to analyze the graph.  This is a recursive analysis and may take 30 seconds to complete (in addition to up to 15 minutes to create the attack graph if not cached).</p>
+        <p id="likely_actor_analyze">Please click the 'analyze' button to analyze the graph.</p>
         <ol id="likely_actor_mitigations"><!--Add text above saying what the list is then populate it with mitigations & score //-->
         </ol>
         <div id="chart2" style="width: 100%; border: 0px">
             <h3>Mitigations:</h3>
-            <p>The chart below shows mitigations and the associated improvement against the most likely threat. The best way to assess the plot is the relative increase in the Y axis from a mitigation.  (i.e. The vertical axis went from .5 to 1 indicating a 100% improvement.)
+            <p>
+            <!-- The below SVG should be populated with the diminishing returns chart //-->
+            <svg></svg>
+        </div>
+        <div id ="likely_actor_last_mitigation"><p></p></div>
+        <div id="chart3" style="width: 100%; border: 0px">
+            <h3>Paths:</h3>
+            <p></p>
             <!-- The below SVG should be populated with the diminishing returns chart //-->
             <svg></svg>
         </div>

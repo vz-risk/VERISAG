@@ -509,8 +509,8 @@ $(document).ready(function() {
         } else if ((overlap.length) <= 0 & (everything == -1)) {
             alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
         } else {
-            $('#likely_actor_analysis').empty();
-            $('#likely_actor_analysis').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.  Even if cached, analysis is recursive and may take 30 seconds.");
+            $('#likely_actor_analyze').empty();
+            $('#likely_actor_analyze').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.  Even if cached, analysis loops and may take 30 seconds or more.");
 
             $.ajax({
                 type: "GET",
@@ -519,11 +519,104 @@ $(document).ready(function() {
                 data: o,
                 traditional:true,
                 success: function(data) {
-                    console.log(data);
+                    console.log(data);  // DEBUG
+
+                    // Fill in the table with mitigations and relative improvement
+
+
+                    // Fill in Chart 2 (mitigations)
+                    myData = data.likely_actor.chart;
+                    console.log(myData.values[myData.values.length - 1].y)
+                    $('#chart2 svg').empty();
+                    nv.addGraph(function() {
+                      var chart = nv.models.scatterChart()
+                                    .showDistX(true)    //showDist, when true, will display those little distribution lines on the axis.
+                                    .showDistY(true)
+                                    .yDomain([myData.values[myData.values.length - 1].y, 1])
+                                    .color(d3.scale.category10().range());
+                      //Configure how the tooltip looks.
+                      chart.tooltipContent(function(key, x, y, e, graph) {
+                        var s = "unknown";
+            //            console.log(graph);
+                        var pt = getGraphtPt(graph, x, y);
+                        if (pt !== null) {
+                            s = pt["name"];
+                        }
+                          return '<h3>' + key + ": " + s + '</h3>';
+                      });
+                      //Axis settings
+                      chart.xAxis.tickFormat(d3.format('d'));
+                      chart.yAxis.tickFormat(d3.format('.2f'));
+                      //Axis Label
+                      chart.yAxis.axisLabel('Improvement Over No Mitigation');
+                      chart.xAxis.axisLabel('Mitigation Number');
+            //          console.log(myData)  // DEBUG
+                      d3.select('#chart2 svg')
+                          .datum([myData])
+                          .call(chart);
+                      nv.utils.windowResize(chart.update);
+                      return chart;
+                    });
+
+                    // Fill Chart 3 (paths)
+                    var myData_chart3 = {"key": "With Cumulative Mitigation",
+                                        "color": "#3b1f02",
+                                        "values": []
+                    };
+                    myData_chart3["values"] = format_chart_data(data.likely_actor.shortest_paths);
+
+                    $('#chart3 svg').empty();
+                    nv.addGraph(function() {
+                        var chart = nv.models.multiBarHorizontalChart()
+                            .x(function(d) { return d.label })
+                            .y(function(d) { return d.value })
+                            .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
+                            .showValues(true)           //Show bar value next to each bar.
+                            .tooltips(true)             //Show tooltips on hover.
+//                            .duration(350)
+                            .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
+
+                        chart.showXAxis(false)
+                        chart.yAxis
+                            .tickFormat(d3.format(',.2f'));
+
+                        d3.select('#chart3 svg')
+                            .datum([myData_chart3])
+                            .call(chart);
+
+                        nv.utils.windowResize(chart.update);
+
+                        return chart;
+                    });
+
+                    // Fill in last mitigation
+                    $('#likely_actor_last_mitigation p').empty();
+                    $('#likely_actor_last_mitigation p').append("After all other mitigations, mitigating " + data.likely_actor.last_mitigation + " removes all remaining attack paths.");
+
+                    // Return analysis statement to original text
+                    $('#likely_actor_analyze').empty();
+                    $('#likely_actor_analyze').append("The best mitigation to address the most likely actor is " + myData.values[1].name + " for an improvement of " + Math.round(myData.values[1].y * 100)/100 + "X over no mitigation.");
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    //alert(jqXHR.responseText);
+                    alert(errorThrown);
                 }
             });
         };
     });
+
+
+    function getGraphtPt(graph, x1, y1) {
+            var a = graph.series.values;
+            var i = a.length;
+         while (i--) {
+//           if (a[i].x==x1 & a[i].y==y1) {
+           if (a[i].x==x1) { // replace above line because y is too accurate & only 1 point per x.
+              return a[i];
+          }
+       }
+       return null;
+    }
 
 
     function filter_zero_len_paths(p) {

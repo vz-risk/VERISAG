@@ -409,7 +409,7 @@ class analyze2(Resource):
         attributes, error = parse_attributes(api_args)
 
         if not error:
-            analyzed = {"likely_actor":{"mitigations":list()}}
+            analyzed = {"likely_actor":{}}
 
             # Ensure edge weights are populated
             DBIRAG.g = DBIRAG.normalize_weights(DBIRAG.g)
@@ -476,26 +476,36 @@ class analyze2(Resource):
                     done = True
                     shortest_paths.append("No paths left.")
                     shortest_path_lengths.append(0)
+
+            logging.info("Analysis finished.  Formatting output.")
+
             shortest_path_lengths = [x - 2 for x in shortest_path_lengths]  # subtract off the start and end lengths
-            x = range(len(shortest_path_lengths))
 
-            # Print Best Mitigations
-            #tbl = PrettyTable(["Mitigation", "Attacker Cost"])
-            #tbl.align['Mitigation'] = 'l'
-            #tbl.align['Attacker Cost'] = 'l'
-            #tbl.add_row(["No Mitigation", round(shortest_paths[0], 4)])
-            #for i in range(len(shortest_paths)-1):
-            #    tbl.add_row([mitigations[i], round(shortest_paths[i+1], 4)])
-            #print tbl
+            l_no_mitigation = shortest_path_lengths[0]
+            normalized_shortest_path_lengths = [x/float(l_no_mitigation) for x in shortest_path_lengths]  # divide by shortest lengths to see relative improvement
 
-            for i in range(len(shortest_path_lengths)):
-                try:
-                    analyzed["likely_actor"]["mitigations"].append((mitigations[i], shortest_paths[i], shortest_path_lengths[i]))
-                except:
-                    logging.error(mitigations)
-                    logging.error(shortest_path_lengths)
-                    logging.error(shortest_paths)
-                    raise
+#            for i in range(len(shortest_path_lengths)):
+#                try:
+#                    analyzed["likely_actor"]["mitigations"].append((mitigations[i], shortest_paths[i], shortest_path_lengths[i]))
+#                except:
+#                    logging.error(mitigations)
+#                    logging.error(shortest_path_lengths)
+#                    logging.error(shortest_paths)
+#                    raise
+            logging.debug("mark 1")
+            # format the output for nvd3
+            analyzed["likely_actor"]["chart"] = {u'enabled': True, u'key': u'Mitigations', u'values': list()}
+            analyzed["likely_actor"]["shortest_paths"] = dict()
+            logging.debug("mark 2")
+
+            for i in range(len(shortest_path_lengths)-1):
+                analyzed["likely_actor"]["chart"][u'values'].append({u'name': mitigations[i], u'x': i, u'y': normalized_shortest_path_lengths[i]})
+                analyzed["likely_actor"]["shortest_paths"][shortest_paths[i]] = shortest_path_lengths[i]
+
+            logging.debug("mark 3")
+            # include the last mitigations
+            analyzed["likely_actor"]["last_mitigation"] = mitigations[-1]
+
             logging.info("likely actor analysis complete.")
 
         else:
