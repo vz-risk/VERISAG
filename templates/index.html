@@ -21,7 +21,7 @@
                     <p><u><h3>What worries you?</h3></u></p>
                     <select name="worries" id="worries">
                         <option value="all" selected="selected">Everything</option>
-                        <option value="-">Patterns:</option>
+                        <option value="-"><b>Patterns:</b></option>
                         <option value="-">---------</option>
                         <option value="pattern.Crimeware">Crimeware</option>
                         <option value="pattern.Cyber_Espionage">Cyber-Espionage</option>
@@ -32,7 +32,7 @@
                         <option value="pattern.Point of Sale">Points of Sale</option>
                         <option value="pattern.Privilege Misuse">Privilege Misuse</option>
                         <option value="pattern.Web Applications">Web Applications</option>
-                        <option value="-">Industries:</option>
+                        <option value="-"><b>Industries:</b></option>
                         <option value="-">-----------</option>
                         <!-- <option value="11,11">Sector 11: Agriculture, Forestry, Fishing and Hunting</option> //-->
                         <option value="21,21">Sector 21: Mining, Quarrying, and Oil and Gas Extraction</option>
@@ -54,6 +54,7 @@
                         <option value="72,72">Sector 72: Accommodation and Food Services</option>
                         <option value="81,81">Sector 81: Other Services (except Public Administration)</option>
                         <option value="92,92">Sector 92: Public Administration</option>
+                        <option value="-">-----------</option>
                         <option value="phidbr">PHI Data Breach Report</option>
                     </select>
                     <p>The <u>Error</u> pattern is explicitly not included as it inherently is not based on puposeful action.  NAICS Sector 11 is not included for lack of data.  For more information on the correct NAICS code for your organization, visit <a href="http://www.farsmarterbids.com/reference/naics-list.php">http://www.farsmarterbids.com/reference/naics-list.php</a></p>
@@ -104,7 +105,13 @@
                     </select>
 
                     <p>In the graph to the right, attacks start at the lower right at the "Start" node.  They move through actions and attributes until they finally conclude at the "End" node in the upper left.  Depending on what worry you select, the graph will change to represent that subset of the data.</p>
-                    <p>In the analysis and attack paths below, relative scores are provided.  While that means there are no absolute values, (like 'dollars' or 'time'), the values can be compared to each other.  They can be thought of as the relative degree of difficulty of exploitation, cost of exploitation, or speed of exploitation compared to all other paths.</p>
+                    <p>There are three options for analysis below:
+                        <ul>
+                            <li><u>All Actors Analysis</u>:  This analysis provides a recommendation on what to do to protect against all the potential bad guys out there.  It's like planning to handle all of your breaches.  Within the graph it is addressing all shortest paths from any action to any attribute.</li>
+                            <li><u>Likely Actor Analysis</u>:  This analysis provides a recommendation on how to deal with the single most likely attacker. It's like planning to handle the single, most likely breach.  Within the graph it is addressing the shortest path from start to end. (This is the analysis used in the 2015 PHIDBR.)
+                            <!--<li><u>Compare Mitigations</u>: <b>Not yet implemented</b>.  This will allow choosing two sets of actions/attributes to mitigate and comparing the improvement.//--> <!-- Not Yet Implemented //-->
+                        </ul>
+                        For all analysis, the attack difficulty or improvement is a relative score.  While that means there are no absolute values, (like 'dollars' or 'time'), the values can be compared to each other.  They can be thought of as the relative degree of difficulty of exploitation, cost of exploitation, or speed of exploitation compared to all other paths.</p>
                     <p>To learn more about the app, read the associated blog post: <a href="https://securityblog.verizonenterprise.com/?p=7038">A DBIR Attack Graph Web App!</a> or the in-depth blog post about the associated analysis: <a href="https://securityblog.verizonenterprise.com/?p=6949">The DBIR Attack Graph: Redux!</a>.
                 </div>
             </td>
@@ -122,14 +129,14 @@
     <div id="likely_actor_tab" class="tab">
       Likely Actor Analysis
     </div>
+    <!--
     <div id="comparative_tab" class="tab">
       Compare Mitigations
     </div>
+    //--> <!-- Not Yet Implemented //-->
     <div id="all_actors_output_div" class="outer_div">
-        <!--<center><hr></center>//-->
         <h3>Analysis:</h3>
         <p id="output">Please click the 'analyze' button to analyze the graph.</p>
-        <!--<center><hr></center>//-->
         <div id="chart1" style="width: 100%; border: 0px">
             <h3>Attack Paths:</h3>
             <p>The bar chart below represents the length of the path for an attacker to get from a certain action to compromise a certain attribute.  It may take more than 1 step for them do so, however the actual steps aren’t shown.  As described above, the values are all relative with '1' representing the highest degree of difficulty for a single step.  Mouse over bars to see the starting action and ending attribute.</p>
@@ -137,28 +144,26 @@
         </div>
     </div>
     <div id="likely_actor_output_div" class="outer_div">
-        <input type="button" value="Analyze" id="test_likely_actor_analyze_button">
         <h3>Analysis:</h3>
         <p id="likely_actor_analyze">Please click the 'analyze' button to analyze the graph.</p>
-        <ol id="likely_actor_mitigations"><!--Add text above saying what the list is then populate it with mitigations & score //-->
         </ol>
         <div id="chart2" style="width: 100%; border: 0px">
             <h3>Mitigations:</h3>
-            <p>
-            <!-- The below SVG should be populated with the diminishing returns chart //-->
+            <p></p>
             <svg></svg>
         </div>
         <div id ="likely_actor_last_mitigation"><p></p></div>
         <div id="chart3" style="width: 100%; border: 0px">
             <h3>Paths:</h3>
             <p></p>
-            <!-- The below SVG should be populated with the diminishing returns chart //-->
             <svg></svg>
         </div>
     </div>
+    <!--
     <div id="comparative_output_div" class="outer_div">
         <h3>Not Yet Implemented</h3>
     </div>
+    //--> <!-- Not Yet Implemented //-->
 </body>
 {% endblock %}
 

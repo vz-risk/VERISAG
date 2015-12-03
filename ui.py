@@ -482,7 +482,7 @@ class analyze2(Resource):
             shortest_path_lengths = [x - 2 for x in shortest_path_lengths]  # subtract off the start and end lengths
 
             l_no_mitigation = shortest_path_lengths[0]
-            normalized_shortest_path_lengths = [x/float(l_no_mitigation) for x in shortest_path_lengths]  # divide by shortest lengths to see relative improvement
+            normalized_shortest_path_lengths = [x/float(l_no_mitigation) - 1 for x in shortest_path_lengths]  # divide by shortest lengths and subtract 1 to see percent improvement
 
 #            for i in range(len(shortest_path_lengths)):
 #                try:

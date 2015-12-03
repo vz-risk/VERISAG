@@ -128,6 +128,10 @@ $(document).ready(function() {
         // Update the graph
         $('#sigmajs_container').empty();
         var end = this.value;
+        // Clear the all actors analysis
+        $('#output').empty();
+        $('#output').append("Please click the 'analyze' button to analyze the graph.");
+
 //        console.log('./static/' + end + '.gexf');
         sigma.parsers.gexf(
             './static/' + end + '.gexf',
@@ -224,12 +228,21 @@ $(document).ready(function() {
                 alert(errorThrown);
             }
         });
+
+        // Clear the likely actor outputs
+        $('#likely_actor_analyze').empty();
+        $('#likely_actor_analyze').append("Please click the 'analyze' button to analyze the graph.");
+        $('#chart2 svg').empty();
+        $('#chart2 p').empty();
+        $('#chart3 svg').empty();
+        $('#chart3 p').empty();
+
     });
 
 
     // When Protect is changed
     $("#attributes").change(function() {
-        // Clear the analysis
+        // Clear the all actors analysis
         $('#output').empty();
         $('#output').append("Please click the 'analyze' button to analyze the graph.");
 
@@ -318,7 +331,16 @@ $(document).ready(function() {
             nv.utils.windowResize(chart.update);
 
             return chart;
-                });
+        });
+
+        // Clear the likely actor outputs
+        $('#likely_actor_analyze').empty();
+        $('#likely_actor_analyze').append("Please click the 'analyze' button to analyze the graph.");
+        $('#chart2 svg').empty();
+        $('#chart2 p').empty();
+        $('#chart3 svg').empty();
+        $('#chart3 p').empty();
+
     });
 
     // Allow the tabs to hide and unhide stuff
@@ -326,12 +348,15 @@ $(document).ready(function() {
         $("#all_actors_output_div").show();
         $("#likely_actor_output_div").hide();
         $("#comparative_output_div").hide();
+        $('#chart1 svg').trigger('resize');
     })
 
     $("#likely_actor_tab").click(function() {
         $("#all_actors_output_div").hide();
         $("#likely_actor_output_div").show();
         $("#comparative_output_div").hide();
+        $('#chart2 svg').trigger('resize');
+        $('#chart3 svg').trigger('resize');
     })
 
     $("#comparative_tab").click(function() {
@@ -345,263 +370,278 @@ $(document).ready(function() {
 //        $.noop();
 //    };
 
-
+    // THis runs all actors analysis if the tab is visible
     $("#analyze_button").click(function() {
-        // DEBUG
-//        console.log($('#attributes').val())
-        var o = {
-            "worry": $('#worries').val(),
-            "attributes": $('#attributes').val()
-        };
+        if ($("#all_actors_output_div").is(":visible")) {
+            // DEBUG
+    //        console.log($('#attributes').val())
+            var o = {
+                "worry": $('#worries').val(),
+                "attributes": $('#attributes').val()
+            };
 
-        // Test if there is an overlap in the attributes and the graph
-        var nodes = []
-        var s = graphInstance;
-        s.graph.nodes().forEach(function(n) {
-            nodes.push(n.label)
-        });
-        var attributes = get_attributes($("#attributes").val());
-        // http://documentcloud.github.io/underscore/
-        var overlap = _.intersection(nodes, attributes);
-        var everything = $.inArray("Everything", attributes);
+            // Test if there is an overlap in the attributes and the graph
+            var nodes = []
+            var s = graphInstance;
+            s.graph.nodes().forEach(function(n) {
+                nodes.push(n.label)
+            });
+            var attributes = get_attributes($("#attributes").val());
+            // http://documentcloud.github.io/underscore/
+            var overlap = _.intersection(nodes, attributes);
+            var everything = $.inArray("Everything", attributes);
 
-        // if an unacceptable worry is indicated, remove it
-        if (o['worry'] ==  "-") {
-            alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
-        } else if ((overlap.length) <= 0 & (everything == -1)) {
-            alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
-        } else {
+            // if an unacceptable worry is indicated, remove it
+            if (o['worry'] ==  "-") {
+                alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
+            } else if ((overlap.length) <= 0 & (everything == -1)) {
+                alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
+            } else {
 
 
-            $('#output').empty();
-            $('#output').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.");
+                $('#output').empty();
+                $('#output').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.");
 
-            $.ajax({
-                type: "GET",
-                url: "/analyze/",
-                contentType: "application/json; charset=utf-8",
-                data: o,
-                traditional:true,
-                success: function(data) {
-                    // Debug
-                    //alert(data.controls + data.removed_paths + data.dist_increase)
-                    var controls = "";
-                    $('#output').empty();
-                    if (data.error != "") {
-                        $('#output').append("Error: " + data.error)
-                    } else if (data.controls == null) {
-                        $('#output').append("No path exists from any action to the selected attributes to protect, so no mitigation is necessary.")
-                    } else {
-                        $('#output').append("Mitigate " + data.controls +
-                         " to eliminate " + data.removed_paths +
-                         "% of attack paths and improve defenses on remaining paths by " + data.dist_increase + "%."
-                        );
-                    };
+                $.ajax({
+                    type: "GET",
+                    url: "/analyze/",
+                    contentType: "application/json; charset=utf-8",
+                    data: o,
+                    traditional:true,
+                    success: function(data) {
+                        // Debug
+                        //alert(data.controls + data.removed_paths + data.dist_increase)
+                        var controls = "";
+                        $('#output').empty();
+                        if (data.error != "") {
+                            $('#output').append("Error: " + data.error)
+                        } else if (data.controls == null) {
+                            $('#output').append("No path exists from any action to the selected attributes to protect, so no mitigation is necessary.")
+                        } else {
+                            $('#output').append("Mitigate " + data.controls +
+                             " to eliminate " + data.removed_paths +
+                             "% of attack paths and improve defenses on remaining paths by " + data.dist_increase + "%."
+                            );
+                        };
 
-                    // DEBUG
-//                  console.log(data.path_lengths)
+                        // DEBUG
+    //                  console.log(data.path_lengths)
 
-                    // Augment the bar chart of paths with the longer paths
-                    // get the mitigated path data
-                    var w_mitigation = {"key": "With Mitigation",
-                                        "color": "#8F1706",
-                                        "values": []
-                    };
-                    w_mitigation["values"] = format_chart_data(data.path_lengths);
+                        // Augment the bar chart of paths with the longer paths
+                        // get the mitigated path data
+                        var w_mitigation = {"key": "With Mitigation",
+                                            "color": "#8F1706",
+                                            "values": []
+                        };
+                        w_mitigation["values"] = format_chart_data(data.path_lengths);
 
-                    // Filter zero length paths
-                    if ($("#show_zero_len_paths").val() != "TRUE") {
-                        wo_mitigation["values"] = filter_zero_len_paths(wo_mitigation["values"]);
-                    };
+                        // Filter zero length paths
+                        if ($("#show_zero_len_paths").val() != "TRUE") {
+                            wo_mitigation["values"] = filter_zero_len_paths(wo_mitigation["values"]);
+                        };
 
-                    // Filter by selected attributes
-                    // unnecessary as the analysis algorithms already do this
-                    /*
-                    var selected_attributes = get_attributes(o["attributes"]);
-                    if ($.inArray("Everything", selected_attributes) == -1) {
-                        var wo_values_2 = [];
-                        var w_values_2 = [];
+                        // Filter by selected attributes
+                        // unnecessary as the analysis algorithms already do this
+                        /*
+                        var selected_attributes = get_attributes(o["attributes"]);
+                        if ($.inArray("Everything", selected_attributes) == -1) {
+                            var wo_values_2 = [];
+                            var w_values_2 = [];
+                            for (var i = 0; i < wo_mitigation["values"].length; i++) {
+                                // get the destination
+                                var dst = wo_mitigation["values"][i]['label'].split("->",2);
+                                //console.log(dst[1]);
+                                // if the destination is in our attribute list, add it to the new values
+                                if ($.inArray(dst[1], selected_attributes) != -1) {
+                                    wo_values_2.push(wo_mitigation["values"][i]);
+                                    w_values_2.push(w_mitigation["values"][i]);
+                                }
+                            }
+                            wo_mitigation["values"] = wo_values_2;
+                            w_mitigation["values"] = w_values_2;
+                        }
+                        */
+
+                        // Filter values not in without mitigation from with mitigation
+                        var wo_mitigation_values = [];
                         for (var i = 0; i < wo_mitigation["values"].length; i++) {
-                            // get the destination
-                            var dst = wo_mitigation["values"][i]['label'].split("->",2);
-                            //console.log(dst[1]);
-                            // if the destination is in our attribute list, add it to the new values
-                            if ($.inArray(dst[1], selected_attributes) != -1) {
-                                wo_values_2.push(wo_mitigation["values"][i]);
+                            wo_mitigation_values.push(wo_mitigation["values"][i]["label"]);
+                        };
+                        var w_values_2 = [];
+                        for (var i = 0; i < w_mitigation["values"].length; i++) {
+                            if ($.inArray(w_mitigation["values"][i]["label"], wo_mitigation_values) != -1) {
                                 w_values_2.push(w_mitigation["values"][i]);
                             }
-                        }
-                        wo_mitigation["values"] = wo_values_2;
+                        };
                         w_mitigation["values"] = w_values_2;
+
+                        // build chart
+                        $('#chart1 svg').empty();
+                        nv.addGraph(function() {
+                            var chart = nv.models.multiBarHorizontalChart()
+                                .x(function(d) { return d.label })
+                                .y(function(d) { return d.value })
+                                .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
+                                .showValues(true)           //Show bar value next to each bar.
+                                .tooltips(true)             //Show tooltips on hover.
+    //                            .duration(350)
+                                .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
+
+                            chart.showXAxis(false)
+                            chart.yAxis
+                                .tickFormat(d3.format(',.2f'));
+
+                            d3.select('#chart1 svg')
+                                .datum([wo_mitigation, w_mitigation])
+                                .call(chart);
+
+                            nv.utils.windowResize(chart.update);
+
+                            return chart;
+                        });
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        //alert(jqXHR.responseText);
+                        alert(errorThrown);
                     }
-                    */
 
-                    // Filter values not in without mitigation from with mitigation
-                    var wo_mitigation_values = [];
-                    for (var i = 0; i < wo_mitigation["values"].length; i++) {
-                        wo_mitigation_values.push(wo_mitigation["values"][i]["label"]);
-                    };
-                    var w_values_2 = [];
-                    for (var i = 0; i < w_mitigation["values"].length; i++) {
-                        if ($.inArray(w_mitigation["values"][i]["label"], wo_mitigation_values) != -1) {
-                            w_values_2.push(w_mitigation["values"][i]);
-                        }
-                    };
-                    w_mitigation["values"] = w_values_2;
-
-                    // build chart
-                    $('#chart1 svg').empty();
-                    nv.addGraph(function() {
-                        var chart = nv.models.multiBarHorizontalChart()
-                            .x(function(d) { return d.label })
-                            .y(function(d) { return d.value })
-                            .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
-                            .showValues(true)           //Show bar value next to each bar.
-                            .tooltips(true)             //Show tooltips on hover.
-//                            .duration(350)
-                            .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
-
-                        chart.showXAxis(false)
-                        chart.yAxis
-                            .tickFormat(d3.format(',.2f'));
-
-                        d3.select('#chart1 svg')
-                            .datum([wo_mitigation, w_mitigation])
-                            .call(chart);
-
-                        nv.utils.windowResize(chart.update);
-
-                        return chart;
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    //alert(jqXHR.responseText);
-                    alert(errorThrown);
-                }
-
-            });
+                });
+            };
         };
     });
 
+    // This runs likely actor analysis if the tab is visible
+    $("#analyze_button").click(function() {
+        if ($("#likely_actor_output_div").is(":visible")) {
+            // DEBUG
+            //  console.log($('#attributes').val())
+            var o = {
+                "worry": $('#worries').val(),
+                "attributes": $('#attributes').val()
+            };
 
-    $("#test_likely_actor_analyze_button").click(function() {
-        // DEBUG
-//        console.log($('#attributes').val())
-        var o = {
-            "worry": $('#worries').val(),
-            "attributes": $('#attributes').val()
-        };
-
-        // Test if there is an overlap in the attributes and the graph
-        var nodes = []
-        var s = graphInstance;
-        s.graph.nodes().forEach(function(n) {
-            nodes.push(n.label)
-        });
-        var attributes = get_attributes($("#attributes").val());
-        // http://documentcloud.github.io/underscore/
-        var overlap = _.intersection(nodes, attributes);
-        var everything = $.inArray("Everything", attributes);
-
-        // if an unacceptable worry is indicated, remove it
-        if (o['worry'] ==  "-") {
-            alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
-        } else if ((overlap.length) <= 0 & (everything == -1)) {
-            alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
-        } else {
-            $('#likely_actor_analyze').empty();
-            $('#likely_actor_analyze').append("Analysis beginning.  This may take a few seconds up to 15 minutes if the requested attack graph is not cached.  Even if cached, analysis loops and may take 30 seconds or more.");
-
-            $.ajax({
-                type: "GET",
-                url: "/analyze_likely_actor/",
-                contentType: "application/json; charset=utf-8",
-                data: o,
-                traditional:true,
-                success: function(data) {
-                    console.log(data);  // DEBUG
-
-                    // Fill in the table with mitigations and relative improvement
-
-
-                    // Fill in Chart 2 (mitigations)
-                    myData = data.likely_actor.chart;
-                    console.log(myData.values[myData.values.length - 1].y)
-                    $('#chart2 svg').empty();
-                    nv.addGraph(function() {
-                      var chart = nv.models.scatterChart()
-                                    .showDistX(true)    //showDist, when true, will display those little distribution lines on the axis.
-                                    .showDistY(true)
-                                    .yDomain([myData.values[myData.values.length - 1].y, 1])
-                                    .color(d3.scale.category10().range());
-                      //Configure how the tooltip looks.
-                      chart.tooltipContent(function(key, x, y, e, graph) {
-                        var s = "unknown";
-            //            console.log(graph);
-                        var pt = getGraphtPt(graph, x, y);
-                        if (pt !== null) {
-                            s = pt["name"];
-                        }
-                          return '<h3>' + key + ": " + s + '</h3>';
-                      });
-                      //Axis settings
-                      chart.xAxis.tickFormat(d3.format('d'));
-                      chart.yAxis.tickFormat(d3.format('.2f'));
-                      //Axis Label
-                      chart.yAxis.axisLabel('Improvement Over No Mitigation');
-                      chart.xAxis.axisLabel('Mitigation Number');
-            //          console.log(myData)  // DEBUG
-                      d3.select('#chart2 svg')
-                          .datum([myData])
-                          .call(chart);
-                      nv.utils.windowResize(chart.update);
-                      return chart;
-                    });
-
-                    // Fill Chart 3 (paths)
-                    var myData_chart3 = {"key": "With Cumulative Mitigation",
-                                        "color": "#3b1f02",
-                                        "values": []
-                    };
-                    myData_chart3["values"] = format_chart_data(data.likely_actor.shortest_paths);
-
-                    $('#chart3 svg').empty();
-                    nv.addGraph(function() {
-                        var chart = nv.models.multiBarHorizontalChart()
-                            .x(function(d) { return d.label })
-                            .y(function(d) { return d.value })
-                            .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
-                            .showValues(true)           //Show bar value next to each bar.
-                            .tooltips(true)             //Show tooltips on hover.
-//                            .duration(350)
-                            .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
-
-                        chart.showXAxis(false)
-                        chart.yAxis
-                            .tickFormat(d3.format(',.2f'));
-
-                        d3.select('#chart3 svg')
-                            .datum([myData_chart3])
-                            .call(chart);
-
-                        nv.utils.windowResize(chart.update);
-
-                        return chart;
-                    });
-
-                    // Fill in last mitigation
-                    $('#likely_actor_last_mitigation p').empty();
-                    $('#likely_actor_last_mitigation p').append("After all other mitigations, mitigating " + data.likely_actor.last_mitigation + " removes all remaining attack paths.");
-
-                    // Return analysis statement to original text
-                    $('#likely_actor_analyze').empty();
-                    $('#likely_actor_analyze').append("The best mitigation to address the most likely actor is " + myData.values[1].name + " for an improvement of " + Math.round(myData.values[1].y * 100)/100 + "X over no mitigation.");
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    //alert(jqXHR.responseText);
-                    alert(errorThrown);
-                }
+            // Test if there is an overlap in the attributes and the graph
+            var nodes = []
+            var s = graphInstance;
+            s.graph.nodes().forEach(function(n) {
+                nodes.push(n.label)
             });
+            var attributes = get_attributes($("#attributes").val());
+            // http://documentcloud.github.io/underscore/
+            var overlap = _.intersection(nodes, attributes);
+            var everything = $.inArray("Everything", attributes);
+
+            // if an unacceptable worry is indicated, remove it
+            if (o['worry'] ==  "-") {
+                alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.")
+            } else if ((overlap.length) <= 0 & (everything == -1)) {
+                alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
+            } else {
+                $('#likely_actor_analyze').empty();
+                $('#likely_actor_analyze').append("Analysis beginning.  This analysis loops and may take 30 seconds or more.");
+                $('#chart2 svg').empty();
+                $('#chart2 p').empty();
+                $('#chart3 svg').empty();
+                $('#chart3 p').empty();
+
+                $.ajax({
+                    type: "GET",
+                    url: "/analyze_likely_actor/",
+                    contentType: "application/json; charset=utf-8",
+                    data: o,
+                    traditional:true,
+                    success: function(data) {
+                        console.log(data);  // DEBUG
+
+                        // Fill in the table with mitigations and relative improvement
+
+
+                        // Fill in Chart 2 (mitigations)
+                        myData = data.likely_actor.chart;
+                        $('#chart2 svg').empty();
+
+                        nv.addGraph(function() {
+                          var chart = nv.models.scatterChart()
+                                        .showDistX(true)    //showDist, when true, will display those little distribution lines on the axis.
+                                        .showDistY(true)
+                                        .yDomain([myData.values[myData.values.length - 1].y, 0])
+                                        .color(d3.scale.category10().range());
+                          //Configure how the tooltip looks.
+                          chart.tooltipContent(function(key, x, y, e, graph) {
+                            var s = "unknown";
+                //            console.log(graph);
+                            var pt = getGraphtPt(graph, x, y);
+                            if (pt !== null) {
+                                s = pt["name"];
+                            }
+                              return '<h3>' + key + ": " + s + '</h3>';
+                          });
+                          //Axis settings
+                          chart.xAxis.tickFormat(d3.format('d'));
+                          chart.yAxis.tickFormat(d3.format(',%'));
+                          //Axis Label
+                          chart.yAxis.axisLabel('Improvement Over No Mitigation');
+                          chart.xAxis.axisLabel('Mitigation Number');
+                //          console.log(myData)  // DEBUG
+                          d3.select('#chart2 svg')
+                              .datum([myData])
+                              .call(chart);
+                          nv.utils.windowResize(chart.update);
+                          return chart;
+                        });
+
+                        $('#chart2 p').empty();
+                        $('#chart2 p').append("This figure shows the best mitigation to take to stop the most likely actor \
+                                               and the relative improvement over no mitigation at all.");
+
+                        // Fill Chart 3 (paths)
+                        var myData_chart3 = {"key": "With Cumulative Mitigation",
+                                            "color": "#3b1f02",
+                                            "values": []
+                        };
+                        myData_chart3["values"] = format_chart_data(data.likely_actor.shortest_paths);
+
+                        $('#chart3 svg').empty();
+                        nv.addGraph(function() {
+                            var chart = nv.models.multiBarHorizontalChart()
+                                .x(function(d) { return d.label })
+                                .y(function(d) { return d.value })
+                                .margin({top: 30, right: 20, bottom: 50, left: 20})  // left changed from 175
+                                .showValues(true)           //Show bar value next to each bar.
+                                .tooltips(true)             //Show tooltips on hover.
+    //                            .duration(350)
+                                .showControls(false);        //Allow user to switch between "Grouped" and "Stacked" mode.
+
+                            chart.showXAxis(false)
+                            chart.yAxis
+                                .tickFormat(d3.format(',.2f'));
+
+                            d3.select('#chart3 svg')
+                                .datum([myData_chart3])
+                                .call(chart);
+
+                            nv.utils.windowResize(chart.update);
+
+                            return chart;
+                        });
+                        $('#chart3 p').empty();
+                        $('#chart3 p').append("This figure shows the shortest path before each mitigation.");
+
+
+                        // Fill in last mitigation
+                        $('#likely_actor_last_mitigation p').empty();
+                        $('#likely_actor_last_mitigation p').append("After all other mitigations, mitigating <b>" + data.likely_actor.last_mitigation + "</b> removes all remaining attack paths.");
+
+                        // Return analysis statement to original text
+                        $('#likely_actor_analyze').empty();
+                        $('#likely_actor_analyze').append("The best mitigation to address the most likely actor is <b>" + myData.values[1].name + "</b> for an improvement of <b>" + Math.round(myData.values[1].y * 100) + "%</b> over no mitigation.");
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        //alert(jqXHR.responseText);
+                        alert(errorThrown);
+                    }
+                });
+            };
         };
     });
 
