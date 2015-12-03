@@ -349,6 +349,8 @@ $(document).ready(function() {
         $("#likely_actor_output_div").hide();
         $("#comparative_output_div").hide();
         $('#chart1 svg').trigger('resize');
+        $('#attributes').attr('readonly', false);
+        $('#attributes').css('background-color', '#FFFFFF');
     })
 
     $("#likely_actor_tab").click(function() {
@@ -357,12 +359,16 @@ $(document).ready(function() {
         $("#comparative_output_div").hide();
         $('#chart2 svg').trigger('resize');
         $('#chart3 svg').trigger('resize');
+        $('#attributes').attr('readonly', false);
+        $('#attributes').css('background-color', '#FFFFFF');
     })
 
     $("#comparative_tab").click(function() {
         $("#all_actors_output_div").hide();
         $("#likely_actor_output_div").hide();
         $("#comparative_output_div").show();
+        $('#attributes').attr('readonly', true);
+        $('#attributes').css('background-color', '#CCCCCC');
     })
 
 
@@ -641,10 +647,43 @@ $(document).ready(function() {
                         alert(errorThrown);
                     }
                 });
+            }
+        }
+    });
+
+    // THis runs all actors analysis if the tab is visible
+    $("#analyze_button").click(function() {
+        if ($("#comparative_output_div").is(":visible")) {
+            // DEBUG
+    //        console.log($('#attributes').val())
+            var o = {
+                "worry": $('#worries').val(),
+                "mitigations1": $('#mitigations1').val(),
+                "mitigations2": $('#mitigations2').val()
+            };
+
+            if (o['worry'] ==  "-") {
+                alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.");
+            } else {
+                $.ajax({
+                    type: "GET",
+                    url: "/analyze_comparison/",
+                    contentType: "application/json; charset=utf-8",
+                    data: o,
+                    traditional:true,
+                    success: function(data) {
+                        console.log(data);  // DEBUG
+
+                        STUFF GOES HERE
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        //alert(jqXHR.responseText);
+                        alert(errorThrown);
+                    }
+                });
             };
         };
     });
-
 
     function getGraphtPt(graph, x1, y1) {
             var a = graph.series.values;

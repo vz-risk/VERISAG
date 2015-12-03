@@ -516,6 +516,61 @@ class analyze2(Resource):
         return analyzed
 
 
+# Analyze Comparison
+class analyze3(Resource):
+    api_parser = None
+    data = None
+    cache = None
+
+    def __init__(self):
+        global data, cache, analysis
+        self.data = data
+        self.cache = cache
+
+
+    def get(self):
+        logging.info("Request Received")
+        logging.debug("Request argument string: {0}".format(request.args))
+
+        api_args = parse_args(request.args)
+
+        #analysis = V2AG.attack_graph_analysis.analyze()  # should already be assigned
+        # Subset the data based on 'worries'
+        # check cache
+        if api_args['worry'] in cache:
+            logging.info("Cache hit. Retrieving attack graph.")
+            DBIRAG = cache[api_args['worry']]
+        #cache miss
+        elif data is not None:
+            logging.info("Cache miss.  Building attack graph.")
+            DBIRAG = build_graph(api_args)
+
+        else:
+            raise LookupError("Graph not cached and no data exists to build graph from.")
+
+        # Remove any dividers if selected
+        mitigations1 = list(set(api_args["mitigations1"]).difference(set(["-"])))
+        mitigations2 = list(set(api_args["mitigations2"]).difference(set(["-"])))
+
+        # Calculate paths for unmitigated graph
+        pass #TODO: all actors paths
+        pass #TODO: likely actor path
+
+        # Calculate paths for mitigations1 graph
+        pass #TODO: Remove mitigated nodes from graph
+        pass #TODO: all actors paths
+        pass #TODO: likely actor path
+
+        # Calculate paths for mitigations2 graph
+        pass #TODO: Remove mitigated nodes from graph
+        pass #TODO: all actors paths
+        pass #TODO: likely actor path
+
+        # Compare the mitigations
+        pass #TODO
+
+        # Return the comparison
+
 
 class paths(Resource):
     api_parser = None
@@ -592,6 +647,7 @@ class paths(Resource):
 api = Api(app)
 api.add_resource(analyze, '/analyze/')
 api.add_resource(analyze2, '/analyze_likely_actor/')
+api.add_resource(analyze3, '/analyze_comparison/')
 api.add_resource(paths, '/paths/')
 
 # Set up the GUI
