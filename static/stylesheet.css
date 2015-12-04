@@ -73,7 +73,7 @@ hr { width=50%}
   text-anchor: end;
 }
 
-th, td {
+#input_div td {
     border: 1px solid black;
     overflow: hidden;
     width: 45%;
@@ -122,4 +122,25 @@ th, td {
 
 #comparative_output_div {
     display:none;
+}
+
+#comparative_output_table {
+    width: 100%;
+    border: none;
+}
+
+.mitigations {
+    font-size: 18px;
+    width: 95%;
+    height:300px;
+    line-height:300px;   
+}
+
+#comparison_output td {
+    text-align: right;
+}
+
+.comparison_cell {
+    text-align: center;
+    border: 1px solid black;
 }

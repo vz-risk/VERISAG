@@ -319,12 +319,12 @@ class analyze():
         self.score = score()
 
 
-    def one_graph_multiple_paths(self, g, mitigate="any", node_to_mitigate=None, src=None, dst=None, output="print"):
+    def one_graph_multiple_paths(self, g, mitigate="any", nodes_to_mitigate=None, src=None, dst=None, output="print"):
         """ Takes a networkx attack graph, analyzes it, and prints a recommendation for a mitigation with associated expected value
 
             :param g: networkx digraph attack graph to analyze
             :param mitigate: String of either 'any', action', or 'attribute' used to limit what type of enumerations may be recommended for mitigation
-            :param node_to_mitigate: If included, it will be used as the mitigated node.  Otherwise, the script will pick one.
+            :param nodes_to_mitigate: List: If included, it will be used as the mitigated node(s).  Otherwise, the script will pick one.
             :param src: a list subset of actions to use as sources for paths.  If not included, all actions are used.
             :param dst: a list subset of attributes to use as destinations for paths.  If not included, all attributes are used.
             :return:  Recommendation is printed
@@ -336,7 +336,7 @@ class analyze():
         paths = self.helper.shortest_attack_paths(g, src=src, dst=dst)
         paths = {k: v for k, v in paths.iteritems() if v}  # This is necessary to remove empty paths
 
-        if not node_to_mitigate:
+        if not nodes_to_mitigate:
             # Score the graph
             node_scores = self.score.shortest_path_occurence(g, paths)  # score based on occurence in shortest paths
         #     node_scores = self.score.shortest_path_occurence(g, paths, mid=True)  # score based on occurence in shortest paths, but only ends
@@ -345,26 +345,27 @@ class analyze():
             # if no paths, don't bother with analysis
             if len(paths) > 0:
                 # Pick a node to mitigate
-                if mitigate is "any":
-                    node_to_mitigate = node_scores[0][0]
-                elif mitigate is "actions":
+                if mitigate == "any":
+                    nodes_to_mitigate = [node_scores[0][0]]
+                elif mitigate == "actions":
                     for k,v in node_scores:
                         if k.split(".", 1)[0] == "action":
-                            node_to_mitigate = k
+                            nodes_to_mitigate = [k]
                             break
 
-        # if no paths, don't bother with analysis
-        if len(paths) > 0:
             # Ensure there is some overlap between src & actions and dst and attributes.  Otherwise shortest path will error.  If no overlap, handle it.
             # Handle if only one node was requested to protect in which case we can't choose it as the node to mitigate.
             if src is not None and len(src) == 1 and node_scores[0][0] in src:
-                node_to_mitigate = node_scores[1][0]
+                nodes_to_mitigate = [node_scores[1][0]]
             if dst is not None and len(dst) == 1 and  node_scores[0][0] in dst:
-                node_to_mitigate = node_scores[1][0]
+                nodes_to_mitigate = [node_scores[1][0]]
 
+
+        # if no paths, don't bother with analysis
+        if len(paths) > 0:
             # Pick a node to mitigate
             after_g = g.copy()
-            after_g.remove_node(node_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
+            after_g.remove_nodes_from(nodes_to_mitigate)  # Should this look for the first 'action' rather than either action or attribute?
 
             # Recreate paths (using only the key pairs that still exist in after_g)
             after_paths = self.helper.shortest_attack_paths(after_g, src=src, dst=dst)
@@ -372,7 +373,7 @@ class analyze():
             before_paths = {k: v for k, v in paths.iteritems() if k in after_paths.keys()}
 
             #logging.debug("Paths src/dst: {0}".format(paths.keys()))
-            #logging.debug("Mitigated node: {0}".format(node_to_mitigate))
+            #logging.debug("Mitigated node: {0}".format(nodes_to_mitigate))
             #logging.debug("After paths src/dst: {0}".format(after_paths.keys()))
             #logging.debug("Before paths src/dst: {0}".format(before_paths.keys()))
 
@@ -408,18 +409,18 @@ class analyze():
         if len(paths) > 0:
             if output is "print":
                 if len(after_paths) > 0:
-                    print "Removing {0} decreased available paths by {1}%.".format(node_to_mitigate, round(len(removed_paths)/float(len(paths)) * 100, 2))
+                    print "Removing {0} decreased available paths by {1}%.".format(", ".join(nodes_to_mitigates), round(len(removed_paths)/float(len(paths)) * 100, 2))
                     print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
                     print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
                 else:
-                    print "Removing {0} removed all attack paths.  In this scenario, all attributes are protected.".format(node_to_mitigate)
+                    print "Removing {0} removed all attack paths.  In this scenario, all attributes are protected.".format(", ".join(nodes_to_mitigate))
             else:
-                return node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
+                return nodes_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
         else:
             if output is "print":
                 print "No paths existed so no mitigations may be applied."
             else:
-                return None, {}, {}, {}, 0, 0  # node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
+                return None, {}, {}, {}, 0, 0  # nodes_to_mitigate, removed_paths, paths, after_paths, before_score, after_score
 
 
 

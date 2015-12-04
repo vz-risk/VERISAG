@@ -215,6 +215,10 @@ def parse_args(args):
     api_args = dict()
     api_args['worry'] = args['worry']
     api_args['attributes'] = args.getlist('attributes')
+    if "mitigations1" in args:
+        api_args["mitigations1"] = args.getlist("mitigations1")
+    if "mitigations2" in args:
+        api_args["mitigations2"] = args.getlist("mitigations2")
     """
     self.api_parser = api_parser
     api_args = self.api_parser.parse_args()
@@ -328,7 +332,7 @@ class analyze(Resource):
         if not error:
             logging.info("Doing all actors analysis.")
             
-            node_to_mitigate, removed_paths, paths, after_paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
+            nodes_to_mitigate, removed_paths, paths, after_paths, before_score, after_score = analysis.one_graph_multiple_paths(ATK.g, dst=attributes, output="return")
 
             logging.debug("Removed paths: {0}".format(len(removed_paths)))
             logging.debug("Paths: {0}".format(len(paths)))
@@ -338,8 +342,8 @@ class analyze(Resource):
             logging.info("Formatting the output.")
             analyzed = dict()
             analyzed['error'] = list(error)
-            analyzed['controls'] = node_to_mitigate
-            # below if/then handles if all paths were removed by mitigating node_to_mitigate
+            analyzed['controls'] = ", ".join(nodes_to_mitigate)
+            # below if/then handles if all paths were removed by mitigating nodes_to_mitigate
             if len(removed_paths) - len(paths.keys()) != 0:
                 analyzed['removed_paths'] = round(len(removed_paths)/float(len(paths)) * 100, 1)
                 analyzed['dist_increase'] = round((after_score - before_score)/before_score * 100, 1)
@@ -548,29 +552,108 @@ class analyze3(Resource):
         else:
             raise LookupError("Graph not cached and no data exists to build graph from.")
 
+        # correct the attributes list (remove aggregations)
+        attributes, error = parse_attributes(api_args)
+
+        logging.debug("api_args: {0}".format(api_args))
+
         # Remove any dividers if selected
         mitigations1 = list(set(api_args["mitigations1"]).difference(set(["-"])))
         mitigations2 = list(set(api_args["mitigations2"]).difference(set(["-"])))
 
-        # Calculate paths for unmitigated graph
-        pass #TODO: all actors paths
-        pass #TODO: likely actor path
 
+        logging.info("Beginning mitigations 1 analysis.")
         # Calculate paths for mitigations1 graph
-        pass #TODO: Remove mitigated nodes from graph
-        pass #TODO: all actors paths
-        pass #TODO: likely actor path
+        #Create Mitigations
+        #mitigations1 = set(mitigations1).intersection(DBIRAG.g.nodes())
+        # all actors paths
+        logging.info("All actors analysis beginning.")
+        nodes_to_mitigate, mitigations1_removed_paths, mitigations1_before_paths, mitigations1_all_actors_paths, mitigations1_before_score, mitigations1_all_actors_score = analysis.one_graph_multiple_paths(DBIRAG.g, nodes_to_mitigate=mitigations1, dst=attributes, output="return")
+        if set(nodes_to_mitigate).difference(mitigations1):
+            logging.warning("Nodes to mitigate: {0} does not match requested mitigations: {1}".format(", ".join(nodes_to_mitigate), ", ".join(mitigations1)))
+        # Build graph after mitigation to test path lengths in
+        # NOTE: I don't think this is needed as no edge distances change
+        #after_g = DBIRg.copy()
+        #after_g = after_g.remove_nodes_from(mitigations1)
+        #likely actor path
+        logging.info("Likely actor analysis beginning.")
+        try:
+            mitigations1_likely_actor = analysis.helper.path_length(DBIRAG.g, mitigations1_all_actors_paths.items()[0][1])  # just get a path/length to initialize with
+            for path in mitigations1_all_actors_paths.values():
+                _, length = analysis.helper.path_length(DBIRAG.g, path)
+                if length < mitigations1_likely_actor[1]:
+                    mitigations1_likely_actor = path, length
+        except Exception as e:
+            logging.error(e)
+            raise
+        # mitigations1_likely_actor is now a tuple of (shortest_path_after_mitigation, shortest_path_length)
+        logging.info("Mitigation 1 analysis complete.")
 
-        # Calculate paths for mitigations2 graph
-        pass #TODO: Remove mitigated nodes from graph
-        pass #TODO: all actors paths
-        pass #TODO: likely actor path
+        # Calculate paths for unmitigated graph
+        #TODO: All actors paths (see below)
+        #unmitigated_all_actors_score = before_score # relative score
+        #unmitigated_all_actors_paths = paths # dict keyed by (src, dst) with value of list of nodes in the path
+        #likely actor path
+        mitigations1_unmitigated_likely_actor = analysis.helper.path_length(DBIRAG.g, mitigations1_before_paths.items()[0][1])  # just get a path/length to initialize with
+        for path in mitigations1_before_paths.values():
+            _, length = analysis.helper.path_length(DBIRAG.g, path)
+            if length < mitigations1_unmitigated_likely_actor[1]:
+                mitigations1_unmitigated_likely_actor = path, length
 
-        # Compare the mitigations
-        pass #TODO
+        #Create Mitigations
+        #mitigations2 = set(mitigations2).intersection(DBIRAG.g.nodes())
+        # all actors paths
+        nodes_to_mitigate, mitigations2_removed_paths, mitigations2_before_paths, mitigations2_all_actors_paths, mitigations2_before_score, mitigations2_all_actors_score = analysis.one_graph_multiple_paths(DBIRAG.g, nodes_to_mitigate=mitigations2, dst=attributes, output="return")
+        if set(nodes_to_mitigate).difference(mitigations2):
+            logging.warning("Nodes to mitigate: {0} does not match requested mitigations: {1}".format(", ".join(nodes_to_mitigate), ", ".join(mitigations2)))
+        # Build graph after mitigation to test path lengths in
+        # NOTE: I don't think this is needed as no edge distances change
+        #after_g = DBIRg.copy()
+        #after_g = after_g.remove_nodes_from(mitigations2)
+        #likely actor path
+        mitigations2_likely_actor = analysis.helper.path_length(DBIRAG.g, mitigations2_all_actors_paths.items()[0][1])  # just get a path/length to initialize with
+        for path in mitigations2_all_actors_paths.values():
+            _, length = analysis.helper.path_length(DBIRAG.g, path)
+            if length < mitigations2_likely_actor[1]:
+                mitigations2_likely_actor = path, length
+
+        # Calculate paths for unmitigated graph
+        #TODO: All actors paths (see below)
+        #unmitigated_all_actors_score = before_score # relative score
+        #unmitigated_all_actors_paths = paths # dict keyed by (src, dst) with value of list of nodes in the path
+        #likely actor path
+        mitigations2_unmitigated_likely_actor = analysis.helper.path_length(DBIRAG.g, mitigations2_before_paths.items()[0][1])  # just get a path/length to initialize with
+        for path in mitigations2_before_paths.values():
+            _, length = analysis.helper.path_length(DBIRAG.g, path)
+            if length < mitigations2_unmitigated_likely_actor[1]:
+                mitigations2_unmitigated_likely_actor = path, length
+
 
         # Return the comparison
-
+        # NOTE: Rather than return the paths for visualization, I'm just returning counts needed to produce the comparison. 
+        #       I should update the other pages of the webapp to allow people to specify their mitigations and see the resulting detailed analysis.
+        return {
+            "mitigations1_unmitigated": {
+                "all_actors_score": mitigations1_before_score,
+                "all_actors_path_count": len(mitigations1_before_paths),
+                "likely_actor_path_length": mitigations1_unmitigated_likely_actor[1]
+            },
+            "mitigations1": {
+                "all_actors_score": mitigations1_all_actors_score,
+                "all_actors_path_count": len(mitigations1_removed_paths),
+                "likely_actor_path_length": mitigations1_likely_actor[1]
+            },
+            "mitigations2_unmitigated": {
+                "all_actors_score": mitigations2_before_score,
+                "all_actors_path_count": len(mitigations2_before_paths),
+                "likely_actor_path_length": mitigations2_unmitigated_likely_actor[1]
+            },
+            "mitigations2": {
+                "all_actors_score": mitigations2_all_actors_score,
+                "all_actors_path_count": len(mitigations2_removed_paths),
+                "likely_actor_path_length": mitigations2_likely_actor[1]
+            }
+        }
 
 class paths(Resource):
     api_parser = None

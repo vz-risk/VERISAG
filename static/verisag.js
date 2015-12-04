@@ -237,6 +237,13 @@ $(document).ready(function() {
         $('#chart3 svg').empty();
         $('#chart3 p').empty();
 
+        // Clear comparison analysis stuff
+        $('.comparison_cell').empty()
+        $('.comparison_cell').css('background-color', 'white');
+        $('#comparison_output p').empty();
+        $('#comparison_output p').append("Please click the 'analyze' button to compare mitigations using the graph.");
+        $('#mitigations1_col p').empty();
+        $('#mitigations2_col p').empty();
     });
 
 
@@ -341,6 +348,13 @@ $(document).ready(function() {
         $('#chart3 svg').empty();
         $('#chart3 p').empty();
 
+        // Clear comparison analysis stuff
+        $('.comparison_cell').empty()
+        $('.comparison_cell').css('background-color', 'white');
+        $('#comparison_output p').empty();
+        $('#comparison_output p').append("Please click the 'analyze' button to compare mitigations using the graph.");
+        $('#mitigations1_col p').empty();
+        $('#mitigations2_col p').empty();
     });
 
     // Allow the tabs to hide and unhide stuff
@@ -349,8 +363,8 @@ $(document).ready(function() {
         $("#likely_actor_output_div").hide();
         $("#comparative_output_div").hide();
         $('#chart1 svg').trigger('resize');
-        $('#attributes').attr('readonly', false);
-        $('#attributes').css('background-color', '#FFFFFF');
+        //$('#attributes').attr('readonly', false);
+        //$('#attributes').css('background-color', '#FFFFFF');
     })
 
     $("#likely_actor_tab").click(function() {
@@ -359,16 +373,16 @@ $(document).ready(function() {
         $("#comparative_output_div").hide();
         $('#chart2 svg').trigger('resize');
         $('#chart3 svg').trigger('resize');
-        $('#attributes').attr('readonly', false);
-        $('#attributes').css('background-color', '#FFFFFF');
+        //$('#attributes').attr('readonly', false);
+        //$('#attributes').css('background-color', '#FFFFFF');
     })
 
     $("#comparative_tab").click(function() {
         $("#all_actors_output_div").hide();
         $("#likely_actor_output_div").hide();
         $("#comparative_output_div").show();
-        $('#attributes').attr('readonly', true);
-        $('#attributes').css('background-color', '#CCCCCC');
+        //$('#attributes').attr('readonly', true);
+        //$('#attributes').css('background-color', '#CCCCCC');
     })
 
 
@@ -656,14 +670,45 @@ $(document).ready(function() {
         if ($("#comparative_output_div").is(":visible")) {
             // DEBUG
     //        console.log($('#attributes').val())
+
+            // Clear stuff
+            //$('#paths1').empty();
+            //$('#paths2').empty(); 
+            //$('#allLength1').empty();
+            //$('#allLength2').empty(); 
+            //$('#likelyLength1').empty();
+            //$('#likelyLength2').empty();
+            //$('#mitigations1_col p').empty();
+            //$('#mitigations2_col p').empty();
+            $('.comparison_cell').empty()
+            $('.comparison_cell').css('background-color', 'white');
+            $('#comparison_output p').empty();
+            $('#comparison_output p').append("Analysis beginning.  Please allow up to a minute to complete.");
+            $('#mitigations1_col p').empty();
+            $('#mitigations2_col p').empty();
+
             var o = {
                 "worry": $('#worries').val(),
+                "attributes": $('#attributes').val(),
                 "mitigations1": $('#mitigations1').val(),
                 "mitigations2": $('#mitigations2').val()
             };
 
+            // Test if there is an overlap in the attributes and the graph
+            var nodes = []
+            var s = graphInstance;
+            s.graph.nodes().forEach(function(n) {
+                nodes.push(n.label)
+            });
+            var attributes = get_attributes($("#attributes").val());
+            // http://documentcloud.github.io/underscore/
+            var overlap = _.intersection(nodes, attributes);
+            var everything = $.inArray("Everything", attributes);
+
             if (o['worry'] ==  "-") {
                 alert("The 'worry' choise is invalid.  please select 'everything' or a valid worry.");
+            } else if ((overlap.length) <= 0 & (everything == -1)) {
+                alert("The attribute(s) you chose to protect do not exist in the graph from your 'worry' choice.  Please update your choices and analyze again.")
             } else {
                 $.ajax({
                     type: "GET",
@@ -674,7 +719,89 @@ $(document).ready(function() {
                     success: function(data) {
                         console.log(data);  // DEBUG
 
-                        STUFF GOES HERE
+                        var mitigation1_all_actors_score_improvement = (data.mitigations1.all_actors_score - data.mitigations1_unmitigated.all_actors_score) / data.mitigations1_unmitigated.all_actors_score * 100
+                        var mitigation1_all_actors_path_improvement = data.mitigations1.all_actors_path_count / data.mitigations1_unmitigated.all_actors_path_count * 100
+                        console.log("Mitigation 1 removes " + mitigation1_all_actors_path_improvement + "% paths and increases the others by " + mitigation1_all_actors_score_improvement + "% over no mitigations.")
+                        var mitiations1_likely_actor_improvement = (data.mitigations1.likely_actor_path_length - data.mitigations1_unmitigated.likely_actor_path_length) / data.mitigations1_unmitigated.likely_actor_path_length * 100
+                        console.log("Mitigation 1 increases the improvement against the most likely actor by " + mitiations1_likely_actor_improvement + "%.")
+
+                        var mitigation2_all_actors_score_improvement = (data.mitigations2.all_actors_score - data.mitigations2_unmitigated.all_actors_score) / data.mitigations2_unmitigated.all_actors_score * 100
+                        var mitigation2_all_actors_path_improvement = data.mitigations2.all_actors_path_count / data.mitigations2_unmitigated.all_actors_path_count * 100
+                        console.log("Mitigation 2 removes " + mitigation2_all_actors_path_improvement + "% paths and increases the others by " + mitigation2_all_actors_score_improvement + "% over no mitigations.")
+                        var mitiations2_likely_actor_improvement = (data.mitigations2.likely_actor_path_length - data.mitigations2_unmitigated.likely_actor_path_length) / data.mitigations2_unmitigated.likely_actor_path_length * 100
+                        console.log("Mitigation 2 increases the improvement against the most likely actor by " + mitiations2_likely_actor_improvement + "%.")
+
+                        // TODO: TAKE THE CALCULATIONS ABOVE AND, INSTEAD OF LOGGING THEM TO CONSOLE, DISPLAY THEM IN THE GUI.
+                        // Text below select boxes
+                        $('#mitigations1_col p').append("Mitigation Set 1 removes " + Math.round(mitigation1_all_actors_path_improvement) + "% paths and increases the others by " + Math.round(mitigation1_all_actors_score_improvement) + "% over no mitigations.<br/>"
+                                                        + "Mitigation Set 1 increases the improvement against the most likely actor by " + Math.round(mitiations1_likely_actor_improvement) + "%.");  
+
+
+                        $('#mitigations2_col p').append("Mitigation Set 2 removes " + Math.round(mitigation2_all_actors_path_improvement) + "% paths and increases the others by " + Math.round(mitigation2_all_actors_score_improvement) + "% over no mitigations.<br/>"
+                                                        + "Mitigation Set 2 increases the improvement against the most likely actor by " + Math.round(mitiations2_likely_actor_improvement) + "%.");                        
+
+                        //Fill in cells
+                        $('#paths1').append(Math.round(mitigation1_all_actors_path_improvement) + "%");
+                        $('#paths2').append(Math.round(mitigation2_all_actors_path_improvement) + "%");
+                        $('#allLength1').append(Math.round(mitigation1_all_actors_score_improvement) + "%");
+                        $('#allLength2').append(Math.round(mitigation2_all_actors_score_improvement) + "%");
+                        $('#likelyLength1').append(Math.round(mitiations1_likely_actor_improvement) + "%");
+                        $('#likelyLength2').append(Math.round(mitiations2_likely_actor_improvement) + "%");  
+
+                        var l, m, n;
+                        if (mitigation1_all_actors_path_improvement > mitigation2_all_actors_path_improvement) {
+                            $('#paths1').css('background-color', '#7FFF00');
+                            l = 1;
+                        }  else if (mitigation1_all_actors_path_improvement < mitigation2_all_actors_path_improvement) {
+                            $('#paths2').css('background-color', '#7FFF00');
+                            l = -1;
+                        } else {
+                            $('#paths1').css('background-color', '#7FFF00');
+                            $('#paths2').css('background-color', '#7FFF00');
+                            l = 0;
+                        };
+
+                        if (mitigation1_all_actors_score_improvement > mitigation2_all_actors_score_improvement) {
+                            $('#allLength1').css('background-color', '#7FFF00');
+                            m = 1;
+                        }  else if (mitigation1_all_actors_score_improvement < mitigation2_all_actors_score_improvement) {
+                            $('#allLength2').css('background-color', '#7FFF00');
+                            m = -1;
+                        } else {
+                            $('#allLength1').css('background-color', '#7FFF00');
+                            $('#allLength2').css('background-color', '#7FFF00');
+                            m= 0
+                        };
+
+                        if (mitiations1_likely_actor_improvement > mitiations2_likely_actor_improvement) {
+                            $('#likelyLength1').css('background-color', '#7FFF00');
+                            n = 1;
+                        }  else if (mitiations1_likely_actor_improvement < mitiations2_likely_actor_improvement) {
+                            $('#likelyLength2').css('background-color', '#7FFF00');
+                            n = -1;
+                        } else {
+                            $('#likelyLength1').css('background-color', '#7FFF00');
+                            $('#likelyLength2').css('background-color', '#7FFF00');
+                            n = 0;
+                        };
+
+                        // Make recommendation
+                        $('#comparison_output p').empty();
+                        if (l + m >= 1) {
+                            $('#comparison_output p').append("Mitigation Set 1 is the clear choice to address all actors.<br/>");
+                        } else if (l + m <= -1) {
+                            $('#comparison_output p').append("Mitigation Set 2 is the clear choice to address all actors.<br/>");
+                        } else {
+                            $('#comparison_output p').append("There is no clear choice to address all actors.<br/>");
+                        };
+                        if (n == 1) {
+                            $('#comparison_output p').append("Mitigation Set 1 is the clear choice to address the most likely actor.");
+                        } else if (n == -1) {
+                            $('#comparison_output p').append("Mitigation Set 2 is the clear choice to address the most likely actor.");
+                        } else {
+                            $('#comparison_output p').append("There is no clear choice to address the most likely actor.");
+                        };
+
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         //alert(jqXHR.responseText);
