@@ -46,7 +46,12 @@ import networkx as nx
 import logging
 import os
 import imp
-
+from networkx.algorithms import simple_paths
+from pyveplot import *
+from math import pi
+import random
+import numpy as np
+import colorsys
 
 class helper():
     def __init__(self):
@@ -246,6 +251,37 @@ class helper():
 
         return g_out
 
+    def color(r=149, g=251, b=255, hex=None):
+        """ Takes an RGB value and returns slight variations on the color
+        :param r: red value (0-255)
+        :param g: green value (0-255)
+        :param b: blue value (0-255)
+        :param hex: unused
+        :return: "#XXYYZZ formated RGB color similar to the input color
+        """
+        #TODO: if 'hex' supplied, turn it into a r, g, b value.
+
+        h, l, s = colorsys.rgb_to_hls(r/255., g/255., b/255.)
+        #print h, l, s
+        hueSD = 0.02
+        l_SD = 0.075
+        s_SD = 0.05
+        while 1:
+            hue = abs(np.random.normal(h, hueSD))
+            lightness = abs(np.random.normal(l, l_SD))
+            saturation = abs(np.random.normal(s, s_SD))
+            if hue <= 1 and lightness <= 1 and saturation <= 1:
+                break
+
+        #r, g, b = colorsys.hls_to_rgb(hue, lightness, saturation)
+        r, g, b = colorsys.hls_to_rgb(h, lightness, saturation)
+
+
+        r *= 255
+        g *= 255
+        b *= 255
+
+        return '#%02x%02x%02x' % (r, g, b)
 
 class score():
     def __init__(self):
@@ -642,3 +678,186 @@ class analyze():
         else:
             print "The following paths are in the reference graph but not the analyzed graph."
             tabulate(set(baseline_paths.keys()).difference(mutual_pairs), headers=["Source", "Destination"])
+
+    def k_shortest_paths(self, G, source, target, k, weight=None):
+        return list(islice(simple_paths.shortest_simple_paths(G, source, target, weight=weight), k))
+
+
+    """
+        # choose how many paths you want to include in the graph
+        num_paths = 100  # 1000 or less
+        g
+        start node
+        end node
+        weight value
+        output file
+        output type (networkx graph, hive plot)
+    """
+    def path_graph(self):
+        paths = list(k_shortest_paths(g, "start", "end", 1000, weight="weight"))
+
+        # start a new graph
+        path_graph = nx.DiGraph()
+        # dictionary for node occurence counts
+        node_counts = defaultdict(int)
+
+
+        # build the graph from the shortes paths
+        # Nodes will be named the action/attribute but designated by their step in the path (except start and end)
+        # Nodes will have their count set (number of times occuring in paths) and weight (weight from attack graph)
+        for path in paths[:num_paths]:
+            for i in range(len(path) - 1):
+                node_counts[path[i]] += 1
+                node_counts[path[i+1]] += 1
+
+                if path[i] != "start":
+                    src = path[i] + "_{0}".format(i)
+                else:
+                    src = "start"
+                if path[i+1] != "end":
+                    dst = path[i+1] + "_{0}".format(i+1)
+                else:
+                    dst = "end"
+
+                if not path_graph.has_edge(src, dst):
+                    path_graph.add_edge(src,
+                                        dst, 
+                                        attr_dict={"count":1, "weight":g[path[i]][path[i+1]]["weight"]})
+                    path_graph.node[src] = {"step": i, "name":src, "label": path[i], "sub_type":g.node[path[i]]['sub_type']}
+                    path_graph.node[dst] = {"step": i+1, "name":dst, "label": path[i+1], "sub_type":g.node[path[i]]['sub_type']}
+                else:
+                    path_graph[src][dst]["count"] += 1
+
+        # Set node counts: the number of times the action/attribute was seen
+        for node in path_graph.nodes():
+            path_graph.node[node]["count"] = node_counts[path_graph.node[node]["label"]]
+
+        #  Set the "end" node step to the max step
+        path_graph.node["end"]["step"] = 1
+        for node, data in path_graph.nodes(data=True):
+            if data['step'] > path_graph.node["end"]["step"]:
+                path_graph.node["end"]["step"] = data['step']
+        path_graph.node["end"]["step"] += 1
+
+#        # save the graph
+#        nx.write_graphml(path_graph, "/Volumes/verizon/customer_and_partner_data/PHI2015/healthcare/shortest_paths_graph_{0}.graphml".format(num_paths))
+        return path_graph
+
+    """
+        OUTFILE = "/Volumes/verizon/customer_and_partner_data/PHI2015/healthcare/hive.svg"
+    """
+    def path_hive_plot(self):
+        # In python for hiveplot
+        num_axes = 5
+        center = (200, 200)
+
+        path_graph_copy = nx.copy.deepcopy(path_graph)
+        h = Hiveplot(OUTFILE)
+
+        # Set a background color
+        h.dwg.add(h.dwg.rect(insert=(0, 0), size=('100%', '100%'), rx=None, ry=None, fill='rgb(2,47,89)'))
+
+        # put "end" on the "start" axis
+        path_graph_copy.node["end"]["step"] = 0
+
+        nodes_per_step = defaultdict(int)
+        node_cnts = list()
+        for node, data in path_graph_copy.nodes(data=True):
+            nodes_per_step[data['step']] += 1
+            node_cnts.append(data["count"])
+
+        # change start and end node sizes to median * 1.2
+        path_graph_copy.node["start"]["count"] = np.median(node_cnts) * 2
+        path_graph_copy.node["end"]["count"] = np.median(node_cnts) * 2
+
+
+        pallet = {"action": "red", "attribute": "blue", "start": "green", "end": "purple"}
+
+        node_list = list()
+        axis_length = [0] * 5
+        for node, data in path_graph_copy.nodes(data=True):
+            # going to treat R as the sqrt() so node volume ~ count
+            # (name, step, location, radius)
+            node_list.append((node, data["step"], axis_length[data["step"]] + 2 + sqrt(data["count"]), sqrt(data["count"])))
+            axis_length[data["step"]] += 4 + sqrt(data["count"]) * 2
+
+        # randomize the node list
+        #random.shuffle(node_list)
+
+        axes = list()
+        for i in range(num_axes):
+            #delta_y = sin(2*pi/num_axes * i) * nodes_per_step[i] * 10
+            #delta_x = cos(2*pi/num_axes * i) * nodes_per_step[i] * 10
+            delta_y = sin(2*pi/num_axes * i) * axis_length[i]
+            delta_x = cos(2*pi/num_axes * i) * axis_length[i]
+            print (i, center[0]+delta_x, center[1]+delta_y)  # debug
+            axes.append(Axis(center, (center[0]+delta_x, center[1]+delta_y), stroke=color()))
+        h.axes = axes
+
+        # distribute nodes on axes
+        #for n, data in path_graph_copy.nodes(data=True):
+        #axis_length_2 = [0] * 5
+        for n, a, l, r in node_list:
+            #node = Node(n) 
+            node = Node(n)
+            #h.axes[data["step"]].add_node( node, random.random())
+            h.axes[a].add_node( node, l/axis_length[a])
+            node.dwg = node.dwg.circle(center = (node.x, node.y),
+                               #r      = float(data['count']) / 10.0,
+                               r      = r,
+                               #fill   = pallet[data['sub_type'].split(".",2)[0]],
+                               fill   = color(),
+                               fill_opacity = 0.75,
+                               #stroke = pallet[data['sub_type'].split(".",2)[0]],
+                               stroke = color(),
+                               stroke_width = 0.3)
+
+        for e in path_graph_copy.edges(data=True):
+            if (e[0] in h.axes[0].nodes) and (e[1] in h.axes[1].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[0], e[0], 45,
+                          h.axes[1], e[1], -45,
+                          #stroke_width='0.34', stroke_opacity='0.4',
+                          #stroke_width=1.34 - e[2]["weight"], stroke_opacity=sqrt(e[2]["count"]),
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[1].nodes) and (e[1] in h.axes[2].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[1], e[0], 45,
+                          h.axes[2], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[2].nodes) and (e[1] in h.axes[3].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[2], e[0], 45,
+                          h.axes[3], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[3].nodes) and (e[1] in h.axes[4].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[3], e[0], 45,
+                          h.axes[4], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[4].nodes) and (e[1] in h.axes[0].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[4], e[0], 45,
+                          h.axes[0], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[1].nodes) and (e[1] in h.axes[0].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[1], e[0], 45,
+                          h.axes[0], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[2].nodes) and (e[1] in h.axes[0].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[2], e[0], 45,
+                          h.axes[0], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+            elif (e[0] in h.axes[3].nodes) and (e[1] in h.axes[0].nodes):       # edges from axis0 to axis1
+                h.connect(h.axes[3], e[0], 45,
+                          h.axes[0], e[1], -45,
+                          stroke_width=sqrt(1/e[2]["weight"]), stroke_opacity=sqrt(e[2]["count"]),
+                          stroke=color())
+
+        # Set a background color
+        #h.add(dwg.rect(insert=(0, 0), size=('100%', '100%'), rx=None, ry=None, fill='rgb(2,47,89)'))
+
+        # Save
+        h.save()
