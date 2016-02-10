@@ -165,8 +165,13 @@ class attack_graph():
     data = None # note, data will be the dataframe if source is Dataframe and will be the list of files if source is JSON
     base_mappings = None
     df_name = None
+    supergraph = False
 
-    def __init__(self, data_source=VERIS_DIRS, filter_file=None, build=True, df_name="vcdb"):
+    def __init__(self, data_source=VERIS_DIRS, filter_file=None, build=True, df_name="vcdb", supergraph=None):
+        if supergraph is not None and type(supergraph) == bool:
+            logging.debug("Setting supergraph to {0}.".format(supergraph))
+            self.supergraph = supergraph
+
         # create the filters
         self.filter_file = filter_file
         self.filters = self.create_filters()
@@ -220,6 +225,8 @@ class attack_graph():
         - Iterate edge count
         - Iterate node count
         '''
+        # create supergraph (no varieties/vectors)
+        supergraph = self.supergraph
 
         # filter unwanted stuff
         actions = self.filter_record(actions)
@@ -251,18 +258,31 @@ class attack_graph():
             for enum in set(actions).union(set(attributes)):
                 enum_split = enum.split(".", 2)
                 if not self.g.has_node(enum):
-                    properties = {
-                        'type': enum_split[0],
-                        'sub_type': ".".join(enum_split[0:2]),
-                        'count': 1,
-                        'Label': enum
-                    }
+                    if supergraph:
+                        enum = ".".join(enum_split[0:2])
+                        properties = {
+                            'type': enum_split[0],
+                            'sub_type': enum,
+                            'count': 1,
+                            'Label': enum
+                        }
+                    else:
+                        properties = {
+                            'type': enum_split[0],
+                            'sub_type': ".".join(enum_split[0:2]),
+                            'count': 1,
+                            'Label': enum
+                        }
                     self.g.add_node(enum, attr_dict=properties)
                 else:
                     self.g.node[enum]['count'] += 1
 
 
-    def build(self, data=None):
+    def build(self, data=None, supergraph=None):
+        if supergraph is not None and type(supergraph) == bool:
+            logging.debug("Setting supergraph to {0}.".format(supergraph))
+            self.supergraph = supergraph
+
         # Get the data
         if self.data_type == "json":
             logging.info('Creating list of JSON records.')
@@ -395,26 +415,47 @@ class attack_graph():
 
 
     def get_or_create_nodes_and_edge(self, src, dst, edge_count=1, attr_dict={}):
-        # if the source node doesn't exist, create it.  Otherwise, incriment it's counter.
+        supergraph = self.supergraph
+
         src_split = src.split(".", 2)
-        if not self.g.has_node(src):
-            properties = {
+        dst_split = dst.split(".", 2)
+            
+        if supergraph:
+            src = ".".join(src_split[0:2])
+            src_properties = {
+                'type': src_split[0],
+                'sub_type': src,
+                'count': 1,
+                'Label': src
+            }
+            dst = ".".join(dst_split[0:2])
+            dst_properties = {
+                'type': dst_split[0],
+                'sub_type': dst,
+                'count': 1,
+                'Label': dst
+            }
+        else:
+            src_properties = {
                 'type': src_split[0],
                 'sub_type': ".".join(src_split[0:2]),
                 'count': 1,
                 'Label': src
             }
-            self.g.add_node(src, attr_dict=properties)
-        # if the destination node doesn't exist, create it.  Otherwise, incriment it's counter.
-        dst_split = dst.split(".", 2)
-        if not self.g.has_node(dst):
-            properties = {
+            dst_properties = {
                 'type': dst_split[0],
                 'sub_type': ".".join(dst_split[0:2]),
                 'count': 1,
                 'Label': dst
             }
-            self.g.add_node(dst, attr_dict=properties)
+
+        # if the source node doesn't exist, create it.  Otherwise, incriment it's counter.
+        if not self.g.has_node(src):
+            self.g.add_node(src, attr_dict=src_properties)
+        # if the destination node doesn't exist, create it.  Otherwise, incriment it's counter.
+        dst_split = dst.split(".", 2)
+        if not self.g.has_node(dst):
+            self.g.add_node(dst, attr_dict=dst_properties)
         #   else:
         #       g.node[dst]['count'] += 1
         # If the edge doesn't exist, create it.  Otherwise, incriment it's counter.
