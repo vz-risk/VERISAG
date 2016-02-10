@@ -257,9 +257,10 @@ class attack_graph():
             # incriment node counters
             for enum in set(actions).union(set(attributes)):
                 enum_split = enum.split(".", 2)
+                if supergraph:
+                    enum = ".".join(enum_split[0:2])
                 if not self.g.has_node(enum):
                     if supergraph:
-                        enum = ".".join(enum_split[0:2])
                         properties = {
                             'type': enum_split[0],
                             'sub_type': enum,
@@ -550,13 +551,13 @@ class attack_graph():
             actions.append('action.error.variety.{0}'.format(enum))
         except KeyError:
           pass
-        '''
         # Parse evironmental actions
         try:
             for enum in record['action']['environmental']['variety']:
                 actions.append('action.environmental.variety.{0}'.format(enum))
         except KeyError:
             pass
+        '''
         # Parse misuse actions
         try:
             for enum in record['action']['misuse']['variety']:
@@ -604,7 +605,8 @@ class attack_graph():
                     self.add_record_to_graph(actions, attributes)
         elif self.data_type == 'dataframe':
             # get rows to filter from records
-            act_regex = re.compile("^action\.(malware\.vector|((hacking|error|environmental|misuse|physical|social|malware)\.variety))")
+            #act_regex = re.compile("^action\.(malware\.vector|((hacking|error|environmental|misuse|physical|social|malware)\.variety))")
+            act_regex = re.compile("^action\.(malware\.vector|((hacking|misuse|physical|social|malware)\.variety))")
             act_cols = [l for l in self.data.columns for m in [act_regex.search(l)] if m]  # returns action columns
             att_regex = re.compile("^attribute\.(confidentiality\.data|integrity|availability)\.variety")
             att_cols = [l for l in self.data.columns for m in [att_regex.search(l)] if m]  # returns action columns
