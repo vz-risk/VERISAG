@@ -180,7 +180,7 @@ class attack_graph():
             self.data_type = 'dataframe'
             self.data_source = data_source
             self.data = pd.read_csv(self.data_source)
-        if type(data_source) == str and data_source.split(".")[-1] in ["Rda", "Rdata"]:
+        elif type(data_source) == str and data_source.split(".")[-1] in ["Rda", "Rdata"]:
             self.data_type = 'Rdata'
             self.data_source = data_source
             self.data = None
@@ -339,8 +339,11 @@ class attack_graph():
                 self.get_or_create_nodes_and_edge(node, 'end')
 
         logging.info('Adding normalized weights')
-        self.g = self.normalize_weights(self.g)
-
+        try:
+            self.g = self.normalize_weights(self.g)
+        except:
+            logging.warning("Weights failed to load.")
+            pass
 
         # correct start and end edges to 0 to prevent effects on path distances
         for node in self.g.successors('start'):

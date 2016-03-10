@@ -6,7 +6,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <body>
-    <div class="head"><h1 class='title'>DBIR Attack Graph Analysis</h1></div>
+    <div class="head"><h1 class='title'>DBIR Attack Surface Analysis</h1></div>
     <div id="input_div" class="outer_div">
         <input type="hidden" id="show_zero_len_paths" value="FALSE" />
 <!--
@@ -17,7 +17,7 @@
         <table><tr>
             <td>
                 <div id='worries_div'>
-                    <p>If this all looks very confusing and you're not sure where to start, <a href="https://www.youtube.com/watch?v=Afp6ZnwfOBw">watch this quick six minute tutorial video</a>.
+                    <p>Attack graphs are the engine for the attack surface analysis.  If this all looks very confusing and you're not sure where to start, <a href="https://www.youtube.com/watch?v=Afp6ZnwfOBw">watch this quick six minute tutorial video</a>.
                     <p><u><h3>What worries you?</h3></u></p>
                     <select name="worries" id="worries">
                         <option value="all" selected="selected">Everything</option>

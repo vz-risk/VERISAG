@@ -409,7 +409,7 @@ class analyze():
         if len(paths) > 0:
             if output is "print":
                 if len(after_paths) > 0:
-                    print "Removing {0} decreased available paths by {1}%.".format(", ".join(nodes_to_mitigates), round(len(removed_paths)/float(len(paths)) * 100, 2))
+                    print "Removing {0} decreased available paths by {1}%.".format(", ".join(nodes_to_mitigate), round(len(removed_paths)/float(len(paths)) * 100, 2))
                     print "{0} attributes are no longer compromisable.".format(len(removed_attributes))
                     print "The remaining attack paths increased in cost by {0}%.".format(round((after_score - before_score)/before_score * 100, 2))
                 else:
