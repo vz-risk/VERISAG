@@ -1,0 +1,708 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns:ns0="http://www.gexf.net/1.1draft/viz" version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="4" title="count" type="integer" />
+      <attribute id="5" title="direction" type="string" />
+      <attribute id="6" title="label" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="count" type="integer" />
+      <attribute id="1" title="weight" type="double" />
+      <attribute id="2" title="type" type="string" />
+      <attribute id="3" title="sub_type" type="string" />
+    </attributes>
+    <nodes>
+      <node id="action.misuse.variety.Privilege abuse" label="action.misuse.variety.Privilege abuse">
+        <ns0:color b="179" g="68" r="235" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="-72.31401" y="-426.83453" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.misuse" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Capture app data" label="action.malware.variety.Capture app data">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="31.669348" />
+        <ns0:position x="406.57397" y="-148.7099" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.875" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Internal" label="attribute.confidentiality.data.variety.Internal">
+        <ns0:color b="68" g="179" r="235" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="-427.20792" y="-70.07451" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="action.social.variety.Phishing" label="action.social.variety.Phishing">
+        <ns0:color b="179" g="235" r="68" />
+        <ns0:size value="49.05301" />
+        <ns0:position x="-215.37813" y="-375.5387" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="12" />
+          <attvalue for="1" value="0.25" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.social" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.Use of stolen creds" label="action.hacking.variety.Use of stolen creds">
+        <ns0:color b="235" g="179" r="68" />
+        <ns0:size value="44.302784" />
+        <ns0:position x="375.57443" y="215.3158" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="7" />
+          <attvalue for="1" value="0.5625" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Export data" label="action.malware.variety.Export data">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="46.754242" />
+        <ns0:position x="327.55972" y="-283.0577" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="9" />
+          <attvalue for="1" value="0.4375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="action.social.variety.Extortion" label="action.social.variety.Extortion">
+        <ns0:color b="179" g="235" r="68" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="-133.07137" y="-411.95758" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.social" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Software installation" label="attribute.integrity.variety.Software installation">
+        <ns0:color b="68" g="235" r="179" />
+        <ns0:size value="50.0" />
+        <ns0:position x="-106.88324" y="419.51523" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="15" />
+          <attvalue for="1" value="0.0625" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Payment" label="attribute.confidentiality.data.variety.Payment">
+        <ns0:color b="68" g="179" r="235" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="-432.84705" y="-7.776994" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="end" label="end">
+        <ns0:color b="68" g="68" r="235" />
+        <ns0:size value="10.0" />
+        <ns0:position x="-447.58337" y="413.0243" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="1.0" />
+          <attvalue for="2" value="end" />
+          <attvalue for="3" value="end" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Modify data" label="attribute.integrity.variety.Modify data">
+        <ns0:color b="68" g="235" r="179" />
+        <ns0:size value="35.509903" />
+        <ns0:position x="-278.7611" y="331.2239" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="0.8125" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Backdoor" label="action.malware.variety.Backdoor">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="38.44079" />
+        <ns0:position x="430.02606" y="49.9463" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="4" />
+          <attvalue for="1" value="0.75" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="start" label="start">
+        <ns0:color b="235" g="68" r="68" />
+        <ns0:size value="10.0" />
+        <ns0:position x="438.7193" y="-427.29236" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="1.0" />
+          <attvalue for="2" value="start" />
+          <attvalue for="3" value="start" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Downloader" label="action.malware.variety.Downloader">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="377.66925" y="-211.61992" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.C2" label="action.malware.variety.C2">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="49.05301" />
+        <ns0:position x="429.43613" y="-54.787476" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="12" />
+          <attvalue for="1" value="0.25" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.SQLi" label="action.hacking.variety.SQLi">
+        <ns0:color b="235" g="179" r="68" />
+        <ns0:size value="35.509903" />
+        <ns0:position x="227.93306" y="368.05374" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="0.8125" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Ransomware" label="action.malware.variety.Ransomware">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="264.14224" y="-342.9955" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Spyware/Keylogger" label="action.malware.variety.Spyware/Keylogger">
+        <ns0:color b="235" g="68" r="179" />
+        <ns0:size value="44.302784" />
+        <ns0:position x="192.63214" y="-387.6982" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="7" />
+          <attvalue for="1" value="0.5625" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.malware" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Repurpose" label="attribute.integrity.variety.Repurpose">
+        <ns0:color b="68" g="235" r="179" />
+        <ns0:size value="38.44079" />
+        <ns0:position x="-205.50409" y="381.03165" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="4" />
+          <attvalue for="1" value="0.75" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="action.misuse.variety.Possession abuse" label="action.misuse.variety.Possession abuse">
+        <ns0:color b="179" g="68" r="235" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="-10.046928" y="-432.8003" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.misuse" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.DoS" label="action.hacking.variety.DoS">
+        <ns0:color b="235" g="179" r="68" />
+        <ns0:size value="46.754242" />
+        <ns0:position x="55.94817" y="429.28644" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="9" />
+          <attvalue for="1" value="0.4375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Credentials" label="attribute.confidentiality.data.variety.Credentials">
+        <ns0:color b="68" g="179" r="235" />
+        <ns0:size value="42.70597" />
+        <ns0:position x="-406.18338" y="-149.77354" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="6" />
+          <attvalue for="1" value="0.625" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Secrets" label="attribute.confidentiality.data.variety.Secrets">
+        <ns0:color b="68" g="179" r="235" />
+        <ns0:size value="38.44079" />
+        <ns0:position x="-427.32535" y="69.35477" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="4" />
+          <attvalue for="1" value="0.75" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Alter behavior" label="attribute.integrity.variety.Alter behavior">
+        <ns0:color b="68" g="235" r="179" />
+        <ns0:size value="48.443512" />
+        <ns0:position x="-398.45047" y="169.2757" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="11" />
+          <attvalue for="1" value="0.3125" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.Use of backdoor or C2" label="action.hacking.variety.Use of backdoor or C2">
+        <ns0:color b="235" g="179" r="68" />
+        <ns0:size value="49.51947" />
+        <ns0:position x="307.57794" y="304.652" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="13" />
+          <attvalue for="1" value="0.1875" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Fraudulent transaction" label="attribute.integrity.variety.Fraudulent transaction">
+        <ns0:color b="68" g="235" r="179" />
+        <ns0:size value="42.70597" />
+        <ns0:position x="-343.4853" y="263.50504" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="6" />
+          <attvalue for="1" value="0.625" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="action.misuse.variety.Email misuse" label="action.misuse.variety.Email misuse">
+        <ns0:color b="179" g="68" r="235" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="113.81214" y="-417.6887" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.misuse" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Degradation" label="attribute.availability.variety.Degradation">
+        <ns0:color b="68" g="235" r="68" />
+        <ns0:size value="44.302784" />
+        <ns0:position x="-304.30518" y="-307.92108" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="7" />
+          <attvalue for="1" value="0.5625" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+      <node id="action.misuse.variety.Illicit content" label="action.misuse.variety.Illicit content">
+        <ns0:color b="179" g="68" r="235" />
+        <ns0:size value="26.08615" />
+        <ns0:position x="52.42991" y="-429.73032" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.9375" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.misuse" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.XSS" label="action.hacking.variety.XSS">
+        <ns0:color b="235" g="179" r="68" />
+        <ns0:size value="31.669348" />
+        <ns0:position x="412.28568" y="132.05142" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.875" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.Footprinting" label="action.hacking.variety.Footprinting">
+        <ns0:color b="235" g="179" r="68" />
+        <ns0:size value="35.509903" />
+        <ns0:position x="151.54292" y="405.52655" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="0.8125" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Interruption" label="attribute.availability.variety.Interruption">
+        <ns0:color b="68" g="235" r="68" />
+        <ns0:size value="35.509903" />
+        <ns0:position x="-364.45636" y="-233.64204" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="0.8125" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="action.malware.variety.Capture app data" target="action.hacking.variety.SQLi" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.malware.variety.Capture app data-&gt;action.hacking.variety.SQLi" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="attribute.confidentiality.data.variety.Internal" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Internal-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="action.social.variety.Phishing" target="action.malware.variety.C2" weight="0.181818181818">
+        <attvalues>
+          <attvalue for="4" value="10" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.social.variety.Phishing-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="action.hacking.variety.Use of stolen creds" target="action.malware.variety.C2" weight="0.545454545455">
+        <attvalues>
+          <attvalue for="4" value="6" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.Use of stolen creds-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="action.malware.variety.Export data" target="action.malware.variety.C2" weight="0.363636363636">
+        <attvalues>
+          <attvalue for="4" value="8" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.malware.variety.Export data-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="attribute.integrity.variety.Software installation" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Software installation-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="attribute.confidentiality.data.variety.Payment" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Payment-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="attribute.integrity.variety.Modify data" target="action.hacking.variety.SQLi" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.integrity.variety.Modify data-&gt;action.hacking.variety.SQLi" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="attribute.integrity.variety.Modify data" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Modify data-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="action.malware.variety.Backdoor" target="action.hacking.variety.SQLi" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.malware.variety.Backdoor-&gt;action.hacking.variety.SQLi" />
+        </attvalues>
+      </edge>
+      <edge id="10" source="action.malware.variety.Backdoor" target="action.malware.variety.C2" weight="0.909090909091">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.malware.variety.Backdoor-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="11" source="start" target="action.hacking.variety.SQLi" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.SQLi" />
+        </attvalues>
+      </edge>
+      <edge id="12" source="start" target="action.malware.variety.Downloader" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.Downloader" />
+        </attvalues>
+      </edge>
+      <edge id="13" source="start" target="action.malware.variety.Ransomware" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="14" source="start" target="action.misuse.variety.Privilege abuse" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.misuse.variety.Privilege abuse" />
+        </attvalues>
+      </edge>
+      <edge id="15" source="start" target="action.malware.variety.Capture app data" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.Capture app data" />
+        </attvalues>
+      </edge>
+      <edge id="16" source="start" target="action.misuse.variety.Email misuse" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.misuse.variety.Email misuse" />
+        </attvalues>
+      </edge>
+      <edge id="17" source="start" target="action.hacking.variety.Use of stolen creds" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.Use of stolen creds" />
+        </attvalues>
+      </edge>
+      <edge id="18" source="start" target="action.malware.variety.Backdoor" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.Backdoor" />
+        </attvalues>
+      </edge>
+      <edge id="19" source="start" target="action.misuse.variety.Possession abuse" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.misuse.variety.Possession abuse" />
+        </attvalues>
+      </edge>
+      <edge id="20" source="start" target="action.social.variety.Phishing" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.social.variety.Phishing" />
+        </attvalues>
+      </edge>
+      <edge id="21" source="start" target="action.misuse.variety.Illicit content" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.misuse.variety.Illicit content" />
+        </attvalues>
+      </edge>
+      <edge id="22" source="start" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="23" source="start" target="action.malware.variety.Export data" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.Export data" />
+        </attvalues>
+      </edge>
+      <edge id="24" source="start" target="action.social.variety.Extortion" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.social.variety.Extortion" />
+        </attvalues>
+      </edge>
+      <edge id="25" source="start" target="action.hacking.variety.XSS" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.XSS" />
+        </attvalues>
+      </edge>
+      <edge id="26" source="start" target="action.malware.variety.Spyware/Keylogger" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.Spyware/Keylogger" />
+        </attvalues>
+      </edge>
+      <edge id="27" source="start" target="action.hacking.variety.Footprinting" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.Footprinting" />
+        </attvalues>
+      </edge>
+      <edge id="28" source="start" target="action.malware.variety.C2" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="29" source="start" target="action.hacking.variety.Use of backdoor or C2" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.Use of backdoor or C2" />
+        </attvalues>
+      </edge>
+      <edge id="30" source="action.malware.variety.C2" target="attribute.integrity.variety.Software installation" weight="0.0909090909091">
+        <attvalues>
+          <attvalue for="4" value="11" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.malware.variety.C2-&gt;attribute.integrity.variety.Software installation" />
+        </attvalues>
+      </edge>
+      <edge id="31" source="action.hacking.variety.SQLi" target="attribute.integrity.variety.Repurpose" weight="0.909090909091">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.SQLi-&gt;attribute.integrity.variety.Repurpose" />
+        </attvalues>
+      </edge>
+      <edge id="32" source="action.hacking.variety.SQLi" target="attribute.integrity.variety.Modify data" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.SQLi-&gt;attribute.integrity.variety.Modify data" />
+        </attvalues>
+      </edge>
+      <edge id="33" source="action.malware.variety.Spyware/Keylogger" target="action.malware.variety.C2" weight="0.545454545455">
+        <attvalues>
+          <attvalue for="4" value="6" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.malware.variety.Spyware/Keylogger-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="34" source="attribute.integrity.variety.Repurpose" target="action.hacking.variety.SQLi" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.integrity.variety.Repurpose-&gt;action.hacking.variety.SQLi" />
+        </attvalues>
+      </edge>
+      <edge id="35" source="attribute.integrity.variety.Repurpose" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Repurpose-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="36" source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation" weight="0.545454545455">
+        <attvalues>
+          <attvalue for="4" value="6" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation" />
+        </attvalues>
+      </edge>
+      <edge id="37" source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption" weight="0.909090909091">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Interruption" />
+        </attvalues>
+      </edge>
+      <edge id="38" source="attribute.confidentiality.data.variety.Credentials" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Credentials-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="39" source="attribute.confidentiality.data.variety.Secrets" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Secrets-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="40" source="attribute.integrity.variety.Alter behavior" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Alter behavior-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="41" source="action.hacking.variety.Use of backdoor or C2" target="action.hacking.variety.SQLi" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.Use of backdoor or C2-&gt;action.hacking.variety.SQLi" />
+        </attvalues>
+      </edge>
+      <edge id="42" source="action.hacking.variety.Use of backdoor or C2" target="action.malware.variety.C2" weight="0.181818181818">
+        <attvalues>
+          <attvalue for="4" value="10" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.Use of backdoor or C2-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="43" source="attribute.integrity.variety.Fraudulent transaction" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Fraudulent transaction-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="44" source="attribute.availability.variety.Degradation" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Degradation-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="45" source="action.hacking.variety.XSS" target="attribute.integrity.variety.Software installation" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.XSS-&gt;attribute.integrity.variety.Software installation" />
+        </attvalues>
+      </edge>
+      <edge id="46" source="action.hacking.variety.Footprinting" target="action.malware.variety.C2" weight="0.909090909091">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.Footprinting-&gt;action.malware.variety.C2" />
+        </attvalues>
+      </edge>
+      <edge id="47" source="attribute.availability.variety.Interruption" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Interruption-&gt;end" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

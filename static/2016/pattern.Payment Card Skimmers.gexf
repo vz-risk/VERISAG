@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns:ns0="http://www.gexf.net/1.1draft/viz" version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="4" title="count" type="integer" />
+      <attribute id="5" title="direction" type="string" />
+      <attribute id="6" title="label" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="count" type="integer" />
+      <attribute id="1" title="weight" type="double" />
+      <attribute id="2" title="type" type="string" />
+      <attribute id="3" title="sub_type" type="string" />
+    </attributes>
+    <nodes>
+      <node id="action.social.variety.Pretexting" label="action.social.variety.Pretexting">
+        <ns0:color b="2" g="2" r="210" />
+        <ns0:size value="16.628479" />
+        <ns0:position x="12.633167" y="-156.99004" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.990196078431" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.social" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Payment" label="attribute.confidentiality.data.variety.Payment">
+        <ns0:color b="180" g="2" r="210" />
+        <ns0:size value="49.97662" />
+        <ns0:position x="-146.06007" y="-58.923023" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="99" />
+          <attvalue for="1" value="0.0294117647059" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Fraudulent transaction" label="attribute.integrity.variety.Fraudulent transaction">
+        <ns0:color b="210" g="2" r="61" />
+        <ns0:size value="16.628479" />
+        <ns0:position x="-146.41275" y="58.04117" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.990196078431" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="action.physical.variety.Skimmer" label="action.physical.variety.Skimmer">
+        <ns0:color b="2" g="180" r="210" />
+        <ns0:size value="48.817284" />
+        <ns0:position x="127.1486" y="92.944626" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="78" />
+          <attvalue for="1" value="0.235294117647" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.physical" />
+        </attvalues>
+      </node>
+      <node id="action.physical.variety.Disabled controls" label="action.physical.variety.Disabled controls">
+        <ns0:color b="2" g="180" r="210" />
+        <ns0:size value="37.24978" />
+        <ns0:position x="44.10206" y="151.19682" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="24" />
+          <attvalue for="1" value="0.764705882353" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.physical" />
+        </attvalues>
+      </node>
+      <node id="action.physical.variety.Theft" label="action.physical.variety.Theft">
+        <ns0:color b="2" g="180" r="210" />
+        <ns0:size value="19.217497" />
+        <ns0:position x="54.510426" y="-147.76361" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.980392156863" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.physical" />
+        </attvalues>
+      </node>
+      <node id="action.physical.variety.Surveillance" label="action.physical.variety.Surveillance">
+        <ns0:color b="2" g="180" r="210" />
+        <ns0:size value="49.220917" />
+        <ns0:position x="156.44371" y="-18.188847" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="83" />
+          <attvalue for="1" value="0.186274509804" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.physical" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Bank" label="attribute.confidentiality.data.variety.Bank">
+        <ns0:color b="180" g="2" r="210" />
+        <ns0:size value="16.628479" />
+        <ns0:position x="-99.01778" y="-122.47836" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.990196078431" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Hardware tampering" label="attribute.integrity.variety.Hardware tampering">
+        <ns0:color b="210" g="2" r="61" />
+        <ns0:size value="50.0" />
+        <ns0:position x="-99.73284" y="121.8968" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="101" />
+          <attvalue for="1" value="0.00980392156863" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="start" label="start">
+        <ns0:color b="210" g="121" r="2" />
+        <ns0:size value="10.0" />
+        <ns0:position x="187.77696" y="-150.99449" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="1.0" />
+          <attvalue for="2" value="start" />
+          <attvalue for="3" value="start" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Alter behavior" label="attribute.integrity.variety.Alter behavior">
+        <ns0:color b="210" g="2" r="61" />
+        <ns0:size value="16.628479" />
+        <ns0:position x="-156.2877" y="19.483961" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.990196078431" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="end" label="end">
+        <ns0:color b="121" g="210" r="2" />
+        <ns0:size value="10.0" />
+        <ns0:position x="-241.5524" y="156.4509" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="1.0" />
+          <attvalue for="2" value="end" />
+          <attvalue for="3" value="end" />
+        </attvalues>
+      </node>
+      <node id="action.physical.variety.Tampering" label="action.physical.variety.Tampering">
+        <ns0:color b="2" g="180" r="210" />
+        <ns0:size value="38.074577" />
+        <ns0:position x="111.8714" y="-110.86144" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="26" />
+          <attvalue for="1" value="0.745098039216" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.physical" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Loss" label="attribute.availability.variety.Loss">
+        <ns0:color b="2" g="210" r="61" />
+        <ns0:size value="16.628479" />
+        <ns0:position x="-65.15215" y="-143.38991" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.990196078431" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Interruption" label="attribute.availability.variety.Interruption">
+        <ns0:color b="2" g="210" r="61" />
+        <ns0:size value="16.628479" />
+        <ns0:position x="-27.12567" y="-155.14403" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="1" />
+          <attvalue for="1" value="0.990196078431" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="attribute.confidentiality.data.variety.Payment" target="action.physical.variety.Skimmer" weight="0.0526315789474">
+        <attvalues>
+          <attvalue for="4" value="73" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Payment-&gt;action.physical.variety.Skimmer" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="attribute.confidentiality.data.variety.Payment" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Payment-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="attribute.integrity.variety.Fraudulent transaction" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Fraudulent transaction-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="action.physical.variety.Skimmer" target="attribute.confidentiality.data.variety.Payment" weight="0.0526315789474">
+        <attvalues>
+          <attvalue for="4" value="73" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Skimmer-&gt;attribute.confidentiality.data.variety.Payment" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="action.physical.variety.Skimmer" target="attribute.integrity.variety.Hardware tampering" weight="0.0131578947368">
+        <attvalues>
+          <attvalue for="4" value="76" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Skimmer-&gt;attribute.integrity.variety.Hardware tampering" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="action.physical.variety.Disabled controls" target="action.physical.variety.Tampering" weight="0.710526315789">
+        <attvalues>
+          <attvalue for="4" value="23" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Disabled controls-&gt;action.physical.variety.Tampering" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="action.physical.variety.Theft" target="action.physical.variety.Tampering" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Theft-&gt;action.physical.variety.Tampering" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="action.physical.variety.Surveillance" target="action.physical.variety.Tampering" weight="0.894736842105">
+        <attvalues>
+          <attvalue for="4" value="9" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Surveillance-&gt;action.physical.variety.Tampering" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="action.physical.variety.Surveillance" target="action.physical.variety.Skimmer" weight="0.0526315789474">
+        <attvalues>
+          <attvalue for="4" value="73" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Surveillance-&gt;action.physical.variety.Skimmer" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="attribute.confidentiality.data.variety.Bank" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Bank-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="10" source="attribute.integrity.variety.Hardware tampering" target="action.physical.variety.Skimmer" weight="0.0526315789474">
+        <attvalues>
+          <attvalue for="4" value="73" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.integrity.variety.Hardware tampering-&gt;action.physical.variety.Skimmer" />
+        </attvalues>
+      </edge>
+      <edge id="11" source="attribute.integrity.variety.Hardware tampering" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Hardware tampering-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="12" source="start" target="action.social.variety.Pretexting" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.social.variety.Pretexting" />
+        </attvalues>
+      </edge>
+      <edge id="13" source="start" target="action.physical.variety.Skimmer" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.physical.variety.Skimmer" />
+        </attvalues>
+      </edge>
+      <edge id="14" source="start" target="action.physical.variety.Disabled controls" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.physical.variety.Disabled controls" />
+        </attvalues>
+      </edge>
+      <edge id="15" source="start" target="action.physical.variety.Theft" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.physical.variety.Theft" />
+        </attvalues>
+      </edge>
+      <edge id="16" source="start" target="action.physical.variety.Surveillance" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.physical.variety.Surveillance" />
+        </attvalues>
+      </edge>
+      <edge id="17" source="start" target="action.physical.variety.Tampering" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.physical.variety.Tampering" />
+        </attvalues>
+      </edge>
+      <edge id="18" source="attribute.integrity.variety.Alter behavior" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Alter behavior-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="19" source="action.physical.variety.Tampering" target="attribute.confidentiality.data.variety.Payment" weight="0.684210526316">
+        <attvalues>
+          <attvalue for="4" value="25" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.physical.variety.Tampering-&gt;attribute.confidentiality.data.variety.Payment" />
+        </attvalues>
+      </edge>
+      <edge id="20" source="attribute.availability.variety.Loss" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Loss-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="21" source="attribute.availability.variety.Interruption" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Interruption-&gt;end" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

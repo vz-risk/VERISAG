@@ -1,0 +1,405 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="Label" attr.type="string" for="edge" id="d8" />
+  <key attr.name="weight" attr.type="double" for="edge" id="d7" />
+  <key attr.name="direction" attr.type="string" for="edge" id="d6" />
+  <key attr.name="count" attr.type="int" for="edge" id="d5" />
+  <key attr.name="Label" attr.type="string" for="node" id="d4" />
+  <key attr.name="weight" attr.type="double" for="node" id="d3" />
+  <key attr.name="sub_type" attr.type="string" for="node" id="d2" />
+  <key attr.name="type" attr.type="string" for="node" id="d1" />
+  <key attr.name="count" attr.type="int" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="attribute.confidentiality.data.variety.Classified">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">attribute.confidentiality.data.variety.Classified</data>
+    </node>
+    <node id="action.misuse.variety.Unapproved hardware">
+      <data key="d0">4</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.428571428571</data>
+      <data key="d4">action.misuse.variety.Unapproved hardware</data>
+    </node>
+    <node id="action.misuse.variety.Privilege abuse">
+      <data key="d0">4</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.428571428571</data>
+      <data key="d4">action.misuse.variety.Privilege abuse</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Internal">
+      <data key="d0">5</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.285714285714</data>
+      <data key="d4">attribute.confidentiality.data.variety.Internal</data>
+    </node>
+    <node id="action.hacking.variety.SQLi">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">action.hacking.variety.SQLi</data>
+    </node>
+    <node id="action.physical.variety.Disabled controls">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">action.physical.variety.Disabled controls</data>
+    </node>
+    <node id="action.physical.variety.Surveillance">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">action.physical.variety.Surveillance</data>
+    </node>
+    <node id="action.social.variety.Forgery">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.571428571429</data>
+      <data key="d4">action.social.variety.Forgery</data>
+    </node>
+    <node id="action.physical.variety.Tampering">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">action.physical.variety.Tampering</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Payment">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">attribute.confidentiality.data.variety.Payment</data>
+    </node>
+    <node id="end">
+      <data key="d0">0</data>
+      <data key="d1">end</data>
+      <data key="d2">end</data>
+      <data key="d3">1.0</data>
+      <data key="d4">end</data>
+    </node>
+    <node id="action.misuse.variety.Email misuse">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">action.misuse.variety.Email misuse</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Personal">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">attribute.confidentiality.data.variety.Personal</data>
+    </node>
+    <node id="start">
+      <data key="d0">0</data>
+      <data key="d1">start</data>
+      <data key="d2">start</data>
+      <data key="d3">1.0</data>
+      <data key="d4">start</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Copyrighted">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">attribute.confidentiality.data.variety.Copyrighted</data>
+    </node>
+    <node id="action.social.variety.Pretexting">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.571428571429</data>
+      <data key="d4">action.social.variety.Pretexting</data>
+    </node>
+    <node id="attribute.integrity.variety.Repurpose">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">attribute.integrity.variety.Repurpose</data>
+    </node>
+    <node id="action.misuse.variety.Unapproved software">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.misuse</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">action.misuse.variety.Unapproved software</data>
+    </node>
+    <node id="attribute.integrity.variety.Hardware tampering">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">attribute.integrity.variety.Hardware tampering</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Other">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.714285714286</data>
+      <data key="d4">attribute.confidentiality.data.variety.Other</data>
+    </node>
+    <node id="action.hacking.variety.DoS">
+      <data key="d0">6</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.142857142857</data>
+      <data key="d4">action.hacking.variety.DoS</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Secrets">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">attribute.confidentiality.data.variety.Secrets</data>
+    </node>
+    <node id="attribute.integrity.variety.Alter behavior">
+      <data key="d0">3</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.571428571429</data>
+      <data key="d4">attribute.integrity.variety.Alter behavior</data>
+    </node>
+    <node id="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.857142857143</data>
+      <data key="d4">attribute.integrity.variety.Fraudulent transaction</data>
+    </node>
+    <node id="attribute.availability.variety.Degradation">
+      <data key="d0">6</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.142857142857</data>
+      <data key="d4">attribute.availability.variety.Degradation</data>
+    </node>
+    <edge source="attribute.confidentiality.data.variety.Classified" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Classified-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Classified" target="action.misuse.variety.Email misuse">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.8</data>
+      <data key="d8">attribute.confidentiality.data.variety.Classified-&gt;action.misuse.variety.Email misuse</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Internal" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Internal-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Internal" target="action.misuse.variety.Email misuse">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.8</data>
+      <data key="d8">attribute.confidentiality.data.variety.Internal-&gt;action.misuse.variety.Email misuse</data>
+    </edge>
+    <edge source="action.hacking.variety.SQLi" target="attribute.confidentiality.data.variety.Other">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.SQLi-&gt;attribute.confidentiality.data.variety.Other</data>
+    </edge>
+    <edge source="action.hacking.variety.SQLi" target="attribute.confidentiality.data.variety.Personal">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.SQLi-&gt;attribute.confidentiality.data.variety.Personal</data>
+    </edge>
+    <edge source="action.hacking.variety.SQLi" target="attribute.integrity.variety.Repurpose">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.SQLi-&gt;attribute.integrity.variety.Repurpose</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;end</data>
+    </edge>
+    <edge source="action.misuse.variety.Email misuse" target="attribute.confidentiality.data.variety.Copyrighted">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Email misuse-&gt;attribute.confidentiality.data.variety.Copyrighted</data>
+    </edge>
+    <edge source="action.misuse.variety.Email misuse" target="attribute.confidentiality.data.variety.Classified">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Email misuse-&gt;attribute.confidentiality.data.variety.Classified</data>
+    </edge>
+    <edge source="action.misuse.variety.Email misuse" target="attribute.confidentiality.data.variety.Internal">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.misuse.variety.Email misuse-&gt;attribute.confidentiality.data.variety.Internal</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="action.hacking.variety.SQLi">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.8</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;action.hacking.variety.SQLi</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Personal" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Personal-&gt;end</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.SQLi">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.SQLi</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Unapproved hardware">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Unapproved hardware</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Privilege abuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Privilege abuse</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Email misuse">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Email misuse</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Pretexting">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Disabled controls">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Disabled controls</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Surveillance">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Surveillance</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.DoS">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="start" target="action.misuse.variety.Unapproved software">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.misuse.variety.Unapproved software</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Forgery">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Forgery</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Tampering">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Tampering</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Copyrighted" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Copyrighted-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Copyrighted" target="action.misuse.variety.Email misuse">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.8</data>
+      <data key="d8">attribute.confidentiality.data.variety.Copyrighted-&gt;action.misuse.variety.Email misuse</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Repurpose" target="action.hacking.variety.SQLi">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.8</data>
+      <data key="d8">attribute.integrity.variety.Repurpose-&gt;action.hacking.variety.SQLi</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Repurpose" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Repurpose-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Hardware tampering" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Hardware tampering-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Other" target="action.hacking.variety.SQLi">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.8</data>
+      <data key="d8">attribute.confidentiality.data.variety.Other-&gt;action.hacking.variety.SQLi</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Other" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Other-&gt;end</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation">
+      <data key="d5">5</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.2</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Secrets" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Secrets-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Degradation" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Degradation-&gt;end</data>
+    </edge>
+  </graph>
+</graphml>

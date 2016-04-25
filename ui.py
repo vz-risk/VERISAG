@@ -51,7 +51,7 @@ FLASK_DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
 FILTERS = "./filter.txt"
-CACHE = "./static"
+CACHE = "./static/2016/"
 DATA = None
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################

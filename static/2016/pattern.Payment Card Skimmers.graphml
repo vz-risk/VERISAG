@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="Label" attr.type="string" for="edge" id="d8" />
+  <key attr.name="weight" attr.type="double" for="edge" id="d7" />
+  <key attr.name="direction" attr.type="string" for="edge" id="d6" />
+  <key attr.name="count" attr.type="int" for="edge" id="d5" />
+  <key attr.name="Label" attr.type="string" for="node" id="d4" />
+  <key attr.name="weight" attr.type="double" for="node" id="d3" />
+  <key attr.name="sub_type" attr.type="string" for="node" id="d2" />
+  <key attr.name="type" attr.type="string" for="node" id="d1" />
+  <key attr.name="count" attr.type="int" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="action.social.variety.Pretexting">
+      <data key="d0">1</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.990196078431</data>
+      <data key="d4">action.social.variety.Pretexting</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Payment">
+      <data key="d0">99</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.0294117647059</data>
+      <data key="d4">attribute.confidentiality.data.variety.Payment</data>
+    </node>
+    <node id="attribute.availability.variety.Loss">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.990196078431</data>
+      <data key="d4">attribute.availability.variety.Loss</data>
+    </node>
+    <node id="action.physical.variety.Skimmer">
+      <data key="d0">78</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.235294117647</data>
+      <data key="d4">action.physical.variety.Skimmer</data>
+    </node>
+    <node id="action.physical.variety.Disabled controls">
+      <data key="d0">24</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.764705882353</data>
+      <data key="d4">action.physical.variety.Disabled controls</data>
+    </node>
+    <node id="action.physical.variety.Theft">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.980392156863</data>
+      <data key="d4">action.physical.variety.Theft</data>
+    </node>
+    <node id="action.physical.variety.Surveillance">
+      <data key="d0">83</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.186274509804</data>
+      <data key="d4">action.physical.variety.Surveillance</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Bank">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.990196078431</data>
+      <data key="d4">attribute.confidentiality.data.variety.Bank</data>
+    </node>
+    <node id="attribute.integrity.variety.Hardware tampering">
+      <data key="d0">101</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.00980392156863</data>
+      <data key="d4">attribute.integrity.variety.Hardware tampering</data>
+    </node>
+    <node id="start">
+      <data key="d0">0</data>
+      <data key="d1">start</data>
+      <data key="d2">start</data>
+      <data key="d3">1.0</data>
+      <data key="d4">start</data>
+    </node>
+    <node id="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.990196078431</data>
+      <data key="d4">attribute.integrity.variety.Fraudulent transaction</data>
+    </node>
+    <node id="attribute.integrity.variety.Alter behavior">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.990196078431</data>
+      <data key="d4">attribute.integrity.variety.Alter behavior</data>
+    </node>
+    <node id="end">
+      <data key="d0">0</data>
+      <data key="d1">end</data>
+      <data key="d2">end</data>
+      <data key="d3">1.0</data>
+      <data key="d4">end</data>
+    </node>
+    <node id="action.physical.variety.Tampering">
+      <data key="d0">26</data>
+      <data key="d1">action</data>
+      <data key="d2">action.physical</data>
+      <data key="d3">0.745098039216</data>
+      <data key="d4">action.physical.variety.Tampering</data>
+    </node>
+    <node id="attribute.availability.variety.Interruption">
+      <data key="d0">1</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.990196078431</data>
+      <data key="d4">attribute.availability.variety.Interruption</data>
+    </node>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;end</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Payment" target="action.physical.variety.Skimmer">
+      <data key="d5">73</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.0526315789474</data>
+      <data key="d8">attribute.confidentiality.data.variety.Payment-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;end</data>
+    </edge>
+    <edge source="action.physical.variety.Skimmer" target="attribute.confidentiality.data.variety.Payment">
+      <data key="d5">73</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.0526315789474</data>
+      <data key="d8">action.physical.variety.Skimmer-&gt;attribute.confidentiality.data.variety.Payment</data>
+    </edge>
+    <edge source="action.physical.variety.Skimmer" target="attribute.integrity.variety.Hardware tampering">
+      <data key="d5">76</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.0131578947368</data>
+      <data key="d8">action.physical.variety.Skimmer-&gt;attribute.integrity.variety.Hardware tampering</data>
+    </edge>
+    <edge source="action.physical.variety.Disabled controls" target="action.physical.variety.Tampering">
+      <data key="d5">23</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.710526315789</data>
+      <data key="d8">action.physical.variety.Disabled controls-&gt;action.physical.variety.Tampering</data>
+    </edge>
+    <edge source="action.physical.variety.Theft" target="action.physical.variety.Tampering">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.physical.variety.Theft-&gt;action.physical.variety.Tampering</data>
+    </edge>
+    <edge source="action.physical.variety.Surveillance" target="action.physical.variety.Tampering">
+      <data key="d5">9</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.894736842105</data>
+      <data key="d8">action.physical.variety.Surveillance-&gt;action.physical.variety.Tampering</data>
+    </edge>
+    <edge source="action.physical.variety.Surveillance" target="action.physical.variety.Skimmer">
+      <data key="d5">73</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.0526315789474</data>
+      <data key="d8">action.physical.variety.Surveillance-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Bank" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Bank-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Hardware tampering" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Hardware tampering-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Hardware tampering" target="action.physical.variety.Skimmer">
+      <data key="d5">73</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.0526315789474</data>
+      <data key="d8">attribute.integrity.variety.Hardware tampering-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Pretexting">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Pretexting</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Skimmer">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Skimmer</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Disabled controls">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Disabled controls</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Theft">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Theft</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Surveillance">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Surveillance</data>
+    </edge>
+    <edge source="start" target="action.physical.variety.Tampering">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.physical.variety.Tampering</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;end</data>
+    </edge>
+    <edge source="action.physical.variety.Tampering" target="attribute.confidentiality.data.variety.Payment">
+      <data key="d5">25</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.684210526316</data>
+      <data key="d8">action.physical.variety.Tampering-&gt;attribute.confidentiality.data.variety.Payment</data>
+    </edge>
+    <edge source="attribute.availability.variety.Interruption" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Interruption-&gt;end</data>
+    </edge>
+  </graph>
+</graphml>

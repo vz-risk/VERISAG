@@ -1,0 +1,320 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns:ns0="http://www.gexf.net/1.1draft/viz" version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="4" title="count" type="integer" />
+      <attribute id="5" title="direction" type="string" />
+      <attribute id="6" title="label" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="count" type="integer" />
+      <attribute id="1" title="weight" type="double" />
+      <attribute id="2" title="type" type="string" />
+      <attribute id="3" title="sub_type" type="string" />
+    </attributes>
+    <nodes>
+      <node id="attribute.integrity.variety.Fraudulent transaction" label="attribute.integrity.variety.Fraudulent transaction">
+        <ns0:color b="180" g="16" r="63" />
+        <ns0:size value="11.013622" />
+        <ns0:position x="-77.01909" y="65.066795" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.999792423456" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="end" label="end">
+        <ns0:color b="16" g="180" r="63" />
+        <ns0:size value="10.0" />
+        <ns0:position x="-157.0452" y="100.94474" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="1.0" />
+          <attvalue for="2" value="end" />
+          <attvalue for="3" value="end" />
+        </attvalues>
+      </node>
+      <node id="action.social.variety.Extortion" label="action.social.variety.Extortion">
+        <ns0:color b="16" g="16" r="180" />
+        <ns0:size value="11.223235" />
+        <ns0:position x="100.8132" y="-1.5253884" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="0.999688635184" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.social" />
+        </attvalues>
+      </node>
+      <node id="start" label="start">
+        <ns0:color b="16" g="157" r="180" />
+        <ns0:size value="10.0" />
+        <ns0:position x="222.56825" y="-112.39984" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="1.0" />
+          <attvalue for="2" value="start" />
+          <attvalue for="3" value="start" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Degradation" label="attribute.availability.variety.Degradation">
+        <ns0:color b="110" g="180" r="16" />
+        <ns0:size value="47.895924" />
+        <ns0:position x="75.883224" y="-66.38798" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="6590" />
+          <attvalue for="1" value="0.316035288012" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.DoS" label="action.hacking.variety.DoS">
+        <ns0:color b="157" g="16" r="180" />
+        <ns0:size value="50.0" />
+        <ns0:position x="76.22854" y="65.991196" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="9634" />
+          <attvalue for="1" value="0.000103788271925" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Credentials" label="attribute.confidentiality.data.variety.Credentials">
+        <ns0:color b="180" g="110" r="16" />
+        <ns0:size value="11.013622" />
+        <ns0:position x="-99.246895" y="17.767435" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.999792423456" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.confidentiality" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Alter behavior" label="attribute.integrity.variety.Alter behavior">
+        <ns0:color b="180" g="16" r="63" />
+        <ns0:size value="11.013622" />
+        <ns0:position x="-91.25092" y="42.882355" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.999792423456" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.Brute force" label="action.hacking.variety.Brute force">
+        <ns0:color b="157" g="16" r="180" />
+        <ns0:size value="11.013622" />
+        <ns0:position x="13.178531" y="99.95976" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.999792423456" />
+          <attvalue for="2" value="action" />
+          <attvalue for="3" value="action.hacking" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Software installation" label="attribute.integrity.variety.Software installation">
+        <ns0:color b="180" g="16" r="63" />
+        <ns0:size value="11.013622" />
+        <ns0:position x="-57.52395" y="82.804726" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="0.999792423456" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.integrity" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Loss" label="attribute.availability.variety.Loss">
+        <ns0:color b="110" g="180" r="16" />
+        <ns0:size value="39.544716" />
+        <ns0:position x="-91.87222" y="-41.534588" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="2855" />
+          <attvalue for="1" value="0.703684483653" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Interruption" label="attribute.availability.variety.Interruption">
+        <ns0:color b="110" g="180" r="16" />
+        <ns0:size value="40.226562" />
+        <ns0:position x="-19.712496" y="-98.878944" z="0.0" />
+        <attvalues>
+          <attvalue for="0" value="3046" />
+          <attvalue for="1" value="0.683860923716" />
+          <attvalue for="2" value="attribute" />
+          <attvalue for="3" value="attribute.availability" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="attribute.integrity.variety.Fraudulent transaction" target="action.hacking.variety.DoS" weight="0.999848231902">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.integrity.variety.Fraudulent transaction-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="attribute.integrity.variety.Fraudulent transaction" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Fraudulent transaction-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="action.social.variety.Extortion" target="action.hacking.variety.DoS" weight="0.999848231902">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.social.variety.Extortion-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="start" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="start" target="action.social.variety.Extortion" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.social.variety.Extortion" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="start" target="action.hacking.variety.Brute force" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="start-&gt;action.hacking.variety.Brute force" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="attribute.availability.variety.Degradation" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.availability.variety.Degradation-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="attribute.availability.variety.Degradation" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Degradation-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="action.hacking.variety.DoS" target="attribute.integrity.variety.Fraudulent transaction" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.integrity.variety.Fraudulent transaction" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="action.hacking.variety.DoS" target="attribute.integrity.variety.Software installation" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.integrity.variety.Software installation" />
+        </attvalues>
+      </edge>
+      <edge id="10" source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation" weight="0.000151768098346">
+        <attvalues>
+          <attvalue for="4" value="6589" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation" />
+        </attvalues>
+      </edge>
+      <edge id="11" source="action.hacking.variety.DoS" target="attribute.confidentiality.data.variety.Credentials" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.confidentiality.data.variety.Credentials" />
+        </attvalues>
+      </edge>
+      <edge id="12" source="action.hacking.variety.DoS" target="attribute.availability.variety.Loss" weight="0.56700561542">
+        <attvalues>
+          <attvalue for="4" value="2854" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Loss" />
+        </attvalues>
+      </edge>
+      <edge id="13" source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption" weight="0.538017908636">
+        <attvalues>
+          <attvalue for="4" value="3045" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Interruption" />
+        </attvalues>
+      </edge>
+      <edge id="14" source="attribute.confidentiality.data.variety.Credentials" target="action.hacking.variety.DoS" weight="0.999848231902">
+        <attvalues>
+          <attvalue for="4" value="2" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Credentials-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="15" source="attribute.confidentiality.data.variety.Credentials" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.confidentiality.data.variety.Credentials-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="16" source="attribute.integrity.variety.Alter behavior" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Alter behavior-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="17" source="action.hacking.variety.Brute force" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="action.hacking.variety.Brute force-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="18" source="attribute.integrity.variety.Software installation" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.integrity.variety.Software installation-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="19" source="attribute.integrity.variety.Software installation" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.integrity.variety.Software installation-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="20" source="attribute.availability.variety.Loss" target="action.hacking.variety.DoS" weight="0.56700561542">
+        <attvalues>
+          <attvalue for="4" value="2854" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.availability.variety.Loss-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="21" source="attribute.availability.variety.Loss" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Loss-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="22" source="attribute.availability.variety.Interruption" target="action.hacking.variety.DoS" weight="0.566398543026">
+        <attvalues>
+          <attvalue for="4" value="2858" />
+          <attvalue for="5" value="backward" />
+          <attvalue for="6" value="attribute.availability.variety.Interruption-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="23" source="attribute.availability.variety.Interruption" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="4" value="1" />
+          <attvalue for="5" value="forward" />
+          <attvalue for="6" value="attribute.availability.variety.Interruption-&gt;end" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

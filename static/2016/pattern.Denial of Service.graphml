@@ -1,0 +1,242 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key attr.name="Label" attr.type="string" for="edge" id="d8" />
+  <key attr.name="weight" attr.type="double" for="edge" id="d7" />
+  <key attr.name="direction" attr.type="string" for="edge" id="d6" />
+  <key attr.name="count" attr.type="int" for="edge" id="d5" />
+  <key attr.name="Label" attr.type="string" for="node" id="d4" />
+  <key attr.name="weight" attr.type="double" for="node" id="d3" />
+  <key attr.name="sub_type" attr.type="string" for="node" id="d2" />
+  <key attr.name="type" attr.type="string" for="node" id="d1" />
+  <key attr.name="count" attr.type="int" for="node" id="d0" />
+  <graph edgedefault="directed">
+    <node id="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.999792423456</data>
+      <data key="d4">attribute.integrity.variety.Fraudulent transaction</data>
+    </node>
+    <node id="attribute.integrity.variety.Software installation">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.999792423456</data>
+      <data key="d4">attribute.integrity.variety.Software installation</data>
+    </node>
+    <node id="action.social.variety.Extortion">
+      <data key="d0">3</data>
+      <data key="d1">action</data>
+      <data key="d2">action.social</data>
+      <data key="d3">0.999688635184</data>
+      <data key="d4">action.social.variety.Extortion</data>
+    </node>
+    <node id="start">
+      <data key="d0">0</data>
+      <data key="d1">start</data>
+      <data key="d2">start</data>
+      <data key="d3">1.0</data>
+      <data key="d4">start</data>
+    </node>
+    <node id="attribute.availability.variety.Degradation">
+      <data key="d0">6590</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.316035288012</data>
+      <data key="d4">attribute.availability.variety.Degradation</data>
+    </node>
+    <node id="action.hacking.variety.DoS">
+      <data key="d0">9634</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.000103788271925</data>
+      <data key="d4">action.hacking.variety.DoS</data>
+    </node>
+    <node id="attribute.confidentiality.data.variety.Credentials">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.confidentiality</data>
+      <data key="d3">0.999792423456</data>
+      <data key="d4">attribute.confidentiality.data.variety.Credentials</data>
+    </node>
+    <node id="attribute.integrity.variety.Alter behavior">
+      <data key="d0">2</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.integrity</data>
+      <data key="d3">0.999792423456</data>
+      <data key="d4">attribute.integrity.variety.Alter behavior</data>
+    </node>
+    <node id="action.hacking.variety.Brute force">
+      <data key="d0">2</data>
+      <data key="d1">action</data>
+      <data key="d2">action.hacking</data>
+      <data key="d3">0.999792423456</data>
+      <data key="d4">action.hacking.variety.Brute force</data>
+    </node>
+    <node id="end">
+      <data key="d0">0</data>
+      <data key="d1">end</data>
+      <data key="d2">end</data>
+      <data key="d3">1.0</data>
+      <data key="d4">end</data>
+    </node>
+    <node id="attribute.availability.variety.Loss">
+      <data key="d0">2855</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.703684483653</data>
+      <data key="d4">attribute.availability.variety.Loss</data>
+    </node>
+    <node id="attribute.availability.variety.Interruption">
+      <data key="d0">3046</data>
+      <data key="d1">attribute</data>
+      <data key="d2">attribute.availability</data>
+      <data key="d3">0.683860923716</data>
+      <data key="d4">attribute.availability.variety.Interruption</data>
+    </node>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="action.hacking.variety.DoS">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.999848231902</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Fraudulent transaction" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Fraudulent transaction-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Software installation" target="action.hacking.variety.DoS">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Software installation-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Software installation" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Software installation-&gt;end</data>
+    </edge>
+    <edge source="action.social.variety.Extortion" target="action.hacking.variety.DoS">
+      <data key="d5">2</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.999848231902</data>
+      <data key="d8">action.social.variety.Extortion-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.DoS">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="start" target="action.hacking.variety.Brute force">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.hacking.variety.Brute force</data>
+    </edge>
+    <edge source="start" target="action.social.variety.Extortion">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">start-&gt;action.social.variety.Extortion</data>
+    </edge>
+    <edge source="attribute.availability.variety.Degradation" target="action.hacking.variety.DoS">
+      <data key="d5">1</data>
+      <data key="d6">backward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Degradation-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.availability.variety.Degradation" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Degradation-&gt;end</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.integrity.variety.Fraudulent transaction">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.integrity.variety.Software installation">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.integrity.variety.Software installation</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation">
+      <data key="d5">6589</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.000151768098346</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.confidentiality.data.variety.Credentials">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.confidentiality.data.variety.Credentials</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.availability.variety.Loss">
+      <data key="d5">2854</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.56700561542</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.availability.variety.Loss</data>
+    </edge>
+    <edge source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption">
+      <data key="d5">3045</data>
+      <data key="d6">forward</data>
+      <data key="d7">0.538017908636</data>
+      <data key="d8">action.hacking.variety.DoS-&gt;attribute.availability.variety.Interruption</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="action.hacking.variety.DoS">
+      <data key="d5">2</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.999848231902</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.confidentiality.data.variety.Credentials" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.confidentiality.data.variety.Credentials-&gt;end</data>
+    </edge>
+    <edge source="attribute.integrity.variety.Alter behavior" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.integrity.variety.Alter behavior-&gt;end</data>
+    </edge>
+    <edge source="action.hacking.variety.Brute force" target="action.hacking.variety.DoS">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">action.hacking.variety.Brute force-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="action.hacking.variety.DoS">
+      <data key="d5">2854</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.56700561542</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.availability.variety.Loss" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Loss-&gt;end</data>
+    </edge>
+    <edge source="attribute.availability.variety.Interruption" target="action.hacking.variety.DoS">
+      <data key="d5">2858</data>
+      <data key="d6">backward</data>
+      <data key="d7">0.566398543026</data>
+      <data key="d8">attribute.availability.variety.Interruption-&gt;action.hacking.variety.DoS</data>
+    </edge>
+    <edge source="attribute.availability.variety.Interruption" target="end">
+      <data key="d5">1</data>
+      <data key="d6">forward</data>
+      <data key="d7">1.0</data>
+      <data key="d8">attribute.availability.variety.Interruption-&gt;end</data>
+    </edge>
+  </graph>
+</graphml>
