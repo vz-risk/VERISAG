@@ -182,6 +182,7 @@ app = Flask(__name__)
 api_parser = reqparse.RequestParser()
 api_parser.add_argument('worry', type=str, help="Pattern or Industry used to subset the data.", default='all', location='args')
 api_parser.add_argument('attributes', type=str, action='append', help="Filter paths to a subset of attributes.", default='Everything', location='args')
+#api_parser.add_argument('mitigation_rate', type=str, help="The decimal percent of a mitigation that is assumed effective.", default="1", location='args')
 
 
 def build_graph(api_args):
@@ -213,6 +214,10 @@ def build_graph(api_args):
 
 def parse_args(args):
     api_args = dict()
+    try:
+        api_args['mitigation_rate'] = args['mitigation_rate']
+    except:
+        pass
     api_args['worry'] = args['worry']
     api_args['attributes'] = args.getlist('attributes')
     if "mitigations1" in args:
@@ -409,10 +414,23 @@ class analyze2(Resource):
         else:
             raise LookupError("Graph not cached and no data exists to build graph from.")
 
+        # get the amount to mitigate.  Default to 1. Will increase the weight to  weight* 1/(1-value)
+        try:
+            logging.info(api_args["mitigation_rate"])
+            mitigation_rate = api_args["mitigation_rate"]
+            mitigation_rate = float(mitigation_rate)
+            if mitigation_rate > 1 or mitigation_rate <= 0:
+                mitigation_rate = 1
+                logging.info("mitigation rate fail.  setting to 1.")
+        except:
+            mitigation_rate = 1
+            logging.info("mitigation rate failed. using default of 1.")
+
         # correct the attributes list (remove aggregations)
         attributes, error = parse_attributes(api_args)
 
         if not error:
+
             analyzed = {"likely_actor":{}}
 
             # Ensure edge weights are populated
@@ -443,7 +461,18 @@ class analyze2(Resource):
                 shortest_paths.append("No paths left.")
                 shortest_path_lengths.append(0)
 
-            while not done:
+            counter = 1
+
+            max_counter = min([
+                50,
+                len([n for n, attrdict in g_copy.node.items() if attrdict['type'] == "action"]),
+                len([n for n, attrdict in g_copy.node.items() if attrdict['type'] == "attribute"]) 
+            ])
+            logging.info("max_counter is {0}".format(max_counter))
+
+            while not done and counter <= max_counter:
+                counter += 1
+
                 # since as you remove paths, the paths will get longer, the cutoff needs to be continuously increased
                 if len(path) != l:
                     l = len(path)
@@ -459,11 +488,27 @@ class analyze2(Resource):
                 #Mitigate a node
                 direct, nodes = analysis.one_graph_one_path(g_copy, action, attribute, cutoff=cutoff, output="return")
                 if direct:
-                    g_copy.remove_edge(action, attribute)
+                    if mitigation_rate == 1:
+                        g_copy.remove_edge(action, attribute)
+                    else: # mitigateion_rate > 1 or <= 0 would be invalid, but tested above.
+                        g_copy.edge[action][attribute]["weight"] /= (1-mitigation_rate)
                     mitigations.append("{0}->{1}".format(action, attribute))
                 else:
                     node_to_mitigate = nodes.pop()
-                    g_copy.remove_node(node_to_mitigate)
+                    if mitigation_rate == 1:
+                        g_copy.remove_node(node_to_mitigate)
+                    else: # mitigateion_rate > 1 or <= 0 would be invalid, but tested above.
+                        # Iterate over all of the successor nodes and decrease their probability due to the mitigation of node_to_mitigate
+                        # Since weights from 'start' to 'action' and 'attribute' to 'end' are all false weights, need to use the edges on the 
+                        #   other side of the node.
+                        if g_copy.node[node_to_mitigate]['type'] == "action":
+                            for dst in [d for s,d in g_copy.out_edges(node_to_mitigate)]:
+                                g_copy.edge[node_to_mitigate][dst]["weight"] /= mitigation_rate # because bigger is lower likelihood, don't need to do (1-mitigation_rate)
+#                                logging.debug("{0}, {1}, {2}".format(node_to_mitigate, dst, g_copy.edge[node_to_mitigate][dst]["weight"]))
+                        else: # for attribute
+                            for src in [s for s,d in g_copy.in_edges(node_to_mitigate)]:
+                                g_copy.edge[src][node_to_mitigate]["weight"] /= mitigation_rate # because bigger is lower likelihood, don't need to do (1-mitigation_rate)
+#                                logging.debug("{0}, {1}, {2}".format(src, node_to_mitigate, g_copy.edge[src][node_to_mitigate]["weight"]))
                     mitigations.append(node_to_mitigate)
 
                 # retest

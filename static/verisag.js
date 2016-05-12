@@ -535,9 +535,20 @@ $(document).ready(function() {
         if ($("#likely_actor_output_div").is(":visible")) {
             // DEBUG
             //  console.log($('#attributes').val())
+            var mitigation_rate = $('#mitigation_rate').val();
+            if (mitigation_rate <= 100 &
+                mitigation_rate > 0) {
+                console.log("mitigation rate pass");
+                mitigation_rate = mitigation_rate/100;
+            } else {
+                mitigation_rate = 1
+                console.log("mitigation rate fail");
+            }
+
             var o = {
                 "worry": $('#worries').val(),
-                "attributes": $('#attributes').val()
+                "attributes": $('#attributes').val(),
+                "mitigation_rate": mitigation_rate
             };
 
             // Test if there is an overlap in the attributes and the graph

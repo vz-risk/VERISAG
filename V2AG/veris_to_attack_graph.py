@@ -166,6 +166,7 @@ class attack_graph():
     base_mappings = None
     df_name = None
     supergraph = False
+    samples_size = 0
 
     def __init__(self, data_source=VERIS_DIRS, filter_file=None, build=True, df_name="vcdb", supergraph=None):
         if supergraph is not None and type(supergraph) == bool:
@@ -482,27 +483,36 @@ class attack_graph():
             self.g.edge[src][dst]['count'] += edge_count
 
 
-    def normalize_weights(self, g, prop='count'):
+    def normalize_weights(self, g, prop='count', sample_size=None):
         """ Takes a graph and uses the count attribute to add a 'weight' attribute that is the inverse of count normalized to 1.
 
             The reason for this appoach is that the new weight may be used in shortest path calculations.  Also, it should never be '0'.
 
         :param g: a networkx graph to reweight.  A 'weight' attribute is not necessary
         :param prop: the property to use to generate weights.  default is 'count'
+        :param sample_size: integer count of samples. default is self.sample_size (populated during attack graph creation)
         :return: a networkx graph with the weights added
         """
+
+
         # normalize the node and edge weights
         # Normalize g edge weights to 0<x<=1
+        # Is a sample size is provided, use it as the 'max_prop', else use self.sample_size, else use the maximum property
+        if sample_size is None:
+            if hasattr(self, "sample_size") and self.sample_size >= 0:
+                max_prop = self.samples_size
+            else:
+                props = list()
+                for edge in g.edges():
+                    props.append(g.edge[edge[0]][edge[1]][prop])
+                max_prop = max(props)
+        else: 
+            max_prop = sample_size
         # First pass sets max weight to 1 and adjusts all weights to maintain their distance from the max weight.
-        weights = list()
         for edge in g.edges():
-            weights.append(g.edge[edge[0]][edge[1]][prop])
-        #    weights = [edge[2] for edge in g.edges_iter(data='weight', default=0)]
-        max_weight = max(weights)
-        for edge in g.edges():
-            g.edge[edge[0]][edge[1]]['weight'] = float(1 + (max_weight - g.edge[edge[0]][edge[1]][prop]))
-        #        g.edge[edge[0]][edge[1]]['weight'] = g.edge[edge[0]][edge[1]]['count'] / float(max_weight)
-        # we now have the maximum value set to 1 and all other values the same distance from the max weight in the positive direction.  Now to normalize to 0<x<=1
+            g.edge[edge[0]][edge[1]]['weight'] = float(1 + (max_prop - g.edge[edge[0]][edge[1]][prop]))
+        # we now have the maximum value set to 1 and all other values the same distance from the max weight in the positive direction.  
+        #  Now to normalize to 0<x<=1
         weights = list()
         for edge in g.edges():
             weights.append(g.edge[edge[0]][edge[1]]['weight'])
@@ -605,6 +615,7 @@ class attack_graph():
             for F in self.data:
                 with open(F, 'r') as f:
                     actions, attributes = self.parse_json_record(json.load(f))
+                    self.sample_size += 1
                     self.add_record_to_graph(actions, attributes)
         elif self.data_type == 'dataframe':
             # get rows to filter from records
@@ -615,6 +626,7 @@ class attack_graph():
             att_cols = [l for l in self.data.columns for m in [att_regex.search(l)] if m]  # returns action columns
 
             for index, record in self.data.iterrows():
+                self.samples_size += 1
                 actions = list(record.where(record[act_cols] == True).dropna().index)
                 attributes = list(record.where(record[att_cols] == True).dropna().index)
                 self.add_record_to_graph(actions, attributes)
