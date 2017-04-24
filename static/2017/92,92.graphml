@@ -1,0 +1,2521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns">
+<key attr.name="label" attr.type="string" for="node" id="label"/>
+<key attr.name="Edge Label" attr.type="string" for="edge" id="edgelabel"/>
+<key attr.name="weight" attr.type="double" for="edge" id="weight"/>
+<key attr.name="r" attr.type="int" for="node" id="r"/>
+<key attr.name="g" attr.type="int" for="node" id="g"/>
+<key attr.name="b" attr.type="int" for="node" id="b"/>
+<key attr.name="x" attr.type="float" for="node" id="x"/>
+<key attr.name="y" attr.type="float" for="node" id="y"/>
+<key attr.name="size" attr.type="float" for="node" id="size"/>
+<key attr.name="sub_type" attr.type="string" for="node" id="d2"/>
+<key attr.name="type" attr.type="string" for="node" id="d1"/>
+<key attr.name="count" attr.type="int" for="node" id="d0"/>
+<key attr.name="direction" attr.type="string" for="edge" id="d6"/>
+<key attr.name="count" attr.type="int" for="edge" id="d5"/>
+<graph edgedefault="directed">
+<node id="action.hacking.variety.DoS">
+<data key="label">action.hacking.variety.DoS</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">618</data>
+<data key="size">50.0</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">173.00471</data>
+<data key="y">606.7284</data>
+</node>
+<node id="attribute.availability.variety.Degradation">
+<data key="label">attribute.availability.variety.Degradation</data>
+<data key="d2">attribute.availability</data>
+<data key="d1">attribute</data>
+<data key="d0">616</data>
+<data key="size">49.998535</data>
+<data key="r">211</data>
+<data key="g">179</data>
+<data key="b">176</data>
+<data key="x">-558.05554</data>
+<data key="y">-294.3196</data>
+</node>
+<node id="attribute.integrity.variety.Software installation">
+<data key="label">attribute.integrity.variety.Software installation</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">184</data>
+<data key="size">39.59384</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-95.14819</data>
+<data key="y">623.6961</data>
+</node>
+<node id="attribute.integrity.variety.Alter behavior">
+<data key="label">attribute.integrity.variety.Alter behavior</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">148</data>
+<data key="size">37.32963</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-462.58438</data>
+<data key="y">429.02875</data>
+</node>
+<node id="action.hacking.variety.Use of backdoor or C2">
+<data key="label">action.hacking.variety.Use of backdoor or C2</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">110</data>
+<data key="size">34.366627</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">379.0347</data>
+<data key="y">504.36365</data>
+</node>
+<node id="action.social.variety.Phishing">
+<data key="label">action.social.variety.Phishing</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">105</data>
+<data key="size">33.918747</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-457.55457</data>
+<data key="y">-434.389</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Secrets">
+<data key="label">attribute.confidentiality.data.variety.Secrets</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">105</data>
+<data key="size">33.918747</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-538.116</data>
+<data key="y">329.36472</data>
+</node>
+<node id="action.malware.variety.C2">
+<data key="label">action.malware.variety.C2</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">103</data>
+<data key="size">33.735054</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">583.82056</data>
+<data key="y">239.1726</data>
+</node>
+<node id="action.malware.variety.Backdoor">
+<data key="label">action.malware.variety.Backdoor</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">92</data>
+<data key="size">32.674103</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">549.0397</data>
+<data key="y">310.81412</data>
+</node>
+<node id="action.malware.vector.Email attachment">
+<data key="label">action.malware.vector.Email attachment</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">82</data>
+<data key="size">31.625694</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">422.6288</data>
+<data key="y">-468.43875</data>
+</node>
+<node id="action.malware.variety.Downloader">
+<data key="label">action.malware.variety.Downloader</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">61</data>
+<data key="size">29.088947</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">630.5926</data>
+<data key="y">-20.073236</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Personal">
+<data key="label">attribute.confidentiality.data.variety.Personal</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">60</data>
+<data key="size">28.954117</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-573.5661</data>
+<data key="y">262.8153</data>
+</node>
+<node id="action.malware.variety.Adminware">
+<data key="label">action.malware.variety.Adminware</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">51</data>
+<data key="size">27.66766</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">491.22534</data>
+<data key="y">395.9137</data>
+</node>
+<node id="action.malware.variety.Spyware/Keylogger">
+<data key="label">action.malware.variety.Spyware/Keylogger</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">51</data>
+<data key="size">27.66766</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">554.9987</data>
+<data key="y">-300.04398</data>
+</node>
+<node id="action.misuse.variety.Privilege abuse">
+<data key="label">action.misuse.variety.Privilege abuse</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">47</data>
+<data key="size">27.047955</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">-40.012394</data>
+<data key="y">-629.64197</data>
+</node>
+<node id="action.malware.variety.Export data">
+<data key="label">action.malware.variety.Export data</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">47</data>
+<data key="size">27.047955</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">616.19806</data>
+<data key="y">-135.4618</data>
+</node>
+<node id="action.malware.variety.Capture stored data">
+<data key="label">action.malware.variety.Capture stored data</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">45</data>
+<data key="size">26.725307</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">618.029</data>
+<data key="y">126.84702</data>
+</node>
+<node id="action.malware.variety.Ransomware">
+<data key="label">action.malware.variety.Ransomware</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">44</data>
+<data key="size">26.56054</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">582.94165</data>
+<data key="y">-241.3069</data>
+</node>
+<node id="attribute.availability.variety.Obscuration">
+<data key="label">attribute.availability.variety.Obscuration</data>
+<data key="d2">attribute.availability</data>
+<data key="d1">attribute</data>
+<data key="d0">44</data>
+<data key="size">26.56054</data>
+<data key="r">211</data>
+<data key="g">179</data>
+<data key="b">176</data>
+<data key="x">-624.1369</data>
+<data key="y">-92.212234</data>
+</node>
+<node id="action.malware.vector.Web drive-by">
+<data key="label">action.malware.vector.Web drive-by</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">41</data>
+<data key="size">26.051495</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">195.66605</data>
+<data key="y">-599.80396</data>
+</node>
+<node id="action.malware.vector.Download by malware">
+<data key="label">action.malware.vector.Download by malware</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">38</data>
+<data key="size">25.5184</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">470.94873</data>
+<data key="y">-419.83005</data>
+</node>
+<node id="attribute.integrity.variety.Modify data">
+<data key="label">attribute.integrity.variety.Modify data</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">34</data>
+<data key="size">24.765112</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-218.61111</data>
+<data key="y">591.82697</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Credentials">
+<data key="label">attribute.confidentiality.data.variety.Credentials</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">34</data>
+<data key="size">24.765112</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-629.3728</data>
+<data key="y">44.043823</data>
+</node>
+<node id="action.misuse.variety.Data mishandling">
+<data key="label">action.misuse.variety.Data mishandling</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">28</data>
+<data key="size">23.525349</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">138.32172</data>
+<data key="y">-615.56244</data>
+</node>
+<node id="attribute.integrity.variety.Repurpose">
+<data key="label">attribute.integrity.variety.Repurpose</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">18</data>
+<data key="size">21.040417</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-166.28572</data>
+<data key="y">608.6042</data>
+</node>
+<node id="action.hacking.variety.SQLi">
+<data key="label">action.hacking.variety.SQLi</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">17</data>
+<data key="size">20.751003</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">284.74625</data>
+<data key="y">563.0005</data>
+</node>
+<node id="action.malware.variety.Exploit vuln">
+<data key="label">action.malware.variety.Exploit vuln</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">16</data>
+<data key="size">20.451622</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">625.9066</data>
+<data key="y">-79.31489</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Internal">
+<data key="label">attribute.confidentiality.data.variety.Internal</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">15</data>
+<data key="size">20.141323</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-623.32117</data>
+<data key="y">97.57418</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Medical">
+<data key="label">attribute.confidentiality.data.variety.Medical</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">15</data>
+<data key="size">20.141323</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-614.02386</data>
+<data key="y">144.9988</data>
+</node>
+<node id="action.malware.variety.Client-side attack">
+<data key="label">action.malware.variety.Client-side attack</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">14</data>
+<data key="size">19.818996</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">629.7308</data>
+<data key="y">38.588806</data>
+</node>
+<node id="attribute.availability.variety.Loss">
+<data key="label">attribute.availability.variety.Loss</data>
+<data key="d2">attribute.availability</data>
+<data key="d1">attribute</data>
+<data key="d0">14</data>
+<data key="size">19.818996</data>
+<data key="r">211</data>
+<data key="g">179</data>
+<data key="b">176</data>
+<data key="x">-613.5862</data>
+<data key="y">-146.84009</data>
+</node>
+<node id="action.malware.vector.Direct install">
+<data key="label">action.malware.vector.Direct install</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">14</data>
+<data key="size">19.818996</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">505.3568</data>
+<data key="y">-377.7095</data>
+</node>
+<node id="action.malware.variety.Password dumper">
+<data key="label">action.malware.variety.Password dumper</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">13</data>
+<data key="size">19.483326</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">601.8133</data>
+<data key="y">-189.39578</data>
+</node>
+<node id="action.social.variety.Forgery">
+<data key="label">action.social.variety.Forgery</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">13</data>
+<data key="size">19.483326</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-383.7676</data>
+<data key="y">-500.77182</data>
+</node>
+<node id="action.malware.vector.Web download">
+<data key="label">action.malware.vector.Web download</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">13</data>
+<data key="size">19.483326</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">246.81534</data>
+<data key="y">-580.63086</data>
+</node>
+<node id="action.physical.variety.Theft">
+<data key="label">action.physical.variety.Theft</data>
+<data key="d2">action.physical</data>
+<data key="d1">action</data>
+<data key="d0">13</data>
+<data key="size">19.483326</data>
+<data key="r">0</data>
+<data key="g">189</data>
+<data key="b">148</data>
+<data key="x">-286.38232</data>
+<data key="y">-562.17004</data>
+</node>
+<node id="action.malware.vector.Email autoexecute">
+<data key="label">action.malware.vector.Email autoexecute</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">12</data>
+<data key="size">19.132744</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">375.50653</data>
+<data key="y">-506.99588</data>
+</node>
+<node id="action.malware.variety.Capture app data">
+<data key="label">action.malware.variety.Capture app data</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">11</data>
+<data key="size">18.765343</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">604.75543</data>
+<data key="y">179.7799</data>
+</node>
+<node id="action.hacking.variety.Buffer overflow">
+<data key="label">action.hacking.variety.Buffer overflow</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">11</data>
+<data key="size">18.765343</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">92.397736</data>
+<data key="y">624.1095</data>
+</node>
+<node id="action.hacking.variety.URL redirector abuse">
+<data key="label">action.hacking.variety.URL redirector abuse</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">11</data>
+<data key="size">18.765343</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">326.21786</data>
+<data key="y">540.02954</data>
+</node>
+<node id="action.hacking.variety.XSS">
+<data key="label">action.hacking.variety.XSS</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">11</data>
+<data key="size">18.765343</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">454.3908</data>
+<data key="y">437.69736</data>
+</node>
+<node id="attribute.integrity.variety.Modify configuration">
+<data key="label">attribute.integrity.variety.Modify configuration</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">10</data>
+<data key="size">18.378775</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-266.38632</data>
+<data key="y">571.9163</data>
+</node>
+<node id="action.misuse.variety.Possession abuse">
+<data key="label">action.misuse.variety.Possession abuse</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">8</data>
+<data key="size">17.535458</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">13.459806</data>
+<data key="y">-630.76843</data>
+</node>
+<node id="attribute.availability.variety.Interruption">
+<data key="label">attribute.availability.variety.Interruption</data>
+<data key="d2">attribute.availability</data>
+<data key="d1">attribute</data>
+<data key="d0">7</data>
+<data key="size">17.069866</data>
+<data key="r">211</data>
+<data key="g">179</data>
+<data key="b">176</data>
+<data key="x">-601.7822</data>
+<data key="y">-189.49449</data>
+</node>
+<node id="attribute.confidentiality.data.variety.System">
+<data key="label">attribute.confidentiality.data.variety.System</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">6</data>
+<data key="size">16.566385</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-504.05905</data>
+<data key="y">379.43967</data>
+</node>
+<node id="action.misuse.variety.Knowledge abuse">
+<data key="label">action.misuse.variety.Knowledge abuse</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">6</data>
+<data key="size">16.566385</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">54.31572</data>
+<data key="y">-628.56964</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Bank">
+<data key="label">attribute.confidentiality.data.variety.Bank</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">6</data>
+<data key="size">16.566385</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-629.5938</data>
+<data key="y">-40.763016</data>
+</node>
+<node id="action.malware.vector.Network propagation">
+<data key="label">action.malware.vector.Network propagation</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">5</data>
+<data key="size">16.015053</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">312.35638</data>
+<data key="y">-548.1637</data>
+</node>
+<node id="action.physical.variety.Assault">
+<data key="label">action.physical.variety.Assault</data>
+<data key="d2">action.physical</data>
+<data key="d1">action</data>
+<data key="d0">5</data>
+<data key="size">16.015053</data>
+<data key="r">0</data>
+<data key="g">189</data>
+<data key="b">148</data>
+<data key="x">-155.94002</data>
+<data key="y">-611.3368</data>
+</node>
+<node id="action.hacking.variety.Use of stolen creds">
+<data key="label">action.hacking.variety.Use of stolen creds</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">425.00848</data>
+<data key="y">466.2808</data>
+</node>
+<node id="attribute.integrity.variety.Created account">
+<data key="label">attribute.integrity.variety.Created account</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-417.30322</data>
+<data key="y">473.18918</data>
+</node>
+<node id="action.social.variety.Pretexting">
+<data key="label">action.social.variety.Pretexting</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-496.23135</data>
+<data key="y">-389.62085</data>
+</node>
+<node id="attribute.integrity.variety.Log tampering">
+<data key="label">attribute.integrity.variety.Log tampering</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-302.55627</data>
+<data key="y">553.6332</data>
+</node>
+<node id="action.hacking.variety.Brute force">
+<data key="label">action.hacking.variety.Brute force</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">51.674202</data>
+<data key="y">628.7923</data>
+</node>
+<node id="attribute.integrity.variety.Fraudulent transaction">
+<data key="label">attribute.integrity.variety.Fraudulent transaction</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-362.17017</data>
+<data key="y">516.60693</data>
+</node>
+<node id="action.misuse.variety.Email misuse">
+<data key="label">action.misuse.variety.Email misuse</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">4</data>
+<data key="size">15.400575</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">92.409744</data>
+<data key="y">-624.1077</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Classified">
+<data key="label">attribute.confidentiality.data.variety.Classified</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-630.9035</data>
+<data key="y">-3.2750974</data>
+</node>
+<node id="action.social.variety.Bribery">
+<data key="label">action.social.variety.Bribery</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-322.29922</data>
+<data key="y">-542.3774</data>
+</node>
+<node id="action.malware.variety.Worm">
+<data key="label">action.malware.variety.Worm</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">529.04706</data>
+<data key="y">-343.74295</data>
+</node>
+<node id="action.social.variety.Influence">
+<data key="label">action.social.variety.Influence</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-415.49</data>
+<data key="y">-474.7821</data>
+</node>
+<node id="action.social.variety.Scam">
+<data key="label">action.social.variety.Scam</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-517.71063</data>
+<data key="y">-360.59076</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Other">
+<data key="label">attribute.confidentiality.data.variety.Other</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-603.0753</data>
+<data key="y">185.338</data>
+</node>
+<node id="action.misuse.variety.Unapproved workaround">
+<data key="label">action.misuse.variety.Unapproved workaround</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">-119.98311</data>
+<data key="y">-619.39813</data>
+</node>
+<node id="action.hacking.variety.Path traversal">
+<data key="label">action.hacking.variety.Path traversal</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">3</data>
+<data key="size">14.697212</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">246.16898</data>
+<data key="y">580.90515</data>
+</node>
+<node id="action.physical.variety.Disabled controls">
+<data key="label">action.physical.variety.Disabled controls</data>
+<data key="d2">action.physical</data>
+<data key="d1">action</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">0</data>
+<data key="g">189</data>
+<data key="b">148</data>
+<data key="x">-190.40141</data>
+<data key="y">-601.49585</data>
+</node>
+<node id="action.malware.variety.Click fraud">
+<data key="label">action.malware.variety.Click fraud</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">625.9698</data>
+<data key="y">78.81499</data>
+</node>
+<node id="action.malware.vector.Email link">
+<data key="label">action.malware.vector.Email link</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">342.97833</data>
+<data key="y">-529.5431</data>
+</node>
+<node id="action.social.variety.Extortion">
+<data key="label">action.social.variety.Extortion</data>
+<data key="d2">action.social</data>
+<data key="d1">action</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">255</data>
+<data key="g">85</data>
+<data key="b">132</data>
+<data key="x">-351.264</data>
+<data key="y">-524.08356</data>
+</node>
+<node id="attribute.integrity.variety.Defacement">
+<data key="label">attribute.integrity.variety.Defacement</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-390.34082</data>
+<data key="y">495.66522</data>
+</node>
+<node id="action.hacking.variety.Abuse of functionality">
+<data key="label">action.hacking.variety.Abuse of functionality</data>
+<data key="d2">action.hacking</data>
+<data key="d1">action</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">0</data>
+<data key="g">196</data>
+<data key="b">255</data>
+<data key="x">16.623806</data>
+<data key="y">630.693</data>
+</node>
+<node id="action.physical.variety.Tampering">
+<data key="label">action.physical.variety.Tampering</data>
+<data key="d2">action.physical</data>
+<data key="d1">action</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">0</data>
+<data key="g">189</data>
+<data key="b">148</data>
+<data key="x">-250.18382</data>
+<data key="y">-579.1874</data>
+</node>
+<node id="attribute.integrity.variety.Hardware tampering">
+<data key="label">attribute.integrity.variety.Hardware tampering</data>
+<data key="d2">attribute.integrity</data>
+<data key="d1">attribute</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">76</data>
+<data key="g">70</data>
+<data key="b">62</data>
+<data key="x">-332.87842</data>
+<data key="y">535.9496</data>
+</node>
+<node id="attribute.availability.variety.Destruction">
+<data key="label">attribute.availability.variety.Destruction</data>
+<data key="d2">attribute.availability</data>
+<data key="d1">attribute</data>
+<data key="d0">2</data>
+<data key="size">13.854775</data>
+<data key="r">211</data>
+<data key="g">179</data>
+<data key="b">176</data>
+<data key="x">-589.6021</data>
+<data key="y">-224.54257</data>
+</node>
+<node id="action.physical.variety.Surveillance">
+<data key="label">action.physical.variety.Surveillance</data>
+<data key="d2">action.physical</data>
+<data key="d1">action</data>
+<data key="d0">1</data>
+<data key="size">12.743707</data>
+<data key="r">0</data>
+<data key="g">189</data>
+<data key="b">148</data>
+<data key="x">-220.57483</data>
+<data key="y">-591.0979</data>
+</node>
+<node id="action.malware.vector.Remote injection">
+<data key="label">action.malware.vector.Remote injection</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">1</data>
+<data key="size">12.743707</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">281.91992</data>
+<data key="y">-564.4211</data>
+</node>
+<node id="action.misuse.variety.Unapproved software">
+<data key="label">action.misuse.variety.Unapproved software</data>
+<data key="d2">action.misuse</data>
+<data key="d1">action</data>
+<data key="d0">1</data>
+<data key="size">12.743707</data>
+<data key="r">255</data>
+<data key="g">136</data>
+<data key="b">5</data>
+<data key="x">-87.50624</data>
+<data key="y">-624.8141</data>
+</node>
+<node id="action.malware.variety.Adware">
+<data key="label">action.malware.variety.Adware</data>
+<data key="d2">action.malware</data>
+<data key="d1">action</data>
+<data key="d0">1</data>
+<data key="size">12.743707</data>
+<data key="r">223</data>
+<data key="g">137</data>
+<data key="b">255</data>
+<data key="x">520.1761</data>
+<data key="y">357.025</data>
+</node>
+<node id="attribute.confidentiality.data.variety.Payment">
+<data key="label">attribute.confidentiality.data.variety.Payment</data>
+<data key="d2">attribute.confidentiality</data>
+<data key="d1">attribute</data>
+<data key="d0">1</data>
+<data key="size">12.743707</data>
+<data key="r">115</data>
+<data key="g">192</data>
+<data key="b">0</data>
+<data key="x">-592.58514</data>
+<data key="y">216.54755</data>
+</node>
+<node id="end">
+<data key="label">end</data>
+<data key="d2">end</data>
+<data key="d1">end</data>
+<data key="d0">0</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">-634.66504</data>
+<data key="y">609.93427</data>
+</node>
+<node id="start">
+<data key="label">start</data>
+<data key="d2">start</data>
+<data key="d1">start</data>
+<data key="d0">0</data>
+<data key="size">10.0</data>
+<data key="r">192</data>
+<data key="g">192</data>
+<data key="b">192</data>
+<data key="x">649.40454</data>
+<data key="y">-634.662</data>
+</node>
+<edge id="2634" source="attribute.confidentiality.data.variety.Classified" target="action.physical.variety.Theft">
+<data key="edgelabel">attribute.confidentiality.data.variety.Classified-&gt;action.physical.variety.Theft</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2635" source="attribute.confidentiality.data.variety.Classified" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Classified-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2636" source="action.malware.variety.Client-side attack" target="attribute.integrity.variety.Software installation">
+<data key="edgelabel">action.malware.variety.Client-side attack-&gt;attribute.integrity.variety.Software installation</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">13</data>
+</edge>
+<edge id="2637" source="action.malware.variety.Client-side attack" target="attribute.integrity.variety.Repurpose">
+<data key="edgelabel">action.malware.variety.Client-side attack-&gt;attribute.integrity.variety.Repurpose</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2638" source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Medical">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Medical</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2639" source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Modify data">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Modify data</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">7</data>
+</edge>
+<edge id="2640" source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Internal">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Internal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">4</data>
+</edge>
+<edge id="2641" source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Bank">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Bank</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">4</data>
+</edge>
+<edge id="2642" source="action.misuse.variety.Privilege abuse" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">33</data>
+</edge>
+<edge id="2643" source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Log tampering">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Log tampering</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2644" source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Alter behavior">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Alter behavior</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2645" source="action.misuse.variety.Privilege abuse" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2646" source="action.misuse.variety.Privilege abuse" target="attribute.integrity.variety.Created account">
+<data key="edgelabel">action.misuse.variety.Privilege abuse-&gt;attribute.integrity.variety.Created account</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2647" source="action.malware.variety.Capture app data" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Capture app data-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2648" source="action.malware.variety.Capture app data" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Capture app data-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2649" source="action.malware.variety.Capture app data" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Capture app data-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2650" source="attribute.confidentiality.data.variety.Internal" target="action.social.variety.Pretexting">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;action.social.variety.Pretexting</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2651" source="attribute.confidentiality.data.variety.Internal" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2652" source="attribute.confidentiality.data.variety.Internal" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2653" source="attribute.confidentiality.data.variety.Internal" target="action.social.variety.Influence">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;action.social.variety.Influence</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2654" source="attribute.confidentiality.data.variety.Internal" target="action.hacking.variety.DoS">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;action.hacking.variety.DoS</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2655" source="attribute.confidentiality.data.variety.Internal" target="action.hacking.variety.Brute force">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;action.hacking.variety.Brute force</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2656" source="attribute.confidentiality.data.variety.Internal" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Internal-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2657" source="action.malware.variety.Password dumper" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Password dumper-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2658" source="action.malware.variety.Password dumper" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Password dumper-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2659" source="action.malware.variety.Password dumper" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Password dumper-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2660" source="action.social.variety.Bribery" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">action.social.variety.Bribery-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2661" source="action.social.variety.Phishing" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.social.variety.Phishing-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2662" source="action.social.variety.Phishing" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.social.variety.Phishing-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">12</data>
+</edge>
+<edge id="2663" source="action.social.variety.Phishing" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.social.variety.Phishing-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">17</data>
+</edge>
+<edge id="2664" source="action.social.variety.Phishing" target="action.malware.variety.C2">
+<data key="edgelabel">action.social.variety.Phishing-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">62</data>
+</edge>
+<edge id="2665" source="action.social.variety.Phishing" target="action.physical.variety.Assault">
+<data key="edgelabel">action.social.variety.Phishing-&gt;action.physical.variety.Assault</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2666" source="action.malware.variety.Click fraud" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.variety.Click fraud-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2667" source="action.malware.variety.Click fraud" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Click fraud-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2668" source="attribute.confidentiality.data.variety.System" target="action.hacking.variety.Use of stolen creds">
+<data key="edgelabel">attribute.confidentiality.data.variety.System-&gt;action.hacking.variety.Use of stolen creds</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2669" source="attribute.confidentiality.data.variety.System" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.System-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2670" source="action.hacking.variety.Use of stolen creds" target="attribute.confidentiality.data.variety.System">
+<data key="edgelabel">action.hacking.variety.Use of stolen creds-&gt;attribute.confidentiality.data.variety.System</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2671" source="action.hacking.variety.Use of stolen creds" target="action.social.variety.Pretexting">
+<data key="edgelabel">action.hacking.variety.Use of stolen creds-&gt;action.social.variety.Pretexting</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2672" source="action.hacking.variety.Use of stolen creds" target="attribute.confidentiality.data.variety.Credentials">
+<data key="edgelabel">action.hacking.variety.Use of stolen creds-&gt;attribute.confidentiality.data.variety.Credentials</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2673" source="action.hacking.variety.Use of stolen creds" target="attribute.availability.variety.Destruction">
+<data key="edgelabel">action.hacking.variety.Use of stolen creds-&gt;attribute.availability.variety.Destruction</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2674" source="action.malware.vector.Email link" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.vector.Email link-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2675" source="attribute.integrity.variety.Created account" target="end">
+<data key="edgelabel">attribute.integrity.variety.Created account-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2676" source="attribute.integrity.variety.Created account" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.integrity.variety.Created account-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2677" source="action.social.variety.Extortion" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.social.variety.Extortion-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2678" source="action.hacking.variety.Buffer overflow" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.hacking.variety.Buffer overflow-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2679" source="action.hacking.variety.Buffer overflow" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.hacking.variety.Buffer overflow-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2680" source="action.hacking.variety.Buffer overflow" target="action.malware.variety.C2">
+<data key="edgelabel">action.hacking.variety.Buffer overflow-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2681" source="action.malware.variety.Export data" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Export data-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2682" source="action.malware.variety.Export data" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Export data-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2683" source="action.malware.variety.Export data" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Export data-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">40</data>
+</edge>
+<edge id="2684" source="action.malware.variety.Worm" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Worm-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2685" source="action.social.variety.Forgery" target="action.social.variety.Pretexting">
+<data key="edgelabel">action.social.variety.Forgery-&gt;action.social.variety.Pretexting</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2686" source="action.social.variety.Forgery" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.social.variety.Forgery-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2687" source="action.social.variety.Forgery" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.social.variety.Forgery-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2688" source="action.social.variety.Forgery" target="action.malware.variety.C2">
+<data key="edgelabel">action.social.variety.Forgery-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2689" source="attribute.integrity.variety.Software installation" target="end">
+<data key="edgelabel">attribute.integrity.variety.Software installation-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2690" source="attribute.integrity.variety.Software installation" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">attribute.integrity.variety.Software installation-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">25</data>
+</edge>
+<edge id="2691" source="attribute.integrity.variety.Software installation" target="action.malware.variety.Ransomware">
+<data key="edgelabel">attribute.integrity.variety.Software installation-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">86</data>
+</edge>
+<edge id="2692" source="attribute.integrity.variety.Software installation" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">attribute.integrity.variety.Software installation-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">50</data>
+</edge>
+<edge id="2693" source="attribute.integrity.variety.Software installation" target="action.malware.variety.C2">
+<data key="edgelabel">attribute.integrity.variety.Software installation-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">32</data>
+</edge>
+<edge id="2694" source="attribute.confidentiality.data.variety.Medical" target="action.physical.variety.Theft">
+<data key="edgelabel">attribute.confidentiality.data.variety.Medical-&gt;action.physical.variety.Theft</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2695" source="attribute.confidentiality.data.variety.Medical" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Medical-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2696" source="attribute.confidentiality.data.variety.Medical" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.confidentiality.data.variety.Medical-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2697" source="attribute.integrity.variety.Defacement" target="action.hacking.variety.DoS">
+<data key="edgelabel">attribute.integrity.variety.Defacement-&gt;action.hacking.variety.DoS</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2698" source="attribute.integrity.variety.Defacement" target="end">
+<data key="edgelabel">attribute.integrity.variety.Defacement-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2699" source="action.malware.variety.Downloader" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.variety.Downloader-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2700" source="action.malware.variety.Downloader" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Downloader-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2701" source="action.malware.variety.Downloader" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Downloader-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">13</data>
+</edge>
+<edge id="2702" source="action.malware.variety.Downloader" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Downloader-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">43</data>
+</edge>
+<edge id="2703" source="action.misuse.variety.Knowledge abuse" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.misuse.variety.Knowledge abuse-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">3</data>
+</edge>
+<edge id="2704" source="action.misuse.variety.Knowledge abuse" target="attribute.confidentiality.data.variety.Internal">
+<data key="edgelabel">action.misuse.variety.Knowledge abuse-&gt;attribute.confidentiality.data.variety.Internal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2705" source="attribute.availability.variety.Loss" target="action.physical.variety.Theft">
+<data key="edgelabel">attribute.availability.variety.Loss-&gt;action.physical.variety.Theft</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">11</data>
+</edge>
+<edge id="2706" source="attribute.availability.variety.Loss" target="end">
+<data key="edgelabel">attribute.availability.variety.Loss-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2707" source="attribute.availability.variety.Loss" target="action.social.variety.Influence">
+<data key="edgelabel">attribute.availability.variety.Loss-&gt;action.social.variety.Influence</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2708" source="attribute.integrity.variety.Modify data" target="action.hacking.variety.SQLi">
+<data key="edgelabel">attribute.integrity.variety.Modify data-&gt;action.hacking.variety.SQLi</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">13</data>
+</edge>
+<edge id="2709" source="attribute.integrity.variety.Modify data" target="end">
+<data key="edgelabel">attribute.integrity.variety.Modify data-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2710" source="attribute.integrity.variety.Modify data" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.integrity.variety.Modify data-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2711" source="attribute.integrity.variety.Modify data" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">attribute.integrity.variety.Modify data-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2712" source="action.malware.vector.Web drive-by" target="attribute.integrity.variety.Software installation">
+<data key="edgelabel">action.malware.vector.Web drive-by-&gt;attribute.integrity.variety.Software installation</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">40</data>
+</edge>
+<edge id="2713" source="action.malware.variety.Backdoor" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Backdoor-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2714" source="action.malware.variety.Backdoor" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.variety.Backdoor-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2715" source="action.malware.variety.Backdoor" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Backdoor-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">4</data>
+</edge>
+<edge id="2716" source="action.malware.variety.Backdoor" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Backdoor-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">70</data>
+</edge>
+<edge id="2717" source="action.hacking.variety.Abuse of functionality" target="attribute.integrity.variety.Modify data">
+<data key="edgelabel">action.hacking.variety.Abuse of functionality-&gt;attribute.integrity.variety.Modify data</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2718" source="attribute.confidentiality.data.variety.Bank" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Bank-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2719" source="attribute.confidentiality.data.variety.Bank" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.confidentiality.data.variety.Bank-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2720" source="attribute.confidentiality.data.variety.Personal" target="action.hacking.variety.SQLi">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.hacking.variety.SQLi</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2721" source="attribute.confidentiality.data.variety.Personal" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">20</data>
+</edge>
+<edge id="2722" source="attribute.confidentiality.data.variety.Personal" target="action.misuse.variety.Knowledge abuse">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.misuse.variety.Knowledge abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2723" source="attribute.confidentiality.data.variety.Personal" target="action.physical.variety.Theft">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.physical.variety.Theft</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2724" source="attribute.confidentiality.data.variety.Personal" target="action.misuse.variety.Possession abuse">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.misuse.variety.Possession abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2725" source="attribute.confidentiality.data.variety.Personal" target="action.physical.variety.Assault">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.physical.variety.Assault</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2726" source="attribute.confidentiality.data.variety.Personal" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">9</data>
+</edge>
+<edge id="2727" source="attribute.confidentiality.data.variety.Personal" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Personal-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2728" source="action.malware.variety.Capture stored data" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Capture stored data-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2729" source="action.malware.variety.Capture stored data" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Capture stored data-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2730" source="action.malware.variety.Capture stored data" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Capture stored data-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">40</data>
+</edge>
+<edge id="2731" source="start" target="action.hacking.variety.SQLi">
+<data key="edgelabel">start-&gt;action.hacking.variety.SQLi</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2732" source="start" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">start-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2733" source="start" target="action.malware.variety.Capture app data">
+<data key="edgelabel">start-&gt;action.malware.variety.Capture app data</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2734" source="start" target="action.social.variety.Pretexting">
+<data key="edgelabel">start-&gt;action.social.variety.Pretexting</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2735" source="start" target="action.physical.variety.Disabled controls">
+<data key="edgelabel">start-&gt;action.physical.variety.Disabled controls</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2736" source="start" target="action.social.variety.Bribery">
+<data key="edgelabel">start-&gt;action.social.variety.Bribery</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2737" source="start" target="action.physical.variety.Surveillance">
+<data key="edgelabel">start-&gt;action.physical.variety.Surveillance</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2738" source="start" target="action.social.variety.Phishing">
+<data key="edgelabel">start-&gt;action.social.variety.Phishing</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2739" source="start" target="action.hacking.variety.Use of stolen creds">
+<data key="edgelabel">start-&gt;action.hacking.variety.Use of stolen creds</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2740" source="start" target="action.malware.vector.Email link">
+<data key="edgelabel">start-&gt;action.malware.vector.Email link</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2741" source="start" target="action.malware.variety.Export data">
+<data key="edgelabel">start-&gt;action.malware.variety.Export data</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2742" source="start" target="action.social.variety.Extortion">
+<data key="edgelabel">start-&gt;action.social.variety.Extortion</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2743" source="start" target="action.hacking.variety.Buffer overflow">
+<data key="edgelabel">start-&gt;action.hacking.variety.Buffer overflow</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2744" source="start" target="action.malware.variety.Worm">
+<data key="edgelabel">start-&gt;action.malware.variety.Worm</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2745" source="start" target="action.social.variety.Forgery">
+<data key="edgelabel">start-&gt;action.social.variety.Forgery</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2746" source="start" target="action.physical.variety.Tampering">
+<data key="edgelabel">start-&gt;action.physical.variety.Tampering</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2747" source="start" target="action.misuse.variety.Possession abuse">
+<data key="edgelabel">start-&gt;action.misuse.variety.Possession abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2748" source="start" target="action.malware.variety.Exploit vuln">
+<data key="edgelabel">start-&gt;action.malware.variety.Exploit vuln</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2749" source="start" target="action.malware.vector.Download by malware">
+<data key="edgelabel">start-&gt;action.malware.vector.Download by malware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2750" source="start" target="action.misuse.variety.Email misuse">
+<data key="edgelabel">start-&gt;action.misuse.variety.Email misuse</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2751" source="start" target="action.malware.variety.Backdoor">
+<data key="edgelabel">start-&gt;action.malware.variety.Backdoor</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2752" source="start" target="action.hacking.variety.Abuse of functionality">
+<data key="edgelabel">start-&gt;action.hacking.variety.Abuse of functionality</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2753" source="start" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">start-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2754" source="start" target="action.malware.variety.Click fraud">
+<data key="edgelabel">start-&gt;action.malware.variety.Click fraud</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2755" source="start" target="action.malware.variety.Capture stored data">
+<data key="edgelabel">start-&gt;action.malware.variety.Capture stored data</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2756" source="start" target="action.malware.variety.Spyware/Keylogger">
+<data key="edgelabel">start-&gt;action.malware.variety.Spyware/Keylogger</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2757" source="start" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">start-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2758" source="start" target="action.malware.vector.Web download">
+<data key="edgelabel">start-&gt;action.malware.vector.Web download</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2759" source="start" target="action.malware.variety.Downloader">
+<data key="edgelabel">start-&gt;action.malware.variety.Downloader</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2760" source="start" target="action.malware.vector.Remote injection">
+<data key="edgelabel">start-&gt;action.malware.vector.Remote injection</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2761" source="start" target="action.malware.variety.C2">
+<data key="edgelabel">start-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2762" source="start" target="action.malware.variety.Adminware">
+<data key="edgelabel">start-&gt;action.malware.variety.Adminware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2763" source="start" target="action.malware.variety.Password dumper">
+<data key="edgelabel">start-&gt;action.malware.variety.Password dumper</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2764" source="start" target="action.malware.variety.Ransomware">
+<data key="edgelabel">start-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2765" source="start" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">start-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2766" source="start" target="action.misuse.variety.Knowledge abuse">
+<data key="edgelabel">start-&gt;action.misuse.variety.Knowledge abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2767" source="start" target="action.misuse.variety.Unapproved software">
+<data key="edgelabel">start-&gt;action.misuse.variety.Unapproved software</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2768" source="start" target="action.social.variety.Scam">
+<data key="edgelabel">start-&gt;action.social.variety.Scam</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2769" source="start" target="action.hacking.variety.XSS">
+<data key="edgelabel">start-&gt;action.hacking.variety.XSS</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2770" source="start" target="action.hacking.variety.URL redirector abuse">
+<data key="edgelabel">start-&gt;action.hacking.variety.URL redirector abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2771" source="start" target="action.physical.variety.Assault">
+<data key="edgelabel">start-&gt;action.physical.variety.Assault</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2772" source="start" target="action.malware.variety.Adware">
+<data key="edgelabel">start-&gt;action.malware.variety.Adware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2773" source="start" target="action.social.variety.Influence">
+<data key="edgelabel">start-&gt;action.social.variety.Influence</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2774" source="start" target="action.hacking.variety.DoS">
+<data key="edgelabel">start-&gt;action.hacking.variety.DoS</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2775" source="start" target="action.malware.vector.Email attachment">
+<data key="edgelabel">start-&gt;action.malware.vector.Email attachment</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2776" source="start" target="action.malware.vector.Direct install">
+<data key="edgelabel">start-&gt;action.malware.vector.Direct install</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2777" source="start" target="action.hacking.variety.Brute force">
+<data key="edgelabel">start-&gt;action.hacking.variety.Brute force</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2778" source="start" target="action.malware.vector.Email autoexecute">
+<data key="edgelabel">start-&gt;action.malware.vector.Email autoexecute</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2779" source="start" target="action.hacking.variety.Use of backdoor or C2">
+<data key="edgelabel">start-&gt;action.hacking.variety.Use of backdoor or C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2780" source="start" target="action.malware.vector.Network propagation">
+<data key="edgelabel">start-&gt;action.malware.vector.Network propagation</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2781" source="start" target="action.hacking.variety.Path traversal">
+<data key="edgelabel">start-&gt;action.hacking.variety.Path traversal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2782" source="start" target="action.misuse.variety.Unapproved workaround">
+<data key="edgelabel">start-&gt;action.misuse.variety.Unapproved workaround</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2783" source="start" target="action.physical.variety.Theft">
+<data key="edgelabel">start-&gt;action.physical.variety.Theft</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2784" source="attribute.integrity.variety.Hardware tampering" target="end">
+<data key="edgelabel">attribute.integrity.variety.Hardware tampering-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2785" source="action.social.variety.Influence" target="attribute.availability.variety.Loss">
+<data key="edgelabel">action.social.variety.Influence-&gt;attribute.availability.variety.Loss</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2786" source="action.social.variety.Influence" target="attribute.integrity.variety.Alter behavior">
+<data key="edgelabel">action.social.variety.Influence-&gt;attribute.integrity.variety.Alter behavior</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2787" source="action.misuse.variety.Data mishandling" target="attribute.confidentiality.data.variety.Medical">
+<data key="edgelabel">action.misuse.variety.Data mishandling-&gt;attribute.confidentiality.data.variety.Medical</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">3</data>
+</edge>
+<edge id="2788" source="action.misuse.variety.Data mishandling" target="attribute.confidentiality.data.variety.Secrets">
+<data key="edgelabel">action.misuse.variety.Data mishandling-&gt;attribute.confidentiality.data.variety.Secrets</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2789" source="action.misuse.variety.Data mishandling" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.misuse.variety.Data mishandling-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">15</data>
+</edge>
+<edge id="2790" source="action.misuse.variety.Data mishandling" target="attribute.confidentiality.data.variety.Internal">
+<data key="edgelabel">action.misuse.variety.Data mishandling-&gt;attribute.confidentiality.data.variety.Internal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">3</data>
+</edge>
+<edge id="2791" source="action.social.variety.Scam" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.social.variety.Scam-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2792" source="action.malware.vector.Web download" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.vector.Web download-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2793" source="action.malware.vector.Web download" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.vector.Web download-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2794" source="action.malware.vector.Web download" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.vector.Web download-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2795" source="action.malware.vector.Network propagation" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.vector.Network propagation-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2796" source="action.malware.variety.C2" target="attribute.integrity.variety.Software installation">
+<data key="edgelabel">action.malware.variety.C2-&gt;attribute.integrity.variety.Software installation</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">102</data>
+</edge>
+<edge id="2797" source="action.malware.variety.Adminware" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Adminware-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2798" source="action.malware.variety.Adminware" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Adminware-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2799" source="action.malware.variety.Adminware" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Adminware-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">45</data>
+</edge>
+<edge id="2800" source="action.social.variety.Pretexting" target="attribute.integrity.variety.Fraudulent transaction">
+<data key="edgelabel">action.social.variety.Pretexting-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2801" source="action.social.variety.Pretexting" target="attribute.integrity.variety.Alter behavior">
+<data key="edgelabel">action.social.variety.Pretexting-&gt;attribute.integrity.variety.Alter behavior</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">3</data>
+</edge>
+<edge id="2802" source="action.malware.variety.Ransomware" target="attribute.availability.variety.Obscuration">
+<data key="edgelabel">action.malware.variety.Ransomware-&gt;attribute.availability.variety.Obscuration</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">42</data>
+</edge>
+<edge id="2803" source="action.malware.variety.Ransomware" target="attribute.integrity.variety.Software installation">
+<data key="edgelabel">action.malware.variety.Ransomware-&gt;attribute.integrity.variety.Software installation</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">43</data>
+</edge>
+<edge id="2804" source="action.malware.variety.Spyware/Keylogger" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.variety.Spyware/Keylogger-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2805" source="action.malware.variety.Spyware/Keylogger" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Spyware/Keylogger-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">11</data>
+</edge>
+<edge id="2806" source="action.malware.variety.Spyware/Keylogger" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Spyware/Keylogger-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">11</data>
+</edge>
+<edge id="2807" source="action.malware.variety.Spyware/Keylogger" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Spyware/Keylogger-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">43</data>
+</edge>
+<edge id="2808" source="attribute.integrity.variety.Repurpose" target="action.hacking.variety.SQLi">
+<data key="edgelabel">attribute.integrity.variety.Repurpose-&gt;action.hacking.variety.SQLi</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">14</data>
+</edge>
+<edge id="2809" source="attribute.integrity.variety.Repurpose" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">attribute.integrity.variety.Repurpose-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2810" source="attribute.integrity.variety.Repurpose" target="end">
+<data key="edgelabel">attribute.integrity.variety.Repurpose-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2811" source="action.hacking.variety.URL redirector abuse" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.hacking.variety.URL redirector abuse-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2812" source="action.hacking.variety.URL redirector abuse" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.hacking.variety.URL redirector abuse-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2813" source="action.hacking.variety.URL redirector abuse" target="action.malware.variety.C2">
+<data key="edgelabel">action.hacking.variety.URL redirector abuse-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2814" source="attribute.availability.variety.Obscuration" target="end">
+<data key="edgelabel">attribute.availability.variety.Obscuration-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2815" source="attribute.availability.variety.Obscuration" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">attribute.availability.variety.Obscuration-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2816" source="attribute.availability.variety.Obscuration" target="action.malware.variety.Ransomware">
+<data key="edgelabel">attribute.availability.variety.Obscuration-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">42</data>
+</edge>
+<edge id="2817" source="attribute.availability.variety.Obscuration" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">attribute.availability.variety.Obscuration-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">18</data>
+</edge>
+<edge id="2818" source="attribute.availability.variety.Obscuration" target="action.malware.variety.C2">
+<data key="edgelabel">attribute.availability.variety.Obscuration-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2819" source="action.misuse.variety.Possession abuse" target="attribute.integrity.variety.Fraudulent transaction">
+<data key="edgelabel">action.misuse.variety.Possession abuse-&gt;attribute.integrity.variety.Fraudulent transaction</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2820" source="action.misuse.variety.Possession abuse" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.misuse.variety.Possession abuse-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2821" source="attribute.integrity.variety.Log tampering" target="end">
+<data key="edgelabel">attribute.integrity.variety.Log tampering-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2822" source="attribute.integrity.variety.Log tampering" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.integrity.variety.Log tampering-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2823" source="action.physical.variety.Assault" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.physical.variety.Assault-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2824" source="action.physical.variety.Assault" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.physical.variety.Assault-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">3</data>
+</edge>
+<edge id="2825" source="action.hacking.variety.Brute force" target="attribute.confidentiality.data.variety.Other">
+<data key="edgelabel">action.hacking.variety.Brute force-&gt;attribute.confidentiality.data.variety.Other</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2826" source="action.hacking.variety.Brute force" target="action.malware.variety.C2">
+<data key="edgelabel">action.hacking.variety.Brute force-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2827" source="action.hacking.variety.Brute force" target="attribute.confidentiality.data.variety.Internal">
+<data key="edgelabel">action.hacking.variety.Brute force-&gt;attribute.confidentiality.data.variety.Internal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2828" source="action.hacking.variety.Brute force" target="action.physical.variety.Assault">
+<data key="edgelabel">action.hacking.variety.Brute force-&gt;action.physical.variety.Assault</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2829" source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation">
+<data key="edgelabel">action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">613</data>
+</edge>
+<edge id="2830" source="action.hacking.variety.DoS" target="attribute.confidentiality.data.variety.Credentials">
+<data key="edgelabel">action.hacking.variety.DoS-&gt;attribute.confidentiality.data.variety.Credentials</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2831" source="action.hacking.variety.DoS" target="attribute.integrity.variety.Defacement">
+<data key="edgelabel">action.hacking.variety.DoS-&gt;attribute.integrity.variety.Defacement</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2832" source="action.hacking.variety.DoS" target="attribute.confidentiality.data.variety.Internal">
+<data key="edgelabel">action.hacking.variety.DoS-&gt;attribute.confidentiality.data.variety.Internal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2833" source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption">
+<data key="edgelabel">action.hacking.variety.DoS-&gt;attribute.availability.variety.Interruption</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">4</data>
+</edge>
+<edge id="2834" source="attribute.confidentiality.data.variety.Credentials" target="action.hacking.variety.DoS">
+<data key="edgelabel">attribute.confidentiality.data.variety.Credentials-&gt;action.hacking.variety.DoS</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2835" source="attribute.confidentiality.data.variety.Credentials" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Credentials-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2836" source="attribute.confidentiality.data.variety.Credentials" target="action.hacking.variety.Use of stolen creds">
+<data key="edgelabel">attribute.confidentiality.data.variety.Credentials-&gt;action.hacking.variety.Use of stolen creds</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2837" source="attribute.integrity.variety.Fraudulent transaction" target="action.social.variety.Pretexting">
+<data key="edgelabel">attribute.integrity.variety.Fraudulent transaction-&gt;action.social.variety.Pretexting</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2838" source="attribute.integrity.variety.Fraudulent transaction" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.integrity.variety.Fraudulent transaction-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2839" source="attribute.integrity.variety.Fraudulent transaction" target="end">
+<data key="edgelabel">attribute.integrity.variety.Fraudulent transaction-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2840" source="attribute.integrity.variety.Fraudulent transaction" target="action.misuse.variety.Possession abuse">
+<data key="edgelabel">attribute.integrity.variety.Fraudulent transaction-&gt;action.misuse.variety.Possession abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2841" source="action.malware.vector.Direct install" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.vector.Direct install-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2842" source="action.malware.vector.Direct install" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.vector.Direct install-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2843" source="action.malware.vector.Direct install" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.vector.Direct install-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">11</data>
+</edge>
+<edge id="2844" source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Pretexting">
+<data key="edgelabel">attribute.integrity.variety.Alter behavior-&gt;action.social.variety.Pretexting</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2845" source="attribute.integrity.variety.Alter behavior" target="end">
+<data key="edgelabel">attribute.integrity.variety.Alter behavior-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2846" source="attribute.integrity.variety.Alter behavior" target="action.misuse.variety.Privilege abuse">
+<data key="edgelabel">attribute.integrity.variety.Alter behavior-&gt;action.misuse.variety.Privilege abuse</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">11</data>
+</edge>
+<edge id="2847" source="attribute.integrity.variety.Alter behavior" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">attribute.integrity.variety.Alter behavior-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2848" source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Influence">
+<data key="edgelabel">attribute.integrity.variety.Alter behavior-&gt;action.social.variety.Influence</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2849" source="action.malware.variety.Exploit vuln" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.variety.Exploit vuln-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2850" source="action.malware.variety.Exploit vuln" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.variety.Exploit vuln-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2851" source="action.malware.variety.Exploit vuln" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.variety.Exploit vuln-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2852" source="action.malware.vector.Email autoexecute" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.vector.Email autoexecute-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2853" source="action.malware.vector.Email autoexecute" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.vector.Email autoexecute-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2854" source="action.malware.vector.Email autoexecute" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.vector.Email autoexecute-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2855" source="action.malware.vector.Email autoexecute" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.vector.Email autoexecute-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2856" source="action.hacking.variety.Use of backdoor or C2" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.hacking.variety.Use of backdoor or C2-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2857" source="action.hacking.variety.Use of backdoor or C2" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.hacking.variety.Use of backdoor or C2-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">11</data>
+</edge>
+<edge id="2858" source="action.hacking.variety.Use of backdoor or C2" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.hacking.variety.Use of backdoor or C2-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">20</data>
+</edge>
+<edge id="2859" source="action.hacking.variety.Use of backdoor or C2" target="action.malware.variety.C2">
+<data key="edgelabel">action.hacking.variety.Use of backdoor or C2-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">95</data>
+</edge>
+<edge id="2860" source="action.malware.vector.Email attachment" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.vector.Email attachment-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2861" source="action.malware.vector.Email attachment" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.vector.Email attachment-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">7</data>
+</edge>
+<edge id="2862" source="action.malware.vector.Email attachment" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.vector.Email attachment-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">49</data>
+</edge>
+<edge id="2863" source="attribute.confidentiality.data.variety.Other" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Other-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2864" source="attribute.confidentiality.data.variety.Other" target="action.hacking.variety.Brute force">
+<data key="edgelabel">attribute.confidentiality.data.variety.Other-&gt;action.hacking.variety.Brute force</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2865" source="attribute.confidentiality.data.variety.Secrets" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Secrets-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2866" source="attribute.availability.variety.Destruction" target="action.hacking.variety.Use of stolen creds">
+<data key="edgelabel">attribute.availability.variety.Destruction-&gt;action.hacking.variety.Use of stolen creds</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2867" source="attribute.availability.variety.Destruction" target="end">
+<data key="edgelabel">attribute.availability.variety.Destruction-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2868" source="action.hacking.variety.SQLi" target="attribute.integrity.variety.Repurpose">
+<data key="edgelabel">action.hacking.variety.SQLi-&gt;attribute.integrity.variety.Repurpose</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">16</data>
+</edge>
+<edge id="2869" source="action.hacking.variety.SQLi" target="attribute.integrity.variety.Modify data">
+<data key="edgelabel">action.hacking.variety.SQLi-&gt;attribute.integrity.variety.Modify data</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">13</data>
+</edge>
+<edge id="2870" source="action.hacking.variety.SQLi" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.hacking.variety.SQLi-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2871" source="attribute.integrity.variety.Modify configuration" target="end">
+<data key="edgelabel">attribute.integrity.variety.Modify configuration-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2872" source="attribute.availability.variety.Degradation" target="end">
+<data key="edgelabel">attribute.availability.variety.Degradation-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2873" source="action.misuse.variety.Unapproved workaround" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">action.misuse.variety.Unapproved workaround-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2874" source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Medical">
+<data key="edgelabel">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Medical</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2875" source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Classified">
+<data key="edgelabel">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Classified</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2876" source="action.physical.variety.Theft" target="attribute.availability.variety.Loss">
+<data key="edgelabel">action.physical.variety.Theft-&gt;attribute.availability.variety.Loss</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">12</data>
+</edge>
+<edge id="2877" source="action.physical.variety.Theft" target="attribute.confidentiality.data.variety.Personal">
+<data key="edgelabel">action.physical.variety.Theft-&gt;attribute.confidentiality.data.variety.Personal</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">5</data>
+</edge>
+<edge id="2878" source="action.misuse.variety.Email misuse" target="action.misuse.variety.Data mishandling">
+<data key="edgelabel">action.misuse.variety.Email misuse-&gt;action.misuse.variety.Data mishandling</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">2</data>
+</edge>
+<edge id="2879" source="action.malware.vector.Download by malware" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.malware.vector.Download by malware-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2880" source="action.malware.vector.Download by malware" target="action.malware.variety.Ransomware">
+<data key="edgelabel">action.malware.vector.Download by malware-&gt;action.malware.variety.Ransomware</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">6</data>
+</edge>
+<edge id="2881" source="action.malware.vector.Download by malware" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.malware.vector.Download by malware-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">4</data>
+</edge>
+<edge id="2882" source="action.malware.vector.Download by malware" target="action.malware.variety.C2">
+<data key="edgelabel">action.malware.vector.Download by malware-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">32</data>
+</edge>
+<edge id="2883" source="action.hacking.variety.Path traversal" target="action.hacking.variety.SQLi">
+<data key="edgelabel">action.hacking.variety.Path traversal-&gt;action.hacking.variety.SQLi</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2884" source="action.hacking.variety.Path traversal" target="attribute.confidentiality.data.variety.Medical">
+<data key="edgelabel">action.hacking.variety.Path traversal-&gt;attribute.confidentiality.data.variety.Medical</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2885" source="action.hacking.variety.XSS" target="action.malware.variety.Client-side attack">
+<data key="edgelabel">action.hacking.variety.XSS-&gt;action.malware.variety.Client-side attack</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2886" source="action.hacking.variety.XSS" target="action.malware.vector.Web drive-by">
+<data key="edgelabel">action.hacking.variety.XSS-&gt;action.malware.vector.Web drive-by</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2887" source="action.hacking.variety.XSS" target="action.malware.variety.C2">
+<data key="edgelabel">action.hacking.variety.XSS-&gt;action.malware.variety.C2</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">10</data>
+</edge>
+<edge id="2888" source="attribute.confidentiality.data.variety.Payment" target="end">
+<data key="edgelabel">attribute.confidentiality.data.variety.Payment-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+<edge id="2889" source="attribute.availability.variety.Interruption" target="action.hacking.variety.DoS">
+<data key="edgelabel">attribute.availability.variety.Interruption-&gt;action.hacking.variety.DoS</data>
+<data key="weight">1.0</data>
+<data key="d6">backward</data>
+<data key="d5">3</data>
+</edge>
+<edge id="2890" source="attribute.availability.variety.Interruption" target="end">
+<data key="edgelabel">attribute.availability.variety.Interruption-&gt;end</data>
+<data key="weight">1.0</data>
+<data key="d6">forward</data>
+<data key="d5">1</data>
+</edge>
+</graph>
+</graphml>

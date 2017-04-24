@@ -36,7 +36,7 @@ $(document).ready(function() {
     //var s = new sigma('sigmajs_container');
 
     sigma.parsers.gexf(
-        './static/2016/all.gexf',
+        './static/2017/all.gexf',
         {   // Here is the ID of the DOM element that
             // will contain the graph:
             container: 'sigmajs_container'
@@ -134,7 +134,7 @@ $(document).ready(function() {
 
 //        console.log('./static/' + end + '.gexf');
         sigma.parsers.gexf(
-            './static/2016/' + end + '.gexf',
+            './static/2017/' + end + '.gexf',
             {   // Here is the ID of the DOM element that
                 // will contain the graph:
                 container: 'sigmajs_container'
