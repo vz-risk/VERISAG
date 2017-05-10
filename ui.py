@@ -51,7 +51,7 @@ FLASK_DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
 FILTERS = "./filter.txt"
-CACHE = "./static/2016/"
+CACHE = "./static/2017/"
 DATA = None
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################
@@ -176,6 +176,7 @@ logging.info("Cache population complete.")
 ## FUNCTION DEFINITION
 # Set up the app
 app = Flask(__name__)
+
 
 # define the API
 # Initialize the arguements
