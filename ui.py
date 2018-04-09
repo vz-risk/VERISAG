@@ -43,6 +43,7 @@ import logging
 
 
 # USER VARIABLES
+YEAR = 2018
 LOCATION = "./"
 CONFIG_FILE = "./verisag.cfg"
 LOGLEVEL = logging.DEBUG
@@ -51,7 +52,7 @@ FLASK_DEBUG = True
 HOST = '0.0.0.0'
 PORT = 8080
 FILTERS = "./filter.txt"
-CACHE = "./static/2017/"
+CACHE = "./static/{year}/".format(year=YEAR)
 DATA = None
 
 ########### NOT USER EDITABLE BELOW THIS POINT #################

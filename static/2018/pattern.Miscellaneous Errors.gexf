@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="5" title="count" type="integer" />
+      <attribute id="6" title="direction" type="string" />
+      <attribute id="7" title="Label" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="count" type="integer" />
+      <attribute id="1" title="type" type="string" />
+      <attribute id="2" title="sub_type" type="string" />
+      <attribute id="3" title="weight" type="double" />
+      <attribute id="4" title="Label" type="string" />
+    </attributes>
+    <nodes>
+      <node id="attribute.confidentiality.data.variety.Medical" label="attribute.confidentiality.data.variety.Medical">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.confidentiality" />
+          <attvalue for="3" value="0.5" />
+          <attvalue for="4" value="attribute.confidentiality.data.variety.Medical" />
+        </attvalues>
+      </node>
+      <node id="action.malware.variety.Ransomware" label="action.malware.variety.Ransomware">
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="action" />
+          <attvalue for="2" value="action.malware" />
+          <attvalue for="3" value="0.25" />
+          <attvalue for="4" value="action.malware.variety.Ransomware" />
+        </attvalues>
+      </node>
+      <node id="end" label="end">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="end" />
+          <attvalue for="2" value="end" />
+          <attvalue for="3" value="1.0" />
+          <attvalue for="4" value="end" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Modify data" label="attribute.integrity.variety.Modify data">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.integrity" />
+          <attvalue for="3" value="0.5" />
+          <attvalue for="4" value="attribute.integrity.variety.Modify data" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Loss" label="attribute.availability.variety.Loss">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.availability" />
+          <attvalue for="3" value="0.5" />
+          <attvalue for="4" value="attribute.availability.variety.Loss" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Obscuration" label="attribute.availability.variety.Obscuration">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.availability" />
+          <attvalue for="3" value="0.5" />
+          <attvalue for="4" value="attribute.availability.variety.Obscuration" />
+        </attvalues>
+      </node>
+      <node id="action.social.variety.Phishing" label="action.social.variety.Phishing">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="action" />
+          <attvalue for="2" value="action.social" />
+          <attvalue for="3" value="0.5" />
+          <attvalue for="4" value="action.social.variety.Phishing" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Personal" label="attribute.confidentiality.data.variety.Personal">
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.confidentiality" />
+          <attvalue for="3" value="0.25" />
+          <attvalue for="4" value="attribute.confidentiality.data.variety.Personal" />
+        </attvalues>
+      </node>
+      <node id="start" label="start">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="start" />
+          <attvalue for="2" value="start" />
+          <attvalue for="3" value="1.0" />
+          <attvalue for="4" value="start" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Alter behavior" label="attribute.integrity.variety.Alter behavior">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.integrity" />
+          <attvalue for="3" value="0.5" />
+          <attvalue for="4" value="attribute.integrity.variety.Alter behavior" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Software installation" label="attribute.integrity.variety.Software installation">
+        <attvalues>
+          <attvalue for="0" value="3" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.integrity" />
+          <attvalue for="3" value="0.25" />
+          <attvalue for="4" value="attribute.integrity.variety.Software installation" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="attribute.confidentiality.data.variety.Medical" target="action.malware.variety.Ransomware" weight="0.6">
+        <attvalues>
+          <attvalue for="5" value="3" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Medical-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="attribute.confidentiality.data.variety.Medical" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Medical-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="action.malware.variety.Ransomware" target="attribute.confidentiality.data.variety.Medical" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.malware.variety.Ransomware-&gt;attribute.confidentiality.data.variety.Medical" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="action.malware.variety.Ransomware" target="attribute.integrity.variety.Software installation" weight="0.8">
+        <attvalues>
+          <attvalue for="5" value="2" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.malware.variety.Ransomware-&gt;attribute.integrity.variety.Software installation" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="action.malware.variety.Ransomware" target="attribute.integrity.variety.Modify data" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.malware.variety.Ransomware-&gt;attribute.integrity.variety.Modify data" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="action.malware.variety.Ransomware" target="attribute.availability.variety.Obscuration" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.malware.variety.Ransomware-&gt;attribute.availability.variety.Obscuration" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="action.malware.variety.Ransomware" target="attribute.confidentiality.data.variety.Personal" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.malware.variety.Ransomware-&gt;attribute.confidentiality.data.variety.Personal" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="action.malware.variety.Ransomware" target="attribute.availability.variety.Loss" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.malware.variety.Ransomware-&gt;attribute.availability.variety.Loss" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="attribute.integrity.variety.Modify data" target="action.malware.variety.Ransomware" weight="0.6">
+        <attvalues>
+          <attvalue for="5" value="3" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.integrity.variety.Modify data-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="attribute.integrity.variety.Modify data" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.integrity.variety.Modify data-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="10" source="attribute.availability.variety.Loss" target="action.malware.variety.Ransomware" weight="0.8">
+        <attvalues>
+          <attvalue for="5" value="2" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.availability.variety.Loss-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="11" source="attribute.availability.variety.Loss" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.availability.variety.Loss-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="12" source="attribute.availability.variety.Obscuration" target="action.malware.variety.Ransomware" weight="0.6">
+        <attvalues>
+          <attvalue for="5" value="3" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.availability.variety.Obscuration-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="13" source="attribute.availability.variety.Obscuration" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.availability.variety.Obscuration-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="14" source="action.social.variety.Phishing" target="attribute.confidentiality.data.variety.Personal" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.social.variety.Phishing-&gt;attribute.confidentiality.data.variety.Personal" />
+        </attvalues>
+      </edge>
+      <edge id="15" source="action.social.variety.Phishing" target="attribute.integrity.variety.Alter behavior" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.social.variety.Phishing-&gt;attribute.integrity.variety.Alter behavior" />
+        </attvalues>
+      </edge>
+      <edge id="16" source="attribute.confidentiality.data.variety.Personal" target="action.malware.variety.Ransomware" weight="0.8">
+        <attvalues>
+          <attvalue for="5" value="2" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Personal-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="17" source="attribute.confidentiality.data.variety.Personal" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Personal-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="18" source="attribute.confidentiality.data.variety.Personal" target="action.social.variety.Phishing" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Personal-&gt;action.social.variety.Phishing" />
+        </attvalues>
+      </edge>
+      <edge id="19" source="start" target="action.malware.variety.Ransomware" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="start-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="20" source="start" target="action.social.variety.Phishing" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="start-&gt;action.social.variety.Phishing" />
+        </attvalues>
+      </edge>
+      <edge id="21" source="attribute.integrity.variety.Alter behavior" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.integrity.variety.Alter behavior-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="22" source="attribute.integrity.variety.Alter behavior" target="action.social.variety.Phishing" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.integrity.variety.Alter behavior-&gt;action.social.variety.Phishing" />
+        </attvalues>
+      </edge>
+      <edge id="23" source="attribute.integrity.variety.Software installation" target="action.malware.variety.Ransomware" weight="0.2">
+        <attvalues>
+          <attvalue for="5" value="5" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.integrity.variety.Software installation-&gt;action.malware.variety.Ransomware" />
+        </attvalues>
+      </edge>
+      <edge id="24" source="attribute.integrity.variety.Software installation" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.integrity.variety.Software installation-&gt;end" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

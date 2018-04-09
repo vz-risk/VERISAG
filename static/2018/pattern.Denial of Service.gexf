@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf version="1.1" xmlns="http://www.gexf.net/1.1draft" xmlns:viz="http://www.gexf.net/1.1draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance">
+  <graph defaultedgetype="directed" mode="static">
+    <attributes class="edge" mode="static">
+      <attribute id="5" title="count" type="integer" />
+      <attribute id="6" title="direction" type="string" />
+      <attribute id="7" title="Label" type="string" />
+    </attributes>
+    <attributes class="node" mode="static">
+      <attribute id="0" title="count" type="integer" />
+      <attribute id="1" title="type" type="string" />
+      <attribute id="2" title="sub_type" type="string" />
+      <attribute id="3" title="weight" type="double" />
+      <attribute id="4" title="Label" type="string" />
+    </attributes>
+    <nodes>
+      <node id="end" label="end">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="end" />
+          <attvalue for="2" value="end" />
+          <attvalue for="3" value="1.0" />
+          <attvalue for="4" value="end" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Defacement" label="attribute.integrity.variety.Defacement">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.integrity" />
+          <attvalue for="3" value="0.999906590071" />
+          <attvalue for="4" value="attribute.integrity.variety.Defacement" />
+        </attvalues>
+      </node>
+      <node id="start" label="start">
+        <attvalues>
+          <attvalue for="0" value="0" />
+          <attvalue for="1" value="start" />
+          <attvalue for="2" value="start" />
+          <attvalue for="3" value="1.0" />
+          <attvalue for="4" value="start" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Degradation" label="attribute.availability.variety.Degradation">
+        <attvalues>
+          <attvalue for="0" value="21307" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.availability" />
+          <attvalue for="3" value="0.00485731633273" />
+          <attvalue for="4" value="attribute.availability.variety.Degradation" />
+        </attvalues>
+      </node>
+      <node id="attribute.confidentiality.data.variety.Personal" label="attribute.confidentiality.data.variety.Personal">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.confidentiality" />
+          <attvalue for="3" value="0.999906590071" />
+          <attvalue for="4" value="attribute.confidentiality.data.variety.Personal" />
+        </attvalues>
+      </node>
+      <node id="action.hacking.variety.DoS" label="action.hacking.variety.DoS">
+        <attvalues>
+          <attvalue for="0" value="21410" />
+          <attvalue for="1" value="action" />
+          <attvalue for="2" value="action.hacking" />
+          <attvalue for="3" value="4.67049647378e-05" />
+          <attvalue for="4" value="action.hacking.variety.DoS" />
+        </attvalues>
+      </node>
+      <node id="attribute.integrity.variety.Alter behavior" label="attribute.integrity.variety.Alter behavior">
+        <attvalues>
+          <attvalue for="0" value="2" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.integrity" />
+          <attvalue for="3" value="0.999906590071" />
+          <attvalue for="4" value="attribute.integrity.variety.Alter behavior" />
+        </attvalues>
+      </node>
+      <node id="attribute.availability.variety.Interruption" label="attribute.availability.variety.Interruption">
+        <attvalues>
+          <attvalue for="0" value="104" />
+          <attvalue for="1" value="attribute" />
+          <attvalue for="2" value="attribute.availability" />
+          <attvalue for="3" value="0.995142683667" />
+          <attvalue for="4" value="attribute.availability.variety.Interruption" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge id="0" source="attribute.integrity.variety.Defacement" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.integrity.variety.Defacement-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="1" source="attribute.integrity.variety.Defacement" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.integrity.variety.Defacement-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="2" source="start" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="start-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="3" source="attribute.availability.variety.Degradation" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.availability.variety.Degradation-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="4" source="attribute.availability.variety.Degradation" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.availability.variety.Degradation-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="5" source="attribute.confidentiality.data.variety.Personal" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Personal-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="6" source="attribute.confidentiality.data.variety.Personal" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.confidentiality.data.variety.Personal-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="7" source="action.hacking.variety.DoS" target="attribute.availability.variety.Degradation" weight="4.69351356425e-05">
+        <attvalues>
+          <attvalue for="5" value="21306" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Degradation" />
+        </attvalues>
+      </edge>
+      <edge id="8" source="action.hacking.variety.DoS" target="attribute.integrity.variety.Defacement" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.hacking.variety.DoS-&gt;attribute.integrity.variety.Defacement" />
+        </attvalues>
+      </edge>
+      <edge id="9" source="action.hacking.variety.DoS" target="attribute.confidentiality.data.variety.Personal" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.hacking.variety.DoS-&gt;attribute.confidentiality.data.variety.Personal" />
+        </attvalues>
+      </edge>
+      <edge id="10" source="action.hacking.variety.DoS" target="attribute.integrity.variety.Alter behavior" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.hacking.variety.DoS-&gt;attribute.integrity.variety.Alter behavior" />
+        </attvalues>
+      </edge>
+      <edge id="11" source="action.hacking.variety.DoS" target="attribute.availability.variety.Interruption" weight="0.995212616164">
+        <attvalues>
+          <attvalue for="5" value="103" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="action.hacking.variety.DoS-&gt;attribute.availability.variety.Interruption" />
+        </attvalues>
+      </edge>
+      <edge id="12" source="attribute.integrity.variety.Alter behavior" target="action.hacking.variety.DoS" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.integrity.variety.Alter behavior-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="13" source="attribute.integrity.variety.Alter behavior" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.integrity.variety.Alter behavior-&gt;end" />
+        </attvalues>
+      </edge>
+      <edge id="14" source="attribute.availability.variety.Interruption" target="action.hacking.variety.DoS" weight="0.999953064864">
+        <attvalues>
+          <attvalue for="5" value="2" />
+          <attvalue for="6" value="backward" />
+          <attvalue for="7" value="attribute.availability.variety.Interruption-&gt;action.hacking.variety.DoS" />
+        </attvalues>
+      </edge>
+      <edge id="15" source="attribute.availability.variety.Interruption" target="end" weight="1.0">
+        <attvalues>
+          <attvalue for="5" value="1" />
+          <attvalue for="6" value="forward" />
+          <attvalue for="7" value="attribute.availability.variety.Interruption-&gt;end" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
